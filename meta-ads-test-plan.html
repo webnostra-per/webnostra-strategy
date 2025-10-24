@@ -784,5 +784,15 @@
             <p style="margin-top: 40px; opacity: 0.8;">Документ обновлен: 25.10.2024</p>
         </div>
     </div>
+
+    <script>
+document.querySelector('button[onClick], .print-btn')?.addEventListener('click', () => {
+  document.body.style.setProperty('-webkit-print-color-adjust', 'exact', 'important');
+  document.body.style.setProperty('print-color-adjust', 'exact', 'important');
+  window.print();
+});
+</script>
+
+    
 </body>
 </html>
