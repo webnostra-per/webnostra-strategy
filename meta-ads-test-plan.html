@@ -76,6 +76,25 @@
             flex-wrap: wrap;
         }
 
+        @media print {
+  .btn-group,
+  .contact-section {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: gray;
+  }
+}
+
+
         .btn {
             padding: 12px 30px;
             background: white;
