@@ -76,25 +76,6 @@
             flex-wrap: wrap;
         }
 
-        @media print {
-  .btn-group,
-  .contact-section {
-    display: none !important;
-  }
-
-  body {
-    background: white !important;
-    color: black !important;
-  }
-
-  a::after {
-    content: " (" attr(href) ")";
-    font-size: 0.8em;
-    color: gray;
-  }
-}
-
-
         .btn {
             padding: 12px 30px;
             background: white;
@@ -406,11 +387,12 @@
                     <span>10-14 дней</span>
                 </div>
             </div>
-
+            
             <div class="btn-group">
-  <a href="#" class="btn" onclick="window.print()">🖨️ Распечатать</a>
-  <a href="https://teletype.in/@alshanskiym/cases-16-10" class="btn" target="_blank">📊 Посмотреть кейсы</a>
-</div>
+                <a href="#" class="btn">📥 Скачать PDF</a>
+                <a href="https://teletype.in/@alshanskiym/cases-16-10" class="btn" target="_blank">📊 Посмотреть кейсы</a>
+            </div>
+        </div>
 
         <div class="content">
             <!-- ТАКТИКА ПРОДВИЖЕНИЯ -->
