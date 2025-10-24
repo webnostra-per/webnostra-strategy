@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -209,11 +209,15 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
         .case-title {
             font-size: 24px;
             font-weight: 700;
+            flex: 1;
+            min-width: 200px;
         }
         
         .case-priority {
@@ -222,6 +226,7 @@
             border-radius: 20px;
             font-size: 14px;
             font-weight: 600;
+            white-space: nowrap;
         }
         
         .case-content {
@@ -284,6 +289,8 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             border-radius: 10px;
             overflow: hidden;
+            display: block;
+            overflow-x: auto;
         }
         
         .metrics-table thead {
@@ -296,6 +303,7 @@
             text-align: left;
             font-weight: 600;
             font-size: 14px;
+            white-space: nowrap;
         }
         
         .metrics-table td {
@@ -477,9 +485,218 @@
             page-break-after: always;
         }
         
-        .icon {
-            display: inline-block;
-            margin-right: 8px;
+        /* MOBILE АДАПТАЦИЯ */
+        @media screen and (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .header h2 {
+                font-size: 18px;
+            }
+            
+            .header-info {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 20px;
+            }
+            
+            .header-info-item {
+                font-size: 13px;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .section {
+                margin-bottom: 35px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+                margin-bottom: 20px;
+            }
+            
+            .executive-summary {
+                padding: 25px 20px;
+            }
+            
+            .summary-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .summary-box {
+                padding: 20px;
+            }
+            
+            .highlight-number {
+                font-size: 24px;
+            }
+            
+            .money-point {
+                padding: 20px 15px;
+            }
+            
+            .money-point h4 {
+                font-size: 18px;
+            }
+            
+            .money-point p {
+                font-size: 14px;
+            }
+            
+            .case-card {
+                padding: 25px 20px;
+            }
+            
+            .case-header {
+                flex-direction: column;
+            }
+            
+            .case-title {
+                font-size: 20px;
+                min-width: 100%;
+            }
+            
+            .case-priority {
+                align-self: flex-start;
+            }
+            
+            .case-content {
+                padding: 20px 15px;
+            }
+            
+            .case-content h5 {
+                font-size: 16px;
+            }
+            
+            .case-content ul {
+                margin-left: 5px;
+            }
+            
+            .roi-box {
+                padding: 15px;
+            }
+            
+            .roi-item {
+                font-size: 14px;
+                word-break: break-word;
+            }
+            
+            .metrics-table {
+                font-size: 12px;
+            }
+            
+            .metrics-table th,
+            .metrics-table td {
+                padding: 10px 8px;
+                font-size: 12px;
+            }
+            
+            .timeline-item {
+                padding-left: 35px;
+            }
+            
+            .timeline-item:before {
+                left: 10px;
+            }
+            
+            .timeline-dot {
+                left: 3px;
+            }
+            
+            .timeline-content h5 {
+                font-size: 16px;
+            }
+            
+            .timeline-content p,
+            .timeline-content ul {
+                font-size: 13px;
+            }
+            
+            .risk-box {
+                padding: 15px;
+            }
+            
+            .scenario-card {
+                padding: 20px 15px;
+            }
+            
+            .scenario-card h4 {
+                font-size: 18px;
+            }
+            
+            .scenario-card ul {
+                margin-left: 0;
+            }
+            
+            .cta-box {
+                padding: 30px 20px;
+            }
+            
+            .cta-box h3 {
+                font-size: 22px;
+            }
+            
+            .cta-box p {
+                font-size: 15px;
+            }
+            
+            .cta-box ol {
+                text-align: left;
+                margin: 15px 10px;
+            }
+            
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 15px;
+            }
+            
+            .footer {
+                padding: 30px 20px;
+            }
+            
+            .footer p {
+                font-size: 13px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .header h1 {
+                font-size: 20px;
+            }
+            
+            .header h2 {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .highlight-number {
+                font-size: 20px;
+            }
+            
+            .case-title {
+                font-size: 18px;
+            }
+            
+            .metrics-table th,
+            .metrics-table td {
+                padding: 8px 5px;
+                font-size: 11px;
+            }
+            
+            .cta-box h3 {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
@@ -1014,7 +1231,7 @@
                 
                 <div style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 35px; border-radius: 15px;">
                     <h4 style="font-size: 22px; margin-bottom: 20px; color: #2c3e50;">Стоимость пилота (14 дней):</h4>
-                    <div style="font-size: 36px; font-weight: 700; color: #667eea; margin: 20px 0;">185 000 ₽</div>
+                    <div style="font-size: 36px; font-weight: 700; color: #667eea; margin: 20px 0;">$2,229</div>
                     
                     <div style="background: white; padding: 25px; border-radius: 10px; margin: 20px 0;">
                         <h5 style="font-size: 18px; margin-bottom: 15px; color: #27ae60;">✅ Включено:</h5>
@@ -1031,7 +1248,7 @@
                     <div style="background: white; padding: 25px; border-radius: 10px;">
                         <h5 style="font-size: 18px; margin-bottom: 15px; color: #e74c3c;">❌ Не включено:</h5>
                         <ul style="list-style-position: inside; font-size: 15px; line-height: 1.8;">
-                            <li>Стоимость API и сервисов (если требуются платные подписки) — примерно 8–12 тыс. ₽/месяц</li>
+                            <li>Стоимость API и сервисов (если требуются платные подписки) — примерно $96–145/месяц</li>
                             <li>Доработки, не входящие в 3 кейса</li>
                         </ul>
                     </div>
@@ -1081,50 +1298,18 @@
                 <a href="#" class="cta-button">Связаться с нами</a>
             </div>
 
-           <!-- Contacts -->
-<div class="section">
-  <h3 class="section-title">Контакты</h3>
-
-  <div style="background: #f8f9fa; padding: 30px; border-radius: 10px; text-align: center;">
-
-    <p style="font-size: 18px; margin: 10px 0;">
-      <strong>Ваш менеджер проекта:</strong> Владислав Марфин
-    </p>
-
-    <p style="font-size: 16px; margin: 8px 0;">
-      📱 Телефон/WhatsApp: 
-      <strong>
-        <a href="https://wa.me/77066671426" target="_blank" style="color: inherit; text-decoration: none;">
-          +7 (706) 667-14-26
-        </a>
-      </strong>
-    </p>
-
-    <p style="font-size: 16px; margin: 8px 0;">
-      ✉️ Email: 
-      <strong>
-        <a href="mailto:alshanskiym@gmail.com" style="color: inherit; text-decoration: none;">
-          alshanskiym@gmail.com
-        </a>
-      </strong>
-    </p>
-
-    <p style="font-size: 16px; margin: 8px 0;">
-      💬 Telegram: 
-      <strong>
-        <a href="https://t.me/vladislav_marfin" target="_blank" style="color: inherit; text-decoration: none;">
-          @vladislav_marfin
-        </a>
-      </strong>
-    </p>
-
-    <p style="font-size: 15px; margin-top: 20px; color: #7f8c8d;">
-      Готовы обсудить детали в любое удобное время.
-    </p>
-
-  </div>
-</div>
-
+            <!-- Contacts -->
+            <div class="section">
+                <h3 class="section-title">Контакты</h3>
+                <div style="background: #f8f9fa; padding: 30px; border-radius: 10px; text-align: center;">
+                    <p style="font-size: 18px; margin: 10px 0;"><strong>Ваш менеджер проекта:</strong> Владислав Марфин</p>
+                    <p style="font-size: 16px; margin: 8px 0;">📱 Телефон/WhatsApp: <strong>+77066671426</strong></p>
+                    <p style="font-size: 16px; margin: 8px 0;">✉️ Email: <strong>alshanskiym@gmail.com</strong></p>
+                    <p style="font-size: 16px; margin: 8px 0;">💬 Telegram: <strong>@magosh_al</strong></p>
+                    <p style="font-size: 15px; margin-top: 20px; color: #7f8c8d;">Готовы обсудить детали в любое удобное время.</p>
+                </div>
+            </div>
+        </div>
 
         <!-- Footer -->
         <div class="footer">
