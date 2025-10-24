@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Business Solutions - Автоматизация бизнес-процессов</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #007aff;
+            --success-green: #0ebc69;
+            --error-red: #ff4d4d;
+            --bg-light: #eaf3ff;
+            --bg-white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-gray: #666666;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --border-radius: 16px;
+            --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #f0f7ff 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        body.state-warning {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+        }
+
+        body.state-danger {
+            background: linear-gradient(135deg, #ffe6e6 0%, #ffd4d4 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            background: var(--bg-white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo::before {
+            content: '⚡';
+            font-size: 28px;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .telegram-btn {
+            background: linear-gradient(135deg, #0088cc 0%, #006db3 100%);
+            color: white;
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25d366 0%, #1ea952 100%);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--text-dark);
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0056cc 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        /* Interactive Dashboard */
+        .dashboard-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .dashboard-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .growth-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: var(--transition);
+        }
+
+        .growth-badge.positive {
+            background: rgba(14, 188, 105, 0.1);
+            color: var(--success-green);
+        }
+
+        .growth-badge.negative {
+            background: rgba(255, 77, 77, 0.1);
+            color: var(--error-red);
+        }
+
+        /* Chart */
+        .chart-container {
+            height: 200px;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .chart {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chart-line {
+            fill: none;
+            stroke-width: 3;
+            transition: var(--transition);
+        }
+
+        .chart-line.positive {
+            stroke: var(--success-green);
+        }
+
+        .chart-line.negative {
+            stroke: var(--error-red);
+        }
+
+        .chart-area {
+            transition: var(--transition);
+            opacity: 0.2;
+        }
+
+        .chart-area.positive {
+            fill: url(#gradient-positive);
+        }
+
+        .chart-area.negative {
+            fill: url(#gradient-negative);
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .stat-card.danger {
+            background: #ffebeb;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-gray);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* Toggles */
+        .toggles-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .toggle-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .toggle-item:hover {
+            background: #f0f2f5;
+        }
+
+        .toggle-label {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        /* Custom Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            width: 56px;
+            height: 28px;
+            cursor: pointer;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ccc;
+            border-radius: 28px;
+            transition: 0.4s;
+        }
+
+        .toggle-slider:before {
+            content: "";
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.4s;
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background: var(--success-green);
+        }
+
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(28px);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-content {
+            background: white;
+            border-radius: 24px;
+            padding: 60px 40px;
+            box-shadow: var(--shadow-md);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 500px;
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 40px;
+        }
+
+        .modal h3 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .modal p {
+            color: var(--text-gray);
+            margin-bottom: 24px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 60px 0 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .footer-logo::before {
+            content: '⚡';
+            font-size: 28px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 24px;
+            text-align: center;
+            color: #888;
+        }
+
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            max-width: 400px;
+            z-index: 999;
+            transform: translateY(120%);
+            transition: transform 0.5s ease;
+        }
+
+        .cookie-banner.active {
+            transform: translateY(0);
+        }
+
+        .cookie-banner h4 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .cookie-banner p {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .cookie-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .cookie-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .cookie-btn.accept {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .cookie-btn.settings {
+            background: #f0f2f5;
+            color: var(--text-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .dashboard-card {
+                padding: 24px;
+            }
+
+            .social-buttons {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .cookie-banner {
+                left: 16px;
+                right: 16px;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">AI Business</div>
+            <div class="social-buttons">
+                <a href="https://t.me/" class="social-btn telegram-btn" target="_blank">
+                    <span>📱</span> Telegram
+                </a>
+                <a href="https://wa.me/" class="social-btn whatsapp-btn" target="_blank">
+                    <span>💬</span> WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Ваш бизнес теряет деньги на рутине. Покажем, как искусственный интеллект поможет зарабатывать больше.</h1>
+                <p>Найдем 2–3 задачи, которые можно автоматизировать уже сейчас, и посчитаем, сколько денег вы теряете каждый месяц.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary" id="bookDiagnostic">Забронировать бесплатную диагностику</a>
+                    <a href="#" class="btn btn-secondary">Пример отчета оцифровки</a>
+                </div>
+            </div>
+
+            <!-- Interactive Dashboard -->
+            <div class="dashboard-card">
+                <div class="dashboard-header">
+                    <div class="dashboard-title">AI-аналитика эффективности</div>
+                    <div class="growth-badge positive" id="growthBadge">
+                        <span id="growthIcon">📈</span>
+                        <span id="growthValue">+59%</span>
+                    </div>
+                </div>
+
+                <!-- Chart -->
+                <div class="chart-container">
+                    <svg class="chart" viewBox="0 0 400 200" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="gradient-positive" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#0ebc69;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#0ebc69;stop-opacity:0" />
+                            </linearGradient>
+                            <linearGradient id="gradient-negative" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ff4d4d;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#ff4d4d;stop-opacity:0" />
+                            </linearGradient>
+                        </defs>
+                        <path id="chartArea" class="chart-area positive" d="M0,180 L0,120 L50,100 L100,80 L150,70 L200,50 L250,40 L300,25 L350,20 L400,15 L400,180 Z"/>
+                        <path id="chartLine" class="chart-line positive" d="M0,120 L50,100 L100,80 L150,70 L200,50 L250,40 L300,25 L350,20 L400,15"/>
+                    </svg>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Конверсия</div>
+                        <div class="stat-value" id="statConversion">42%</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Экономия</div>
+                        <div class="stat-value" id="statSavings">₽340K</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Качество</div>
+                        <div class="stat-value" id="statQuality">98%</div>
+                    </div>
+                </div>
+
+                <!-- Toggles -->
+                <div class="toggles-container">
+                    <div class="toggle-item">
+                        <span class="toggle-label">AI-квалификация</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked id="toggle1">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-item">
+                        <span class="toggle-label">AI ОКК</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked id="toggle2">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-item">
+                        <span class="toggle-label">AI контент-завод</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked id="toggle3">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Готовы автоматизировать ваш бизнес?</h2>
+                <p>Оставьте заявку, и мы проведем бесплатный аудит ваших процессов, найдем точки роста и посчитаем ROI от внедрения AI.</p>
+                <a href="#" class="btn btn-primary" id="ctaButton">Оставить заявку</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">AI Business</div>
+                    <p style="color: #888; margin-top: 16px;">Внедряем искусственный интеллект в бизнес-процессы для увеличения прибыли</p>
+                </div>
+                <div class="footer-links">
+                    <h4 style="margin-bottom: 12px;">Документы</h4>
+                    <a href="#">Договор-оферта</a>
+                    <a href="#">Политика конфиденциальности</a>
+                </div>
+                <div class="footer-links">
+                    <h4 style="margin-bottom: 12px;">Контакты</h4>
+                    <a href="https://t.me/">Telegram</a>
+                    <a href="https://wa.me/">WhatsApp</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2025 AI Business Solutions. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-icon">✓</div>
+            <h3>Спасибо!</h3>
+            <p>Наш специалист свяжется с вами в ближайшее время.</p>
+            <button class="btn btn-primary" id="closeModal">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner active" id="cookieBanner">
+        <h4>🍪 Cookie-файлы</h4>
+        <p>Мы используем cookie для улучшения работы сайта и персонализации вашего опыта.</p>
+        <div class="cookie-buttons">
+            <button class="cookie-btn accept" id="acceptCookie">Принять все</button>
+            <button class="cookie-btn settings" id="settingsCookie">Настроить cookie</button>
+        </div>
+    </div>
+
+    <script>
+        // Toggle states
+        const toggle1 = document.getElementById('toggle1');
+        const toggle2 = document.getElementById('toggle2');
+        const toggle3 = document.getElementById('toggle3');
+        
+        const growthBadge = document.getElementById('growthBadge');
+        const growthIcon = document.getElementById('growthIcon');
+        const growthValue = document.getElementById('growthValue');
+        
+        const statConversion = document.getElementById('statConversion');
+        const statSavings = document.getElementById('statSavings');
+        const statQuality = document.getElementById('statQuality');
+        
+        const chartLine = document.getElementById('chartLine');
+        const chartArea = document.getElementById('chartArea');
+        
+        const body = document.body;
+
+        // Data for different states
+        const states = {
+            all: {
+                growth: '+59%',
+                icon: '📈',
+                conversion: '42%',
+                savings: '₽340K',
+                quality: '98%',
+                linePath: 'M0,120 L50,100 L100,80 L150,70 L200,50 L250,40 L300,25 L350,20 L400,15',
+                areaPath: 'M0,180 L0,120 L50,100 L100,80 L150,70 L200,50 L250,40 L300,25 L350,20 L400,15 L400,180 Z',
+                bodyClass: '',
+                positive: true
+            },
+            two: {
+                growth: '+32%',
+                icon: '📊',
+                conversion: '31%',
+                savings: '₽210K',
+                quality: '89%',
+                linePath: 'M0,140 L50,130 L100,120 L150,115 L200,105 L250,95 L300,85 L350,80 L400,75',
+                areaPath: 'M0,180 L0,140 L50,130 L100,120 L150,115 L200,105 L250,95 L300,85 L350,80 L400,75 L400,180 Z',
+                bodyClass: '',
+                positive: true
+            },
+            one: {
+                growth: '+12%',
+                icon: '📉',
+                conversion: '18%',
+                savings: '₽95K',
+                quality: '72%',
+                linePath: 'M0,150 L50,148 L100,145 L150,143 L200,138 L250,133 L300,128 L350,123 L400,118',
+                areaPath: 'M0,180 L0,150 L50,148 L100,145 L150,143 L200,138 L250,133 L300,128 L350,123 L400,118 L400,180 Z',
+                bodyClass: 'state-warning',
+                positive: false
+            },
+            none: {
+                growth: '-28%',
+                icon: '❌',
+                conversion: '8%',
+                savings: '-₽180K',
+                quality: '54%',
+                linePath: 'M0,90 L50,95 L100,105 L150,115 L200,125 L250,135 L300,145 L350,155 L400,165',
+                areaPath: 'M0,180 L0,90 L50,95 L100,105 L150,115 L200,125 L250,135 L300,145 L350,155 L400,165 L400,180 Z',
+                bodyClass: 'state-danger',
+                positive: false
+            }
+        };
+
+        function updateDashboard() {
+            const activeToggles = [toggle1.checked, toggle2.checked, toggle3.checked].filter(Boolean).length;
+            
+            let state;
+            if (activeToggles === 3) state = states.all;
+            else if (activeToggles === 2) state = states.two;
+            else if (activeToggles === 1) state = states.one;
+            else state = states.none;
+
+            // Update stats
+            growthValue.textContent = state.growth;
+            growthIcon.textContent = state.icon;
+            statConversion.textContent = state.conversion;
+            statSavings.textContent = state.savings;
+            statQuality.textContent = state.quality;
+
+            // Update chart
+            chartLine.setAttribute('d', state.linePath);
+            chartArea.setAttribute('d', state.areaPath);
+
+            // Update classes
+            body.className = state.bodyClass;
+            
+            if (state.positive) {
+                growthBadge.classList.remove('negative');
+                growthBadge.classList.add('positive');
+                chartLine.classList.remove('negative');
+                chartLine.classList.add('positive');
+                chartArea.classList.remove('negative');
+                chartArea.classList.add('positive');
+                
+                document.querySelectorAll('.stat-card').forEach(card => {
+                    card.classList.remove('danger');
+                });
+            } else {
+                growthBadge.classList.remove('positive');
+                growthBadge.classList.add('negative');
+                chartLine.classList.remove('positive');
+                chartLine.classList.add('negative');
+                chartArea.classList.remove('positive');
+                chartArea.classList.add('negative');
+                
+                if (activeToggles === 0) {
+                    document.querySelectorAll('.stat-card').forEach(card => {
+                        card.classList.add('danger');
+                    });
+                }
+            }
+        }
+
+        // Event listeners for toggles
+        toggle1.addEventListener('change', updateDashboard);
+        toggle2.addEventListener('change', updateDashboard);
+        toggle3.addEventListener('change', updateDashboard);
+
+        // Modal functionality
+        const modalOverlay = document.getElementById('modalOverlay');
+        const bookDiagnostic = document.getElementById('bookDiagnostic');
+        const ctaButton = document.getElementById('ctaButton');
+        const closeModal = document.getElementById('closeModal');
+
+        function openModal(e) {
+            e.preventDefault();
+            modalOverlay.classList.add('active');
+        }
+
+        function closeModalFunc() {
+            modalOverlay.classList.remove('active');
+        }
+
+        bookDiagnostic.addEventListener('click', openModal);
+        ctaButton.addEventListener('click', openModal);
+        closeModal.addEventListener('click', closeModalFunc);
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                closeModalFunc();
+            }
+        });
+
+        // Cookie banner
+        const cookieBanner = document.getElementById('cookieBanner');
+        const acceptCookie = document.getElementById('acceptCookie');
+        const settingsCookie = document.getElementById('settingsCookie');
+
+        acceptCookie.addEventListener('click', function() {
+            cookieBanner.classList.remove('active');
+            localStorage.setItem('cookieAccepted', 'true');
+        });
+
+        settingsCookie.addEventListener('click', function() {
+            alert('Здесь можно настроить индивидуальные параметры cookie');
+            cookieBanner.classList.remove('active');
+        });
+
+        // Check if cookie was already accepted
+        if (localStorage.getItem('cookieAccepted')) {
+            cookieBanner.classList.remove('active');
+        }
+
+        // Initialize dashboard
+        updateDashboard();
+    </script>
+</body>
+</html>
