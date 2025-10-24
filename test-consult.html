@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Consulting | WebNostra - Автоматизация бизнеса с нейросетями</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-100px) translateX(50px); }
+            50% { transform: translateY(-50px) translateX(-50px); }
+            75% { transform: translateY(-150px) translateX(100px); }
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 5%;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        /* AI Platform Logos */
+        .ai-platforms {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .platform-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .platform-badge:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .platform-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.7rem;
+        }
+
+        .chatgpt { background: linear-gradient(135deg, #10a37f, #1a7f64); }
+        .claude { background: linear-gradient(135deg, #d97757, #c1502e); }
+        .gemini { background: linear-gradient(135deg, #4285f4, #34a853); }
+        .midjourney { background: linear-gradient(135deg, #000, #333); }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(99, 102, 241, 0.5);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 4rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .percentage {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 5rem 5%;
+            background: rgba(255, 255, 255, 0.02);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+
+        .stat-item h4 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 5rem 5%;
+            position: relative;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 5rem;
+        }
+
+        footer p {
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                display: flex;
+                gap: 1rem;
+            }
+
+            nav a {
+                margin-left: 0;
+            }
+
+            .ai-platforms {
+                gap: 1rem;
+            }
+
+            .features-grid,
+            .stats-grid,
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <!-- Floating particles -->
+    <div class="particle" style="top: 10%; left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="top: 20%; left: 80%; animation-delay: 2s;"></div>
+    <div class="particle" style="top: 60%; left: 20%; animation-delay: 4s;"></div>
+    <div class="particle" style="top: 80%; left: 70%; animation-delay: 6s;"></div>
+    <div class="particle" style="top: 40%; left: 90%; animation-delay: 3s;"></div>
+
+    <header>
+        <div class="logo">AI WebNostra</div>
+        <nav>
+            <a href="#features">Возможности</a>
+            <a href="#process">Как работаем</a>
+            <a href="#contact">Контакты</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>
+                    Зарабатывайте больше, <br>
+                    <span class="gradient-text">не нанимая новых людей</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Программа, которая учится на ваших данных и берет на себя <strong>80% рутинной работы</strong>: 
+                    читает входящие, готовит черновики, заполняет карточки, контролирует сроки
+                </p>
+
+                <div class="ai-platforms">
+                    <div class="platform-badge">
+                        <div class="platform-icon chatgpt">🤖</div>
+                        <span>ChatGPT</span>
+                    </div>
+                    <div class="platform-badge">
+                        <div class="platform-icon claude">🧠</div>
+                        <span>Claude</span>
+                    </div>
+                    <div class="platform-badge">
+                        <div class="platform-icon gemini">✨</div>
+                        <span>Gemini</span>
+                    </div>
+                    <div class="platform-badge">
+                        <div class="platform-icon midjourney">🎨</div>
+                        <span>Midjourney</span>
+                    </div>
+                </div>
+
+                <a href="#contact" class="cta-button">Получить консультацию</a>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2 class="section-title fade-in">Что получит ваш бизнес</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="percentage">80%</div>
+                    <h3>Автоматизация рутины</h3>
+                    <p>Освободите команду от повторяющихся задач. AI берет на себя обработку входящих запросов, подготовку документов и контроль сроков</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📧</div>
+                    <h3>Умная обработка почты</h3>
+                    <p>Система анализирует входящие письма, категоризирует их и готовит черновики ответов на основе вашей базы знаний</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📊</div>
+                    <h3>Автозаполнение карточек</h3>
+                    <p>Забудьте о ручном вводе данных. AI извлекает информацию из документов и автоматически заполняет карточки в вашей CRM</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Контроль дедлайнов</h3>
+                    <p>Система отслеживает сроки, напоминает о важных задачах и автоматически эскалирует просроченные дела</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Обучение на ваших данных</h3>
+                    <p>AI анализирует историю вашей работы и учится действовать так же эффективно, как ваши лучшие сотрудники</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💼</div>
+                    <h3>Масштабирование без найма</h3>
+                    <p>Увеличивайте объем работы без расширения штата. AI справляется с нагрузкой 24/7 без выходных и отпусков</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <h2 class="section-title fade-in">Результаты в цифрах</h2>
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <h4>80%</h4>
+                    <p>Сокращение рутинной работы</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h4>3x</h4>
+                    <p>Увеличение производительности</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h4>24/7</h4>
+                    <p>Непрерывная работа системы</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h4>0</h4>
+                    <p>Новых сотрудников в штат</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="process">
+            <h2 class="section-title fade-in">Как мы работаем</h2>
+            <div class="process-steps">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Анализ</h3>
+                    <p>Изучаем ваши процессы и определяем задачи для автоматизации</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Обучение</h3>
+                    <p>Настраиваем AI на ваших данных и бизнес-правилах</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>Интеграция</h3>
+                    <p>Подключаем систему к вашим рабочим инструментам</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>Результат</h3>
+                    <p>Получаете работающее решение и поддержку 24/7</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="hero" style="min-height: 60vh;">
+            <div class="hero-content fade-in">
+                <h2 class="section-title">Готовы автоматизировать свой бизнес?</h2>
+                <p class="hero-description">
+                    Получите бесплатную консультацию и узнайте, как AI может увеличить эффективность вашей команды
+                </p>
+                <a href="mailto:info@webnostra.kz" class="cta-button">Связаться с нами</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 AI WebNostra. Все права защищены.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Powered by ChatGPT, Claude, Gemini & Midjourney</p>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add more particles dynamically
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 10 + 's';
+            document.body.appendChild(particle);
+        }
+
+        for (let i = 0; i < 15; i++) {
+            createParticle();
+        }
+    </script>
+</body>
+</html>
