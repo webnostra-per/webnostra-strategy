@@ -1,1 +1,712 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WEBNOSTRA - Performance-маркетинг и платная реклама. Контекстная и таргетированная реклама для бизнеса любой ниши.">
+    <title>WEBNOSTRA | Performance-маркетинг и платная реклама</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #0066FF;
+            --dark: #0A0E27;
+            --light: #F8F9FA;
+            --gray: #6B7280;
+            --accent: #10B981;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0A0E27 0%, #1a1f3a 100%);
+            color: white;
+            padding: 180px 40px 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 102, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+        
+        .hero .subtitle {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 120px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-tag {
+            display: inline-block;
+            background: rgba(0, 102, 255, 0.1);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .section-header h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        
+        .section-header p {
+            font-size: 20px;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            border: 2px solid rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 24px;
+        }
+        
+        .service-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+        
+        .service-card p {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .service-features li {
+            padding: 8px 0;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .service-features li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        /* Team Section */
+        .team {
+            background: var(--light);
+            padding: 120px 40px;
+        }
+        
+        .team-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .team-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+        
+        .team-intro h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+        
+        .team-intro p {
+            font-size: 18px;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .team-values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .value-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+        }
+        
+        .value-card .emoji {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .value-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .value-card p {
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        /* Process Section */
+        .process {
+            padding: 120px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0 auto 24px;
+        }
+        
+        .step h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .step p {
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 100px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-section h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+        
+        .cta-section p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary, .btn-secondary {
+            padding: 18px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 40px 30px;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-brand h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+        
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+        }
+        
+        .footer-links h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 48px; }
+            .section-header h2 { font-size: 36px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .team-intro { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: repeat(2, 1fr); }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+        }
+        
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .hero { padding: 140px 20px 80px; }
+            .hero h1 { font-size: 36px; }
+            .hero-stats { flex-direction: column; gap: 30px; }
+            .services, .team, .process { padding: 80px 20px; }
+            .team-values { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: 1fr; }
+            .cta-section h2 { font-size: 32px; }
+            .cta-buttons { flex-direction: column; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">WEBNOSTRA</a>
+            <ul class="nav-links">
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#team">О команде</a></li>
+                <li><a href="#process">Процесс</a></li>
+                <li><a href="#contact" class="cta-button">Связаться</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Performance-маркетинг<br>с прозрачными метриками</h1>
+            <p class="subtitle">Настраиваем контекстную и таргетированную рекламу для бизнеса любой ниши. Фокус на результате, а не на процессе.</p>
+            <a href="#contact" class="cta-button">Обсудить проект</a>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">5+</span>
+                    <span class="stat-label">Лет в перформанс</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Запущенных проектов</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Поддержка и отчетность</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-header">
+            <span class="section-tag">Что мы делаем</span>
+            <h2>Полный спектр платной рекламы</h2>
+            <p>Работаем со всеми каналами привлечения: от контекста до соцсетей</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>Контекстная реклама</h3>
+                <p>Запуск и ведение рекламных кампаний в Google Ads и Яндекс.Директ. Захватываем горячий спрос и работаем с высокочековыми запросами.</p>
+                <ul class="service-features">
+                    <li>Сбор и кластеризация семантики</li>
+                    <li>Настройка поисковых и РСЯ кампаний</li>
+                    <li>Умные стратегии назначения ставок</li>
+                    <li>Ремаркетинг и динамические объявления</li>
+                    <li>Оптимизация под конверсии и ROI</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>Таргетированная реклама</h3>
+                <p>Настройка рекламы в Meta Ads (Facebook/Instagram), Telegram Ads и VK. Точное попадание в целевую аудиторию через интересы и поведение.</p>
+                <ul class="service-features">
+                    <li>Meta Ads: квизы, лид-формы, трафик</li>
+                    <li>Telegram Ads: CPM-размещение</li>
+                    <li>VK реклама: таргет и ретаргетинг</li>
+                    <li>A/B тесты креативов и офферов</li>
+                    <li>Lookalike и Custom Audiences</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Стратегия и аналитика</h3>
+                <p>Разработка маркетинговых стратегий под ваши бизнес-цели. Глубокая аналитика, прогнозирование и корректировка курса на основе данных.</p>
+                <ul class="service-features">
+                    <li>Аудит текущих рекламных кампаний</li>
+                    <li>Конкурентный анализ и бенчмарки</li>
+                    <li>Разработка медиапланов</li>
+                    <li>Настройка систем аналитики</li>
+                    <li>Еженедельная отчетность по KPI</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Креативы и лендинги</h3>
+                <p>Создание продающих визуалов, текстов и посадочных страниц. От концепции до готового решения, которое конвертирует посетителей в клиентов.</p>
+                <ul class="service-features">
+                    <li>Дизайн баннеров и креативов</li>
+                    <li>Копирайтинг для объявлений</li>
+                    <li>Разработка квизов и лид-форм</li>
+                    <li>Посадочные страницы под ключ</li>
+                    <li>A/B тестирование дизайна</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="team-content">
+            <div class="section-header">
+                <span class="section-tag">О нас</span>
+                <h2>Команда перформанс-специалистов</h2>
+            </div>
+
+            <div class="team-intro">
+                <div>
+                    <h2>Не агентство,<br>а ваш отдел маркетинга</h2>
+                    <p>WEBNOSTRA — команда специалистов по платной рекламе. Мы помогаем бизнесу находить клиентов через digital-каналы: контекст, соцсети, таргет.</p>
+                    <p>Работаем без шаблонов. Каждый проект — индивидуальная стратегия на основе анализа вашей ниши, конкурентов и целевой аудитории.</p>
+                    <p>Наша цель — построить систему привлечения клиентов, которая работает стабильно и масштабируется с ростом бюджета.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 24px; margin-bottom: 20px; font-weight: 700;">Почему выбирают нас</h3>
+                    <p style="margin-bottom: 16px;"><strong>Фокус на ROI:</strong> Не гонимся за показами и кликами. Главное — прибыльность каждого канала и возврат инвестиций.</p>
+                    <p style="margin-bottom: 16px;"><strong>Прозрачность:</strong> Полный доступ к рекламным кабинетам, понятные отчеты, связь в Telegram 24/7.</p>
+                    <p style="margin-bottom: 16px;"><strong>Опыт в разных нишах:</strong> Работали с e-commerce, B2B, недвижимостью, образованием, финансами и сервисами.</p>
+                    <p><strong>Быстрый старт:</strong> От брифа до запуска первых кампаний — 7-14 дней в зависимости от сложности.</p>
+                </div>
+            </div>
+
+            <div class="team-values">
+                <div class="value-card">
+                    <div class="emoji">🎯</div>
+                    <h4>Результат превыше всего</h4>
+                    <p>Важны лиды и продажи, а не красивые графики с охватами. Оптимизируем под ваши бизнес-цели</p>
+                </div>
+                <div class="value-card">
+                    <div class="emoji">🚀</div>
+                    <h4>Скорость и гибкость</h4>
+                    <p>Быстро запускаем, быстро тестируем гипотезы, оперативно масштабируем работающие связки</p>
+                </div>
+                <div class="value-card">
+                    <div class="emoji">📊</div>
+                    <h4>Решения на основе данных</h4>
+                    <p>Каждое действие подкреплено аналитикой. Не полагаемся на интуицию или "так принято"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="section-header">
+            <span class="section-tag">Как мы работаем</span>
+            <h2>От брифа до стабильного потока заявок</h2>
+            <p>Четкий процесс без затянутых согласований и бюрократии</p>
+        </div>
+
+        <div class="process-steps">
