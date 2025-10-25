@@ -929,7 +929,7 @@
             console.log('Form submitted:', formData);
             
             // Send to Google Sheets
-            const googleScriptURL = 'https://script.google.com/macros/s/AKfycbwxrQF_IFkPoZo9KbSOrTb9fTXO2tSPCcO0EoP_YHr24Qyr17mHORw_3ulV29u5SPhOuQ/exec';
+            const googleScriptURL = 'https://script.google.com/macros/s/AKfycbzx8tOnSBZwen-Zmy_eyXSACrGIILQz2h1FZrQD0Vrmk6SfnVmEcLr7dHJ2WIf8kZDu/exec';
             
             fetch(googleScriptURL, {
                 method: 'POST',
@@ -945,12 +945,23 @@
                 
                 // Track Facebook Lead event (browser pixel)
                 if (typeof fbq !== 'undefined') {
+                    // Track Lead event
                     fbq('track', 'Lead', {
                         content_name: 'AI Consultation Quiz',
                         content_category: 'Lead Generation',
                         value: 0,
                         currency: 'USD'
                     });
+                    
+                    // Also track as CompleteRegistration for better tracking
+                    fbq('track', 'CompleteRegistration', {
+                        content_name: 'Quiz Completed',
+                        status: 'completed'
+                    });
+                    
+                    console.log('Facebook events tracked: Lead + CompleteRegistration');
+                } else {
+                    console.warn('Facebook Pixel not loaded');
                 }
                 
                 // Track Yandex Metrika goal
@@ -977,6 +988,11 @@
                         value: 0,
                         currency: 'USD'
                     });
+                    
+                    fbq('track', 'CompleteRegistration', {
+                        content_name: 'Quiz Completed',
+                        status: 'completed'
+                    });
                 }
                 
                 if (typeof ym !== 'undefined') {
@@ -992,53 +1008,11 @@
         
         // Function to send event to Facebook Conversions API
         function sendToFacebookConversionsAPI(formData) {
-            const pixelId = '1399100830794020';
-            const accessToken = 'EAAN8iGHohbABOZCpcyaXHY8vY13BFuYxKxRZBFpPzoh42ZBWw4piYKNitiDQxV7H2ZBZAHpLv9DBuYdZBHH3L35doSXhrfxvkJlAhrwHWu2YcWHBvy76vpOEXl81gnZAI4Q9OXzDbTQh8yZBZBJbDj5LAsivCkDhbZC5DrOe2Tbitbc7cNeJekf5CNafH5603s9vXm8wZDZD';
+            // Note: Facebook Conversions API works best from server-side
+            // For client-side tracking, we rely on the browser pixel (fbq)
+            // which is already configured above
             
-            const eventData = {
-                event_name: 'Lead',
-                event_time: Math.floor(Date.now() / 1000),
-                action_source: 'website',
-                event_source_url: window.location.href,
-                user_data: {
-                    client_user_agent: navigator.userAgent,
-                    fbc: getCookie('_fbc'),
-                    fbp: getCookie('_fbp')
-                },
-                custom_data: {
-                    content_name: 'AI Consultation Quiz',
-                    content_category: 'Lead Generation',
-                    value: 0,
-                    currency: 'USD'
-                }
-            };
-            
-            // Remove null values
-            Object.keys(eventData.user_data).forEach(key => {
-                if (eventData.user_data[key] === null || eventData.user_data[key] === undefined) {
-                    delete eventData.user_data[key];
-                }
-            });
-            
-            const payload = {
-                data: [eventData]
-            };
-            
-            // Send to Facebook Conversions API
-            fetch(`https://graph.facebook.com/v18.0/${pixelId}/events?access_token=${accessToken}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Facebook Conversions API Response:', data);
-            })
-            .catch(error => {
-                console.error('Facebook Conversions API Error:', error);
-            });
+            console.log('Lead event tracked via Facebook Pixel');
         }
         
         // Helper function to get cookie value
