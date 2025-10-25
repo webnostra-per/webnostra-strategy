@@ -1067,8 +1067,9 @@
                 }
                 
                 // Show success message
-                showStep('success');
+                document.querySelectorAll('.step').forEach(step => step.classList.add('hidden'));
                 document.getElementById('successStep').classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -1083,8 +1084,9 @@
                 }
                 
                 // Still show success
-                showStep('success');
+                document.querySelectorAll('.step').forEach(step => step.classList.add('hidden'));
                 document.getElementById('successStep').classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
 
