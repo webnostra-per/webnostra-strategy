@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Quiz - Practicum AI Advisory Group</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .logo {
+            background: white;
+            padding: 15px 30px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4a5fc1;
+        }
+
+        .hero-title {
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 800;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 3vw, 20px);
+            color: rgba(255,255,255,0.95);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .progress-container {
+            background: rgba(255,255,255,0.2);
+            height: 8px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff 0%, #0099ff 100%);
+            border-radius: 20px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .quiz-card {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.6s ease;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .question-title {
+            font-size: clamp(22px, 4vw, 28px);
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+            line-height: 1.3;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        .option {
+            background: #f5f7fa;
+            border: 3px solid transparent;
+            border-radius: 20px;
+            padding: 20px 25px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .option:hover:before {
+            left: 100%;
+        }
+
+        .option:hover {
+            background: #e8f0ff;
+            border-color: #4a90e2;
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: #5568d3;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .radio-circle {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #ccc;
+            border-radius: 50%;
+            flex-shrink: 0;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .option.selected .radio-circle {
+            border-color: white;
+            background: white;
+        }
+
+        .option.selected .radio-circle:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: #667eea;
+            border-radius: 50%;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-back {
+            background: white;
+            border: 3px solid #e0e0e0;
+            color: #666;
+            padding: 18px 30px;
+            border-radius: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            min-width: 80px;
+        }
+
+        .btn-back:hover {
+            background: #f5f5f5;
+            border-color: #ccc;
+            transform: translateY(-2px);
+        }
+
+        .btn-back:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-next {
+            flex: 1;
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-next:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(74, 144, 226, 0.5);
+        }
+
+        .btn-next:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-label {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-input {
+            padding: 18px 20px;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 16px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .contact-btn {
+            flex: 1;
+            padding: 15px;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .contact-btn.selected {
+            background: #25d366;
+            border-color: #25d366;
+            color: white;
+        }
+
+        .contact-btn.telegram.selected {
+            background: #0088cc;
+            border-color: #0088cc;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .phone-input-wrapper {
+            display: flex;
+            gap: 10px;
+        }
+
+        .country-code {
+            width: 100px;
+            padding: 18px 15px;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 16px;
+            background: white;
+        }
+
+        textarea.form-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .cta-button {
+            padding: 20px 30px;
+            border-radius: 20px;
+            border: none;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
+        }
+
+        .cta-secondary {
+            background: linear-gradient(135deg, #a8b5d1 0%, #8d9db6 100%);
+            color: white;
+            box-shadow: 0 8px 20px rgba(168, 181, 209, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(74, 144, 226, 0.5);
+        }
+
+        .cta-note {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: scaleIn 0.5s ease;
+        }
+
+        .success-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4a90e2;
+            margin-bottom: 15px;
+        }
+
+        .success-text {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 8px;
+        }
+
+        .footer-link:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-divider {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .quiz-card {
+                padding: 25px;
+                min-height: 450px;
+            }
+
+            .option {
+                padding: 18px 20px;
+                font-size: 16px;
+            }
+
+            .button-group {
+                flex-direction: column-reverse;
+            }
+
+            .btn-back {
+                width: 100%;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .footer-divider {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-text">PRACTICUM AI</div>
+                <div style="font-size: 12px; color: #666; margin-top: 2px;">ADVISORY GROUP</div>
+            </div>
+            <h1 class="hero-title">Ваш бизнес теряет деньги на рутине. Покажем, как искусственный интеллект поможет зарабатывать больше</h1>
+            <p class="hero-subtitle">Найдем 2-3 задачи, которые можно автоматизировать с помощью искусственного интеллекта уже сейчас — и посчитаем, сколько денег вы теряете каждый месяц</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="quiz-card">
+            <!-- Question 1 -->
+            <div id="step1" class="step">
+                <h2 class="question-title">Что в вашем бизнесе сейчас "тормозит" рост?</h2>
+                <div class="options">
+                    <label class="option" data-value="routine">
+                        <div class="radio-circle"></div>
+                        <span>Потери времени на рутину и перепиcки</span>
+                    </label>
+                    <label class="option" data-value="mistakes">
+                        <div class="radio-circle"></div>
+                        <span>Ошибки сотрудников / человеческий фактор</span>
+                    </label>
+                    <label class="option" data-value="processes">
+                        <div class="radio-circle"></div>
+                        <span>Медленные процессы и согласования</span>
+                    </label>
+                    <label class="option" data-value="nodata">
+                        <div class="radio-circle"></div>
+                        <span>Нет данных, чтобы принимать решения</span>
+                    </label>
+                    <label class="option" data-value="dontknow">
+                        <div class="radio-circle"></div>
+                        <span>Не знаю — хочу увидеть реальную картину</span>
+                    </label>
+                </div>
+                <div class="button-group">
+                    <button class="btn-back" id="backBtn1" disabled>← Назад</button>
+                    <button class="btn-next" id="nextBtn1" disabled>Далее →</button>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div id="step2" class="step hidden">
+                <h2 class="question-title">Где вы хотите навести порядок в первую очередь?</h2>
+                <div class="options">
+                    <label class="option" data-value="sales">
+                        <div class="radio-circle"></div>
+                        <span>Продажи и коммуникации с клиентами</span>
+                    </label>
+                    <label class="option" data-value="marketing">
+                        <div class="radio-circle"></div>
+                        <span>Маркетинг и заявки</span>
+                    </label>
+                    <label class="option" data-value="finance">
+                        <div class="radio-circle"></div>
+                        <span>Финансы и управление</span>
+                    </label>
+                    <label class="option" data-value="internal">
+                        <div class="radio-circle"></div>
+                        <span>Внутренние процессы / отделы</span>
+                    </label>
+                    <label class="option" data-value="fullpicture">
+                        <div class="radio-circle"></div>
+                        <span>Хочу полную картину бизнеса</span>
+                    </label>
+                </div>
+                <div class="button-group">
+                    <button class="btn-back" id="backBtn2">← Назад</button>
+                    <button class="btn-next" id="nextBtn2" disabled>Далее →</button>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div id="step3" class="step hidden">
+                <h2 class="question-title">Оставьте свои контакты, чтобы мы связались с вами</h2>
+                
+                <form class="form-section" id="contactForm">
+                    <div class="form-group">
+                        <label class="form-label">Имя</label>
+                        <input type="text" class="form-input" id="nameInput" placeholder="Ваше имя">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Как с вами связаться <span style="color: #e74c3c;">*</span></label>
+                        <div class="contact-buttons">
+                            <button type="button" class="contact-btn whatsapp" data-contact="whatsapp">
+                                <span>💬</span>
+                                <span>WhatsApp</span>
+                            </button>
+                            <button type="button" class="contact-btn telegram" data-contact="telegram">
+                                <span>✈️</span>
+                                <span>Telegram</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Номер телефона <span style="color: #e74c3c;">*</span></label>
+                        <div class="phone-input-wrapper">
+                            <select class="country-code" id="countryCode">
+                                <option value="+66">🇹🇭 +66</option>
+                                <option value="+7">🇰🇿 +7</option>
+                                <option value="+1">🇺🇸 +1</option>
+                                <option value="+44">🇬🇧 +44</option>
+                            </select>
+                            <input type="tel" class="form-input" id="phoneInput" placeholder="00-000-0000" required style="flex: 1;">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Ссылка на ваш сайт или соцсети</label>
+                        <input type="url" class="form-input" id="websiteInput" placeholder="https://">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Ваш запрос</label>
+                        <textarea class="form-input" id="requestInput" placeholder="Расскажите о вашей задаче..."></textarea>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn-back" id="backBtn3">← Назад</button>
+                        <button type="submit" class="btn-next">Забронировать бесплатную диагностику</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Success Message -->
+            <div id="successStep" class="step hidden">
+                <div class="success-message">
+                    <div class="success-icon">✅</div>
+                    <h2 class="success-title">Спасибо за вашу заявку!</h2>
+                    <p class="success-text">Мы свяжемся с вами в ближайшее время через выбранный мессенджер.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="https://ai.webnostra.kz/publicoferta" class="footer-link" target="_blank">Публичная оферта</a>
+                <span class="footer-divider">•</span>
+                <a href="https://ai.webnostra.kz/privacy" class="footer-link" target="_blank">Политика конфиденциальности</a>
+                <span class="footer-divider">•</span>
+                <a href="https://ai.webnostra.kz/cookie" class="footer-link" target="_blank">Политика обработки файлов cookie</a>
+            </div>
+            <div class="footer-copyright">
+                © 2025 Practicum AI Advisory Group. Все права защищены.
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Quiz state
+        let currentStep = 1;
+        const answers = {
+            question1: null,
+            question2: null,
+            contactMethod: null
+        };
+
+        // Update progress bar
+        function updateProgress() {
+            const progress = (currentStep / 3) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Show step
+        function showStep(stepNumber) {
+            document.querySelectorAll('.step').forEach(step => step.classList.add('hidden'));
+            document.getElementById('step' + stepNumber).classList.remove('hidden');
+            currentStep = stepNumber;
+            updateProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Handle option selection for question 1
+        document.querySelectorAll('#step1 .option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('#step1 .option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                answers.question1 = this.dataset.value;
+                document.getElementById('nextBtn1').disabled = false;
+                
+                // Auto-advance to next step after short delay
+                setTimeout(() => {
+                    showStep(2);
+                }, 500);
+            });
+        });
+
+        // Handle option selection for question 2
+        document.querySelectorAll('#step2 .option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('#step2 .option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                answers.question2 = this.dataset.value;
+                document.getElementById('nextBtn2').disabled = false;
+                
+                // Auto-advance to next step after short delay
+                setTimeout(() => {
+                    showStep(3);
+                }, 500);
+            });
+        });
+
+        // Contact method selection
+        document.querySelectorAll('.contact-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.contact-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                answers.contactMethod = this.dataset.contact;
+            });
+        });
+
+        // Navigation buttons
+        document.getElementById('nextBtn1').addEventListener('click', () => showStep(2));
+        document.getElementById('nextBtn2').addEventListener('click', () => showStep(3));
+        
+        document.getElementById('backBtn2').addEventListener('click', () => showStep(1));
+        document.getElementById('backBtn3').addEventListener('click', () => showStep(2));
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Проверяем обязательные поля
+            const phone = document.getElementById('phoneInput').value;
+            const contactMethod = answers.contactMethod;
+            
+            if (!phone.trim()) {
+                alert('Пожалуйста, введите номер телефона');
+                return;
+            }
+            
+            if (!contactMethod) {
+                alert('Пожалуйста, выберите способ связи (WhatsApp или Telegram)');
+                return;
+            }
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Отправка...';
+            
+            const formData = {
+                timestamp: new Date().toISOString(),
+                name: document.getElementById('nameInput').value,
+                countryCode: document.getElementById('countryCode').value,
+                phone: document.getElementById('phoneInput').value,
+                fullPhone: document.getElementById('countryCode').value + ' ' + document.getElementById('phoneInput').value,
+                website: document.getElementById('websiteInput').value,
+                request: document.getElementById('requestInput').value,
+                contactMethod: answers.contactMethod,
+                question1Answer: answers.question1,
+                question2Answer: answers.question2
+            };
+
+            console.log('Form submitted:', formData);
+            
+            // Send to Google Sheets
+            const googleScriptURL = 'https://script.google.com/macros/s/AKfycbwxrQF_IFkPoZo9KbSOrTb9fTXO2tSPCcO0EoP_YHr24Qyr17mHORw_3ulV29u5SPhOuQ/exec';
+            
+            fetch(googleScriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(() => {
+                // Show success message
+                showStep('success');
+                document.getElementById('successStep').classList.remove('hidden');
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                // Still show success for demo purposes
+                showStep('success');
+                document.getElementById('successStep').classList.remove('hidden');
+            });
+        });
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>
