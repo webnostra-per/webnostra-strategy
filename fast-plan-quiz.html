@@ -317,6 +317,7 @@
         .iti {
             width: 100%;
             display: block;
+            position: relative;
         }
 
         .iti__flag-container {
@@ -329,7 +330,7 @@
         }
 
         .iti__selected-flag {
-            padding: 0 12px;
+            padding: 0 8px;
             height: 100%;
             display: flex;
             align-items: center;
@@ -342,16 +343,18 @@
         }
 
         .iti__selected-dial-code {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             color: #2c3e50;
-            margin-left: 6px;
+            margin-left: 4px;
         }
 
         #phone_wa {
-            padding-left: 110px !important;
+            padding-left: 95px !important;
             position: relative;
             z-index: 1;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .iti__country-list {
@@ -411,6 +414,8 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
+            width: 100%;
+            max-width: 100%;
         }
 
         .form-group label {
@@ -421,6 +426,23 @@
         .form-group small {
             color: var(--text-gray);
             font-size: 13px;
+        }
+
+        /* Ensure phone input wrapper fits properly */
+        .contact-input-field {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .contact-input-field .iti {
+            max-width: 100%;
+        }
+
+        .contact-input-field .text-input {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .checkbox-group {
@@ -791,17 +813,29 @@
             }
             
             #phone_wa {
-                padding-left: 100px !important;
+                padding-left: 85px !important;
                 font-size: 16px;
             }
 
             .iti__selected-flag {
-                padding: 0 8px;
+                padding: 0 6px;
+            }
+
+            .iti__selected-dial-code {
+                font-size: 12px;
             }
 
             .checkbox-group label {
                 font-size: 13px;
                 line-height: 1.5;
+            }
+
+            .contact-input-field {
+                margin-top: 15px;
+            }
+
+            .form-group label {
+                font-size: 14px;
             }
 
             .navigation-buttons {
@@ -1658,7 +1692,26 @@
                     formatOnDisplay: true,
                     autoPlaceholder: "polite",
                     nationalMode: false,
+                    strictMode: true,
                     customContainer: "iti-custom"
+                });
+                
+                // Ограничиваем ввод только цифрами и форматируем
+                input.addEventListener('input', function(e) {
+                    // Убираем все кроме цифр
+                    let value = e.target.value.replace(/\D/g, '');
+                    
+                    // Получаем максимальную длину для текущей страны
+                    const selectedCountryData = phoneInputWA.getSelectedCountryData();
+                    
+                    // Форматируем номер
+                    if (phoneInputWA.isValidNumber()) {
+                        e.target.style.borderColor = '#27ae60';
+                    } else if (value.length > 0) {
+                        e.target.style.borderColor = '#e74c3c';
+                    } else {
+                        e.target.style.borderColor = '#e8ecef';
+                    }
                 });
                 
                 // Log for debugging
