@@ -567,7 +567,161 @@
             justify-content: center;
             font-weight: 700;
         }
-    </style>
+    
+        /* Tariff Cards */
+        .tariff-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .tariff-card-preview {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .tariff-card-preview:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .tariff-card-preview.recommended {
+            border-color: #28a745;
+        }
+
+        .recommended-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+            box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
+        }
+
+        .tariff-name {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .tariff-price {
+            font-size: 3em;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .tariff-budget {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .tariff-goal {
+            color: #333;
+            font-size: 1em;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* Comparison Table Styles */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin: 20px 0;
+        }
+
+        .comparison-table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .comparison-table th {
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        .comparison-table tbody tr {
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .comparison-table td {
+            padding: 18px 15px;
+            text-align: center;
+            font-size: 0.95em;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .check-icon {
+            color: #28a745;
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .cross-icon {
+            color: #dc3545;
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .included-text {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .price-cell {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .recommended-column {
+            background: rgba(40, 167, 69, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .tariff-price {
+                font-size: 2.5em;
+            }
+
+            .comparison-table {
+                font-size: 0.85em;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 12px 8px;
+            }
+
+            .check-icon,
+            .cross-icon {
+                font-size: 1.2em;
+            }
+        }
+
+</style>
 </head>
 <body>
     <div class="container">
@@ -6648,7 +6802,203 @@ PFz5zGtRvpaAN1sQCokYQAAAAAAAAAAAAAAA" alt="Лид-форма">
                 </div>
             </div>
 
-            <!-- Section 5: О команде -->
+            
+            <!-- Section: Тарифы сотрудничества -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2><span class="icon">💼</span> Тарифы сотрудничества</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px; color: #666;">
+                            Выберите оптимальный формат работы под ваши цели и бюджет
+                        </p>
+
+                        <!-- Tariff Cards Preview -->
+                        <div class="tariff-preview">
+                            <div class="tariff-card-preview">
+                                <div class="tariff-name">СТАРТ</div>
+                                <div class="tariff-price">$450</div>
+                                <div class="tariff-budget">Рекламный бюджет: от $500</div>
+                                <div class="tariff-goal">Тест ниши и быстрые заявки</div>
+                            </div>
+
+                            <div class="tariff-card-preview recommended">
+                                <div class="recommended-badge">РЕКОМЕНДУЕМ</div>
+                                <div class="tariff-name">БАЗА</div>
+                                <div class="tariff-price">$900</div>
+                                <div class="tariff-budget">Рекламный бюджет: от $700</div>
+                                <div class="tariff-goal">Стабильный поток клиентов и прозрачная аналитика</div>
+                            </div>
+
+                            <div class="tariff-card-preview">
+                                <div class="tariff-name">ЭКСПЕРТ</div>
+                                <div class="tariff-price">$1,890</div>
+                                <div class="tariff-budget">Рекламный бюджет: от $3,000</div>
+                                <div class="tariff-goal">Рост продаж и выстроенная воронка</div>
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>Сравнение тарифов</h3>
+                            
+                            <div class="table-wrapper">
+                                <table class="comparison-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: left;">Услуга</th>
+                                            <th>Стоимость</th>
+                                            <th>СТАРТ</th>
+                                            <th class="recommended-column">БАЗА</th>
+                                            <th>ЭКСПЕРТ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Посадочная страница (до 10 блоков, дизайн + тексты)</td>
+                                            <td class="price-cell">$500</td>
+                                            <td><span class="cross-icon">✗</span></td>
+                                            <td class="recommended-column"><span class="check-icon">✓</span></td>
+                                            <td><span class="check-icon">✓</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>AI-квалификатор (фильтрация лидов)</td>
+                                            <td class="price-cell">$600/мес</td>
+                                            <td><span class="cross-icon">✗</span></td>
+                                            <td class="recommended-column"><span class="check-icon">✓</span></td>
+                                            <td><span class="check-icon">✓</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>AI-РОП (контроль лидов и работы отдела продаж)</td>
+                                            <td class="price-cell">$600/мес</td>
+                                            <td><span class="cross-icon">✗</span></td>
+                                            <td class="recommended-column"><span class="cross-icon">✗</span></td>
+                                            <td><span class="check-icon">✓</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Стратегическая сессия с маркетинг-директором (2×3 ч)</td>
+                                            <td class="price-cell">$500</td>
+                                            <td><span class="cross-icon">✗</span></td>
+                                            <td class="recommended-column"><span class="cross-icon">✗</span></td>
+                                            <td><span class="check-icon">✓</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Несколько лендингов под сегменты</td>
+                                            <td class="price-cell">$400+</td>
+                                            <td><span class="cross-icon">✗</span></td>
+                                            <td class="recommended-column"><span class="cross-icon">✗</span></td>
+                                            <td><span class="check-icon">✓</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Глубокий разбор и улучшение воронки</td>
+                                            <td class="price-cell">$400</td>
+                                            <td><span class="cross-icon">✗</span></td>
+                                            <td class="recommended-column"><span class="cross-icon">✗</span></td>
+                                            <td><span class="check-icon">✓</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Тренинг или аудит отдела продаж</td>
+                                            <td class="price-cell">$300</td>
+                                            <td><span class="cross-icon">✗</span></td>
+                                            <td class="recommended-column"><span class="cross-icon">✗</span></td>
+                                            <td><span class="check-icon">✓</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Полное тех. сопровождение (CRM, аналитика, интеграции)</td>
+                                            <td class="price-cell">$250/мес</td>
+                                            <td><span class="cross-icon">✗</span></td>
+                                            <td class="recommended-column"><span class="cross-icon">✗</span></td>
+                                            <td><span class="check-icon">✓</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Запуск рекламы (Meta, Яндекс, Google, VK, TG ads)</td>
+                                            <td class="price-cell">—</td>
+                                            <td><span class="included-text">Входит</span></td>
+                                            <td class="recommended-column"><span class="included-text">Входит</span></td>
+                                            <td><span class="included-text">Входит</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Настройка медиаплана + аналитики</td>
+                                            <td class="price-cell">—</td>
+                                            <td><span class="included-text">Входит</span></td>
+                                            <td class="recommended-column"><span class="included-text">Входит</span></td>
+                                            <td><span class="included-text">Входит</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Аналитика CPL, CPA, CTR, ROMI</td>
+                                            <td class="price-cell">$250</td>
+                                            <td><span class="check-icon">✓</span></td>
+                                            <td class="recommended-column"><span class="included-text">Входит</span></td>
+                                            <td><span class="included-text">Входит</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>CRM + подключение, настройка, отчеты</td>
+                                            <td class="price-cell">$250</td>
+                                            <td><span class="cross-icon">✗</span></td>
+                                            <td class="recommended-column"><span class="check-icon">✓</span></td>
+                                            <td><span class="check-icon">✓</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <h3>Итоговое сравнение</h3>
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Тариф</th>
+                                            <th>Включено услуг</th>
+                                            <th>Цена тарифа</th>
+                                            <th>Экономия</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-weight: 700; color: #667eea; font-size: 1.1em;">СТАРТ</td>
+                                            <td>4</td>
+                                            <td><strong>$450</strong></td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: 700; color: #667eea; font-size: 1.1em;">БАЗА</td>
+                                            <td>7</td>
+                                            <td><strong>$900</strong></td>
+                                            <td>до $1,900</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: 700; color: #667eea; font-size: 1.1em;">ЭКСПЕРТ</td>
+                                            <td>12</td>
+                                            <td><strong>$1,890</strong></td>
+                                            <td>до $2,500</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <div class="highlight-box">
+                                <h4 style="color: #667eea; margin-bottom: 15px;">💡 Экономия с пакетными тарифами WEBNOSTRA</h4>
+                                <ul>
+                                    <li><strong>БАЗА:</strong> экономия до $1,900 (vs покупка услуг по отдельности)</li>
+                                    <li><strong>ЭКСПЕРТ:</strong> экономия до $2,500 + стратегия и гарантии в подарок</li>
+                                </ul>
+                                <p style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #667eea; font-style: italic;">
+                                    <strong>Общая стоимость по отдельности:</strong><br>
+                                    Если собирать все вручную — выходит $2,800+, без стратегии и гарантий
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+<!-- Section 5: О команде -->
             <div class="section">
                 <div class="section-header" onclick="toggleSection(this)">
                     <h2><span class="icon">👥</span> О команде</h2>
