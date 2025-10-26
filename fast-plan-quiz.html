@@ -316,29 +316,59 @@
         /* International Tel Input Styles */
         .iti {
             width: 100%;
+            display: block;
         }
 
         .iti__flag-container {
             position: absolute;
             top: 0;
             bottom: 0;
-            right: 0;
+            left: 0;
             padding: 0;
+            z-index: 2;
         }
 
         .iti__selected-flag {
-            padding: 0 8px 0 12px;
+            padding: 0 12px;
             height: 100%;
             display: flex;
             align-items: center;
+            background-color: transparent;
+            border-right: 1px solid #e8ecef;
         }
 
         .iti--separate-dial-code .iti__selected-flag {
-            background-color: transparent;
+            background-color: #f8f9fa;
+        }
+
+        .iti__selected-dial-code {
+            font-size: 14px;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-left: 6px;
         }
 
         #phone_wa {
-            padding-left: 90px;
+            padding-left: 110px !important;
+            position: relative;
+            z-index: 1;
+        }
+
+        .iti__country-list {
+            z-index: 100;
+            max-height: 200px;
+            overflow-y: auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .iti__flag {
+            background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/img/flags.png");
+        }
+
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .iti__flag {
+                background-image: url("https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/img/flags@2x.png");
+            }
         }
 
         .contact-form {
@@ -367,6 +397,7 @@
             display: flex;
             align-items: start;
             gap: 10px;
+            margin-top: 20px;
         }
 
         .checkbox-group input[type="checkbox"] {
@@ -374,11 +405,24 @@
             width: 18px;
             height: 18px;
             accent-color: var(--primary);
+            flex-shrink: 0;
         }
 
         .checkbox-group label {
             font-size: 14px;
+            line-height: 1.6;
             cursor: pointer;
+            color: #2c3e50;
+        }
+
+        .checkbox-group label a {
+            color: var(--primary);
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .checkbox-group label a:hover {
+            color: #1e3fd9;
         }
 
         /* Contact Method Selection */
@@ -424,6 +468,21 @@
             font-weight: 600;
             cursor: pointer;
             margin: 0;
+        }
+
+        /* Contact input fields - hidden by default */
+        .contact-input-field {
+            display: none;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .contact-input-field.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .navigation-buttons {
@@ -699,6 +758,20 @@
 
             .contact-method-option {
                 padding: 14px;
+            }
+            
+            #phone_wa {
+                padding-left: 100px !important;
+                font-size: 16px;
+            }
+
+            .iti__selected-flag {
+                padding: 0 8px;
+            }
+
+            .checkbox-group label {
+                font-size: 13px;
+                line-height: 1.5;
             }
 
             .navigation-buttons {
@@ -1399,12 +1472,12 @@
                             </div>
                         </div>
 
-                        <div class="form-group" id="whatsapp-field" style="display: none;">
+                        <div class="form-group contact-input-field" id="whatsapp-field">
                             <label>Номер WhatsApp *</label>
                             <input type="tel" class="text-input" id="phone_wa" name="phone_wa" data-name="phone" placeholder="Введите номер телефона">
                         </div>
 
-                        <div class="form-group" id="telegram-field" style="display: none;">
+                        <div class="form-group contact-input-field" id="telegram-field">
                             <label>Telegram *</label>
                             <input type="text" class="text-input" id="telegram_contact" name="telegram_contact" data-name="telegram" placeholder="@username или номер телефона">
                         </div>
@@ -1419,7 +1492,7 @@
                         </div>
                         <div class="checkbox-group">
                             <input type="checkbox" name="consent2" id="consent2" checked required>
-                            <label for="consent2">Согласен с <a href="https://webnostra.kz/policy" target="_blank" style="color: var(--primary); text-decoration: underline;">политикой конфиденциальности</a></label>
+                            <label for="consent2">Согласен с <a href="https://webnostra.kz/policy" target="_blank">политикой конфиденциальности</a></label>
                         </div>
                     </div>
                 </div>
@@ -1554,8 +1627,12 @@
                     separateDialCode: true,
                     formatOnDisplay: true,
                     autoPlaceholder: "polite",
-                    nationalMode: false
+                    nationalMode: false,
+                    customContainer: "iti-custom"
                 });
+                
+                // Log for debugging
+                console.log('Phone input initialized:', phoneInputWA);
             }
         }
 
@@ -1568,17 +1645,19 @@
                 opt.classList.remove('selected');
             });
             
+            // Hide all contact fields first
+            document.getElementById('whatsapp-field').classList.remove('visible');
+            document.getElementById('telegram-field').classList.remove('visible');
+            
             if (method === 'whatsapp') {
                 document.getElementById('method_wa').checked = true;
                 document.querySelector('.contact-method-option:has(#method_wa)').classList.add('selected');
-                document.getElementById('whatsapp-field').style.display = 'block';
-                document.getElementById('telegram-field').style.display = 'none';
+                document.getElementById('whatsapp-field').classList.add('visible');
                 setTimeout(initPhoneInput, 100);
             } else {
                 document.getElementById('method_tg').checked = true;
                 document.querySelector('.contact-method-option:has(#method_tg)').classList.add('selected');
-                document.getElementById('whatsapp-field').style.display = 'none';
-                document.getElementById('telegram-field').style.display = 'block';
+                document.getElementById('telegram-field').classList.add('visible');
             }
             
             validateCurrentQuestion();
@@ -1668,7 +1747,7 @@
                 });
             }
 
-            // Special validation for contact form
+            // Special validation for contact form (Question 19)
             if (currentQuestion === totalQuestions) {
                 const methodSelected = document.querySelector('input[name="contact_method"]:checked');
                 const consent2 = document.getElementById('consent2');
@@ -1678,11 +1757,39 @@
                 } else {
                     if (selectedContactMethod === 'whatsapp') {
                         const phoneWA = document.getElementById('phone_wa');
-                        // Simple validation - just check if something is entered
-                        isValid = phoneWA.value.trim().length >= 5;
+                        const phoneValue = phoneWA.value.trim();
+                        
+                        // Проверяем что номер введен И валиден
+                        if (phoneInputWA && phoneValue.length > 0) {
+                            // Используем встроенную валидацию intl-tel-input
+                            isValid = phoneInputWA.isValidNumber();
+                            
+                            // Визуальная обратная связь
+                            if (!isValid) {
+                                phoneWA.style.borderColor = '#e74c3c';
+                            } else {
+                                phoneWA.style.borderColor = '#27ae60';
+                            }
+                        } else {
+                            isValid = false;
+                            phoneWA.style.borderColor = '#e74c3c';
+                        }
+                        
                     } else if (selectedContactMethod === 'telegram') {
                         const telegramContact = document.getElementById('telegram_contact');
-                        isValid = telegramContact.value.trim().length >= 3;
+                        const telegramValue = telegramContact.value.trim();
+                        
+                        // Минимум 3 символа для Telegram
+                        isValid = telegramValue.length >= 3;
+                        
+                        // Визуальная обратная связь
+                        if (!isValid) {
+                            telegramContact.style.borderColor = '#e74c3c';
+                        } else {
+                            telegramContact.style.borderColor = '#27ae60';
+                        }
+                    } else {
+                        isValid = false;
                     }
                 }
             }
@@ -1735,6 +1842,41 @@
             saveCurrentQuestionData();
 
             if (currentQuestion === totalQuestions) {
+                // Финальная валидация перед отправкой
+                const methodSelected = document.querySelector('input[name="contact_method"]:checked');
+                const consent2 = document.getElementById('consent2');
+                
+                if (!methodSelected || !consent2.checked) {
+                    alert('Пожалуйста, выберите способ связи и согласитесь с политикой конфиденциальности');
+                    return;
+                }
+                
+                let isContactValid = false;
+                
+                if (selectedContactMethod === 'whatsapp') {
+                    if (phoneInputWA && phoneInputWA.isValidNumber()) {
+                        isContactValid = true;
+                    } else {
+                        alert('Пожалуйста, введите корректный номер телефона');
+                        document.getElementById('phone_wa').focus();
+                        return;
+                    }
+                } else if (selectedContactMethod === 'telegram') {
+                    const telegramValue = document.getElementById('telegram_contact').value.trim();
+                    if (telegramValue.length >= 3) {
+                        isContactValid = true;
+                    } else {
+                        alert('Пожалуйста, введите корректный Telegram (минимум 3 символа)');
+                        document.getElementById('telegram_contact').focus();
+                        return;
+                    }
+                }
+                
+                if (!isContactValid) {
+                    alert('Пожалуйста, заполните контактные данные');
+                    return;
+                }
+                
                 // Submit form
                 submitQuiz();
             } else {
@@ -1776,7 +1918,7 @@
             // Send data to Google Sheets
             try {
                 console.log('Sending to Google Sheets...', JSON.stringify(quizData));
-                const response = await fetch('https://script.google.com/macros/s/AKfycbzw9bQqO82_hnANAOvIJ_qS9cPMzxHF7gPkgU8G3ukYHn6OS8s1ub9ls0199AkhRTNtNw/exec', {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbwmAdeZI3K4L_XxoY4rwnAKwvsLlJmeq0wHyBlYUJhvYazg0GsLFx3F4nAZpbl9uCjgHw/exec', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'text/plain',
@@ -1810,6 +1952,41 @@
             document.querySelectorAll('input[name="contact_method"]').forEach(radio => {
                 radio.addEventListener('change', validateCurrentQuestion);
             });
+
+            // Добавляем валидацию для полей контактов в реальном времени
+            const phoneWA = document.getElementById('phone_wa');
+            if (phoneWA) {
+                phoneWA.addEventListener('input', function() {
+                    // Сбрасываем цвет при вводе
+                    phoneWA.style.borderColor = '#e8ecef';
+                    validateCurrentQuestion();
+                });
+                
+                phoneWA.addEventListener('blur', function() {
+                    if (selectedContactMethod === 'whatsapp' && phoneInputWA) {
+                        const isValid = phoneInputWA.isValidNumber();
+                        phoneWA.style.borderColor = isValid ? '#27ae60' : '#e74c3c';
+                    }
+                });
+                
+                // Валидация при изменении страны
+                phoneWA.addEventListener('countrychange', validateCurrentQuestion);
+            }
+
+            const telegramContact = document.getElementById('telegram_contact');
+            if (telegramContact) {
+                telegramContact.addEventListener('input', function() {
+                    const value = telegramContact.value.trim();
+                    if (value.length === 0) {
+                        telegramContact.style.borderColor = '#e8ecef';
+                    } else if (value.length < 3) {
+                        telegramContact.style.borderColor = '#e74c3c';
+                    } else {
+                        telegramContact.style.borderColor = '#27ae60';
+                    }
+                    validateCurrentQuestion();
+                });
+            }
 
             // Initialize first question
             showQuestion(1);
