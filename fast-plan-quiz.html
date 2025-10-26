@@ -21,6 +21,8 @@
             accurateTrackBounce:true,
             trackLinks:true
         });
+        
+        console.log('Yandex.Metrika initialized');
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/96858541" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
@@ -37,6 +39,7 @@
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '1399100830794020');
         fbq('track', 'PageView');
+        console.log('Facebook Pixel initialized and PageView tracked');
     </script>
     <noscript><img height="1" width="1" style="display:none"
         src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
@@ -1545,18 +1548,13 @@
             const input = document.querySelector("#phone_wa");
             if (input && !phoneInputWA) {
                 phoneInputWA = window.intlTelInput(input, {
-                    initialCountry: "auto",
-                    geoIpLookup: function(callback) {
-                        fetch('https://ipapi.co/json/')
-                            .then(res => res.json())
-                            .then(data => callback(data.country_code))
-                            .catch(() => callback('us'));
-                    },
+                    initialCountry: "us",
                     utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
                     preferredCountries: ['us', 'gb', 'de', 'fr', 'es', 'it', 'ru', 'kz', 'ua', 'by', 'pl', 'tr', 'ae', 'sa', 'in', 'cn', 'jp', 'au', 'ca', 'br', 'mx', 'ar'],
                     separateDialCode: true,
                     formatOnDisplay: true,
-                    autoPlaceholder: "aggressive"
+                    autoPlaceholder: "polite",
+                    nationalMode: false
                 });
             }
         }
@@ -1698,6 +1696,9 @@
             // Save radio button data
             const radios = currentQuestionElement.querySelectorAll('input[type="radio"]:checked');
             radios.forEach(radio => {
+                // Skip contact_method radio in this loop
+                if (radio.name === 'contact_method') return;
+                
                 const container = radio.closest('.options') || radio.closest('.question');
                 const dataName = container.getAttribute('data-name') || radio.name;
                 quizData[dataName] = radio.value;
@@ -1714,15 +1715,17 @@
             // Save text input data
             const textInputs = currentQuestionElement.querySelectorAll('.text-input, .textarea-input');
             textInputs.forEach(input => {
-                const dataName = input.getAttribute('data-name') || input.name;
-                if (input.id === 'phone_wa' && phoneInputWA) {
+                if (input.id === 'phone_wa' && phoneInputWA && selectedContactMethod === 'whatsapp') {
                     // Save full international number without + for Google Sheets
-                    quizData['phone'] = phoneInputWA.getNumber().replace('+', '');
+                    const fullNumber = phoneInputWA.getNumber();
+                    quizData['phone'] = fullNumber.replace('+', '');
                     quizData['contact_method'] = 'whatsapp';
-                } else if (input.id === 'telegram_contact') {
+                } else if (input.id === 'telegram_contact' && selectedContactMethod === 'telegram') {
                     quizData['telegram'] = input.value;
                     quizData['contact_method'] = 'telegram';
-                } else if (input.value) {
+                    quizData['phone'] = input.value.replace(/[^0-9]/g, ''); // Extract numbers only if present
+                } else if (input.value && input.id !== 'phone_wa' && input.id !== 'telegram_contact') {
+                    const dataName = input.getAttribute('data-name') || input.name;
                     quizData[dataName] = input.value;
                 }
             });
@@ -1748,7 +1751,10 @@
         }
 
         async function submitQuiz() {
-            console.log('Quiz Data:', quizData);
+            // Save final question data
+            saveCurrentQuestionData();
+            
+            console.log('Quiz Data to send:', quizData);
             
             // Send Facebook Lead event
             if (typeof fbq !== 'undefined') {
@@ -1758,24 +1764,26 @@
                     value: 0,
                     currency: 'USD'
                 });
+                console.log('Facebook Lead event sent');
             }
 
             // Send Yandex Metrika goal
             if (typeof ym !== 'undefined') {
                 ym(96858541, 'reachGoal', 'lead_submit');
+                console.log('Yandex Metrika goal sent');
             }
 
             // Send data to Google Sheets
             try {
+                console.log('Sending to Google Sheets...', JSON.stringify(quizData));
                 const response = await fetch('https://script.google.com/macros/s/AKfycbzw9bQqO82_hnANAOvIJ_qS9cPMzxHF7gPkgU8G3ukYHn6OS8s1ub9ls0199AkhRTNtNw/exec', {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'text/plain',
                     },
                     body: JSON.stringify(quizData)
                 });
-                console.log('Data sent to Google Sheets');
+                console.log('Data sent to Google Sheets successfully');
             } catch (error) {
                 console.error('Error sending to Google Sheets:', error);
             }
