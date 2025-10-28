@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экскурсии по Пхукету — Записки об Азии</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00A8CC;
+            --secondary: #FF6B6B;
+            --dark: #1A1A2E;
+            --light: #F8FBFF;
+            --gray: #64748B;
+            --success: #10B981;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Urgency Timer Banner */
+        .urgency-banner {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
+        }
+
+        .urgency-banner .timer {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 0.5rem;
+        }
+
+        /* Social Proof Notifications */
+        .social-notification {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 999;
+            transform: translateX(-400px);
+            transition: transform 0.4s ease;
+            max-width: 350px;
+        }
+
+        .social-notification.show {
+            transform: translateX(0);
+        }
+
+        .social-notification .icon {
+            font-size: 2rem;
+        }
+
+        .social-notification .text {
+            flex: 1;
+        }
+
+        .social-notification .name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .social-notification .action {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 168, 204, 0.95) 0%, rgba(0, 150, 199, 0.9) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            padding-top: 5rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            from { background-position: 0 0; }
+            to { background-position: 100px 100px; }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 1.25rem 3rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        .social-proof {
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+        }
+
+        .stars {
+            color: #FFD700;
+            margin-left: 0.5rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), #00CED1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.125rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 3rem;
+        }
+
+        .quiz-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.08);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .quiz-step {
+            display: none;
+        }
+
+        .quiz-step.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 2rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option {
+            padding: 1.25rem 1.5rem;
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .option:hover {
+            border-color: var(--primary);
+            background: rgba(0, 168, 204, 0.05);
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: rgba(0, 168, 204, 0.1);
+        }
+
+        .success-message {
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid var(--success);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1rem;
+            color: var(--success);
+            font-weight: 600;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* Price Calculator */
+        .calculator-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 168, 204, 0.05), rgba(0, 206, 209, 0.05));
+            border-radius: 16px;
+            border: 2px solid rgba(0, 168, 204, 0.2);
+        }
+
+        .calculator-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .calculator-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .calculator-input {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .calculator-input label {
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .calculator-input select,
+        .calculator-input input {
+            padding: 0.75rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .calculator-input select:focus,
+        .calculator-input input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .price-result {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .price-label {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-note {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        .price-savings {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-answer p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--light);
+            border-radius: 12px;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .badge-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Form */
+        .form-container {
+            display: none;
+        }
+
+        .form-container.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .form-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .input-hint {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: var(--secondary);
+            color: white;
+            padding: 1.25rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .form-note {
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Locations Section */
+        .locations-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .location-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .location-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), #00CED1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .location-content {
+            padding: 1.5rem;
+        }
+
+        .location-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .location-description {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            padding: 4rem 0;
+            background: var(--light);
+        }
+
+        .reviews-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 3rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .review-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .review-stars {
+            color: #FFD700;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-text {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .review-location {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .review-tour {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .final-cta {
+            text-align: center;
+            padding-top: 2rem;
+        }
+
+        /* Exit Popup */
+        .exit-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .exit-popup.active {
+            display: flex;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            text-align: center;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .popup-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .popup-text {
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .locations-grid,
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 90vh;
+            }
+
+            .calculator-row {
+                grid-template-columns: 1fr;
+            }
+
+            .social-notification {
+                left: 10px;
+                right: 10px;
+                max-width: calc(100% - 20px);
+            }
+
+            .urgency-banner {
+                font-size: 0.9rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 999;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        ⏰ До конца дня скидка 15% на все туры — осталось мест: <span class="timer" id="spotsLeft">4</span>
+    </div>
+
+    <!-- Social Proof Notification -->
+    <div class="social-notification" id="socialNotification">
+        <div class="icon">🔴</div>
+        <div class="text">
+            <div class="name" id="notificationName">Анна</div>
+            <div class="action" id="notificationAction">только что забронировала тур "Пхи-Пхи"</div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>Получите 3 лучших тура под ваш запрос за 2 минуты</h1>
+            <p>Ответьте на 4 вопроса — подберём экскурсии под ваши даты, компанию и интересы</p>
+            <a href="#quiz" class="cta-button">Подобрать тур сейчас</a>
+            <div class="social-proof">
+                3 247 гостей Пхукета выбрали нас в 2024 году
+                <span class="stars">★★★★★</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Как это работает</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Ответьте на 4 вопроса</h3>
+                    <p>Займёт всего 30 секунд</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Получите 3 варианта туров</h3>
+                    <p>В WhatsApp в течение 5 минут</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Выбираете — мы бронируем</h3>
+                    <p>Фиксируем место и дату</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Забираем вас из отеля</h3>
+                    <p>Трансфер включён в стоимость</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section" id="quiz">
+        <div class="container">
+            <h2 class="section-title">Найдём вашу идеальную экскурсию за 4 вопроса</h2>
+            
+            <div class="quiz-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar" style="width: 25%"></div>
+                </div>
+
+                <!-- Question 1 -->
+                <div class="quiz-step active" data-step="1">
+                    <h3 class="question">Вы сейчас на Пхукете?</h3>
+                    <div class="options">
+                        <div class="option" data-value="here">✈️ Да, уже здесь</div>
+                        <div class="option" data-value="1-7days">📅 Еду через 1-7 дней</div>
+                        <div class="option" data-value="1-4weeks">🗓 Еду через 1-4 недели</div>
+                        <div class="option" data-value="planning">🤔 Только планирую поездку</div>
+                    </div>
+                    <div class="success-message" id="success1">
+                        ✅ Отлично! Проверяем свободные даты для вас
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="quiz-step" data-step="2">
+                    <h3 class="question">С кем поедете?</h3>
+                    <div class="options">
+                        <div class="option" data-value="solo">👤 Один</div>
+                        <div class="option" data-value="couple">💑 Вдвоём</div>
+                        <div class="option" data-value="family">👨‍👩‍👧 С семьёй и детьми</div>
+                        <div class="option" data-value="friends">👥 Компания 3-6 человек</div>
+                        <div class="option" data-value="group">🎉 Группа от 7 человек</div>
+                    </div>
+                    <div class="success-message" id="success2">
+                        ✅ Уже подбираем варианты для вас
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="quiz-step" data-step="3">
+                    <h3 class="question">Что для вас важнее?</h3>
+                    <div class="options">
+                        <div class="option" data-value="photo">📸 Красивые локации для фото</div>
+                        <div class="option" data-value="private">🏝 Места без толп туристов</div>
+                        <div class="option" data-value="active">🎉 Активный отдых и приключения</div>
+                        <div class="option" data-value="relax">🧘 Спокойный релакс на природе</div>
+                        <div class="option" data-value="culture">🎓 Узнать историю и культуру</div>
+                    </div>
+                    <div class="success-message" id="success3">
+                        ✅ Почти готово! Последний вопрос
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="quiz-step" data-step="4">
+                    <h3 class="question">Какой формат предпочитаете?</h3>
+                    <div class="options">
+                        <div class="option" data-value="halfday">⚡️ Полдня (3-4 часа)</div>
+                        <div class="option" data-value="fullday">🌅 Целый день с обедом</div>
+                        <div class="option" data-value="overnight">🌙 С ночёвкой на острове</div>
+                        <div class="option" data-value="vip">🛥 VIP-тур на премиум-яхте</div>
+                        <div class="option" data-value="help">💬 Не знаю, помогите выбрать</div>
+                    </div>
+                </div>
+
+                <!-- Price Calculator -->
+                <div class="calculator-section" style="display: none;" id="calculator">
+                    <h3 class="calculator-title">💰 Примерная стоимость тура</h3>
+                    <div class="calculator-row">
+                        <div class="calculator-input">
+                            <label>Выберите тур</label>
+                            <select id="tourSelect">
+                                <option value="1500">Острова Кхай (1500฿)</option>
+                                <option value="2500">Пхи-Пхи (2500฿)</option>
+                                <option value="2800">Залив Пханг-Нга (2800฿)</option>
+                                <option value="3500">Симиланы (3500฿)</option>
+                                <option value="4500">VIP-яхта (4500฿)</option>
+                            </select>
+                        </div>
+                        <div class="calculator-input">
+                            <label>Количество человек</label>
+                            <input type="number" id="peopleCount" value="2" min="1" max="20">
+                        </div>
+                    </div>
+                    <div class="price-result">
+                        <div class="price-label">Итоговая стоимость:</div>
+                        <div class="price-amount" id="totalPrice">3000฿</div>
+                        <div class="price-note">Включено: трансфер, гид, обед, снаряжение</div>
+                        <div class="price-savings">🎁 Экономия 750฿ при бронировании сегодня</div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="form-container">
+                    <h3 class="form-title">Пришлём 3 варианта экскурсий под ваш запрос</h3>
+                    
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label>Имя</label>
+                            <input type="text" name="name" required placeholder="Ваше имя">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Телефон или Telegram</label>
+                            <input type="tel" name="phone" required placeholder="+7 (999) 123-45-67">
+                            <div class="input-hint">👆 Отправим программу туров сюда в течение 5 минут</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Email (необязательно)</label>
+                            <input type="email" name="email" placeholder="your@email.com">
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" name="promo" id="promo" checked>
+                            <label for="promo">Получить промокод на скидку 500 ฿</label>
+                        </div>
+
+                        <button type="submit" class="submit-button">Получить мои туры</button>
+                        
+                        <p class="form-note">Ответим в WhatsApp за 5 минут • Оплата лично гиду</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Частые вопросы</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>❓ Что входит в стоимость тура?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>✅ Трансфер от вашего отеля туда и обратно<br>
+                        ✅ Русскоговорящий гид<br>
+                        ✅ Обед и напитки<br>
+                        ✅ Всё снаряжение (маски, ласты, жилеты)<br>
+                        ✅ Входные билеты в парки</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>❓ Как происходит оплата?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Оплата производится лично гиду в день экскурсии. Принимаем наличные (бат, доллары, евро) и переводы на тайский банк. Предоплата не требуется.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>❓ Можно отменить бронь?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>✅ Да, бесплатная отмена за 24 часа до экскурсии. Просто напишите нам в WhatsApp — никаких штрафов и сложностей.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>❓ Дети едут бесплатно?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>✅ Дети до 4 лет — бесплатно<br>
+                        ✅ Дети 4-12 лет — скидка 50%<br>
+                        ✅ От 12 лет — полная стоимость</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>❓ Что если погода испортится?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>При плохой погоде (шторм, сильный дождь) мы перенесём экскурсию на другой день или вернём 100% стоимости. Ваша безопасность — наш приоритет.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>❓ У вас есть лицензии?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>✅ Лицензия TAT (Tourism Authority of Thailand)<br>
+                        ✅ Страховка всех участников включена<br>
+                        ✅ Сертифицированные гиды и капитаны<br>
+                        ✅ Проверенные катера с актуальными документами</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="trust-badges">
+                <div class="badge">
+                    <span class="badge-icon">✅</span>
+                    <span>Лицензия TAT</span>
+                </div>
+                <div class="badge">
+                    <span class="badge-icon">🛡</span>
+                    <span>Страховка включена</span>
+                </div>
+                <div class="badge">
+                    <span class="badge-icon">💯</span>
+                    <span>100% возврат за 24ч</span>
+                </div>
+                <div class="badge">
+                    <span class="badge-icon">⭐</span>
+                    <span>4.9 на TripAdvisor</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="locations-section" id="locations">
+        <div class="container">
+            <h2 class="section-title">Выбирайте из 12 экскурсий по Пхукету и окрестностям</h2>
+            <p class="section-subtitle">Каждый тур проверен лично — берём только к лучшим гидам</p>
+            
+            <div class="locations-grid">
+                <div class="location-card">
+                    <div class="location-image">🏝</div>
+                    <div class="location-content">
+                        <h3 class="location-title">Залив Пханг-Нга</h3>
+                        <p class="location-description">Остров Джеймса Бонда, плавучий ресторан, каякинг в пещерах</p>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-image">🐱</div>
+                    <div class="location-content">
+                        <h3 class="location-title">Четыре острова Кхай</h3>
+                        <p class="location-description">Снорклинг в коралловом рифе, белый песок, кошки на пляже</p>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-image">🏖</div>
+                    <div class="location-content">
+                        <h3 class="location-title">Пхи-Пхи и Бамбу</h3>
+                        <p class="location-description">Бирюзовая вода, бухта Майя Бэй, обед на берегу</p>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-image">🐢</div>
+                    <div class="location-content">
+                        <h3 class="location-title">Симиланские острова</h3>
+                        <p class="location-description">Лучший дайвинг рядом с Пхукетом, черепахи, необитаемые пляжи</p>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-image">🛶</div>
+                    <div class="location-content">
+                        <h3 class="location-title">Джон Грей Sea Canoe</h3>
+                        <p class="location-description">Прозрачные каяки, мангровые леса, ужин на закате</p>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-image">🌅</div>
+                    <div class="location-content">
+                        <h3 class="location-title">Рассвет на яхте</h3>
+                        <p class="location-description">Приватный тур для двоих, завтрак на воде, дельфины</p>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-image">💎</div>
+                    <div class="location-content">
+                        <h3 class="location-title">Четыре жемчужины Андамана</h3>
+                        <p class="location-description">Пхи-Пхи, Краби, остров Бонда, Ранг Йай за один день</p>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-image">🌴</div>
+                    <div class="location-content">
+                        <h3 class="location-title">Национальный парк Као Сок</h3>
+                        <p class="location-description">Озеро Чео Лан, джунгли, плавучие бунгало, дикие обезьяны</p>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-image">🙏</div>
+                    <div class="location-content">
+                        <h3 class="location-title">Обзорная экскурсия по Пхукету</h3>
+                        <p class="location-description">Большой Будда, храм Ват Чалонг, мыс Промтеп, улица Bangla Road</p>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-image">🏘</div>
+                    <div class="location-content">
+                        <h3 class="location-title">Старый город Пхукета</h3>
+                        <p class="location-description">Португальская архитектура, уличная еда, инста-локации</p>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-image">🪸</div>
+                    <div class="location-content">
+                        <h3 class="location-title">Остров Корал</h3>
+                        <p class="location-description">Спокойный пляж, снорклинг для новичков, обед в тени пальм</p>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <div class="location-image">🎣</div>
+                    <div class="location-content">
+                        <h3 class="location-title">Рыбалка на закате</h3>
+                        <p class="location-description">Ловля на спиннинг, ужин из свежего улова, закат в открытом море</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section" id="reviews">
+        <div class="container">
+            <h2 class="reviews-title">Что говорят наши гости</h2>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">Плавали в пещерах на прозрачных каяках, видели светящийся планктон вечером. Это было волшебно! Гид Том показал места, куда обычные туристы не попадают.</p>
+                    <p class="review-author">Анна</p>
+                    <p class="review-location">Отдыхала на Пхукете 2 недели</p>
+                    <p class="review-tour">Тур: Джон Грей Sea Canoe</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">Брали VIP-тур на яхте для нашей годовщины. Весь день только мы вдвоём, шампанское, ужин на закате. Организовали идеально — даже цветы на палубе приготовили!</p>
+                    <p class="review-author">Дмитрий и Елена</p>
+                    <p class="review-location">Остановились на Пхукете в Патонге</p>
+                    <p class="review-tour">Тур: Рассвет на яхте</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">Ездили с детьми 5 и 8 лет на острова Кхай. Ребята в восторге — кормили рыб, плавали в масках, играли с кошками на пляже. Гид присматривал, чтобы всем было комфортно.</p>
+                    <p class="review-author">Ольга</p>
+                    <p class="review-location">Живём на Пхукете в Раваях</p>
+                    <p class="review-tour">Тур: Четыре острова Кхай</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">За один день посмотрели четыре острова! Думали, будет суета, но всё спокойно и по расписанию. Обед вкусный, катер удобный, группа маленькая. Очень довольны.</p>
+                    <p class="review-author">Сергей</p>
+                    <p class="review-location">Отпуск на Пхукете 10 дней</p>
+                    <p class="review-tour">Тур: Четыре жемчужины Андамана</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">Симиланы — это другая планета! Вода как стекло, кораллы, черепахи. Долго выбирали компанию на Пхукете, рады что поехали с вами. Всё чётко, без сюрпризов.</p>
+                    <p class="review-author">Максим и Кристина</p>
+                    <p class="review-location">Остановились в Камале</p>
+                    <p class="review-tour">Тур: Симиланские острова</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">Не ожидала, что остров Джеймса Бонда настолько красивый вживую! Фотки не передают масштаб. Плюс заехали в пещеру с летучими мышами — необычно.</p>
+                    <p class="review-author">Виктория</p>
+                    <p class="review-location">Неделя на Пхукете в Карон Бич</p>
+                    <p class="review-tour">Тур: Залив Пханг-Нга</p>
+                </div>
+            </div>
+
+            <div class="final-cta">
+                <a href="#quiz" class="cta-button">Выбрать мою экскурсию</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exit Popup -->
+    <div class="exit-popup" id="exitPopup">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopup()">×</button>
+            <h3 class="popup-title">Подождите! Получите чек-лист в подарок</h3>
+            <p class="popup-text">«Что взять на экскурсию на Пхукете» + промокод на скидку 500 ฿</p>
+            <a href="#quiz" class="cta-button" onclick="closePopup()">Получить чек-лист</a>
+        </div>
+    </div>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/YOUR_PHONE_NUMBER" class="whatsapp-float" target="_blank">
+        💬
+    </a>
+
+    <script>
+        // Quiz Logic
+        let currentStep = 1;
+        const totalSteps = 4;
+        const answers = {};
+
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const step = this.closest('.quiz-step').dataset.step;
+                const value = this.dataset.value;
+                
+                // Save answer
+                answers[`question${step}`] = value;
+                
+                // Visual feedback
+                this.closest('.options').querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.classList.add('selected');
+                
+                // Show success message
+                const successMsg = document.getElementById(`success${step}`);
+                if (successMsg) {
+                    successMsg.classList.add('show');
+                }
+                
+                // Move to next step after short delay
+                setTimeout(() => {
+                    if (successMsg) {
+                        successMsg.classList.remove('show');
+                    }
+                    
+                    if (currentStep < totalSteps) {
+                        currentStep++;
+                        updateQuiz();
+                    } else {
+                        showCalculatorAndForm();
+                    }
+                }, 1200);
+            });
+        });
+
+        function updateQuiz() {
+            // Hide all steps
+            document.querySelectorAll('.quiz-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            // Show current step
+            document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
+            
+            // Update progress bar
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function showCalculatorAndForm() {
+            document.querySelectorAll('.quiz-step').forEach(step => {
+                step.style.display = 'none';
+            });
+            
+            // Show calculator
+            document.getElementById('calculator').style.display = 'block';
+            calculatePrice();
+            
+            // Show form after calculator
+            setTimeout(() => {
+                document.querySelector('.form-container').classList.add('active');
+            }, 500);
+            
+            document.getElementById('progressBar').style.width = '100%';
+        }
+
+        // Price Calculator
+        function calculatePrice() {
+            const tourPrice = parseInt(document.getElementById('tourSelect').value);
+            const people = parseInt(document.getElementById('peopleCount').value);
+            const total = tourPrice * people;
+            
+            document.getElementById('totalPrice').textContent = total.toLocaleString() + '฿';
+        }
+
+        document.getElementById('tourSelect').addEventListener('change', calculatePrice);
+        document.getElementById('peopleCount').addEventListener('input', calculatePrice);
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.closest('.faq-item');
+                const wasActive = item.classList.contains('active');
+                
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                
+                // Open clicked if it wasn't active
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Form Submit
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Combine quiz answers and form data
+            const fullData = { ...answers, ...data };
+            
+            console.log('Form submitted:', fullData);
+            
+            // Here you would send data to your backend
+            alert('Спасибо! Мы свяжемся с вами в течение 5 минут в WhatsApp');
+        });
+
+        // Urgency Timer (spots left)
+        function updateSpotsLeft() {
+            const spots = [3, 4, 5, 6];
+            const randomSpot = spots[Math.floor(Math.random() * spots.length)];
+            document.getElementById('spotsLeft').textContent = randomSpot;
+        }
+        
+        // Update spots every 2 hours
+        setInterval(updateSpotsLeft, 7200000);
+
+        // Social Proof Notifications
+        const notifications = [
+            { name: 'Анна', action: 'только что забронировала тур "Пхи-Пхи"' },
+            { name: 'Дмитрий', action: 'смотрит "Залив Пханг-Нга"' },
+            { name: 'Елена', action: 'забронировала "Острова Кхай"' },
+            { name: 'Сергей', action: 'смотрит "Симиланские острова"' },
+            { name: 'Ольга', action: 'только что забронировала VIP-яхту' },
+            { name: 'Максим', action: 'смотрит "Джон Грей Sea Canoe"' },
+            { name: 'Виктория', action: 'забронировала "4 жемчужины"' }
+        ];
+
+        let notificationIndex = 0;
+
+        function showSocialNotification() {
+            const notification = document.getElementById('socialNotification');
+            const data = notifications[notificationIndex];
+            
+            document.getElementById('notificationName').textContent = data.name;
+            document.getElementById('notificationAction').textContent = data.action;
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+            
+            notificationIndex = (notificationIndex + 1) % notifications.length;
+        }
+
+        // Show first notification after 5 seconds, then every 45 seconds
+        setTimeout(() => {
+            showSocialNotification();
+            setInterval(showSocialNotification, 45000);
+        }, 5000);
+
+        // Exit Intent Popup
+        let popupShown = false;
+        document.addEventListener('mouseleave', function(e) {
+            if (e.clientY < 0 && !popupShown) {
+                document.getElementById('exitPopup').classList.add('active');
+                popupShown = true;
+            }
+        });
+
+        function closePopup() {
+            document.getElementById('exitPopup').classList.remove('active');
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
