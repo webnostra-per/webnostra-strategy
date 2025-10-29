@@ -610,6 +610,28 @@
             padding: 0 50px;
         }
 
+        .slider-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .slider-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #d1d5db;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            width: 24px;
+            border-radius: 4px;
+            background: var(--primary);
+        }
+
         .locations-slider {
             display: flex;
             gap: 2rem;
@@ -682,7 +704,7 @@
             height: 50px;
             border-radius: 50%;
             border: 2px solid var(--primary);
-            display: flex;
+            display: none; /* Скрываем стрелки */
             align-items: center;
             justify-content: center;
             cursor: pointer;
@@ -831,7 +853,26 @@
             }
 
             .hero {
-                min-height: 90vh;
+                min-height: 100vh;
+                background-image: linear-gradient(rgba(0, 168, 204, 0.5), rgba(0, 131, 176, 0.6)), var(--hero-bg);
+                background-size: cover;
+                background-position: center;
+                background-attachment: scroll; /* На мобильных fixed работает хуже */
+                padding: 2rem 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .cta-button {
+                font-size: 1rem;
+                padding: 1rem 2rem;
             }
 
             .calculator-row {
@@ -842,18 +883,26 @@
                 left: 10px;
                 right: 10px;
                 max-width: calc(100% - 20px);
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
             }
 
             .urgency-banner {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+                padding: 0.75rem 0.5rem;
+            }
+
+            .urgency-banner .timer {
+                font-size: 1rem;
             }
 
             .steps-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
 
             .locations-slider-container {
-                padding: 0 10px;
+                padding: 0 20px;
             }
 
             .location-card {
@@ -871,17 +920,48 @@
             }
 
             .slider-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 1.25rem;
+                display: none !important; /* Полностью скрываем стрелки на мобильных */
             }
 
-            .slider-nav.prev {
-                left: -10px;
+            .section-title {
+                font-size: 1.75rem;
             }
 
-            .slider-nav.next {
-                right: -10px;
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .quiz-question h2 {
+                font-size: 1.5rem;
+            }
+
+            .quiz-option {
+                padding: 1rem;
+                font-size: 0.95rem;
+            }
+
+            .popup-content {
+                padding: 2rem 1.5rem;
+                width: 95%;
+            }
+
+            .popup-title {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            /* Улучшаем прокрутку слайдера на мобильных */
+            .locations-slider {
+                gap: 1rem;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .location-card {
+                scroll-snap-align: center;
             }
         }
 
@@ -965,9 +1045,20 @@
                     <h3>Забираем вас из отеля</h3>
                     <p>Трансфер включён в стоимость</p>
                 </div>
+                
+                <!-- Slider Indicators -->
+                <div class="slider-indicators" id="sliderIndicators">
+                    <div class="slider-dot active"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                </div>
             </div>
         </div>
     </section>
+
+    
 
     <!-- Quiz Section -->
     <section class="quiz-section" id="quiz">
@@ -1601,6 +1692,24 @@
             } else {
                 slider.scrollLeft -= cardWidth;
             }
+            updateSliderIndicators();
+        }
+
+        // Update slider indicators on scroll
+        function updateSliderIndicators() {
+            const slider = document.getElementById('locationsSlider');
+            const indicators = document.querySelectorAll('.slider-dot');
+            const scrollLeft = slider.scrollLeft;
+            const cardWidth = slider.querySelector('.location-card').offsetWidth + 32;
+            const currentIndex = Math.round(scrollLeft / cardWidth);
+            
+            indicators.forEach((dot, index) => {
+                if (Math.abs(index * 3 - currentIndex) < 2) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
         }
 
         // Touch swipe for mobile
@@ -1617,6 +1726,8 @@
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
         });
+        
+        slider.addEventListener('scroll', updateSliderIndicators);
         
         function handleSwipe() {
             if (touchEndX < touchStartX - 50) {
