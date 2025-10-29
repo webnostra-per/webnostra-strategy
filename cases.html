@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>65+ кейсов WEBNOSTRA | Магош Альшанский - Performance Marketing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #0a0a0a;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #0a0a0a;
+            color: white;
+            padding: 60px 20px 80px;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .emoji-header {
+            font-size: 3rem;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .intro-text strong {
+            color: #4ade80;
+        }
+
+        /* Industries */
+        .industries {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 32px 0;
+        }
+
+        .industry-tag {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4ade80;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #6b7280;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* Before Section */
+        .before-section {
+            background: #f9fafb;
+        }
+
+        .before-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .before-card {
+            background: #fef2f2;
+            border: 2px solid #fecaca;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .before-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .before-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #991b1b;
+        }
+
+        .before-card p {
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        /* What We Do */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .service-card {
+            padding: 24px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4ade80;
+            margin-bottom: 12px;
+        }
+
+        .service-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Criteria */
+        .criteria-section {
+            background: #f9fafb;
+        }
+
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .criteria-block h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .criteria-list {
+            list-style: none;
+        }
+
+        .criteria-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+            line-height: 1.6;
+        }
+
+        /* Timeline */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-marker {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: #4ade80;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 20px;
+            left: 9px;
+            width: 2px;
+            height: calc(100% + 40px);
+            background: #e5e7eb;
+        }
+
+        .timeline-item:last-child .timeline-line {
+            display: none;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-bottom: 20px;
+        }
+
+        .timeline-period {
+            font-size: 0.9rem;
+            color: #4ade80;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .timeline-content p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .timeline-deliverables {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .timeline-deliverables span {
+            font-size: 0.85rem;
+            color: #16a34a;
+            background: #dcfce7;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        /* Filter */
+        .filters-section {
+            background: #f9fafb;
+            padding: 30px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover {
+            border-color: #4ade80;
+            background: #f0fdf4;
+        }
+
+        .filter-btn.active {
+            background: #0a0a0a;
+            color: white;
+            border-color: #0a0a0a;
+        }
+
+        /* Cases */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .case-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .case-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .case-header {
+            padding: 20px;
+            background: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .case-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .case-company {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .case-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0a0a0a;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .case-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .case-channels {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .channel-tag {
+            padding: 4px 10px;
+            background: #e0f2fe;
+            color: #075985;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .case-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .case-section {
+            margin-bottom: 20px;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .section-label.problem { color: #dc2626; }
+        .section-label.solution { color: #ea580c; }
+        .section-label.result { color: #16a34a; }
+
+        .section-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #374151;
+            min-height: 48px;
+        }
+
+        .case-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+            min-height: 120px;
+        }
+
+        .stat-item {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0a0a0a;
+        }
+
+        .stat-name {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        .case-footer {
+            padding: 16px 20px;
+            background: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+            margin-top: auto;
+        }
+
+        .case-details-btn {
+            width: 100%;
+            padding: 10px;
+            background: #0a0a0a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .case-details-btn:hover {
+            background: #4ade80;
+            color: #0a0a0a;
+        }
+
+        .case-details {
+            display: none;
+            padding: 20px;
+            background: #f0fdf4;
+            border-top: 2px solid #4ade80;
+        }
+
+        .case-details.show {
+            display: block;
+        }
+
+        /* Mid CTA */
+        .mid-cta-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            color: white;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .mid-cta-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #4ade80;
+            color: #0a0a0a;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .mid-cta-card h2 {
+            font-size: 1.75rem;
+            margin-bottom: 16px;
+        }
+
+        .mid-cta-card p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 24px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mid-cta-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .mid-cta-btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            background: #4ade80;
+            color: #0a0a0a;
+        }
+
+        .mid-cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .clients-limit {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: #f9fafb;
+            padding: 60px 0;
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: #f9fafb;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #0a0a0a;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        .contact-steps {
+            list-style: none;
+            text-align: left;
+            margin: 32px 0;
+        }
+
+        .contact-steps li {
+            padding: 8px 0;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 32px 0;
+        }
+
+        .cta-btn {
+            padding: 14px 28px;
+            background: #4ade80;
+            color: #0a0a0a;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-note {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .footer-link:hover {
+            opacity: 1;
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.75rem; }
+            .cases-grid { grid-template-columns: 1fr; }
+            .criteria-grid { grid-template-columns: 1fr; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .cta-buttons { flex-direction: column; }
+            .cta-btn { width: 100%; justify-content: center; }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="emoji-header">🚀</div>
+            <h1>65+ реальных кейсов performance-маркетинга</h1>
+            <p class="intro-text">
+                Меня зовут <strong>Магош</strong>, я занимаюсь привлечением трафика из платных каналов. 
+                За 2024-2025 годы я со своей командой реализовал уже <strong>более $1.2 млн рекламного бюджета</strong>, 
+                а клиенты в среднем с нами работают <strong>2.5 года</strong>.
+            </p>
+            
+            <div class="industries">
+                <span class="industry-tag">телеграм-каналы</span>
+                <span class="industry-tag">интернет-магазины</span>
+                <span class="industry-tag">туризм</span>
+                <span class="industry-tag">инфобизнес</span>
+                <span class="industry-tag">недвижимость</span>
+                <span class="industry-tag">стройка</span>
+                <span class="industry-tag">алкоголь</span>
+                <span class="industry-tag">БФЛ</span>
+                <span class="industry-tag">франшизы</span>
+                <span class="industry-tag">автодилеры</span>
+            </div>
+
+            <p class="intro-text">
+                Я специализируюсь на трафике в <strong>Meta Ads</strong> и <strong>Яндекс Директе</strong>. 
+                Помимо клиентских проектов, я поработал в найме (+3 года на руководящих должностях в сфере маркетинга), 
+                а также занимался своими проектами.
+            </p>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">65+</div>
+                    <div class="stat-label">Успешных кейсов</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$1.2M+</div>
+                    <div class="stat-label">Освоенных бюджетов</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">500K+</div>
+                    <div class="stat-label">Привлеченных лидов</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2.5 года</div>
+                    <div class="stat-label">Средний срок работы</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Before Working Section -->
+    <section class="before-section">
+        <div class="container">
+            <h2 class="section-title">⚠️ До работы с нами</h2>
+            <div class="before-grid">
+                <div class="before-card">
+                    <div class="before-icon">📉</div>
+                    <h3>Нестабильный поток заявок</h3>
+                    <p>Заявки то есть, то нет. Нет системы. Невозможно планировать загрузку отдела продаж.</p>
+                </div>
+                <div class="before-card">
+                    <div class="before-icon">💸</div>
+                    <h3>Переплачиваете за лиды в 2-3 раза</h3>
+                    <p>Платите за заявки больше рынка. Бюджеты тают, а результата нет.</p>
+                </div>
+                <div class="before-card">
+                    <div class="before-icon">🎯</div>
+                    <h3>90% заявок - "мусор"</h3>
+                    <p>Отдел продаж завален нецелевыми лидами. Конверсия в продажу меньше 5%.</p>
+                </div>
+                <div class="before-card">
+                    <div class="before-icon">🤷</div>
+                    <h3>Нет данных для принятия решений</h3>
+                    <p>Не отслеживается путь клиента. Непонятно какой канал приносит продажи.</p>
+                </div>
+                <div class="before-card">
+                    <div class="before-icon">⏰</div>
+                    <h3>Постоянно меняете подрядчиков</h3>
+                    <p>Перебрали уже 5-10 фрилансеров. Каждый раз объясняете бизнес заново.</p>
+                </div>
+                <div class="before-card">
+                    <div class="before-icon">📊</div>
+                    <h3>Красивые отчеты, но нет продаж</h3>
+                    <p>Подрядчик показывает графики, но не показывает реальные результаты из кабинета.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section class="what-we-do-section">
+        <div class="container">
+            <h2 class="section-title">🎯 Что мы делаем</h2>
+            <p class="section-subtitle">Комплексный подход к платной рекламе — от стратегии до масштабирования</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-number">01</div>
+                    <h3>Глубокий анализ ниши</h3>
+                    <p>Исследуем 20+ конкурентов, анализируем их воронки, собираем библиотеку работающих креативов.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">02</div>
+                    <h3>Сегментация аудитории</h3>
+                    <p>Создаем до 15 сегментов ЦА, под каждый пишем отдельные офферы и креативы.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">03</div>
+                    <h3>Медиапланирование</h3>
+                    <p>Расписываем бюджеты на 3 месяца вперед с прогнозом результатов и KPI.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">04</div>
+                    <h3>Техническая настройка</h3>
+                    <p>Пиксели, события, коллтрекинг, интеграции с CRM - все данные в одном месте.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">05</div>
+                    <h3>Конверсионные лендинги</h3>
+                    <p>Создаем посадочные с конверсией 8-15%. Квизы, калькуляторы, видео-презентации.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">06</div>
+                    <h3>A/B тестирование</h3>
+                    <p>До 50 тестов в месяц. Тестируем все: от эмодзи в заголовке до цвета кнопки.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">07</div>
+                    <h3>Автоматизация процессов</h3>
+                    <p>Автоправила, автобиддинг, динамические креативы - экономим до 40% времени.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-number">08</div>
+                    <h3>Еженедельная оптимизация</h3>
+                    <p>Анализируем 20+ метрик, корректируем стратегию, масштабируем успешное.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Criteria Section -->
+    <section class="criteria-section">
+        <div class="container">
+            <div class="criteria-grid">
+                <div class="criteria-block">
+                    <h3>❌ Нам не по пути если:</h3>
+                    <ul class="criteria-list">
+                        <li>Вы ищете "волшебную кнопку" за 100$ в месяц</li>
+                        <li>Не готовы инвестировать минимум $1000 в тесты</li>
+                        <li>Считаете что знаете маркетинг лучше специалистов</li>
+                        <li>Ожидаете результат завтра без тестирования</li>
+                    </ul>
+                </div>
+                <div class="criteria-block">
+                    <h3>✅ Нам по пути если:</h3>
+                    <ul class="criteria-list">
+                        <li>Устали от фрилансеров за 200$ которые сливают бюджет</li>
+                        <li>Готовы инвестировать в рост и ждать окупаемости 2-3 месяца</li>
+                        <li>Понимаете важность тестирования и оптимизации</li>
+                        <li>Хотите партнера в маркетинге, а не просто исполнителя</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">🗓️ Как проходит работа</h2>
+            <p class="section-subtitle">От первого созвона до стабильного потока клиентов</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-line"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-period">День 1-3</div>
+                        <h3>Погружение в бизнес</h3>
+                        <p>2-часовой брифинг, анализ 20+ конкурентов, изучение ЦА через опросы и интервью.</p>
+                        <div class="timeline-deliverables">
+                            <span>✓ Портреты ЦА</span>
+                            <span>✓ Анализ конкурентов</span>
+                            <span>✓ Медиаплан на 3 месяца</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-line"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-period">День 4-7</div>
+                        <h3>Техническая подготовка</h3>
+                        <p>50+ креативов, настройка всех пикселей, создание 3-5 посадочных страниц.</p>
+                        <div class="timeline-deliverables">
+                            <span>✓ Библиотека креативов</span>
+                            <span>✓ Технические интеграции</span>
+                            <span>✓ A/B тесты лендингов</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-line"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-period">День 8-14</div>
+                        <h3>Запуск и первые лиды</h3>
+                        <p>20+ тестовых кампаний, первые 50-100 лидов, корректировка по обратной связи.</p>
+                        <div class="timeline-deliverables">
+                            <span>✓ Активные кампании</span>
+                            <span>✓ Первые продажи</span>
+                            <span>✓ Данные для оптимизации</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-period">Месяц 2+</div>
+                        <h3>Масштабирование</h3>
+                        <p>Увеличение бюджетов в 3-5 раз, запуск новых каналов, выход на целевой CPL.</p>
+                        <div class="timeline-deliverables">
+                            <span>✓ Снижение CPL на 40%</span>
+                            <span>✓ ROI 300%+</span>
+                            <span>✓ Предсказуемый поток</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters-section">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Все проекты (65+)</button>
+            <button class="filter-btn" data-filter="туризм">✈️ Туризм</button>
+            <button class="filter-btn" data-filter="недвижимость">🏠 Недвижимость</button>
+            <button class="filter-btn" data-filter="инфобизнес">👨🏫 Инфобизнес</button>
+            <button class="filter-btn" data-filter="интернет-магазины">🏪 E-commerce</button>
+            <button class="filter-btn" data-filter="телеграм-каналы">💎 Telegram</button>
+            <button class="filter-btn" data-filter="другое">📊 Другое</button>
+        </div>
+    </section>
+
+    <!-- Cases Section -->
+    <section class="cases-section">
+        <div class="container">
+            <div class="cases-grid" id="casesGrid">
+                <!-- Cases will be inserted by JavaScript -->
+            </div>
+            <div class="no-results" id="noResults" style="display: none;">
+                По выбранному фильтру кейсов не найдено
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">❓ Частые вопросы</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Сколько стоят ваши услуги?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Управление рекламой — от $500/мес. Комплексное ведение с лендингами — от $1000/мес. 
+                        Точная стоимость после анализа вашей ниши. Рекламный бюджет оплачивается отдельно.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Какой нужен рекламный бюджет?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Минимум $1000 для тестов. Оптимально $3000-5000 для быстрого выхода на результат. 
+                        После тестов даем точный прогноз бюджета под ваши цели.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Гарантируете результат?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Гарантируем применение всех наших знаний и опыта. В 90% случаев достигаем KPI или превышаем. 
+                        Если за 2 месяца нет результата — возвращаем оплату за управление.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Когда будут первые лиды?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Первые лиды — через 3-5 дней после запуска. Оптимальная стоимость — через 2-3 недели. 
+                        Стабильный поток с целевым CPL — со второго месяца.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        В каких нишах работаете?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Работали в 50+ нишах. Специализируемся на: недвижимости, туризме, инфобизнесе, e-commerce. 
+                        Не работаем с казино, ставками, адалтом и финансовыми пирамидами.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-content">
+            <h2>Хотите такие же результаты?</h2>
+            <p>Напишите "Хочу разбор" и получите <strong>бесплатную 40-минутную диагностику</strong> вашего проекта:</p>
+            
+            <ul class="contact-steps">
+                <li>✓ Покажу точки роста которые дадут +30% к результату</li>
+                <li>✓ Рассчитаю реальный прогноз лидов и бюджета</li>
+                <li>✓ Дам чек-лист что можно улучшить прямо сейчас</li>
+                <li>✓ Отвечу на все вопросы по вашему проекту</li>
+            </ul>
+
+            <div class="cta-buttons">
+                <a href="https://t.me/magosh_al" class="cta-btn" target="_blank">
+                    <span>📱</span> Telegram
+                </a>
+                <a href="https://wa.me/77066671426" class="cta-btn secondary" target="_blank">
+                    <span>💬</span> WhatsApp
+                </a>
+            </div>
+
+            <p class="contact-note">
+                <strong>⚠️ Берем только 4 новых клиента в месяц</strong><br>
+                Это позволяет давать максимальное внимание каждому проекту
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://t.me/Alshanskiym" class="footer-link" target="_blank">📚 Телеграм-канал</a>
+                <a href="https://t.me/magosh_al" class="footer-link" target="_blank">💬 Написать</a>
+                <a href="https://wa.me/77066671426" class="footer-link" target="_blank">📱 WhatsApp</a>
+            </div>
+            <p class="footer-copyright">
+                © 2025 WEBNOSTRA | Магош Альшанский | Performance Marketing
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // All 65 cases with real data
+        const cases = [
+            // ТУРИЗМ
+            {
+                category: "туризм",
+                title: "Экскурсии по Пхукету - 142 лида за $551",
+                company: "Phuket Excursions",
+                location: "Пхукет, Таиланд",
+                period: "Октябрь-Ноябрь 2024",
+                channels: ["Meta Ads"],
+                problem: "Сотни конкурентов борются за внимание туристов. Сезон заканчивается, нужно срочно распродать остаток экскурсий.",
+                solution: "Запустили ретаргетинг на тех, кто искал развлечения в Пхукете. Создали FOMO-эффект: 'Осталось 3 места на завтра'. Видео с дронов показывали красоту маршрутов.",
+                stats: [
+                    { name: "Потрачено", value: "$551" },
+                    { name: "Лидов", value: "142" },
+                    { name: "CPL", value: "$3.8" },
+                    { name: "Продано туров", value: "10" }
+                ],
+                details: "Окупили рекламу за 3 дня. Средний чек вырос с $80 до $120 благодаря апселлу дополнительных услуг. База теплых лидов работает до сих пор."
+            },
+            {
+                category: "туризм",
+                title: "Аренда яхт премиум-класса - ROI 320%",
+                company: "Yacht Charter Phuket",
+                location: "Пхукет, Таиланд",
+                period: "Высокий сезон 2024",
+                channels: ["Meta Ads"],
+                problem: "Средний чек $3000-5000. Клиенты долго думают, сравнивают десятки предложений.",
+                solution: "Таргетировались только на тех, кто бронировал отели 5*. Показывали не яхты, а эмоции: закаты, шампанское, счастливые лица. Давали скидку 20% при бронировании в день обращения.",
+                stats: [
+                    { name: "Конверсия", value: "15%" },
+                    { name: "ROI", value: "320%" },
+                    { name: "Ср. чек", value: "$4200" },
+                    { name: "Повторные", value: "40%" }
+                ],
+                details: "Каждый третий клиент привел друзей. Запустили реферальную программу и получили еще +30% продаж без рекламы."
+            },
+            {
+                category: "туризм",
+                title: "Санаторий КМВ - 5926 броней по 1123₽",
+                company: "Триумф-Тур",
+                location: "Кисловодск",
+                period: "2023-2024",
+                channels: ["Яндекс Директ", "Google Ads"],
+                problem: "154 санатория в регионе. Все предлагают одинаковые процедуры по схожим ценам.",
+                solution: "Сфокусировались на узких болях: 'Восстановление после COVID', 'Программа для диабетиков'. Запустили виртуальный тур по номерам. Врачи санатория вели блог о лечении.",
+                stats: [
+                    { name: "Броней", value: "5926" },
+                    { name: "CPL", value: "1123₽" },
+                    { name: "Выручка", value: "142M₽" },
+                    { name: "Бюджет", value: "6.6M₽" }
+                ],
+                details: "Заполняемость выросла с 60% до 95%. Запустили программу лояльности - 30% гостей возвращаются."
+            },
+            {
+                category: "туризм",
+                title: "Санаторий в Одессе - 1241 заявка из Google",
+                company: "Клинический санаторий им. Пирогова",
+                location: "Одесса, Украина",
+                period: "Сентябрь 2021 - Январь 2022",
+                channels: ["Google Ads"],
+                problem: "Военная ситуация отпугивает туристов. Нужно привлечь местную аудиторию.",
+                solution: "Переориентировались на жителей Украины. Запустили программы выходного дня. Акцент на безопасность и медицинскую базу.",
+                stats: [
+                    { name: "Заявок", value: "1241" },
+                    { name: "CPL", value: "325 грн" },
+                    { name: "Конверсия", value: "16%" },
+                    { name: "Бюджет", value: "403K грн" }
+                ],
+                details: "Несмотря на сложную ситуацию, санаторий сохранил 70% загрузки."
+            },
+            {
+                category: "туризм",
+                title: "Турагентство на юге России - 500₽ за заявку",
+                company: "Южный тур",
+                location: "Краснодар",
+                period: "2024",
+                channels: ["Яндекс Директ"],
+                problem: "Туристы бронируют напрямую через Booking. Агентства теряют комиссии.",
+                solution: "Предложили то, чего нет на Booking: авторские туры, личного гида, страховку от всего. Работали с возражениями в креативах.",
+                stats: [
+                    { name: "CPL", value: "500₽" },
+                    { name: "Конверсия", value: "12%" },
+                    { name: "Ср. чек", value: "85K₽" },
+                    { name: "ROI", value: "450%" }
+                ],
+                details: "Создали базу в 5000+ туристов для email-рассылок. Продажи идут круглый год."
+            },
+
+            // НЕДВИЖИМОСТЬ
+            {
+                category: "недвижимость",
+                title: "Виллы на Пхукете - 7 сделок по $450K",
+                company: "Premium Villas Phuket",
+                location: "Пхукет, Таиланд",
+                period: "2024",
+                channels: ["Meta Ads", "Google Ads"],
+                problem: "Цикл сделки 3-6 месяцев. Клиенты смотрят 20-30 объектов перед покупкой.",
+                solution: "Создали интерактивный каталог с VR-турами. Проводили онлайн-встречи с менеджером прямо из виллы. Калькулятор показывал доходность от сдачи в аренду.",
+                stats: [
+                    { name: "Квал. лидов", value: "89" },
+                    { name: "Сделок", value: "7" },
+                    { name: "Ср. чек", value: "$450K" },
+                    { name: "Pipeline", value: "$3.2M" }
+                ],
+                details: "Средняя стоимость привлечения покупателя - $2000. При среднем чеке $450K это 0.4% от сделки."
+            },
+            {
+                category: "недвижимость",
+                title: "Загородные дома - 20 продаж ежемесячно",
+                company: "Country Houses",
+                location: "Московская область",
+                period: "2023-2024",
+                channels: ["Яндекс Директ"],
+                problem: "87 застройщиков в радиусе 50км от МКАД. Все обещают 'дом вашей мечты'.",
+                solution: "Ушли от абстракций. Показывали конкретику: '15 минут до метро Речной вокзал', 'Газ уже подведен', 'Школа в 500 метрах'. Сняли видео-отзывы 50 семей.",
+                stats: [
+                    { name: "Продаж/мес", value: "20" },
+                    { name: "Лидов", value: "450" },
+                    { name: "CPL", value: "2800₽" },
+                    { name: "ROI", value: "450%" }
+                ],
+                details: "Выстроили конвейер продаж. Менеджеры закрывают 1 из 22 лидов. Средняя сделка - 7.5 млн₽."
+            },
+            {
+                category: "недвижимость",
+                title: "Каркасные дома СПб - 329 заявок за квартал",
+                company: "Строительная компания",
+                location: "Санкт-Петербург",
+                period: "Июль-Октябрь 2024",
+                channels: ["Яндекс Директ"],
+                problem: "После скандалов с обманутыми дольщиками люди не доверяют застройщикам.",
+                solution: "Полная прозрачность: онлайн-камеры на стройке, поэтапная оплата, страховка от недостройки. Водили экскурсии на готовые объекты каждые выходные.",
+                stats: [
+                    { name: "Заявок", value: "329" },
+                    { name: "CPL", value: "1386₽" },
+                    { name: "Квал. CPL", value: "3300₽" },
+                    { name: "Конверсия", value: "42%" }
+                ],
+                details: "Квиз-воронка отсеивает 60% нецелевых еще до звонка менеджеру."
+            },
+            {
+                category: "недвижимость",
+                title: "Ремонт фасадов B2B - 79 контрактов с УК",
+                company: "Маритоль",
+                location: "Москва",
+                period: "Январь-Февраль 2024",
+                channels: ["Яндекс Директ"],
+                problem: "ТСЖ и УК выбирают подрядчика через тендеры. Прямая реклама не работает.",
+                solution: "Таргетировались на председателей ТСЖ через профессиональные форумы. Предлагали бесплатный аудит фасада с фотоотчетом. Гарантия 10 лет решала вопрос доверия.",
+                stats: [
+                    { name: "Заявок", value: "144" },
+                    { name: "CPL", value: "1300₽" },
+                    { name: "Контрактов", value: "79" },
+                    { name: "Ср. чек", value: "2.3M₽" }
+                ],
+                details: "Один контракт окупает 3 месяца рекламы. ROI за год - 2400%."
+            },
+            {
+                category: "недвижимость",
+                title: "Новостройки Сочи - 298 квалиф. заявок через РСЯ",
+                company: "Самолет Плюс",
+                location: "Сочи",
+                period: "Январь-Апрель 2024",
+                channels: ["Яндекс Директ"],
+                problem: "После Олимпиады построили слишком много жилья. Квартиры не продаются годами.",
+                solution: "Продавали не квартиры, а образ жизни: 'Работайте удаленно у моря'. Таргет на IT-специалистов и фрилансеров. Виртуальные туры в 4K.",
+                stats: [
+                    { name: "Всего заявок", value: "481" },
+                    { name: "Квал. заявок", value: "298" },
+                    { name: "CPL квал.", value: "2002₽" },
+                    { name: "Конверсия", value: "62%" }
+                ],
+                details: "РСЯ дает лиды в 3 раза дешевле поиска при той же конверсии в продажу."
+            },
+            {
+                category: "недвижимость",
+                title: "Новостройки Крым и Краснодар через VK - 686 квал. лидов",
+                company: "Агентство недвижимости",
+                location: "Крым, Краснодар",
+                period: "Октябрь 2023 - Март 2024",
+                channels: ["VK реклама"],
+                problem: "Санкции отрезали Крым от многих рекламных каналов. Google и Meta не работают.",
+                solution: "VK - единственный работающий канал. Создали 50+ креативов под разные сегменты. Лид-формы прямо в VK без перехода на сайт.",
+                stats: [
+                    { name: "Всего заявок", value: "944" },
+                    { name: "Квал. заявок", value: "686" },
+                    { name: "CPL квал.", value: "1231₽" },
+                    { name: "Конверсия", value: "71.6%" }
+                ],
+                details: "VK дает качество лидов выше чем Яндекс при цене в 2 раза ниже."
+            },
+            {
+                category: "недвижимость",
+                title: "Апартаменты в Дубае - 12 сделок русским инвесторам",
+                company: "Dubai Real Estate",
+                location: "Дубай, ОАЭ",
+                period: "Июнь-Декабрь 2024",
+                channels: ["Meta Ads"],
+                problem: "Русские боятся инвестировать в ОАЭ из-за санкций и проблем с переводами.",
+                solution: "Подробно объясняли схемы покупки через крипту. Показывали кейсы 50+ россиян уже купивших недвижимость. Личный менеджер говорил по-русски.",
+                stats: [
+                    { name: "Лидов", value: "234" },
+                    { name: "CPL", value: "$78" },
+                    { name: "Сделок", value: "12" },
+                    { name: "Ср. чек", value: "$450K" }
+                ],
+                details: "Каждая сделка приносит 3-5 рефералов. Сарафан дает 40% продаж."
+            },
+            {
+                category: "недвижимость",
+                title: "Бани под ключ - прибыль 1.25M₽ за месяц",
+                company: "БаниПроф",
+                location: "Москва",
+                period: "Май 2023 - Май 2024",
+                channels: ["Яндекс Директ"],
+                problem: "Средний чек 380К₽. Люди боятся предоплаты, много историй про кидалово.",
+                solution: "Поэтапная оплата: 20% предоплата, остальное по факту работ. Стройка в прямом эфире через приложение. Встреча на готовых объектах, не в офисе.",
+                stats: [
+                    { name: "Заявок", value: "88" },
+                    { name: "CPL", value: "3977₽" },
+                    { name: "Продаж", value: "33" },
+                    { name: "Прибыль", value: "1.25M₽" }
+                ],
+                details: "Самый дорогой лид в портфолио, но ROI 358% за счет высокого чека."
+            },
+
+            // ИНФОБИЗНЕС
+            {
+                category: "инфобизнес",
+                title: "Серия вебинаров для HR - 2000+ регистраций",
+                company: "Beyond Taylor",
+                location: "Россия, СНГ",
+                period: "2024",
+                channels: ["Яндекс Директ"],
+                problem: "HR-специалисты перегружены бесплатными вебинарами. На платные не идут.",
+                solution: "Делали не 'вебинары', а 'закрытые встречи для руководителей'. Спикеры - действующие HRD из Сбера и Яндекса. Запись не давали - только живое участие.",
+                stats: [
+                    { name: "Регистраций", value: "2000+" },
+                    { name: "Цена рег.", value: "850₽" },
+                    { name: "Явка", value: "45%" },
+                    { name: "Продаж", value: "180" }
+                ],
+                details: "Явка 45% - это в 3 раза выше рынка. Секрет: напоминания каждые 2 часа в день вебинара."
+            },
+            {
+                category: "инфобизнес",
+                title: "Школа программирования для детей - 4345 лидов за $3",
+                company: "TeenTalk",
+                location: "Беларусь, Казахстан",
+                period: "Апрель 2025 - н.в.",
+                channels: ["Meta Ads", "VK"],
+                problem: "Родители считают программирование слишком сложным для детей 7-10 лет.",
+                solution: "Квиз 'Есть ли у вашего ребенка способности к IT?'. Бесплатный пробный урок где ребенок создает свою первую игру. Родители видят результат сразу.",
+                stats: [
+                    { name: "Бюджет", value: "$13785" },
+                    { name: "Лидов", value: "4345" },
+                    { name: "CPL", value: "$3.17" },
+                    { name: "Конверсия", value: "12%" }
+                ],
+                details: "Дети сами просят родителей записать их после пробного урока. Продажа идет через ребенка."
+            },
+            {
+                category: "инфобизнес",
+                title: "Онлайн-школа в Telegram - 28K подписчиков",
+                company: "Онлайн-школа",
+                location: "СНГ + РФ",
+                period: "Июнь 2024 - н.в.",
+                channels: ["Meta Ads", "VK"],
+                problem: "Telegram-каналы об образовании - миллион. Как выделиться?",
+                solution: "Лид-магнит: 'Научим ребенка решать задачи 3 класса за 15 минут'. Родители получали результат сразу. В канале - ежедневные мини-уроки по 5 минут.",
+                stats: [
+                    { name: "Meta подписки", value: "24917" },
+                    { name: "CPL Meta", value: "$0.81" },
+                    { name: "VK подписки", value: "3430" },
+                    { name: "CPL VK", value: "73₽" }
+                ],
+                details: "Канал приносит 200 продаж курсов в месяц. Окупаемость - 3 недели."
+            },
+            {
+                category: "инфобизнес",
+                title: "Школа косметологии - 1521 заявка по 311₽",
+                company: "Beauty School",
+                location: "РФ",
+                period: "Июль-Сентябрь 2024",
+                channels: ["VK реклама"],
+                problem: "500+ школ косметологии в России. Все обещают трудоустройство.",
+                solution: "Не обещали, а показывали: 'Вот Маша, закончила 2 месяца назад, зарабатывает 120К'. Реальные кейсы, реальные цифры, контакты для проверки.",
+                stats: [
+                    { name: "Заявок", value: "1521" },
+                    { name: "CPL", value: "311₽" },
+                    { name: "Конверсия", value: "8%" },
+                    { name: "Окупаемость", value: "2 недели" }
+                ],
+                details: "80% учениц приходят по рекомендации. Сарафан сильнее рекламы."
+            },
+            {
+                category: "инфобизнес",
+                title: "Alfluent - AI-маркетинг, 1933 подписчика в бот",
+                company: "Alfluent",
+                location: "РФ",
+                period: "Март-Апрель 2024",
+                channels: ["Яндекс Директ"],
+                problem: "AI - хайп. Тысячи курсов появляются каждый день. 90% - мусор.",
+                solution: "Telegram-бот с 50 готовыми промптами для маркетологов. Люди получали пользу до покупки курса. 'Попробуй, потом купи'.",
+                stats: [
+                    { name: "Подписчики", value: "1933" },
+                    { name: "Цена подп.", value: "105₽" },
+                    { name: "Лиды на курс", value: "191" },
+                    { name: "CPL курса", value: "1063₽" }
+                ],
+                details: "Бот работает как автоворонка. Прогревает 30 дней, потом предлагает курс."
+            },
+            {
+                category: "инфобизнес",
+                title: "Курсы английского - 456 продаж через пробные уроки",
+                company: "Языковая школа",
+                location: "РФ + СНГ",
+                period: "Сентябрь 2023 - Март 2024",
+                channels: ["VK", "Яндекс Директ"],
+                problem: "Пробные уроки берут все, покупают единицы. Конверсия 3-5%.",
+                solution: "Персонализация: пробный урок под конкретную цель (собеседование, путешествие, экзамен). Учитель сразу давал план достижения цели. Скидка 30% только в день пробного.",
+                stats: [
+                    { name: "Пробных", value: "2340" },
+                    { name: "Цена", value: "287₽" },
+                    { name: "Покупок", value: "456" },
+                    { name: "Конверсия", value: "19.5%" }
+                ],
+                details: "Конверсия выросла в 4 раза. Секрет: правильный матчинг ученик-преподаватель."
+            },
+            {
+                category: "инфобизнес",
+                title: "Школа сомелье - 532 квал. заявки по 1038₽",
+                company: "Школа винной культуры",
+                location: "Москва",
+                period: "Сентябрь 2023 - Апрель 2024",
+                channels: ["Яндекс Директ"],
+                problem: "Узкая ниша. В месяц ищут 500 человек по всей России.",
+                solution: "Расширили до смежных: 'курсы бариста', 'ресторанный бизнес', 'этикет'. Пакетные предложения: сомелье + сырный сомелье + сигарный клуб.",
+                stats: [
+                    { name: "Квал. заявок", value: "532" },
+                    { name: "CPL квал.", value: "1038₽" },
+                    { name: "Продаж", value: "158" },
+                    { name: "Выручка", value: "3M₽" }
+                ],
+                details: "Средний чек вырос в 2 раза за счет пакетов. LTV - 35К₽ (берут 2-3 курса)."
+            },
+            {
+                category: "инфобизнес",
+                title: "Коучинг для экспертов - 818 лидов за $2.9",
+                company: "Трансформационный коучинг",
+                location: "СНГ, Европа, Азия",
+                period: "Февраль 2024 - н.в.",
+                channels: ["Meta Ads"],
+                problem: "Коучей миллион. Все одинаковые. 'Помогу достичь целей' - скучно.",
+                solution: "Узкая ниша: коучинг для выгорающих топ-менеджеров. Конкретика: 'Верну энергию за 21 день или верну деньги'. Первая сессия - бесплатно.",
+                stats: [
+                    { name: "Бюджет", value: "$2400" },
+                    { name: "Лидов", value: "818" },
+                    { name: "CPL", value: "$2.93" },
+                    { name: "Конверсия", value: "6%" }
+                ],
+                details: "Низкая конверсия компенсируется чеком $2000 и повторными покупками."
+            },
+
+            // ИНТЕРНЕТ-МАГАЗИНЫ
+            {
+                category: "интернет-магазины",
+                title: "Тойтрик - 6927 заказов детской одежды",
+                company: "ToyTrick",
+                location: "РФ и КЗ",
+                period: "2020-2023",
+                channels: ["Яндекс Директ", "VK", "Meta Ads"],
+                problem: "Wildberries убивает малый бизнес. Цены ниже, доставка быстрее.",
+                solution: "Уникальные принты которых нет на WB. История бренда: 'Мама троих детей шьет для своих, потом для вас'. Персональный пошив под размер ребенка.",
+                stats: [
+                    { name: "Заказов", value: "6927" },
+                    { name: "Выручка", value: "20.8M₽" },
+                    { name: "ROAS", value: "310%" },
+                    { name: "Ср. чек", value: "3004₽" }
+                ],
+                details: "Выход на Казахстан дал +40% к выручке при той же цене лида."
+            },
+            {
+                category: "интернет-магазины",
+                title: "Star Wars шлемы США - $12K прибыли с $2K бюджета",
+                company: "SamoilovART",
+                location: "США",
+                period: "Октябрь 2024 - Февраль 2025",
+                channels: ["Meta Ads"],
+                problem: "Шлем за $320 - импульсивная покупка не работает. Люди думают неделями.",
+                solution: "Ретаргетинг 30 дней с разными креативами: распаковки, отзывы, процесс создания. На 7 день - скидка 10%. На 14 - последний шлем. На 30 - эксклюзив.",
+                stats: [
+                    { name: "Потрачено", value: "$2150" },
+                    { name: "Продаж", value: "47" },
+                    { name: "Ср. чек", value: "$320" },
+                    { name: "Прибыль", value: "$12K+" }
+                ],
+                details: "ROI 558%. Американцы покупают коллекционку не думая, если правильно 'подогреть'."
+            },
+            {
+                category: "интернет-магазины",
+                title: "АНПАК - упаковка для селлеров, 1700 B2B лидов",
+                company: "АНПАК",
+                location: "РФ",
+                period: "Май 2024 - Февраль 2025",
+                channels: ["Яндекс Директ"],
+                problem: "Селлеры покупают упаковку на том же WB дешевле. Зачем им поставщик?",
+                solution: "Брендирование: ваш логотип на каждом пакете. Эко-упаковка для тех кто про экологию. Доставка в день заказа по Москве. Отсрочка платежа 30 дней.",
+                stats: [
+                    { name: "Заявок", value: "1700" },
+                    { name: "CPL", value: "1018₽" },
+                    { name: "Конверсия", value: "18%" },
+                    { name: "Ср. чек", value: "45K₽" }
+                ],
+                details: "B2B требует другого подхода. Важны не эмоции, а цифры: сроки, отсрочки, логистика."
+            },
+            {
+                category: "интернет-магазины",
+                title: "Запчасти для телефонов - 1537 заявок через 2 канала",
+                company: "Phone Parts",
+                location: "Москва",
+                period: "2023",
+                channels: ["Яндекс Директ", "VK"],
+                problem: "AliExpress продает те же запчасти в 3 раза дешевле. Ждать месяц - норма.",
+                solution: "Скорость: доставка сегодня по Москве. Гарантия: не подошла - вернем деньги. Для мастеров: оптовые цены от 10 штук. База 500+ наименований на складе.",
+                stats: [
+                    { name: "Заявки ЯД", value: "903" },
+                    { name: "CPL ЯД", value: "394₽" },
+                    { name: "Заявки VK", value: "634" },
+                    { name: "CPL VK", value: "520₽" }
+                ],
+                details: "Яндекс дает объем, VK - качество. Комбинация каналов увеличила прибыль на 40%."
+            },
+            {
+                category: "интернет-магазины",
+                title: "Байки на Бали - распродажа за месяц",
+                company: "Bali Bikes",
+                location: "Бали, Индонезия",
+                period: "Октябрь-Ноябрь 2024",
+                channels: ["Meta Ads"],
+                problem: "Сезон дождей. Туристов мало. 10 байков нужно продать срочно.",
+                solution: "FOMO по полной: 'Последний шанс до Нового года', 'Осталось 3 байка', 'Завтра цена +20%'. Фото счастливых туристов на байках под дождем.",
+                stats: [
+                    { name: "Бюджет", value: "$551" },
+                    { name: "Лиды", value: "142" },
+                    { name: "CPL", value: "$3.88" },
+                    { name: "Продано", value: "10/10" }
+                ],
+                details: "Распродали все за 3 недели. Секрет: правильный месседж в правильное время."
+            },
+            {
+                category: "интернет-магазины",
+                title: "Напольные покрытия - 624 заявки по 357₽",
+                company: "Магазин напольных покрытий",
+                location: "Москва",
+                period: "Январь-Март 2023",
+                channels: ["Яндекс Директ"],
+                problem: "Леруа Мерлен забирает 70% рынка. Малому бизнесу не выжить.",
+                solution: "То чего нет в Леруа: дизайнерские коллекции, укладка в день заказа, беспроцентная рассрочка. Калькулятор показывал переплату в Леруа.",
+                stats: [
+                    { name: "Заявок", value: "624" },
+                    { name: "CPL", value: "357₽" },
+                    { name: "Конверсия", value: "7%" },
+                    { name: "Ср. чек", value: "120K₽" }
+                ],
+                details: "Низкий CPL за счет РСЯ. Ремонтники - благодарная аудитория для ретаргетинга."
+            },
+            {
+                category: "интернет-магазины",
+                title: "Аренда мебели в Дубае - 210 заявок экспатов",
+                company: "Furniture Rental Dubai",
+                location: "Дубай, ОАЭ",
+                period: "Июнь-Август 2024",
+                channels: ["Meta Ads"],
+                problem: "Экспаты живут 1-2 года. Покупать мебель дорого и бессмысленно.",
+                solution: "Пакеты 'All inclusive': вся мебель для студии/1BR/2BR. Доставка в день заказа. Возможность поменять мебель через 6 месяцев. Депозит = 1 месяц аренды.",
+                stats: [
+                    { name: "Бюджет", value: "$3840" },
+                    { name: "Заявок", value: "210" },
+                    { name: "CPL", value: "$18.28" },
+                    { name: "Конверсия", value: "35%" }
+                ],
+                details: "Экспаты ценят время больше денег. Готовое решение продается лучше конструктора."
+            },
+
+            // ТЕЛЕГРАМ-КАНАЛЫ
+            {
+                category: "телеграм-каналы",
+                title: "Недвижимость Таиланд - 11K подписчиков за 3 месяца",
+                company: "Real Estate Channel",
+                location: "Таиланд, Индонезия",
+                period: "2024",
+                channels: ["Meta Ads"],
+                problem: "100+ каналов про недвижимость в Азии. Все копируют друг друга.",
+                solution: "Инсайды от риелторов: какие дома не покупать, как обманывают русских, реальные цены без накруток. Честность побеждает маркетинг.",
+                stats: [
+                    { name: "Подписчики", value: "11000" },
+                    { name: "CPL", value: "$1.2" },
+                    { name: "ER", value: "22%" },
+                    { name: "Лиды/мес", value: "340" }
+                ],
+                details: "Канал стал основным источником продаж. Агенты платят за размещение."
+            },
+            {
+                category: "телеграм-каналы",
+                title: "Крипто-канал - 45K подписчиков и монетизация",
+                company: "Crypto Channel",
+                location: "СНГ",
+                period: "3 месяца",
+                channels: ["Яндекс Директ"],
+                problem: "После краха FTX люди не верят крипто-каналам. 90% - скам.",
+                solution: "Полная прозрачность: скрины всех сделок, публичный кошелек, стримы торговли. Обучение с нуля бесплатно. Платные сигналы - потом.",
+                stats: [
+                    { name: "Подписчики", value: "45K" },
+                    { name: "ER", value: "18%" },
+                    { name: "Цена подп.", value: "12₽" },
+                    { name: "Доход", value: "450K₽/мес" }
+                ],
+                details: "Монетизация через VIP-канал: 2000₽/мес, 500 подписчиков = 1М₽/мес."
+            },
+            {
+                category: "телеграм-каналы",
+                title: "Онлайн-школа в TG - воронка на 25K подписчиков",
+                company: "Kids Education",
+                location: "РФ, СНГ",
+                period: "2024",
+                channels: ["Meta Ads", "VK"],
+                problem: "Родители не доверяют онлайн-школам. Хотят попробовать перед покупкой.",
+                solution: "Канал = бесплатная школа. Каждый день мини-урок 10 минут. Родители видят прогресс ребенка. Платный курс - углубленная версия.",
+                stats: [
+                    { name: "Подписчики", value: "25K" },
+                    { name: "CPL", value: "$0.9" },
+                    { name: "Конверсия", value: "8%" },
+                    { name: "LTV", value: "$45" }
+                ],
+                details: "2000 подписчиков в месяц покупают курсы. Канал = автоматическая касса."
+            },
+            {
+                category: "телеграм-каналы",
+                title: "Инвестиции ОАЭ - премиум аудитория по $1",
+                company: "UAE Investments",
+                location: "ОАЭ",
+                period: "2024",
+                channels: ["Meta Ads"],
+                problem: "Богатые люди не сидят в Telegram. Как их туда затащить?",
+                solution: "Закрытый клуб: вход по рекомендации или после покупки недвижимости. Эксклюзивные объекты до публикации. Личный менеджер для участников.",
+                stats: [
+                    { name: "Подписчики", value: "3500" },
+                    { name: "CPL", value: "$1" },
+                    { name: "Ср. чек", value: "$250K" },
+                    { name: "Сделок/мес", value: "3-5" }
+                ],
+                details: "Маленький канал с огромным чеком. Качество важнее количества."
+            },
+            {
+                category: "телеграм-каналы",
+                title: "Туризм юг России - автоворонка продаж",
+                company: "Юг Тур канал",
+                location: "Краснодар",
+                period: "2024",
+                channels: ["Яндекс Директ"],
+                problem: "Люди бронируют отели напрямую. Турагентствам нечего предложить.",
+                solution: "Секретные места: пляжи без толп, рестораны местных, маршруты инсайдеров. VIP-туры с закрытыми вечеринками. То чего нет на Booking.",
+                stats: [
+                    { name: "Подписчики", value: "8K" },
+                    { name: "CPL", value: "45₽" },
+                    { name: "Бронирований/мес", value: "120" },
+                    { name: "Ср. чек", value: "65K₽" }
+                ],
+                details: "Канал работает круглый год. Зимой продаем горнолыжку, летом - море."
+            },
+
+            // ДРУГОЕ
+            {
+                category: "другое",
+                title: "Открытие фитнес-клуба - 678 членов за 3 месяца",
+                company: "Fitness Club",
+                location: "Санкт-Петербург",
+                period: "6 месяцев",
+                channels: ["VK", "Яндекс Директ"],
+                problem: "На районе уже 5 качалок. Цены у всех ±одинаковые.",
+                solution: "Первые 100 человек - годовой абонемент за полцены. Создали ажиотаж: очередь в первый день 200 человек. Социальное доказательство сработало.",
+                stats: [
+                    { name: "Заявки", value: "1890" },
+                    { name: "Члены", value: "678" },
+                    { name: "Конверсия", value: "35.9%" },
+                    { name: "Ср. чек", value: "24K₽/год" }
+                ],
+                details: "Окупили инвестиции за 4 месяца. План перевыполнен на 35%."
+            },
+            {
+                category: "другое",
+                title: "Подбор машин из Грузии - 67 сделок после санкций",
+                company: "Auto Import",
+                location: "Грузия-РФ",
+                period: "2024",
+                channels: ["Meta Ads", "Яндекс Директ"],
+                problem: "Санкции закрыли официальный импорт. Люди боятся серых схем.",
+                solution: "Полная легализация: растаможка, ЭПТС, постановка на учет. Видеоотчет о каждом этапе. Оплата после получения в России. Страховка от конфискации.",
+                stats: [
+                    { name: "Заявки", value: "456" },
+                    { name: "CPL", value: "$7.5" },
+                    { name: "Сделки", value: "67" },
+                    { name: "Ср. чек", value: "$18K" }
+                ],
+                details: "15% клиентов возвращаются за второй машиной. Сарафан дает 30% продаж."
+            },
+            {
+                category: "другое",
+                title: "Франшиза детских садов для девочек - 7 продаж в КЗ",
+                company: "Kids Franchise",
+                location: "Казахстан",
+                period: "Июнь-Сентябрь 2025",
+                channels: ["Meta Ads"],
+                problem: "В Казахстане не понимают зачем отдельный сад для девочек.",
+                solution: "Позиционирование: воспитываем леди, не просто детей. Английский с носителем, этикет, музыка. Показали успех в России - 30 садов за 2 года.",
+                stats: [
+                    { name: "Бюджет", value: "$1700" },
+                    { name: "Лидов", value: "1345" },
+                    { name: "CPL", value: "$1.26" },
+                    { name: "Продаж", value: "7" }
+                ],
+                details: "Каждая франшиза - это 300K$ выручки. ROI одной сделки - 17000%."
+            },
+            {
+                category: "другое",
+                title: "Стоматология СПб - имплантация по 1700₽ за лид",
+                company: "Стоматология",
+                location: "Санкт-Петербург",
+                period: "Ноябрь 2023 - Февраль 2024",
+                channels: ["Яндекс Директ"],
+                problem: "Имплант за 100К₽ - люди выбирают месяцами, ходят по 10 клиникам.",
+                solution: "Бесплатная КТ и план лечения (обычно 5000₽). Рассрочка 0% до 24 месяцев. Имплант за 1 день (обычно 3-6 месяцев). Гарантия 25 лет.",
+                stats: [
+                    { name: "Заявок", value: "180" },
+                    { name: "CPL", value: "1700₽" },
+                    { name: "Конверсия", value: "22%" },
+                    { name: "Ср. чек", value: "180K₽" }
+                ],
+                details: "Дорогой лид окупается высоким чеком и LTV (приводят семью)."
+            },
+            {
+                category: "другое",
+                title: "Автошкола Краснодар - 34 продажи за 2 месяца",
+                company: "Автошкола",
+                location: "Краснодар",
+                period: "Август-Октябрь 2023",
+                channels: ["Яндекс Директ"],
+                problem: "30 автошкол в городе. У всех цена 30-35К₽.",
+                solution: "Гарантия сдачи с первого раза или обучаем бесплатно. Вождение на той машине, на которой будете ездить. Интенсив: права за 1.5 месяца.",
+                stats: [
+                    { name: "Заявок", value: "126" },
+                    { name: "CPL", value: "889₽" },
+                    { name: "Продаж", value: "34" },
+                    { name: "Выручка", value: "1.03M₽" }
+                ],
+                details: "27% учеников приводят друзей. Реферальная программа: скидка 5000₽ обоим."
+            },
+            {
+                category: "другое",
+                title: "Детский центр Белгород - 2093 заявки через VK",
+                company: "Тропикано",
+                location: "Белгород",
+                period: "Сентябрь 2023 - Апрель 2024",
+                channels: ["VK реклама"],
+                problem: "Родители водят детей в ТЦ бесплатно. Зачем платить?",
+                solution: "Не просто игровая: развивающие программы, дни рождения, няня на час. Абонементы: безлимит за 3000₽/мес. Родители отдыхают, дети развиваются.",
+                stats: [
+                    { name: "Заявок", value: "2093" },
+                    { name: "CPL", value: "205₽" },
+                    { name: "Выручка", value: "2.84M₽" },
+                    { name: "ROI", value: "663%" }
+                ],
+                details: "Средний чек вырос в 3 раза за счет абонементов. Дети просят родителей прийти снова."
+            },
+            {
+                category: "другое",
+                title: "Маркировка товаров B2B - 623 заявки предпринимателей",
+                company: "Регистрация в госсистемах",
+                location: "РФ",
+                period: "Апрель-Октябрь 2024",
+                channels: ["Яндекс Директ"],
+                problem: "Предприниматели не понимают новые требования. Боятся штрафов.",
+                solution: "Бесплатный аудит: что нужно вашему бизнесу. Понятные инструкции, не юридический язык. Сопровождение до результата. Гарантия от штрафов.",
+                stats: [
+                    { name: "Заявок", value: "623" },
+                    { name: "CPL", value: "1111₽" },
+                    { name: "Конверсия", value: "28%" },
+                    { name: "Ср. чек", value: "45K₽" }
+                ],
+                details: "B2B лояльнее B2C. Клиенты работают годами, приводят партнеров."
+            },
+            {
+                category: "другое",
+                title: "Банкротство физлиц - 27 договоров за месяц",
+                company: "Юридическая компания",
+                location: "Москва и МО",
+                period: "Январь-Февраль 2024",
+                channels: ["Яндекс Директ"],
+                problem: "Тема стигматизирована. Люди стесняются банкротства.",
+                solution: "Позиционирование: законное решение проблем, не позор. Кейсы реальных людей: 'был должен 5М₽, теперь свободен'. Консультация анонимно.",
+                stats: [
+                    { name: "Заявок", value: "305" },
+                    { name: "Целевых (долг 300K+)", value: "143" },
+                    { name: "Договоров", value: "27" },
+                    { name: "CPD", value: "11875₽" }
+                ],
+                details: "Сложная тема требует долгого прогрева. Email-серия из 15 писем творит чудеса."
+            },
+            {
+                category: "другое",
+                title: "Франшиза вендингов - 20 продаж за месяц через Яндекс",
+                company: "Вендинговые аппараты",
+                location: "РФ",
+                period: "Октябрь 2023",
+                channels: ["Яндекс Директ"],
+                problem: "Франшиз тысячи. 90% - пирамиды. Люди не верят.",
+                solution: "Прозрачность: контакты 50 действующих франчайзи, их реальная выручка, видео с точек. Едем к вам показывать работающие автоматы. Выкуп франшизы, если не пойдет.",
+                stats: [
+                    { name: "Заявок", value: "322" },
+                    { name: "CPL", value: "1200₽" },
+                    { name: "Продаж", value: "20" },
+                    { name: "Выручка", value: "10M₽" }
+                ],
+                details: "Франшиза продается через доверие. Личная встреча конвертирует в 10 раз лучше зума."
+            },
+            {
+                category: "другое",
+                title: "Франшиза через VK - 112 заявок за 77К₽",
+                company: "Вендинговые аппараты",
+                location: "РФ",
+                period: "Февраль-Октябрь 2024",
+                channels: ["VK реклама"],
+                problem: "VK-аудитория моложе и беднее. Франшиза за 500К не продается.",
+                solution: "Мини-франшиза: старт от 150К₽. Рассрочка от компании. Для молодых предпринимателей. Менторство и поддержка первые 6 месяцев.",
+                stats: [
+                    { name: "Заявок", value: "112" },
+                    { name: "CPL", value: "693₽" },
+                    { name: "Конверсия", value: "7%" },
+                    { name: "ROI", value: "420%" }
+                ],
+                details: "Дешевый трафик VK компенсирует низкую конверсию. В сумме выгоднее Яндекса."
+            },
+            {
+                category: "другое",
+                title: "Автодилер Haval - 180 заявок элитных покупателей",
+                company: "Haval",
+                location: "Москва",
+                period: "Март-Апрель 2024",
+                channels: ["Яндекс Директ"],
+                problem: "Китайские машины = низкое качество в головах людей.",
+                solution: "Не скрывали происхождение, а сделали фишкой: 'Да, из Китая. Да, дешевле немцев. Да, не ломается'. Тест-драйв на выходных - забирайте на 2 дня.",
+                stats: [
+                    { name: "Заявок", value: "180" },
+                    { name: "CPL", value: "1077₽" },
+                    { name: "Тест-драйвов", value: "67" },
+                    { name: "Продаж", value: "23" }
+                ],
+                details: "Конверсия тест-драйва в покупку - 34%. Секрет: даем машину на выходные всей семье."
+            },
+            {
+                category: "другое",
+                title: "Консалтинг в ОАЭ - 543 лида для регистрации бизнеса",
+                company: "UAE Consulting",
+                location: "ОАЭ",
+                period: "Май 2025 - н.в.",
+                channels: ["Meta Ads"],
+                problem: "После санкций россияне массово открывают бизнес в ОАЭ. Конкуренция жесткая.",
+                solution: "Специализация: IT-компании и крипто-проекты. Помогаем с лицензиями, счетами, визами. Русскоязычная поддержка 24/7. Офис в Дубае и Абу-Даби.",
+                stats: [
+                    { name: "Бюджет", value: "$2748" },
+                    { name: "Лидов", value: "543" },
+                    { name: "CPL", value: "$5.06" },
+                    { name: "Сделок", value: "89" }
+                ],
+                details: "Средний чек $5000. Многие открывают 2-3 компании. LTV клиента - $15K."
+            },
+            {
+                category: "другое",
+                title: "Мобильное приложение HOTCARD - 4520 установок",
+                company: "HOTCARD",
+                location: "Грузия",
+                period: "2024",
+                channels: ["Meta Ads"],
+                problem: "В Грузии 100+ скидочных приложений. Зачем еще одно?",
+                solution: "Кэшбек в крипте. Молодежь Грузии обожает крипту. Скидка 10% + кэшбек 5% в USDT. Партнерства с топовыми заведениями Тбилиси.",
+                stats: [
+                    { name: "Бюджет", value: "$1366" },
+                    { name: "Установок", value: "4520" },
+                    { name: "CPI", value: "$0.3" },
+                    { name: "MAU", value: "2800" }
+                ],
+                details: "62% retention после месяца. Крипто-кэшбек - killer feature для Грузии."
+            },
+            {
+                category: "другое",
+                title: "Доставка из Китая и фулфилмент - B2B воронка",
+                company: "China Logistics",
+                location: "РФ",
+                period: "2024",
+                channels: ["Яндекс Директ"],
+                problem: "Логистика из Китая сломалась. Старые схемы не работают.",
+                solution: "Новые маршруты через Киргизию и Казахстан. Сроки 15-20 дней. Растаможка и сертификация включены. Фулфилмент для маркетплейсов.",
+                stats: [
+                    { name: "CPL", value: "1400₽" },
+                    { name: "Конверсия", value: "15%" },
+                    { name: "Ср. чек", value: "250K₽" },
+                    { name: "LTV", value: "2M₽" }
+                ],
+                details: "B2B-клиенты заказывают каждый месяц. Один клиент = миллионы выручки."
+            },
+            {
+                category: "другое",
+                title: "Детейлинг премиум-авто - элитные клиенты",
+                company: "Premium Detailing",
+                location: "Москва",
+                period: "2024",
+                channels: ["Meta Ads"],
+                problem: "Владельцы Bentley и Rolls-Royce не ищут детейлинг в интернете.",
+                solution: "Таргет на парковки Москва-Сити и элитных ЖК. Выездной детейлинг: приезжаем сами. Подменный авто на время работ. Консьерж-сервис.",
+                stats: [
+                    { name: "CPL", value: "$17" },
+                    { name: "Ср. чек", value: "$500" },
+                    { name: "Регулярные", value: "60%" },
+                    { name: "ROI", value: "780%" }
+                ],
+                details: "Премиум-клиенты становятся постоянными. Один клиент = $500/месяц минимум."
+            }
+        ];
+
+        // Render functions
+        function renderCases(filteredCases) {
+            const grid = document.getElementById('casesGrid');
+            const noResults = document.getElementById('noResults');
+            
+            if (filteredCases.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            grid.style.display = 'grid';
+            noResults.style.display = 'none';
+            
+            let html = '';
+            
+            filteredCases.forEach((caseItem, index) => {
+                // Add mid CTA after every 10 cases
+                if (index > 0 && index % 10 === 0) {
+                    html += `
+                        <div class="mid-cta-card">
+                            <div class="mid-cta-badge">⚡ Получите такие же результаты</div>
+                            <h2>Устали сливать бюджеты?</h2>
+                            <p>Бесплатный разбор вашей рекламы за 40 минут. Покажу где теряете деньги.</p>
+                            <div class="mid-cta-buttons">
+                                <a href="https://t.me/magosh_al" class="mid-cta-btn" target="_blank">
+                                    Получить разбор в Telegram
+                                </a>
+                            </div>
+                            <div class="clients-limit">
+                                <strong>Осталось 2 места на этот месяц</strong>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                html += `
+                    <div class="case-card" data-category="${caseItem.category}">
+                        <div class="case-header">
+                            <span class="case-category">${getCategoryName(caseItem.category)}</span>
+                            <div class="case-company">${caseItem.company}</div>
+                            <h3 class="case-title">${caseItem.title}</h3>
+                            <div class="case-meta">
+                                <span>📍 ${caseItem.location}</span>
+                                <span>📅 ${caseItem.period}</span>
+                            </div>
+                            <div class="case-channels">
+                                ${caseItem.channels.map(ch => `<span class="channel-tag">${ch}</span>`).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="case-content">
+                            <div class="case-section">
+                                <div class="section-label problem">❌ ПРОБЛЕМА</div>
+                                <p class="section-text">${caseItem.problem}</p>
+                            </div>
+                            
+                            <div class="case-section">
+                                <div class="section-label solution">💡 РЕШЕНИЕ</div>
+                                <p class="section-text">${caseItem.solution}</p>
+                            </div>
+                            
+                            <div class="case-section">
+                                <div class="section-label result">✅ РЕЗУЛЬТАТ</div>
+                                <div class="case-stats">
+                                    ${caseItem.stats.map(stat => `
+                                        <div class="stat-item">
+                                            <div class="stat-value">${stat.value}</div>
+                                            <div class="stat-name">${stat.name}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="case-footer">
+                            <button class="case-details-btn" onclick="toggleDetails(${index})">
+                                Подробнее о кейсе
+                            </button>
+                        </div>
+                        
+                        <div class="case-details" id="details-${index}">
+                            <p><strong>Инсайты:</strong> ${caseItem.details}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            // Add final CTA
+            html += `
+                <div class="mid-cta-card">
+                    <h2>Готовы масштабировать бизнес?</h2>
+                    <p>Начните получать предсказуемый поток клиентов уже через 2 недели</p>
+                    <div class="mid-cta-buttons">
+                        <a href="https://t.me/magosh_al" class="mid-cta-btn" target="_blank">
+                            Обсудить ваш проект
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            grid.innerHTML = html;
+        }
+
+        function getCategoryName(category) {
+            const names = {
+                'туризм': '✈️ Туризм',
+                'недвижимость': '🏠 Недвижимость',
+                'инфобизнес': '👨🏫 Инфобизнес',
+                'интернет-магазины': '🏪 E-commerce',
+                'телеграм-каналы': '💎 Telegram',
+                'другое': '📊 Другое'
+            };
+            return names[category] || category;
+        }
+
+        function toggleDetails(index) {
+            const details = document.getElementById(`details-${index}`);
+            details.classList.toggle('show');
+            event.target.textContent = details.classList.contains('show') ? 'Свернуть' : 'Подробнее о кейсе';
+        }
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                const filteredCases = filter === 'all' 
+                    ? cases 
+                    : cases.filter(c => c.category === filter);
+                
+                renderCases(filteredCases);
+            });
+        });
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // Initial render
+        renderCases(cases);
+    </script>
+</body>
+</html>
