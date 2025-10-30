@@ -1843,6 +1843,9 @@
                 // Save answer
                 answers[`question${step}`] = value;
                 
+                // Сохраняем ответы в sessionStorage
+                sessionStorage.setItem('quizAnswers', JSON.stringify(answers));
+                
                 // Visual feedback
                 this.closest('.options').querySelectorAll('.option').forEach(opt => {
                     opt.classList.remove('selected');
@@ -2033,6 +2036,162 @@
                 sessionStorage.setItem('utm', JSON.stringify(utm));
             }
         })();
+        
+        // ========================================
+        // АВТООПРЕДЕЛЕНИЕ СТРАНЫ ПО IP
+        // ========================================
+        
+        async function detectCountryByIP() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                const countryCode = data.country_code; // US, RU, TH, KZ и т.д.
+                
+                console.log('🌍 Определена страна:', countryCode, data.country_name);
+                
+                // Маппинг кодов стран на телефонные коды (все 121 страна)
+                const countryToPhone = {
+                    'AF': '+93',    // Afghanistan
+                    'AL': '+355',   // Albania
+                    'DZ': '+213',   // Algeria
+                    'AD': '+376',   // Andorra
+                    'AO': '+244',   // Angola
+                    'AR': '+54',    // Argentina
+                    'AM': '+374',   // Armenia
+                    'AU': '+61',    // Australia
+                    'AT': '+43',    // Austria
+                    'AZ': '+994',   // Azerbaijan
+                    'BH': '+973',   // Bahrain
+                    'BD': '+880',   // Bangladesh
+                    'BY': '+375',   // Belarus
+                    'BE': '+32',    // Belgium
+                    'BZ': '+501',   // Belize
+                    'BR': '+55',    // Brazil
+                    'BN': '+673',   // Brunei
+                    'BG': '+359',   // Bulgaria
+                    'KH': '+855',   // Cambodia
+                    'CM': '+237',   // Cameroon
+                    'CA': '+1',     // Canada
+                    'CL': '+56',    // Chile
+                    'CN': '+86',    // China
+                    'CO': '+57',    // Colombia
+                    'CR': '+506',   // Costa Rica
+                    'HR': '+385',   // Croatia
+                    'CU': '+53',    // Cuba
+                    'CY': '+357',   // Cyprus
+                    'CZ': '+420',   // Czech Republic
+                    'DK': '+45',    // Denmark
+                    'EC': '+593',   // Ecuador
+                    'EG': '+20',    // Egypt
+                    'SV': '+503',   // El Salvador
+                    'EE': '+372',   // Estonia
+                    'ET': '+251',   // Ethiopia
+                    'FI': '+358',   // Finland
+                    'FR': '+33',    // France
+                    'GE': '+995',   // Georgia
+                    'DE': '+49',    // Germany
+                    'GH': '+233',   // Ghana
+                    'GR': '+30',    // Greece
+                    'GT': '+502',   // Guatemala
+                    'HK': '+852',   // Hong Kong
+                    'HU': '+36',    // Hungary
+                    'IS': '+354',   // Iceland
+                    'IN': '+91',    // India
+                    'ID': '+62',    // Indonesia
+                    'IR': '+98',    // Iran
+                    'IQ': '+964',   // Iraq
+                    'IE': '+353',   // Ireland
+                    'IL': '+972',   // Israel
+                    'IT': '+39',    // Italy
+                    'JP': '+81',    // Japan
+                    'JO': '+962',   // Jordan
+                    'KZ': '+7',     // Kazakhstan
+                    'KE': '+254',   // Kenya
+                    'KR': '+82',    // South Korea
+                    'KW': '+965',   // Kuwait
+                    'KG': '+996',   // Kyrgyzstan
+                    'LA': '+856',   // Laos
+                    'LV': '+371',   // Latvia
+                    'LB': '+961',   // Lebanon
+                    'LY': '+218',   // Libya
+                    'LT': '+370',   // Lithuania
+                    'LU': '+352',   // Luxembourg
+                    'MO': '+853',   // Macau
+                    'MY': '+60',    // Malaysia
+                    'MV': '+960',   // Maldives
+                    'MX': '+52',    // Mexico
+                    'MD': '+373',   // Moldova
+                    'MC': '+377',   // Monaco
+                    'MN': '+976',   // Mongolia
+                    'ME': '+382',   // Montenegro
+                    'MA': '+212',   // Morocco
+                    'MM': '+95',    // Myanmar
+                    'NP': '+977',   // Nepal
+                    'NL': '+31',    // Netherlands
+                    'NZ': '+64',    // New Zealand
+                    'NG': '+234',   // Nigeria
+                    'NO': '+47',    // Norway
+                    'OM': '+968',   // Oman
+                    'PK': '+92',    // Pakistan
+                    'PA': '+507',   // Panama
+                    'PY': '+595',   // Paraguay
+                    'PE': '+51',    // Peru
+                    'PH': '+63',    // Philippines
+                    'PL': '+48',    // Poland
+                    'PT': '+351',   // Portugal
+                    'QA': '+974',   // Qatar
+                    'RO': '+40',    // Romania
+                    'RU': '+7',     // Russia
+                    'SA': '+966',   // Saudi Arabia
+                    'RS': '+381',   // Serbia
+                    'SG': '+65',    // Singapore
+                    'SK': '+421',   // Slovakia
+                    'SI': '+386',   // Slovenia
+                    'ZA': '+27',    // South Africa
+                    'ES': '+34',    // Spain
+                    'LK': '+94',    // Sri Lanka
+                    'SE': '+46',    // Sweden
+                    'CH': '+41',    // Switzerland
+                    'SY': '+963',   // Syria
+                    'TW': '+886',   // Taiwan
+                    'TJ': '+992',   // Tajikistan
+                    'TZ': '+255',   // Tanzania
+                    'TH': '+66',    // Thailand
+                    'TR': '+90',    // Turkey
+                    'TM': '+993',   // Turkmenistan
+                    'AE': '+971',   // UAE
+                    'UG': '+256',   // Uganda
+                    'UA': '+380',   // Ukraine
+                    'GB': '+44',    // United Kingdom
+                    'US': '+1',     // United States
+                    'UY': '+598',   // Uruguay
+                    'UZ': '+998',   // Uzbekistan
+                    'VE': '+58',    // Venezuela
+                    'VN': '+84',    // Vietnam
+                    'YE': '+967',   // Yemen
+                    'ZM': '+260',   // Zambia
+                    'ZW': '+263'    // Zimbabwe
+                };
+                
+                const phoneCode = countryToPhone[countryCode];
+                
+                if (phoneCode) {
+                    const countrySelect = document.getElementById('countryCode');
+                    const option = Array.from(countrySelect.options).find(opt => opt.value === phoneCode);
+                    
+                    if (option) {
+                        countrySelect.value = phoneCode;
+                        updatePhonePlaceholder();
+                        console.log('✅ Автоматически выбрана страна:', phoneCode);
+                    }
+                }
+            } catch (error) {
+                console.log('⚠️ Не удалось определить страну, используем Thailand по умолчанию');
+            }
+        }
+        
+        // Запускаем автоопределение при загрузке
+        detectCountryByIP();
         
         // ========================================
         // ДИНАМИЧЕСКАЯ СМЕНА PLACEHOLDER ДЛЯ НОМЕРА
