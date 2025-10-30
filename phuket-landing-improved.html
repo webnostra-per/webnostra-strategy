@@ -2355,7 +2355,13 @@
         // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', function() {
             updatePhonePlaceholder();
-            detectCountryByIP(); // Автоопределение страны
+            
+            // Автоопределение страны с обработкой ошибок
+            try {
+                detectCountryByIP();
+            } catch (e) {
+                console.error('❌ Ошибка вызова detectCountryByIP:', e);
+            }
             
             // Обновление placeholder при смене страны
             document.getElementById('countryCode').addEventListener('change', function() {
@@ -2615,47 +2621,47 @@
             let leadId = null;
             
             try {
-                // Формируем красивый комментарий для Bitrix24
-                let comment = '📝 ЗАЯВКА С ЛЕНДИНГА ПХУКЕТ\n';
-                comment += '═'.repeat(40) + '\n\n';
-                comment += `👤 Имя: ${data.name}\n`;
-                comment += `📞 Контакт: ${contact} (${selectedContactMethod === 'whatsapp' ? 'WhatsApp' : 'Telegram'})\n\n`;
-                comment += `🏝 ВЫБРАННЫЙ ТУР:\n   ${selectedTour}\n`;
-                comment += `💰 Цена за человека: ${parseInt(tourPrice).toLocaleString()}฿\n`;
-                comment += `👥 Количество человек: ${peopleCount}\n`;
-                comment += `💵 ИТОГО: ${totalPrice.toLocaleString()}฿\n\n`;
+                // Формируем красивый комментарий для Bitrix24 (без эмодзи)
+                let comment = 'ЗАЯВКА С ЛЕНДИНГА ПХУКЕТ\n';
+                comment += '='.repeat(40) + '\n\n';
+                comment += `Имя: ${data.name}\n`;
+                comment += `Контакт: ${contact} (${selectedContactMethod === 'whatsapp' ? 'WhatsApp' : 'Telegram'})\n\n`;
+                comment += `ВЫБРАННЫЙ ТУР:\n${selectedTour}\n`;
+                comment += `Цена за человека: ${parseInt(tourPrice).toLocaleString()} THB\n`;
+                comment += `Количество человек: ${peopleCount}\n`;
+                comment += `ИТОГО: ${totalPrice.toLocaleString()} THB\n\n`;
                 
                 // Ответы на квиз
                 if (answers && Object.keys(answers).length > 0) {
-                    comment += '📋 ОТВЕТЫ НА ВОПРОСЫ:\n';
+                    comment += 'ОТВЕТЫ НА ВОПРОСЫ:\n';
                     if (answers.question1) {
-                        comment += `📅 Когда: ${translateQuizValue(answers.question1)}\n`;
+                        comment += `Когда: ${translateQuizValue(answers.question1)}\n`;
                     }
                     if (answers.question2) {
-                        comment += `👥 С кем: ${translateQuizValue(answers.question2)}\n`;
+                        comment += `С кем: ${translateQuizValue(answers.question2)}\n`;
                     }
                     if (answers.question3) {
-                        comment += `⭐ Важно: ${translateQuizValue(answers.question3)}\n`;
+                        comment += `Важно: ${translateQuizValue(answers.question3)}\n`;
                     }
                     if (answers.question4) {
-                        comment += `⏰ Формат: ${translateQuizValue(answers.question4)}\n`;
+                        comment += `Формат: ${translateQuizValue(answers.question4)}\n`;
                     }
                     comment += '\n';
                 }
                 
                 // Промокод
                 if (data.promo) {
-                    comment += '🎁 ПРОМОКОД PHUKET500 ПРИМЕНЕН (-500฿)\n\n';
+                    comment += 'ПРОМОКОД PHUKET500 ПРИМЕНЕН (-500 THB)\n\n';
                 }
                 
                 // Метаданные
-                comment += '📊 МЕТАДАННЫЕ:\n';
-                comment += `⏰ Дата заявки: ${new Date().toLocaleString('ru-RU')}\n`;
-                comment += `🌐 Страница: ${window.location.href}\n`;
-                comment += `🔗 Источник: ${document.referrer || 'Прямой переход'}\n`;
+                comment += 'МЕТАДАННЫЕ:\n';
+                comment += `Дата заявки: ${new Date().toLocaleString('ru-RU')}\n`;
+                comment += `Страница: ${window.location.href}\n`;
+                comment += `Источник: ${document.referrer || 'Прямой переход'}\n`;
                 
                 if (utm.source) {
-                    comment += '\n📈 UTM-МЕТКИ:\n';
+                    comment += '\nUTM-МЕТКИ:\n';
                     comment += `Source: ${utm.source}\n`;
                     comment += `Medium: ${utm.medium}\n`;
                     comment += `Campaign: ${utm.campaign}\n`;
