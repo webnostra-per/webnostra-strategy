@@ -2238,13 +2238,39 @@
             const savedUTM = sessionStorage.getItem('utm');
             const utm = savedUTM ? JSON.parse(savedUTM) : {};
             
+            // Получаем ответы квиза из sessionStorage
+            const savedAnswers = sessionStorage.getItem('quizAnswers');
+            const answers = savedAnswers ? JSON.parse(savedAnswers) : {};
+            
+            // Функция перевода значений квиза
+            function translateQuizValue(value) {
+                const translations = {
+                    'in-week': 'В ближайшую неделю',
+                    'in-month': 'В ближайший месяц',
+                    'planning': 'Только планирую',
+                    'family': 'С семьей',
+                    'couple': 'Вдвоем',
+                    'friends': 'С друзьями',
+                    'alone': 'Один/одна',
+                    'culture': 'Культура и история',
+                    'nature': 'Природа и пляжи',
+                    'adventure': 'Активный отдых',
+                    'food': 'Гастрономия',
+                    'halfday': 'Полдня (4-5 часов)',
+                    'fullday': 'Целый день (8+ часов)',
+                    'multiday': 'Несколько дней'
+                };
+                return translations[value] || value;
+            }
+            
             console.log('📤 Отправка данных:', {
                 name: data.name,
                 contact: contact,
                 contactType: contactType,
                 contactMethod: selectedContactMethod,
                 tour: selectedTour,
-                price: totalPrice
+                price: totalPrice,
+                quizAnswers: answers
             });
             
             // ========================================
