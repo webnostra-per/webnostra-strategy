@@ -2273,24 +2273,60 @@
             });
             
             // Real-time валидация при вводе номера
-            document.getElementById('phoneNumber').addEventListener('input', function(e) {
+            const phoneInput = document.getElementById('phoneNumber');
+            
+            // Создаем элемент для счетчика
+            const counterDiv = document.createElement('div');
+            counterDiv.id = 'phoneCounter';
+            counterDiv.style.cssText = 'font-size: 12px; margin-top: 4px; color: #64748b;';
+            phoneInput.parentElement.appendChild(counterDiv);
+            
+            phoneInput.addEventListener('input', function(e) {
                 const countrySelect = document.getElementById('countryCode');
                 const selectedOption = countrySelect.options[countrySelect.selectedIndex];
                 const expectedLength = selectedOption.getAttribute('data-length');
                 const cleanedPhone = e.target.value.replace(/\D/g, '');
                 
                 // Определяем максимальную длину
-                let maxLen;
+                let maxLen, minLen;
                 if (expectedLength.includes('-')) {
-                    maxLen = parseInt(expectedLength.split('-')[1]);
+                    [minLen, maxLen] = expectedLength.split('-').map(Number);
                 } else {
-                    maxLen = parseInt(expectedLength);
+                    maxLen = minLen = parseInt(expectedLength);
                 }
                 
                 // Блокируем ввод если превышена длина
                 if (cleanedPhone.length > maxLen) {
-                    e.target.value = cleanedPhone.substring(0, maxLen);
+                    e.target.value = e.target.value.slice(0, -1); // Удаляем последний символ
+                    return;
                 }
+                
+                // Обновляем счетчик
+                const currentLength = cleanedPhone.length;
+                if (minLen === maxLen) {
+                    counterDiv.textContent = `${currentLength} / ${maxLen} цифр`;
+                } else {
+                    counterDiv.textContent = `${currentLength} цифр (требуется ${minLen}-${maxLen})`;
+                }
+                
+                // Визуальная обратная связь
+                if (currentLength === 0) {
+                    phoneInput.style.borderColor = '#cbd5e1'; // нейтральный
+                    counterDiv.style.color = '#64748b';
+                } else if (currentLength >= minLen && currentLength <= maxLen) {
+                    phoneInput.style.borderColor = '#10b981'; // зеленый - OK
+                    counterDiv.style.color = '#10b981';
+                } else {
+                    phoneInput.style.borderColor = '#ef4444'; // красный - ошибка
+                    counterDiv.style.color = '#ef4444';
+                }
+            });
+            
+            // Сброс стиля при смене страны
+            document.getElementById('countryCode').addEventListener('change', function() {
+                phoneInput.style.borderColor = '#cbd5e1';
+                counterDiv.textContent = '';
+                phoneInput.value = '';
             });
         });
         
