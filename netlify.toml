@@ -1,0 +1,7 @@
+[[edge_functions]]
+  path = "/phuket-*"
+  function = "geo-detect"
+
+[[edge_functions]]
+  path = "/"
+  function = "geo-detect"
