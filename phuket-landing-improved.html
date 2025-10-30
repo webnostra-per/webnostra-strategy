@@ -4,6 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Экскурсии по Пхукету — Записки об Азии</title>
+    
+    <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1399100830794020');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+        ym(96858541, 'init', {webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/96858541" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    
     <style>
         * {
             margin: 0;
@@ -1521,7 +1553,7 @@
     </div>
 
     <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/YOUR_PHONE_NUMBER" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/66" class="whatsapp-float" target="_blank">
         💬
     </a>
 
@@ -1628,20 +1660,395 @@
             });
         });
 
+        // ============================================
+        // ИНТЕГРАЦИЯ С BITRIX24 CRM + АНАЛИТИКА
+        // ============================================
+        
+        // Bitrix24 Webhook URL
+        const BITRIX_WEBHOOK = 'https://tourphuket.bitrix24.ru/rest/65/ecx03f3247j3sjc2/';
+        
+        // Ваши контакты для запасного варианта
+        const CONTACTS = {
+            whatsapp: '+66 XX XXX XXXX',
+            phone: '+66 XX XXX XXXX',
+            email: 'info@example.com'
+        };
+        
+        // Функция перевода значений квиза
+        function translateQuizValue(value) {
+            const translations = {
+                // Когда
+                'here': '✈️ Уже на Пхукете',
+                '1-7days': '📅 Приеду через 1-7 дней',
+                '1-4weeks': '🗓 Приеду через 1-4 недели',
+                'planning': '🤔 Только планирую поездку',
+                // С кем
+                'solo': '👤 Один',
+                'couple': '💑 Вдвоем',
+                'family': '👨‍👩‍👧 С семьей и детьми',
+                'friends': '👥 Компания 3-6 человек',
+                'group': '🎉 Группа от 7 человек',
+                // Приоритеты
+                'photo': '📸 Красивые локации для фото',
+                'private': '🏝 Места без толп туристов',
+                'active': '🎉 Активный отдых и приключения',
+                'relax': '🧘 Спокойный релакс на природе',
+                'culture': '🎓 Узнать историю и культуру',
+                // Формат
+                'halfday': '⚡️ Полдня (3-4 часа)',
+                'fullday': '🌅 Целый день с обедом',
+                'overnight': '🌙 С ночевкой на острове',
+                'vip': '🛥 VIP-тур на премиум-яхте',
+                'help': '💬 Не знаю, помогите выбрать'
+            };
+            return translations[value] || value;
+        }
+        
+        // Сохраняем UTM-метки при загрузке страницы
+        (function saveUTM() {
+            const params = new URLSearchParams(window.location.search);
+            const utm = {
+                source: params.get('utm_source') || '',
+                medium: params.get('utm_medium') || '',
+                campaign: params.get('utm_campaign') || '',
+                content: params.get('utm_content') || '',
+                term: params.get('utm_term') || ''
+            };
+            
+            if (utm.source) {
+                sessionStorage.setItem('utm', JSON.stringify(utm));
+            }
+        })();
+        
         // Form Submit
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
+            const submitButton = this.querySelector('.submit-button');
+            const originalText = submitButton.textContent;
+            const originalBg = submitButton.style.background;
             
-            // Combine quiz answers and form data
-            const fullData = { ...answers, ...data };
+            // Блокируем кнопку
+            submitButton.disabled = true;
+            submitButton.textContent = '⏳ Отправка...';
+            submitButton.style.background = '#94a3b8';
             
-            console.log('Form submitted:', fullData);
+            try {
+                // Собираем данные формы
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                // Получаем данные о выбранном туре
+                const tourSelect = document.getElementById('tourSelect');
+                const selectedTour = tourSelect.options[tourSelect.selectedIndex].text;
+                const tourPrice = tourSelect.value;
+                const peopleCount = document.getElementById('peopleCount').value;
+                
+                // Получаем сохраненные UTM
+                const savedUTM = sessionStorage.getItem('utm');
+                const utm = savedUTM ? JSON.parse(savedUTM) : {};
+                
+                // Формируем красивый комментарий для Bitrix24
+                let comment = '📝 ЗАЯВКА С ЛЕНДИНГА ПХУКЕТ\n';
+                comment += '═'.repeat(40) + '\n\n';
+                comment += `👤 Имя: ${data.name}\n`;
+                comment += `📞 Телефон: ${data.phone}\n\n`;
+                comment += `🏝 ВЫБРАННЫЙ ТУР:\n   ${selectedTour}\n`;
+                comment += `💰 Цена за человека: ${parseInt(tourPrice).toLocaleString()}฿\n`;
+                comment += `👥 Количество человек: ${peopleCount}\n`;
+                comment += `💵 ИТОГО: ${(parseInt(tourPrice) * parseInt(peopleCount)).toLocaleString()}฿\n\n`;
+                
+                // Ответы на квиз
+                if (answers && Object.keys(answers).length > 0) {
+                    comment += '📋 ОТВЕТЫ НА ВОПРОСЫ:\n';
+                    if (answers.question1) {
+                        comment += `📅 Когда планирует: ${translateQuizValue(answers.question1)}\n`;
+                    }
+                    if (answers.question2) {
+                        comment += `👥 С кем едет: ${translateQuizValue(answers.question2)}\n`;
+                    }
+                    if (answers.question3) {
+                        comment += `⭐ Важные критерии: ${translateQuizValue(answers.question3)}\n`;
+                    }
+                    if (answers.question4) {
+                        comment += `⏰ Формат тура: ${translateQuizValue(answers.question4)}\n`;
+                    }
+                    comment += '\n';
+                }
+                
+                // Промокод
+                if (data.promo) {
+                    comment += '🎁 ПРОМОКОД PHUKET500 ПРИМЕНЕН (-500฿)\n\n';
+                }
+                
+                // Метаданные
+                comment += '📊 МЕТАДАННЫЕ:\n';
+                comment += `⏰ Дата заявки: ${new Date().toLocaleString('ru-RU')}\n`;
+                comment += `🌐 Страница: ${window.location.href}\n`;
+                comment += `🔗 Источник: ${document.referrer || 'Прямой переход'}\n`;
+                
+                if (utm.source) {
+                    comment += '\n📈 UTM-МЕТКИ:\n';
+                    comment += `Source: ${utm.source}\n`;
+                    comment += `Medium: ${utm.medium}\n`;
+                    comment += `Campaign: ${utm.campaign}\n`;
+                }
+                
+                console.log('📤 Отправка в Bitrix24...', {
+                    name: data.name,
+                    phone: data.phone,
+                    tour: selectedTour
+                });
+                
+                // Подготавливаем данные для Bitrix24
+                const bitrixData = new URLSearchParams({
+                    'fields[TITLE]': `Лендинг Пхукет: ${data.name}`,
+                    'fields[NAME]': data.name,
+                    'fields[PHONE][0][VALUE]': data.phone,
+                    'fields[PHONE][0][VALUE_TYPE]': 'WORK',
+                    'fields[SOURCE_ID]': 'WEB',
+                    'fields[SOURCE_DESCRIPTION]': 'Лендинг: Экскурсии по Пхукету',
+                    'fields[COMMENTS]': comment,
+                    'fields[OPPORTUNITY]': parseInt(tourPrice) * parseInt(peopleCount),
+                    'fields[CURRENCY_ID]': 'THB',
+                    'fields[UTM_SOURCE]': utm.source || '',
+                    'fields[UTM_MEDIUM]': utm.medium || '',
+                    'fields[UTM_CAMPAIGN]': utm.campaign || '',
+                    'fields[UTM_CONTENT]': utm.content || '',
+                    'fields[UTM_TERM]': utm.term || ''
+                });
+                
+                // Отправляем в Bitrix24
+                const response = await fetch(BITRIX_WEBHOOK + 'crm.lead.add.json', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: bitrixData
+                });
+                
+                const result = await response.json();
+                
+                console.log('📥 Ответ Bitrix24:', result);
+                
+                // Проверяем успешность
+                if (result.result && result.result > 0) {
+                    // ✅ УСПЕШНАЯ ОТПРАВКА
+                    
+                    submitButton.textContent = '✅ Отправлено!';
+                    submitButton.style.background = '#10b981';
+                    
+                    // Показываем сообщение
+                    alert(
+                        `✅ Спасибо, ${data.name}!\n\n` +
+                        `Ваша заявка принята.\n` +
+                        `Номер заявки: #${result.result}\n\n` +
+                        `Мы свяжемся с вами в WhatsApp в течение 5 минут.`
+                    );
+                    
+                    // ========================================
+                    // ОТПРАВКА СОБЫТИЙ В АНАЛИТИКУ
+                    // ========================================
+                    
+                    // Facebook Pixel - Lead Event
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'Lead', {
+                            content_name: selectedTour,
+                            content_category: 'Экскурсии Пхукет',
+                            currency: 'THB',
+                            value: parseInt(tourPrice) * parseInt(peopleCount),
+                            predicted_ltv: parseInt(tourPrice) * parseInt(peopleCount),
+                            num_items: parseInt(peopleCount)
+                        });
+                        console.log('📊 FB Pixel: Lead отправлен');
+                    }
+                    
+                    // Yandex Metrika - Goal
+                    if (typeof ym !== 'undefined') {
+                        ym(96858541, 'reachGoal', 'lead', {
+                            tour: selectedTour,
+                            price: parseInt(tourPrice) * parseInt(peopleCount),
+                            people: peopleCount
+                        });
+                        console.log('📊 YM: Цель lead достигнута');
+                    }
+                    
+                    // Очищаем форму
+                    this.reset();
+                    document.getElementById('tourSelect').value = '5200';
+                    document.getElementById('peopleCount').value = '2';
+                    calculatePrice();
+                    
+                    console.log('✅ Лид успешно создан:', result.result);
+                    
+                } else {
+                    // ❌ Ошибка от Bitrix24
+                    throw new Error(result.error_description || 'Неизвестная ошибка от Bitrix24');
+                }
+                
+            } catch (error) {
+                // ❌ ОБРАБОТКА ОШИБОК
+                
+                console.error('❌ Ошибка отправки:', error);
+                
+                submitButton.textContent = '❌ Ошибка';
+                submitButton.style.background = '#ef4444';
+                
+                // Показываем сообщение с контактами
+                alert(
+                    `❌ Произошла ошибка при отправке заявки.\n\n` +
+                    `Пожалуйста, свяжитесь с нами напрямую:\n\n` +
+                    `📱 WhatsApp: ${CONTACTS.whatsapp}\n` +
+                    `📞 Телефон: ${CONTACTS.phone}\n` +
+                    `📧 Email: ${CONTACTS.email}\n\n` +
+                    `Техническая информация:\n${error.message}`
+                );
+                
+                // Отправляем ошибку в аналитику
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'FormError', {
+                        error: error.message
+                    });
+                }
+                
+                if (typeof ym !== 'undefined') {
+                    ym(96858541, 'reachGoal', 'form_error');
+                }
+                
+            } finally {
+                // Возвращаем кнопку в исходное состояние через 2 секунды
+                setTimeout(() => {
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                    submitButton.style.background = originalBg;
+                }, 2000);
+            }
+        });
+        
+        // Логируем успешную загрузку
+        console.log('✅ Bitrix24 интеграция загружена');
+        console.log('🔗 Webhook:', BITRIX_WEBHOOK ? 'настроен ✅' : '❌ НЕ НАСТРОЕН');
+        console.log('📊 Facebook Pixel:', typeof fbq !== 'undefined' ? 'активен ✅' : '❌ не найден');
+        console.log('📊 Yandex Metrika:', typeof ym !== 'undefined' ? 'активна ✅' : '❌ не найдена');
+        
+        // ========================================
+        // ОТСЛЕЖИВАНИЕ ДОПОЛНИТЕЛЬНЫХ СОБЫТИЙ
+        // ========================================
+        
+        // Отслеживание завершения квиза
+        const originalShowForm = showForm;
+        window.showForm = function() {
+            originalShowForm();
             
-            // Here you would send data to your backend
-            alert('Спасибо! Мы свяжемся с вами в течение 5 минут в WhatsApp');
+            // Facebook Pixel - InitiateCheckout
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout', {
+                    content_category: 'Экскурсии Пхукет',
+                    num_items: document.getElementById('peopleCount').value
+                });
+            }
+            
+            // Yandex Metrika
+            if (typeof ym !== 'undefined') {
+                ym(96858541, 'reachGoal', 'quiz_complete');
+            }
+            
+            console.log('📊 События: Квиз завершен → форма показана');
+        };
+        
+        // Отслеживание кликов по CTA кнопкам
+        document.querySelectorAll('.cta-button, .submit-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const buttonText = this.textContent.trim();
+                
+                // Facebook Pixel
+                if (typeof fbq !== 'undefined' && !this.classList.contains('submit-button')) {
+                    fbq('trackCustom', 'CTAClick', {
+                        button_text: buttonText,
+                        button_location: this.closest('section')?.id || 'unknown'
+                    });
+                }
+                
+                // Yandex Metrika
+                if (typeof ym !== 'undefined' && !this.classList.contains('submit-button')) {
+                    ym(96858541, 'reachGoal', 'cta_click');
+                }
+            });
+        });
+        
+        // Отслеживание прокрутки страницы (25%, 50%, 75%, 100%)
+        let scrollDepths = {25: false, 50: false, 75: false, 100: false};
+        window.addEventListener('scroll', function() {
+            const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+            
+            Object.keys(scrollDepths).forEach(depth => {
+                if (scrollPercent >= depth && !scrollDepths[depth]) {
+                    scrollDepths[depth] = true;
+                    
+                    // Facebook Pixel
+                    if (typeof fbq !== 'undefined') {
+                        fbq('trackCustom', 'ScrollDepth', {
+                            depth: depth + '%'
+                        });
+                    }
+                    
+                    // Yandex Metrika (только 50% и 100%)
+                    if (typeof ym !== 'undefined' && (depth === 50 || depth === 100)) {
+                        ym(96858541, 'reachGoal', 'scroll_' + depth);
+                    }
+                    
+                    console.log('📊 Прокрутка:', depth + '%');
+                }
+            });
+        });
+        
+        // Отслеживание клика по калькулятору цены
+        document.getElementById('tourSelect').addEventListener('change', function() {
+            const tourName = this.options[this.selectedIndex].text;
+            
+            // Facebook Pixel
+            if (typeof fbq !== 'undefined') {
+                fbq('trackCustom', 'TourSelect', {
+                    content_name: tourName,
+                    value: parseInt(this.value)
+                });
+            }
+        });
+        
+        // Отслеживание времени на странице
+        let timeOnPage = 0;
+        const timeInterval = setInterval(() => {
+            timeOnPage++;
+            
+            // Отправляем событие каждую минуту
+            if (timeOnPage % 60 === 0) {
+                const minutes = timeOnPage / 60;
+                
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'TimeOnPage', {
+                        minutes: minutes
+                    });
+                }
+                
+                console.log('⏱ Время на странице:', minutes, 'мин');
+            }
+        }, 1000);
+        
+        // Отслеживание клика по WhatsApp
+        document.querySelector('.whatsapp-float')?.addEventListener('click', function() {
+            // Facebook Pixel
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Contact', {
+                    method: 'whatsapp'
+                });
+            }
+            
+            // Yandex Metrika
+            if (typeof ym !== 'undefined') {
+                ym(96858541, 'reachGoal', 'whatsapp_click');
+            }
+            
+            console.log('📊 Клик по WhatsApp');
         });
 
         // Urgency Timer (spots left)
