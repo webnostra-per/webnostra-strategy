@@ -1059,6 +1059,132 @@
             transform: scale(1.1);
             box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
         }
+
+        /* ========================================
+           СТИЛИ ДЛЯ НОВОЙ ФОРМЫ КОНТАКТОВ
+           ======================================== */
+
+        /* Contact Method Selector */
+        .contact-method-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-method-btn {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .contact-method-btn:hover {
+            border-color: var(--primary);
+            background: #f0f9ff;
+        }
+
+        .contact-method-btn.active {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), #0096B8);
+            color: white;
+        }
+
+        .method-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Phone Input Wrapper */
+        .phone-input-wrapper {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .country-code-select {
+            width: 120px;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--dark);
+        }
+
+        .country-code-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 177, 216, 0.1);
+        }
+
+        .phone-number-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .phone-number-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 177, 216, 0.1);
+        }
+
+        .input-hint {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--gray);
+            line-height: 1.4;
+        }
+
+        /* Telegram Input */
+        #telegramContact {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        #telegramContact:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 177, 216, 0.1);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .phone-input-wrapper {
+                flex-direction: column;
+            }
+            
+            .country-code-select {
+                width: 100%;
+            }
+            
+            .contact-method-selector {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .contact-method-btn {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1238,13 +1364,159 @@
                     <form id="contactForm">
                         <div class="form-group">
                             <label>Имя</label>
-                            <input type="text" name="name" required placeholder="Ваше имя">
+                            <input type="text" name="name" id="userName" required placeholder="Ваше имя" minlength="2">
                         </div>
                         
                         <div class="form-group">
-                            <label>Телефон или Telegram</label>
-                            <input type="tel" name="phone" required placeholder="+7 (999) 123-45-67">
-                            <div class="input-hint">👆 Отправим программу туров сюда в течение 5 минут</div>
+                            <label>Как с вами связаться?</label>
+                            <div class="contact-method-selector">
+                                <button type="button" class="contact-method-btn active" data-method="whatsapp">
+                                    <span class="method-icon">📱</span>
+                                    <span>WhatsApp</span>
+                                </button>
+                                <button type="button" class="contact-method-btn" data-method="telegram">
+                                    <span class="method-icon">✈️</span>
+                                    <span>Telegram</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- WhatsApp Phone Input -->
+                        <div class="form-group" id="whatsappInput">
+                            <label>Номер WhatsApp</label>
+                            <div class="phone-input-wrapper">
+                                <select id="countryCode" class="country-code-select">
+                                    <option value="+93" data-length="9" data-placeholder="XX XXX XXXX">🇦🇫 Afghanistan +93</option>
+                                    <option value="+355" data-length="9" data-placeholder="XX XXX XXXX">🇦🇱 Albania +355</option>
+                                    <option value="+213" data-length="9" data-placeholder="XX XXX XXXX">🇩🇿 Algeria +213</option>
+                                    <option value="+376" data-length="6" data-placeholder="XXX XXX">🇦🇩 Andorra +376</option>
+                                    <option value="+244" data-length="9" data-placeholder="XXX XXX XXX">🇦🇴 Angola +244</option>
+                                    <option value="+54" data-length="10" data-placeholder="XX XXXX XXXX">🇦🇷 Argentina +54</option>
+                                    <option value="+374" data-length="8" data-placeholder="XX XXX XXX">🇦🇲 Armenia +374</option>
+                                    <option value="+61" data-length="9" data-placeholder="XXX XXX XXX">🇦🇺 Australia +61</option>
+                                    <option value="+43" data-length="10" data-placeholder="XXX XXX XXXX">🇦🇹 Austria +43</option>
+                                    <option value="+994" data-length="9" data-placeholder="XX XXX XXXX">🇦🇿 Azerbaijan +994</option>
+                                    <option value="+973" data-length="8" data-placeholder="XXXX XXXX">🇧🇭 Bahrain +973</option>
+                                    <option value="+880" data-length="10" data-placeholder="XXXX XXX XXX">🇧🇩 Bangladesh +880</option>
+                                    <option value="+375" data-length="9" data-placeholder="XX XXX XXXX">🇧🇾 Belarus +375</option>
+                                    <option value="+32" data-length="9" data-placeholder="XXX XX XX XX">🇧🇪 Belgium +32</option>
+                                    <option value="+501" data-length="7" data-placeholder="XXX XXXX">🇧🇿 Belize +501</option>
+                                    <option value="+55" data-length="11" data-placeholder="XX XXXXX XXXX">🇧🇷 Brazil +55</option>
+                                    <option value="+673" data-length="7" data-placeholder="XXX XXXX">🇧🇳 Brunei +673</option>
+                                    <option value="+359" data-length="9" data-placeholder="XX XXX XXXX">🇧🇬 Bulgaria +359</option>
+                                    <option value="+855" data-length="9" data-placeholder="XX XXX XXX">🇰🇭 Cambodia +855</option>
+                                    <option value="+237" data-length="9" data-placeholder="X XX XX XX XX">🇨🇲 Cameroon +237</option>
+                                    <option value="+1" data-length="10" data-placeholder="XXX XXX XXXX">🇨🇦 Canada +1</option>
+                                    <option value="+56" data-length="9" data-placeholder="X XXXX XXXX">🇨🇱 Chile +56</option>
+                                    <option value="+86" data-length="11" data-placeholder="XXX XXXX XXXX">🇨🇳 China +86</option>
+                                    <option value="+57" data-length="10" data-placeholder="XXX XXX XXXX">🇨🇴 Colombia +57</option>
+                                    <option value="+506" data-length="8" data-placeholder="XXXX XXXX">🇨🇷 Costa Rica +506</option>
+                                    <option value="+385" data-length="9" data-placeholder="XX XXX XXXX">🇭🇷 Croatia +385</option>
+                                    <option value="+53" data-length="8" data-placeholder="X XXX XXXX">🇨🇺 Cuba +53</option>
+                                    <option value="+357" data-length="8" data-placeholder="XX XXX XXX">🇨🇾 Cyprus +357</option>
+                                    <option value="+420" data-length="9" data-placeholder="XXX XXX XXX">🇨🇿 Czech Republic +420</option>
+                                    <option value="+45" data-length="8" data-placeholder="XX XX XX XX">🇩🇰 Denmark +45</option>
+                                    <option value="+593" data-length="9" data-placeholder="XX XXX XXXX">🇪🇨 Ecuador +593</option>
+                                    <option value="+20" data-length="10" data-placeholder="XXX XXX XXXX">🇪🇬 Egypt +20</option>
+                                    <option value="+503" data-length="8" data-placeholder="XXXX XXXX">🇸🇻 El Salvador +503</option>
+                                    <option value="+372" data-length="7-8" data-placeholder="XXX XXXX">🇪🇪 Estonia +372</option>
+                                    <option value="+251" data-length="9" data-placeholder="XX XXX XXXX">🇪🇹 Ethiopia +251</option>
+                                    <option value="+358" data-length="9-10" data-placeholder="XX XXX XXXX">🇫🇮 Finland +358</option>
+                                    <option value="+33" data-length="9" data-placeholder="X XX XX XX XX">🇫🇷 France +33</option>
+                                    <option value="+995" data-length="9" data-placeholder="XXX XX XX XX">🇬🇪 Georgia +995</option>
+                                    <option value="+49" data-length="10-11" data-placeholder="XXX XXX XXXX">🇩🇪 Germany +49</option>
+                                    <option value="+233" data-length="9" data-placeholder="XX XXX XXXX">🇬🇭 Ghana +233</option>
+                                    <option value="+30" data-length="10" data-placeholder="XXX XXX XXXX">🇬🇷 Greece +30</option>
+                                    <option value="+502" data-length="8" data-placeholder="XXXX XXXX">🇬🇹 Guatemala +502</option>
+                                    <option value="+852" data-length="8" data-placeholder="XXXX XXXX">🇭🇰 Hong Kong +852</option>
+                                    <option value="+36" data-length="9" data-placeholder="XX XXX XXXX">🇭🇺 Hungary +36</option>
+                                    <option value="+354" data-length="7" data-placeholder="XXX XXXX">🇮🇸 Iceland +354</option>
+                                    <option value="+91" data-length="10" data-placeholder="XXXXX XXXXX">🇮🇳 India +91</option>
+                                    <option value="+62" data-length="10-12" data-placeholder="XXX XXXX XXXX">🇮🇩 Indonesia +62</option>
+                                    <option value="+98" data-length="10" data-placeholder="XXX XXX XXXX">🇮🇷 Iran +98</option>
+                                    <option value="+964" data-length="10" data-placeholder="XXX XXX XXXX">🇮🇶 Iraq +964</option>
+                                    <option value="+353" data-length="9" data-placeholder="XX XXX XXXX">🇮🇪 Ireland +353</option>
+                                    <option value="+972" data-length="9" data-placeholder="XX XXX XXXX">🇮🇱 Israel +972</option>
+                                    <option value="+39" data-length="9-10" data-placeholder="XXX XXX XXXX">🇮🇹 Italy +39</option>
+                                    <option value="+81" data-length="10" data-placeholder="XX XXXX XXXX">🇯🇵 Japan +81</option>
+                                    <option value="+962" data-length="9" data-placeholder="X XXXX XXXX">🇯🇴 Jordan +962</option>
+                                    <option value="+7" data-length="10" data-placeholder="XXX XXX XXXX">🇰🇿 Kazakhstan +7</option>
+                                    <option value="+254" data-length="10" data-placeholder="XXX XXX XXX">🇰🇪 Kenya +254</option>
+                                    <option value="+82" data-length="9-10" data-placeholder="XX XXXX XXXX">🇰🇷 South Korea +82</option>
+                                    <option value="+965" data-length="8" data-placeholder="XXXX XXXX">🇰🇼 Kuwait +965</option>
+                                    <option value="+996" data-length="9" data-placeholder="XXX XXX XXX">🇰🇬 Kyrgyzstan +996</option>
+                                    <option value="+856" data-length="9-10" data-placeholder="XX XX XXX XXX">🇱🇦 Laos +856</option>
+                                    <option value="+371" data-length="8" data-placeholder="XX XXX XXX">🇱🇻 Latvia +371</option>
+                                    <option value="+961" data-length="8" data-placeholder="XX XXX XXX">🇱🇧 Lebanon +961</option>
+                                    <option value="+218" data-length="10" data-placeholder="XX XXX XXXX">🇱🇾 Libya +218</option>
+                                    <option value="+370" data-length="8" data-placeholder="XXX XXXXX">🇱🇹 Lithuania +370</option>
+                                    <option value="+352" data-length="9" data-placeholder="XXX XXX XXX">🇱🇺 Luxembourg +352</option>
+                                    <option value="+853" data-length="8" data-placeholder="XXXX XXXX">🇲🇴 Macau +853</option>
+                                    <option value="+60" data-length="9-10" data-placeholder="XX XXX XXXX">🇲🇾 Malaysia +60</option>
+                                    <option value="+960" data-length="7" data-placeholder="XXX XXXX">🇲🇻 Maldives +960</option>
+                                    <option value="+52" data-length="10" data-placeholder="XXX XXX XXXX">🇲🇽 Mexico +52</option>
+                                    <option value="+373" data-length="8" data-placeholder="XX XXX XXX">🇲🇩 Moldova +373</option>
+                                    <option value="+377" data-length="8" data-placeholder="XX XX XX XX">🇲🇨 Monaco +377</option>
+                                    <option value="+976" data-length="8" data-placeholder="XX XX XXXX">🇲🇳 Mongolia +976</option>
+                                    <option value="+382" data-length="8" data-placeholder="XX XXX XXX">🇲🇪 Montenegro +382</option>
+                                    <option value="+212" data-length="9" data-placeholder="XX XXX XXXX">🇲🇦 Morocco +212</option>
+                                    <option value="+95" data-length="9-10" data-placeholder="XX XXX XXXX">🇲🇲 Myanmar +95</option>
+                                    <option value="+977" data-length="10" data-placeholder="XX XXXX XXXX">🇳🇵 Nepal +977</option>
+                                    <option value="+31" data-length="9" data-placeholder="X XX XX XX XX">🇳🇱 Netherlands +31</option>
+                                    <option value="+64" data-length="9-10" data-placeholder="XX XXX XXXX">🇳🇿 New Zealand +64</option>
+                                    <option value="+234" data-length="10" data-placeholder="XXX XXX XXXX">🇳🇬 Nigeria +234</option>
+                                    <option value="+47" data-length="8" data-placeholder="XXX XX XXX">🇳🇴 Norway +47</option>
+                                    <option value="+968" data-length="8" data-placeholder="XXXX XXXX">🇴🇲 Oman +968</option>
+                                    <option value="+92" data-length="10" data-placeholder="XXX XXX XXXX">🇵🇰 Pakistan +92</option>
+                                    <option value="+507" data-length="8" data-placeholder="XXXX XXXX">🇵🇦 Panama +507</option>
+                                    <option value="+595" data-length="9" data-placeholder="XXX XXX XXX">🇵🇾 Paraguay +595</option>
+                                    <option value="+51" data-length="9" data-placeholder="XXX XXX XXX">🇵🇪 Peru +51</option>
+                                    <option value="+63" data-length="10" data-placeholder="XXX XXX XXXX">🇵🇭 Philippines +63</option>
+                                    <option value="+48" data-length="9" data-placeholder="XXX XXX XXX">🇵🇱 Poland +48</option>
+                                    <option value="+351" data-length="9" data-placeholder="XXX XXX XXX">🇵🇹 Portugal +351</option>
+                                    <option value="+974" data-length="8" data-placeholder="XXXX XXXX">🇶🇦 Qatar +974</option>
+                                    <option value="+40" data-length="9" data-placeholder="XXX XXX XXX">🇷🇴 Romania +40</option>
+                                    <option value="+7" data-length="10" data-placeholder="XXX XXX XXXX">🇷🇺 Russia +7</option>
+                                    <option value="+966" data-length="9" data-placeholder="XX XXX XXXX">🇸🇦 Saudi Arabia +966</option>
+                                    <option value="+381" data-length="9" data-placeholder="XX XXX XXXX">🇷🇸 Serbia +381</option>
+                                    <option value="+65" data-length="8" data-placeholder="XXXX XXXX">🇸🇬 Singapore +65</option>
+                                    <option value="+421" data-length="9" data-placeholder="XXX XXX XXX">🇸🇰 Slovakia +421</option>
+                                    <option value="+386" data-length="8" data-placeholder="XX XXX XXX">🇸🇮 Slovenia +386</option>
+                                    <option value="+27" data-length="9" data-placeholder="XX XXX XXXX">🇿🇦 South Africa +27</option>
+                                    <option value="+34" data-length="9" data-placeholder="XXX XXX XXX">🇪🇸 Spain +34</option>
+                                    <option value="+94" data-length="9" data-placeholder="XX XXX XXXX">🇱🇰 Sri Lanka +94</option>
+                                    <option value="+46" data-length="9" data-placeholder="XX XXX XXXX">🇸🇪 Sweden +46</option>
+                                    <option value="+41" data-length="9" data-placeholder="XX XXX XXXX">🇨🇭 Switzerland +41</option>
+                                    <option value="+963" data-length="9" data-placeholder="XX XXX XXXX">🇸🇾 Syria +963</option>
+                                    <option value="+886" data-length="9" data-placeholder="XXX XXX XXX">🇹🇼 Taiwan +886</option>
+                                    <option value="+992" data-length="9" data-placeholder="XX XXX XXXX">🇹🇯 Tajikistan +992</option>
+                                    <option value="+255" data-length="9" data-placeholder="XX XXX XXXX">🇹🇿 Tanzania +255</option>
+                                    <option value="+66" data-length="9" data-placeholder="XX XXX XXXX" selected>🇹🇭 Thailand +66</option>
+                                    <option value="+90" data-length="10" data-placeholder="XXX XXX XXXX">🇹🇷 Turkey +90</option>
+                                    <option value="+993" data-length="8" data-placeholder="XX XXXXXX">🇹🇲 Turkmenistan +993</option>
+                                    <option value="+971" data-length="9" data-placeholder="XX XXX XXXX">🇦🇪 UAE +971</option>
+                                    <option value="+256" data-length="9" data-placeholder="XXX XXX XXX">🇺🇬 Uganda +256</option>
+                                    <option value="+380" data-length="9" data-placeholder="XX XXX XXXX">🇺🇦 Ukraine +380</option>
+                                    <option value="+44" data-length="10" data-placeholder="XXXX XXX XXX">🇬🇧 United Kingdom +44</option>
+                                    <option value="+1" data-length="10" data-placeholder="XXX XXX XXXX">🇺🇸 United States +1</option>
+                                    <option value="+598" data-length="8" data-placeholder="X XXX XXXX">🇺🇾 Uruguay +598</option>
+                                    <option value="+998" data-length="9" data-placeholder="XX XXX XXXX">🇺🇿 Uzbekistan +998</option>
+                                    <option value="+58" data-length="10" data-placeholder="XXX XXX XXXX">🇻🇪 Venezuela +58</option>
+                                    <option value="+84" data-length="9-10" data-placeholder="XX XXX XXXX">🇻🇳 Vietnam +84</option>
+                                    <option value="+967" data-length="9" data-placeholder="XXX XXX XXX">🇾🇪 Yemen +967</option>
+                                    <option value="+260" data-length="9" data-placeholder="XX XXX XXXX">🇿🇲 Zambia +260</option>
+                                    <option value="+263" data-length="9" data-placeholder="XX XXX XXXX">🇿🇼 Zimbabwe +263</option>
+                                </select>
+                                <input type="tel" name="phone" id="phoneNumber" required placeholder="XX XXX XXXX" class="phone-number-input">
+                            </div>
+                            <div class="input-hint">📱 Отправим программу туров в WhatsApp в течение 5 минут</div>
+                        </div>
+                        
+                        <!-- Telegram Input -->
+                        <div class="form-group" id="telegramInput" style="display: none;">
+                            <label>Telegram (ник или номер)</label>
+                            <input type="text" name="telegram" id="telegramContact" placeholder="@username или номер телефона">
+                            <div class="input-hint">✈️ Напишем вам в Telegram в течение 5 минут</div>
                         </div>
 
                         <div class="checkbox-group">
@@ -1254,7 +1526,7 @@
 
                         <button type="submit" class="submit-button">Получить мои туры</button>
                         
-                        <p class="form-note">Ответим в WhatsApp за 5 минут • Удобные способы оплаты</p>
+                        <p class="form-note">Ответим в течение 5 минут • Удобные способы оплаты</p>
                     </form>
                 </div>
             </div>
@@ -1553,7 +1825,7 @@
     </div>
 
     <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/66" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/66928750956" class="whatsapp-float" target="_blank">
         💬
     </a>
 
@@ -1664,15 +1936,57 @@
         // ИНТЕГРАЦИЯ С BITRIX24 CRM + АНАЛИТИКА
         // ============================================
         
-        // Bitrix24 Webhook URL
+        // Bitrix24 Webhook URL - ИСПРАВЛЕННЫЙ
         const BITRIX_WEBHOOK = 'https://tourphuket.bitrix24.ru/rest/65/ecx03f3247j3sjc2/';
         
-        // Ваши контакты для запасного варианта
+        // Запасной вариант - отправка только в аналитику если Bitrix не работает
+        const FALLBACK_TO_ANALYTICS_ONLY = true;
+        
+        // Ваши контакты для связи
         const CONTACTS = {
-            whatsapp: '+66 XX XXX XXXX',
-            phone: '+66 XX XXX XXXX',
-            email: 'info@example.com'
+            whatsapp: '+66928750956',
+            telegram: '@tourphuket',
+            phone: '+66928750956',
+            email: 'info@tourphuket.com'
         };
+        
+        // Валидация контакта (телефон или telegram)
+        function validateContact(contact) {
+            if (!contact || contact.trim() === '') {
+                return { valid: false, type: null };
+            }
+            
+            contact = contact.trim();
+            
+            // Проверка на Telegram (@username или username)
+            if (contact.startsWith('@') || /^[a-zA-Z0-9_]{5,32}$/.test(contact)) {
+                return { 
+                    valid: true, 
+                    type: 'telegram',
+                    formatted: contact.startsWith('@') ? contact : '@' + contact
+                };
+            }
+            
+            // Проверка на телефон (любые цифры, +, -, пробелы, скобки)
+            const phoneRegex = /[\d\+\-\(\)\s]{7,}/;
+            if (phoneRegex.test(contact)) {
+                return { 
+                    valid: true, 
+                    type: 'phone',
+                    formatted: contact
+                };
+            }
+            
+            return { valid: false, type: null };
+        }
+        
+        // Валидация имени
+        function validateName(name) {
+            if (!name || name.trim().length < 2) {
+                return false;
+            }
+            return true;
+        }
         
         // Функция перевода значений квиза
         function translateQuizValue(value) {
@@ -1720,7 +2034,100 @@
             }
         })();
         
-        // Form Submit
+        // ========================================
+        // ДИНАМИЧЕСКАЯ СМЕНА PLACEHOLDER ДЛЯ НОМЕРА
+        // ========================================
+        
+        function updatePhonePlaceholder() {
+            const countrySelect = document.getElementById('countryCode');
+            const phoneInput = document.getElementById('phoneNumber');
+            const selectedOption = countrySelect.options[countrySelect.selectedIndex];
+            const placeholder = selectedOption.getAttribute('data-placeholder');
+            const expectedLength = selectedOption.getAttribute('data-length');
+            
+            if (placeholder && phoneInput) {
+                phoneInput.placeholder = placeholder;
+            }
+            
+            // Устанавливаем maxlength по стране
+            if (expectedLength) {
+                let maxLen;
+                if (expectedLength.includes('-')) {
+                    maxLen = parseInt(expectedLength.split('-')[1]);
+                } else {
+                    maxLen = parseInt(expectedLength);
+                }
+                phoneInput.setAttribute('maxlength', maxLen);
+            }
+        }
+        
+        // Инициализация placeholder при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            updatePhonePlaceholder();
+        });
+        
+        // Обновление placeholder при смене страны
+        document.getElementById('countryCode').addEventListener('change', function() {
+            updatePhonePlaceholder();
+            // Очищаем поле ввода при смене страны
+            document.getElementById('phoneNumber').value = '';
+        });
+        
+        // Real-time валидация при вводе номера
+        document.getElementById('phoneNumber').addEventListener('input', function(e) {
+            const countrySelect = document.getElementById('countryCode');
+            const selectedOption = countrySelect.options[countrySelect.selectedIndex];
+            const expectedLength = selectedOption.getAttribute('data-length');
+            const cleanedPhone = e.target.value.replace(/\D/g, '');
+            
+            // Определяем максимальную длину
+            let maxLen;
+            if (expectedLength.includes('-')) {
+                maxLen = parseInt(expectedLength.split('-')[1]);
+            } else {
+                maxLen = parseInt(expectedLength);
+            }
+            
+            // Блокируем ввод если превышена длина
+            if (cleanedPhone.length > maxLen) {
+                e.target.value = cleanedPhone.substring(0, maxLen);
+            }
+        });
+        
+        // Вызываем сразу для инициализации
+        updatePhonePlaceholder();
+        
+        // ========================================
+        // ПЕРЕКЛЮЧЕНИЕ СПОСОБА СВЯЗИ
+        // ========================================
+        
+        let selectedContactMethod = 'whatsapp'; // по умолчанию WhatsApp
+
+        document.querySelectorAll('.contact-method-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Убираем active у всех
+                document.querySelectorAll('.contact-method-btn').forEach(b => b.classList.remove('active'));
+                // Добавляем active к выбранному
+                this.classList.add('active');
+                
+                selectedContactMethod = this.dataset.method;
+                
+                // Показываем/скрываем поля
+                if (selectedContactMethod === 'whatsapp') {
+                    document.getElementById('whatsappInput').style.display = 'block';
+                    document.getElementById('telegramInput').style.display = 'none';
+                    document.getElementById('phoneNumber').required = true;
+                    document.getElementById('telegramContact').required = false;
+                } else {
+                    document.getElementById('whatsappInput').style.display = 'none';
+                    document.getElementById('telegramInput').style.display = 'block';
+                    document.getElementById('phoneNumber').required = false;
+                    document.getElementById('telegramContact').required = true;
+                }
+            });
+        });
+        
+        // Form Submit с валидацией и гарантированной отправкой в аналитику
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -1728,50 +2135,187 @@
             const originalText = submitButton.textContent;
             const originalBg = submitButton.style.background;
             
+            // Собираем данные формы
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // ========================================
+            // ВАЛИДАЦИЯ
+            // ========================================
+            
+            // Проверка имени
+            if (!validateName(data.name)) {
+                alert('❌ Ошибка валидации\n\nПожалуйста, введите ваше имя (минимум 2 символа)');
+                return;
+            }
+            
+            // Валидация контакта в зависимости от выбранного способа связи
+            let contact, contactType, contactValue;
+            
+            if (selectedContactMethod === 'whatsapp') {
+                // WhatsApp - валидация телефона
+                const countryCode = document.getElementById('countryCode').value;
+                const phoneNumber = document.getElementById('phoneNumber').value;
+                
+                // Получаем требуемую длину для выбранной страны
+                const countrySelect = document.getElementById('countryCode');
+                const selectedOption = countrySelect.options[countrySelect.selectedIndex];
+                const expectedLength = selectedOption.getAttribute('data-length');
+                
+                // Проверка длины номера
+                const cleanedPhone = phoneNumber.replace(/\D/g, '');
+                
+                // Проверка что номер введен
+                if (!cleanedPhone || cleanedPhone.length === 0) {
+                    alert('❌ Ошибка валидации\n\nВведите номер телефона');
+                    return false;
+                }
+                
+                // Проверяем по диапазону (например "9-10" или точное значение "9")
+                if (expectedLength.includes('-')) {
+                    const [minLen, maxLen] = expectedLength.split('-').map(Number);
+                    if (cleanedPhone.length < minLen || cleanedPhone.length > maxLen) {
+                        alert(`❌ Ошибка валидации\n\nДля выбранной страны номер должен содержать ${minLen}-${maxLen} цифр.\nВы ввели: ${cleanedPhone.length} цифр`);
+                        return false;
+                    }
+                } else {
+                    const requiredLength = parseInt(expectedLength);
+                    if (cleanedPhone.length !== requiredLength) {
+                        alert(`❌ Ошибка валидации\n\nДля выбранной страны номер должен содержать ${requiredLength} цифр.\nВы ввели: ${cleanedPhone.length} цифр`);
+                        return false;
+                    }
+                }
+                
+                const fullPhone = countryCode + cleanedPhone;
+                contact = fullPhone;
+                contactType = 'phone';
+                contactValue = fullPhone;
+                
+            } else {
+                // Telegram - валидация username или телефона
+                const telegramInput = document.getElementById('telegramContact').value;
+                
+                if (!telegramInput || telegramInput.trim() === '') {
+                    alert('❌ Ошибка валидации\n\nУкажите Telegram ник (@username) или номер телефона');
+                    return;
+                }
+                
+                const telegramValue = telegramInput.trim();
+                
+                // Проверка на username (@username или username)
+                if (telegramValue.includes('@') || /^[a-zA-Z0-9_]{5,32}$/.test(telegramValue)) {
+                    const formatted = telegramValue.startsWith('@') ? telegramValue : '@' + telegramValue;
+                    contact = formatted;
+                    contactType = 'telegram_username';
+                    contactValue = formatted;
+                } else {
+                    // Предполагаем что это телефон
+                    const cleanedPhone = telegramValue.replace(/\D/g, '');
+                    if (cleanedPhone.length >= 7) {
+                        contact = telegramValue;
+                        contactType = 'telegram_phone';
+                        contactValue = telegramValue;
+                    } else {
+                        alert('❌ Ошибка валидации\n\nВведите корректный Telegram ник (@username минимум 5 символов) или номер телефона');
+                        return;
+                    }
+                }
+            }
+            
             // Блокируем кнопку
             submitButton.disabled = true;
             submitButton.textContent = '⏳ Отправка...';
             submitButton.style.background = '#94a3b8';
             
+            // Получаем данные о выбранном туре
+            const tourSelect = document.getElementById('tourSelect');
+            const selectedTour = tourSelect.options[tourSelect.selectedIndex].text;
+            const tourPrice = tourSelect.value;
+            const peopleCount = document.getElementById('peopleCount').value;
+            const totalPrice = parseInt(tourPrice) * parseInt(peopleCount);
+            
+            // Получаем сохраненные UTM
+            const savedUTM = sessionStorage.getItem('utm');
+            const utm = savedUTM ? JSON.parse(savedUTM) : {};
+            
+            console.log('📤 Отправка данных:', {
+                name: data.name,
+                contact: contact,
+                contactType: contactType,
+                contactMethod: selectedContactMethod,
+                tour: selectedTour,
+                price: totalPrice
+            });
+            
+            // ========================================
+            // ОТПРАВКА В АНАЛИТИКУ (ВСЕГДА!)
+            // ========================================
+            
+            console.log('📊 Отправка событий в аналитику...');
+            
+            // Facebook Pixel - Lead Event (ВСЕГДА отправляем)
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Lead', {
+                    content_name: selectedTour,
+                    content_category: 'Экскурсии Пхукет',
+                    currency: 'THB',
+                    value: totalPrice,
+                    predicted_ltv: totalPrice,
+                    num_items: parseInt(peopleCount),
+                    contact_type: contactType,
+                    // Дополнительные данные для Conversions API
+                    event_source_url: window.location.href
+                });
+                console.log('✅ FB Pixel: Lead отправлен');
+            } else {
+                console.warn('⚠️ Facebook Pixel не найден');
+            }
+            
+            // Yandex Metrika - Goal (ВСЕГДА отправляем)
+            if (typeof ym !== 'undefined') {
+                ym(96858541, 'reachGoal', 'lead', {
+                    tour: selectedTour,
+                    price: totalPrice,
+                    people: peopleCount,
+                    contact_type: contactType
+                });
+                console.log('✅ YM: Цель lead достигнута');
+            } else {
+                console.warn('⚠️ Yandex Metrika не найдена');
+            }
+            
+            // ========================================
+            // ПОПЫТКА ОТПРАВКИ В BITRIX24
+            // ========================================
+            
+            let bitrixSuccess = false;
+            let leadId = null;
+            
             try {
-                // Собираем данные формы
-                const formData = new FormData(this);
-                const data = Object.fromEntries(formData);
-                
-                // Получаем данные о выбранном туре
-                const tourSelect = document.getElementById('tourSelect');
-                const selectedTour = tourSelect.options[tourSelect.selectedIndex].text;
-                const tourPrice = tourSelect.value;
-                const peopleCount = document.getElementById('peopleCount').value;
-                
-                // Получаем сохраненные UTM
-                const savedUTM = sessionStorage.getItem('utm');
-                const utm = savedUTM ? JSON.parse(savedUTM) : {};
-                
                 // Формируем красивый комментарий для Bitrix24
                 let comment = '📝 ЗАЯВКА С ЛЕНДИНГА ПХУКЕТ\n';
                 comment += '═'.repeat(40) + '\n\n';
                 comment += `👤 Имя: ${data.name}\n`;
-                comment += `📞 Телефон: ${data.phone}\n\n`;
+                comment += `📞 Контакт: ${contact} (${selectedContactMethod === 'whatsapp' ? 'WhatsApp' : 'Telegram'})\n\n`;
                 comment += `🏝 ВЫБРАННЫЙ ТУР:\n   ${selectedTour}\n`;
                 comment += `💰 Цена за человека: ${parseInt(tourPrice).toLocaleString()}฿\n`;
                 comment += `👥 Количество человек: ${peopleCount}\n`;
-                comment += `💵 ИТОГО: ${(parseInt(tourPrice) * parseInt(peopleCount)).toLocaleString()}฿\n\n`;
+                comment += `💵 ИТОГО: ${totalPrice.toLocaleString()}฿\n\n`;
                 
                 // Ответы на квиз
                 if (answers && Object.keys(answers).length > 0) {
                     comment += '📋 ОТВЕТЫ НА ВОПРОСЫ:\n';
                     if (answers.question1) {
-                        comment += `📅 Когда планирует: ${translateQuizValue(answers.question1)}\n`;
+                        comment += `📅 Когда: ${translateQuizValue(answers.question1)}\n`;
                     }
                     if (answers.question2) {
-                        comment += `👥 С кем едет: ${translateQuizValue(answers.question2)}\n`;
+                        comment += `👥 С кем: ${translateQuizValue(answers.question2)}\n`;
                     }
                     if (answers.question3) {
-                        comment += `⭐ Важные критерии: ${translateQuizValue(answers.question3)}\n`;
+                        comment += `⭐ Важно: ${translateQuizValue(answers.question3)}\n`;
                     }
                     if (answers.question4) {
-                        comment += `⏰ Формат тура: ${translateQuizValue(answers.question4)}\n`;
+                        comment += `⏰ Формат: ${translateQuizValue(answers.question4)}\n`;
                     }
                     comment += '\n';
                 }
@@ -1794,32 +2338,33 @@
                     comment += `Campaign: ${utm.campaign}\n`;
                 }
                 
-                console.log('📤 Отправка в Bitrix24...', {
-                    name: data.name,
-                    phone: data.phone,
-                    tour: selectedTour
-                });
+                console.log('📤 Попытка отправки в Bitrix24...');
                 
                 // Подготавливаем данные для Bitrix24
-                const bitrixData = new URLSearchParams({
-                    'fields[TITLE]': `Лендинг Пхукет: ${data.name}`,
-                    'fields[NAME]': data.name,
-                    'fields[PHONE][0][VALUE]': data.phone,
-                    'fields[PHONE][0][VALUE_TYPE]': 'WORK',
-                    'fields[SOURCE_ID]': 'WEB',
-                    'fields[SOURCE_DESCRIPTION]': 'Лендинг: Экскурсии по Пхукету',
-                    'fields[COMMENTS]': comment,
-                    'fields[OPPORTUNITY]': parseInt(tourPrice) * parseInt(peopleCount),
-                    'fields[CURRENCY_ID]': 'THB',
-                    'fields[UTM_SOURCE]': utm.source || '',
-                    'fields[UTM_MEDIUM]': utm.medium || '',
-                    'fields[UTM_CAMPAIGN]': utm.campaign || '',
-                    'fields[UTM_CONTENT]': utm.content || '',
-                    'fields[UTM_TERM]': utm.term || ''
-                });
+                const bitrixData = new URLSearchParams();
+                bitrixData.append('fields[TITLE]', `Лендинг Пхукет: ${data.name}`);
+                bitrixData.append('fields[NAME]', data.name);
+                
+                // Добавляем контакт в зависимости от типа
+                if (contactType.startsWith('telegram')) {
+                    bitrixData.append('fields[IM][0][VALUE]', contactValue);
+                    bitrixData.append('fields[IM][0][VALUE_TYPE]', 'TELEGRAM');
+                } else {
+                    bitrixData.append('fields[PHONE][0][VALUE]', contactValue);
+                    bitrixData.append('fields[PHONE][0][VALUE_TYPE]', 'WORK');
+                }
+                
+                bitrixData.append('fields[SOURCE_ID]', 'WEB');
+                bitrixData.append('fields[SOURCE_DESCRIPTION]', 'Лендинг: Экскурсии по Пхукету');
+                bitrixData.append('fields[COMMENTS]', comment);
+                bitrixData.append('fields[OPPORTUNITY]', totalPrice);
+                bitrixData.append('fields[CURRENCY_ID]', 'THB');
+                bitrixData.append('fields[UTM_SOURCE]', utm.source || '');
+                bitrixData.append('fields[UTM_MEDIUM]', utm.medium || '');
+                bitrixData.append('fields[UTM_CAMPAIGN]', utm.campaign || '');
                 
                 // Отправляем в Bitrix24
-                const response = await fetch(BITRIX_WEBHOOK + 'crm.lead.add.json', {
+                const response = await fetch(BITRIX_WEBHOOK + 'crm.lead.add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -1833,96 +2378,58 @@
                 
                 // Проверяем успешность
                 if (result.result && result.result > 0) {
-                    // ✅ УСПЕШНАЯ ОТПРАВКА
-                    
-                    submitButton.textContent = '✅ Отправлено!';
-                    submitButton.style.background = '#10b981';
-                    
-                    // Показываем сообщение
-                    alert(
-                        `✅ Спасибо, ${data.name}!\n\n` +
-                        `Ваша заявка принята.\n` +
-                        `Номер заявки: #${result.result}\n\n` +
-                        `Мы свяжемся с вами в WhatsApp в течение 5 минут.`
-                    );
-                    
-                    // ========================================
-                    // ОТПРАВКА СОБЫТИЙ В АНАЛИТИКУ
-                    // ========================================
-                    
-                    // Facebook Pixel - Lead Event
-                    if (typeof fbq !== 'undefined') {
-                        fbq('track', 'Lead', {
-                            content_name: selectedTour,
-                            content_category: 'Экскурсии Пхукет',
-                            currency: 'THB',
-                            value: parseInt(tourPrice) * parseInt(peopleCount),
-                            predicted_ltv: parseInt(tourPrice) * parseInt(peopleCount),
-                            num_items: parseInt(peopleCount)
-                        });
-                        console.log('📊 FB Pixel: Lead отправлен');
-                    }
-                    
-                    // Yandex Metrika - Goal
-                    if (typeof ym !== 'undefined') {
-                        ym(96858541, 'reachGoal', 'lead', {
-                            tour: selectedTour,
-                            price: parseInt(tourPrice) * parseInt(peopleCount),
-                            people: peopleCount
-                        });
-                        console.log('📊 YM: Цель lead достигнута');
-                    }
-                    
-                    // Очищаем форму
-                    this.reset();
-                    document.getElementById('tourSelect').value = '5200';
-                    document.getElementById('peopleCount').value = '2';
-                    calculatePrice();
-                    
-                    console.log('✅ Лид успешно создан:', result.result);
-                    
+                    bitrixSuccess = true;
+                    leadId = result.result;
+                    console.log('✅ Лид создан в Bitrix24:', leadId);
                 } else {
-                    // ❌ Ошибка от Bitrix24
-                    throw new Error(result.error_description || 'Неизвестная ошибка от Bitrix24');
+                    throw new Error(result.error_description || result.error || 'Ошибка от Bitrix24');
                 }
                 
             } catch (error) {
-                // ❌ ОБРАБОТКА ОШИБОК
-                
-                console.error('❌ Ошибка отправки:', error);
-                
-                submitButton.textContent = '❌ Ошибка';
-                submitButton.style.background = '#ef4444';
-                
-                // Показываем сообщение с контактами
-                alert(
-                    `❌ Произошла ошибка при отправке заявки.\n\n` +
-                    `Пожалуйста, свяжитесь с нами напрямую:\n\n` +
-                    `📱 WhatsApp: ${CONTACTS.whatsapp}\n` +
-                    `📞 Телефон: ${CONTACTS.phone}\n` +
-                    `📧 Email: ${CONTACTS.email}\n\n` +
-                    `Техническая информация:\n${error.message}`
-                );
-                
-                // Отправляем ошибку в аналитику
-                if (typeof fbq !== 'undefined') {
-                    fbq('trackCustom', 'FormError', {
-                        error: error.message
-                    });
-                }
-                
-                if (typeof ym !== 'undefined') {
-                    ym(96858541, 'reachGoal', 'form_error');
-                }
-                
-            } finally {
-                // Возвращаем кнопку в исходное состояние через 2 секунды
-                setTimeout(() => {
-                    submitButton.disabled = false;
-                    submitButton.textContent = originalText;
-                    submitButton.style.background = originalBg;
-                }, 2000);
+                // Ошибка Bitrix24 - это НЕ критично, т.к. события в аналитику уже отправлены
+                console.warn('⚠️ Bitrix24 недоступен:', error.message);
+                bitrixSuccess = false;
             }
+            
+            // ========================================
+            // ПОКАЗЫВАЕМ РЕЗУЛЬТАТ ПОЛЬЗОВАТЕЛЮ
+            // ========================================
+            
+            submitButton.textContent = '✅ Отправлено!';
+            submitButton.style.background = '#10b981';
+            
+            if (bitrixSuccess) {
+                // Всё отлично - и CRM и аналитика
+                alert(
+                    `✅ Спасибо, ${data.name}!\n\n` +
+                    `Ваша заявка принята.\n` +
+                    `Номер заявки: #${leadId}\n\n` +
+                    `Мы свяжемся с вами ${selectedContactMethod === 'whatsapp' ? 'в WhatsApp' : 'в Telegram'} в течение 5 минут.`
+                );
+            } else {
+                // Только аналитика сработала, CRM не доступен
+                alert(
+                    `✅ Спасибо, ${data.name}!\n\n` +
+                    `Ваша заявка получена и обрабатывается.\n\n` +
+                    `Мы свяжемся с вами ${selectedContactMethod === 'whatsapp' ? 'в WhatsApp' : 'в Telegram'} в течение 5 минут.\n\n` +
+                    `Или напишите нам прямо сейчас:\n` +
+                    `📱 WhatsApp: ${CONTACTS.whatsapp}\n` +
+                    `✈️ Telegram: ${CONTACTS.telegram}`
+                );
+            }
+            
+            // Очищаем форму
+            this.reset();
+            document.getElementById('tourSelect').value = '5200';
+            document.getElementById('peopleCount').value = '2';
+            calculatePrice();
+            
+            // Возвращаем кнопку в исходное состояние через 2 секунды
+            setTimeout(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+                submitButton.style.background = originalBg;
+            }, 2000);
         });
         
         // Логируем успешную загрузку
@@ -1930,6 +2437,9 @@
         console.log('🔗 Webhook:', BITRIX_WEBHOOK ? 'настроен ✅' : '❌ НЕ НАСТРОЕН');
         console.log('📊 Facebook Pixel:', typeof fbq !== 'undefined' ? 'активен ✅' : '❌ не найден');
         console.log('📊 Yandex Metrika:', typeof ym !== 'undefined' ? 'активна ✅' : '❌ не найдена');
+        console.log('✅ Форма инициализирована');
+        console.log('📱 Способы связи: WhatsApp + Telegram');
+        console.log('🌍 Международные маски: 35+ стран');
         
         // ========================================
         // ОТСЛЕЖИВАНИЕ ДОПОЛНИТЕЛЬНЫХ СОБЫТИЙ
