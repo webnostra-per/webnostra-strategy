@@ -418,6 +418,13 @@
             margin-top: 30px;
         }
 
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 30px;
+        }
+
         .pricing-card {
             background: var(--white);
             border: 2px solid var(--purple-light);
@@ -558,6 +565,13 @@
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .ai-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 32px;
@@ -584,6 +598,10 @@
             }
 
             .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1221,6 +1239,132 @@
                                     <strong>Результат:</strong> Рост продаж за 2 месяца. Контроль воронки
                                 </div>
                             </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI-автоматизация -->
+            <section class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <span class="section-icon">🤖</span>
+                        <span>AI-АВТОМАТИЗАЦИЯ БИЗНЕС-ПРОЦЕССОВ</span>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        
+                        <p style="font-size: 18px; line-height: 1.8; margin-bottom: 15px; font-weight: 600; color: var(--purple-main);">
+                            Улучшение процесса квалификации, продаж и других бизнес-процессов
+                        </p>
+                        
+                        <p style="font-size: 15px; line-height: 1.8; margin-bottom: 30px; color: #555;">
+                            Автоматизируйте рутину и масштабируйте отдел продаж без найма новых сотрудников. Внедряем искусственный интеллект, который обучается на ваших данных и работает 24/7
+                        </p>
+
+                        <div class="ai-grid">
+                            <div class="pricing-card">
+                                <div class="pricing-name">AI-квалификатор</div>
+                                <div class="pricing-price">от $300</div>
+                                <div class="pricing-budget">За интеграцию</div>
+                                
+                                <div style="text-align: left; margin: 20px 0;">
+                                    <div style="font-weight: 700; color: var(--purple-main); margin-bottom: 12px;">Круглосуточная обработка входящих запросов</div>
+                                    <div style="font-weight: 600; margin-bottom: 8px; font-size: 14px;">Что делает:</div>
+                                </div>
+                                
+                                <ul class="pricing-features">
+                                    <li>Мгновенно отвечает на входящие сообщения в любое время суток</li>
+                                    <li>Квалифицирует лиды по вашим критериям</li>
+                                    <li>Автоматически создает задачи для менеджеров</li>
+                                    <li>Заполняет карточки клиентов в CRM</li>
+                                    <li>Определяет качество трафика и приоритетность обращений</li>
+                                </ul>
+                                
+                                <div style="margin-top: 20px; padding: 16px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 8px; font-size: 14px; color: var(--text-dark); font-weight: 600;">
+                                    <strong>Результат:</strong> ни один лид не теряется, менеджеры работают только с теплыми клиентами
+                                </div>
+                            </div>
+
+                            <div class="pricing-card">
+                                <div class="pricing-name">AI-продавец</div>
+                                <div class="pricing-price">от $500</div>
+                                <div class="pricing-budget">За интеграцию</div>
+                                
+                                <div style="text-align: left; margin: 20px 0;">
+                                    <div style="font-weight: 700; color: var(--purple-main); margin-bottom: 12px;">Голосовой помощник для входящих и исходящих звонков</div>
+                                    <div style="font-weight: 600; margin-bottom: 8px; font-size: 14px;">Что делает:</div>
+                                </div>
+                                
+                                <ul class="pricing-features">
+                                    <li>Принимает входящие звонки и консультирует клиентов</li>
+                                    <li>Совершает исходящие звонки для напоминаний о встречах, оплатах, акциях</li>
+                                    <li>Квалифицирует клиентов по телефону</li>
+                                    <li>Записывает на встречи и консультации</li>
+                                    <li>Обрабатывает типовые возражения по скрипту</li>
+                                </ul>
+                                
+                                <div style="margin-top: 20px; padding: 16px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 8px; font-size: 14px; color: var(--text-dark); font-weight: 600;">
+                                    <strong>Результат:</strong> ваши менеджеры освобождены от рутинных звонков и фокусируются на сложных сделках
+                                </div>
+                            </div>
+
+                            <div class="pricing-card">
+                                <div class="pricing-name">Умный контроль качества</div>
+                                <div class="pricing-price">от $700</div>
+                                <div class="pricing-budget">За интеграцию</div>
+                                
+                                <div style="text-align: left; margin: 20px 0;">
+                                    <div style="font-weight: 700; color: var(--purple-main); margin-bottom: 12px;">Автоматический аудит всех разговоров с клиентами</div>
+                                    <div style="font-weight: 600; margin-bottom: 8px; font-size: 14px;">Что делает:</div>
+                                </div>
+                                
+                                <ul class="pricing-features">
+                                    <li>Прослушивает 100% телефонных звонков</li>
+                                    <li>Анализирует видеовстречи в Zoom/Google Meet</li>
+                                    <li>Выявляет отклонения от скриптов продаж</li>
+                                    <li>Фиксирует критические ошибки менеджеров</li>
+                                    <li>Отправляет уведомления руководителю в реальном времени</li>
+                                    <li>Формирует отчеты по качеству работы каждого сотрудника</li>
+                                </ul>
+                                
+                                <div style="margin-top: 20px; padding: 16px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 8px; font-size: 14px; color: var(--text-dark); font-weight: 600;">
+                                    <strong>Результат:</strong> вы видите все проблемы в отделе продаж без прослушивания сотен часов записей
+                                </div>
+                            </div>
+
+                            <div class="pricing-card">
+                                <div class="pricing-name">Индивидуальная AI-автоматизация</div>
+                                <div class="pricing-price">Индивидуально</div>
+                                <div class="pricing-budget">Стоимость рассчитывается под задачу</div>
+                                
+                                <div style="text-align: left; margin: 20px 0;">
+                                    <div style="font-weight: 700; color: var(--purple-main); margin-bottom: 12px;">Любые AI и алгоритмические решения под ваш бизнес</div>
+                                    <div style="font-weight: 600; margin-bottom: 8px; font-size: 14px;">Примеры задач:</div>
+                                </div>
+                                
+                                <ul class="pricing-features">
+                                    <li>Автоматическое формирование коммерческих предложений</li>
+                                    <li>Анализ обратной связи и отзывов клиентов</li>
+                                    <li>Предиктивная аналитика продаж и прогнозирование</li>
+                                    <li>Умные чат-боты для техподдержки</li>
+                                    <li>Автоматизация документооборота</li>
+                                    <li>Персонализация маркетинговых коммуникаций</li>
+                                </ul>
+                                
+                                <div style="margin-top: 20px; padding: 16px; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 8px; font-size: 14px; color: var(--text-dark); font-weight: 600;">
+                                    <strong>Результат:</strong> решаем уникальные задачи вашего бизнеса с помощью AI и алгоритмов
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 30px; text-align: center; padding: 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px;">
+                            <a href="https://ai.webnostra.kz/consulting" target="_blank" style="color: white; font-size: 16px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                                🤖 Подробнее о нейросетях и наших услугах →
+                            </a>
                         </div>
 
                     </div>
