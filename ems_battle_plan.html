@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боевой план | EMS Future Fitness Club | WEBNOSTRA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --purple-dark: #1a0b2e;
+            --purple-main: #4a1d96;
+            --purple-light: #6b2fb5;
+            --purple-accent: #8b4bc9;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #4a1d96 0%, #8b4bc9 100%);
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 15px rgba(74, 29, 150, 0.2);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--gradient-1);
+            color: var(--white);
+            padding: 60px 0 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .header-meta {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .meta-value {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--purple-main);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
+        }
+
+        /* Section */
+        .section {
+            background: var(--white);
+            border-radius: 12px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .section-header {
+            padding: 24px 30px;
+            background: var(--gradient-2);
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: linear-gradient(135deg, #5a2db6 0%, #9b5bd9 100%);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            font-size: 28px;
+        }
+
+        .toggle-icon {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .section.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .section.active .section-content {
+            max-height: 10000px;
+        }
+
+        .section-body {
+            padding: 30px;
+        }
+
+        /* Subsection */
+        .subsection {
+            margin-bottom: 30px;
+        }
+
+        .subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        .subsection-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--purple-main);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--purple-light);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--purple-accent);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--purple-main);
+            margin-bottom: 12px;
+        }
+
+        .card-text {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* List */
+        .list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .list-item {
+            padding: 12px 0 12px 30px;
+            position: relative;
+            border-bottom: 1px solid #eee;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .list-item::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--purple-accent);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Message Cards */
+        .message-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-left: 4px solid var(--purple-main);
+            padding: 20px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .message-card:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow);
+        }
+
+        .message-number {
+            font-weight: 700;
+            color: var(--purple-main);
+            margin-bottom: 8px;
+        }
+
+        /* Table */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: var(--gradient-2);
+            color: var(--white);
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background: var(--bg-light);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .table-total {
+            font-weight: 700;
+            background: var(--bg-light);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--purple-light);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--purple-accent);
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 2px var(--purple-light);
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            color: var(--purple-main);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .timeline-text {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border: 2px solid var(--purple-light);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-2);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--purple-accent);
+        }
+
+        .pricing-card.recommended {
+            border-color: var(--purple-accent);
+            box-shadow: 0 8px 25px rgba(74, 29, 150, 0.15);
+        }
+
+        .pricing-badge {
+            background: var(--gradient-2);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .pricing-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--purple-main);
+            margin-bottom: 16px;
+        }
+
+        .pricing-price {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .pricing-budget {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 24px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 24px;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--gradient-1);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .contact-text {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            padding: 16px 36px;
+            background: var(--white);
+            color: var(--purple-main);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--purple-dark);
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .header-meta {
+                gap: 20px;
+            }
+
+            .meta-value {
+                font-size: 20px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-title {
+                font-size: 26px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .header {
+                background: #4a1d96;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .section {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+
+            .section-content {
+                max-height: none !important;
+            }
+
+            .action-buttons,
+            .toggle-icon {
+                display: none;
+            }
+
+            .section-header {
+                background: #4a1d96 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .contact-section {
+                background: #667eea;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        /* Highlight */
+        .highlight {
+            background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">WEBNOSTRA PERFORMANCE</div>
+            <h1>БОЕВОЙ ПЛАН ЛИДОГЕНЕРАЦИИ</h1>
+            <p class="subtitle">EMS-тренажеры Future Fitness Club | Аренда для тренеров</p>
+            
+            <div class="header-meta">
+                <div class="meta-item">
+                    <div class="meta-label">Целевой CPL</div>
+                    <div class="meta-value">$3-4</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Квал. лид</div>
+                    <div class="meta-value">$12-16</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Запуск</div>
+                    <div class="meta-value">7 дней</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Фокус</div>
+                    <div class="meta-value">Meta Ads</div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="window.print()">📥 Скачать PDF</button>
+                <a href="https://webnostra-team.netlify.app/cases" class="btn btn-secondary" target="_blank">📊 Посмотреть кейсы</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Тактика продвижения -->
+            <section class="section active">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <span class="section-icon">🎯</span>
+                        <span>ТАКТИКА ПРОДВИЖЕНИЯ</span>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        
+                        <div class="subsection">
+                            <h3 class="subsection-title">География и приоритеты</h3>
+                            
+                            <div class="cards-grid">
+                                <div class="card">
+                                    <div class="card-title">🇪🇺 Европа (основной фокус)</div>
+                                    <div class="card-text">
+                                        <strong>Германия:</strong> Берлин, Мюнхен, Франкфурт<br>
+                                        <strong>Испания:</strong> Мадрид, Барселона<br>
+                                        <strong>Италия:</strong> Милан, Рим<br>
+                                        <strong>Обоснование:</strong> Высокий спрос на персональный тренинг, средний чек €50-80/сессия
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-title">🇷🇺 Россия (тест)</div>
+                                    <div class="card-text">
+                                        Москва, Санкт-Петербург, Екатеринбург, Казань<br>
+                                        <strong>Статус:</strong> Тестовый канал через Яндекс Директ с пониженным приоритетом
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">Целевой портрет</h3>
+                            
+                            <div class="cards-grid">
+                                <div class="card">
+                                    <div class="card-title">Персональные тренеры (B2C→B2B)</div>
+                                    <div class="card-text">
+                                        <strong>Возраст:</strong> 25-45 лет<br>
+                                        <strong>Доход:</strong> от $2000/мес<br>
+                                        <strong>Интересы:</strong> фитнес-образование, спорт-оборудование, бизнес-тренинг<br>
+                                        <strong>Поведение:</strong> активны в Instagram, читают профильные паблики, посещают фитнес-выставки<br>
+                                        <strong>Признаки бизнеса:</strong> клиентская база 10+ человек, работают в студии или на выезде
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-title">Владельцы студий (B2B)</div>
+                                    <div class="card-text">
+                                        <strong>Возраст:</strong> 30-50 лет<br>
+                                        <strong>Бизнес:</strong> фитнес-клубы, частные студии, wellness-центры<br>
+                                        <strong>Боли:</strong> высокая конкуренция, нужны новые форматы тренировок<br>
+                                        <strong>Интересы:</strong> оборудование для залов, франшизы, бизнес-аналитика
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">Структура кампаний Meta Ads (основной канал)</h3>
+                            
+                            <div class="cards-grid">
+                                <div class="card">
+                                    <div class="card-title">Кампания 1: Квиз-воронка (приоритет)</div>
+                                    <div class="card-text">
+                                        <strong>Цель:</strong> Лиды (Lead Generation)<br>
+                                        <strong>Плейсменты:</strong> Facebook Feed, Instagram Feed, Stories<br>
+                                        <strong>Аудитории:</strong> интересы (фитнес-тренеры, персональный тренинг, EMS) + lookalike<br>
+                                        <strong>Бюджет:</strong> $60/день<br>
+                                        <strong>Креативы:</strong> 5 видео + 3 карусели
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-title">Кампания 2: Лид-формы с оффером</div>
+                                    <div class="card-text">
+                                        <strong>Цель:</strong> Instant Forms<br>
+                                        <strong>Оффер:</strong> "Расчет окупаемости за 24 часа + кейс тренера с доходом €8000/мес"<br>
+                                        <strong>Аудитории:</strong> широкая + узкая (владельцы студий)<br>
+                                        <strong>Бюджет:</strong> $40/день<br>
+                                        <strong>Креативы:</strong> 4 статичных + 2 видео до/после
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-title">Кампания 3: Трафик на лендинг</div>
+                                    <div class="card-text">
+                                        <strong>Цель:</strong> Traffic → Landing с калькулятором ROI<br>
+                                        <strong>Аудитории:</strong> ретаргетинг + engagement<br>
+                                        <strong>Бюджет:</strong> $30/день<br>
+                                        <strong>Креативы:</strong> 3 УГЦ-видео от действующих арендаторов
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">Сегментация тестов</h3>
+                            
+                            <div class="message-card">
+                                <div class="message-number">Офферы для тестирования:</div>
+                                <ul class="list">
+                                    <li class="list-item">"Без вложений в оборудование — начни зарабатывать €3000+ через 30 дней"</li>
+                                    <li class="list-item">"Аренда от €600/мес с гарантией возврата, если не окупится"</li>
+                                    <li class="list-item">"Кейс: как тренер увеличил доход в 4 раза за 2 месяца на EMS"</li>
+                                    <li class="list-item">"Рассрочка 0% — стартуй без первого взноса"</li>
+                                </ul>
+                            </div>
+
+                            <div class="message-card">
+                                <div class="message-number">Форматы креативов:</div>
+                                <ul class="list">
+                                    <li class="list-item">Видео-отзывы реальных тренеров (до/после, цифры дохода)</li>
+                                    <li class="list-item">Карусели "5 причин арендовать, а не покупать"</li>
+                                    <li class="list-item">UGC-контент: селфи-видео с тренировок</li>
+                                    <li class="list-item">Сравнительные таблицы: классический тренинг vs EMS</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">Месседжи (смыслы в креативах)</h3>
+                            
+                            <div class="message-card">
+                                <div class="message-number">1. Ценность</div>
+                                "EMS-тренировки — это 20 минут вместо 2 часов. Твои клиенты получат результат быстрее, а ты — больше сессий в день"
+                            </div>
+
+                            <div class="message-card">
+                                <div class="message-number">2. Отстройка</div>
+                                "Пока конкуренты продают абонементы по 30€, ты берешь 60€ за сессию — потому что у тебя есть EMS"
+                            </div>
+
+                            <div class="message-card">
+                                <div class="message-number">3. Экономия</div>
+                                "Покупка оборудования — €25000. Аренда — €600/мес. Окупаемость с 10 клиентами уже в первый месяц"
+                            </div>
+
+                            <div class="message-card">
+                                <div class="message-number">4. Измеримость</div>
+                                "Средний арендатор выходит на €3000 чистой прибыли через 8 недель. Мы дадим калькулятор под твой город"
+                            </div>
+
+                            <div class="message-card">
+                                <div class="message-number">5. Следующий шаг</div>
+                                "Заполни форму за 2 минуты — получи расчет окупаемости и запись вебинара 'Как запустить EMS-студию за 7 дней'"
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">Креативные сюжеты</h3>
+                            
+                            <div class="cards-grid">
+                                <div class="card">
+                                    <div class="card-title">Сюжет 1: До/После тренера</div>
+                                    <div class="card-text">
+                                        <strong>Смысл:</strong> личная трансформация дохода после аренды EMS<br>
+                                        <strong>Визуал:</strong> сплит-экран "было: €800/мес работа в зале" → "стало: €4200/мес своя практика с EMS"
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-title">Сюжет 2: День из жизни</div>
+                                    <div class="card-text">
+                                        <strong>Смысл:</strong> как выглядит работа с EMS (простота, эффективность)<br>
+                                        <strong>Визуал:</strong> таймлапс дня тренера — 6 клиентов за 4 часа, все счастливые
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-title">Сюжет 3: Калькулятор в креативе</div>
+                                    <div class="card-text">
+                                        <strong>Смысл:</strong> прозрачная математика — сколько нужно клиентов для €3000<br>
+                                        <strong>Визуал:</strong> анимированный калькулятор "10 клиентов × €50 × 12 сессий = €6000 - €600 = €5400"
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-title">Сюжет 4: Страх упущенной выгоды</div>
+                                    <div class="card-text">
+                                        <strong>Смысл:</strong> конкуренты уже арендуют, рынок уходит<br>
+                                        <strong>Визуал:</strong> карта с точками "127 тренеров в Европе уже зарабатывают на EMS"
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Дополнительные каналы -->
+            <section class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <span class="section-icon">🧪</span>
+                        <span>ДОПОЛНИТЕЛЬНЫЕ КАНАЛЫ (ТЕСТ)</span>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        
+                        <div class="cards-grid">
+                            <div class="card">
+                                <div class="card-title">Google Ads (Европа) — тест с потенциалом</div>
+                                <div class="card-text">
+                                    <strong>Performance Max:</strong> автоматическая кампания на все плейсменты<br>
+                                    <strong>Аудитории:</strong> in-market (fitness equipment, business opportunities)<br>
+                                    <strong>Бюджет:</strong> $20/день<br>
+                                    <strong>CPL прогноз:</strong> $6-10<br><br>
+                                    <strong>YouTube Ads:</strong> видео-кейсы 60-90 сек<br>
+                                    <strong>Бюджет:</strong> $15/день
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-title">Яндекс Директ (РФ) — низкий приоритет</div>
+                                <div class="card-text">
+                                    <strong>Поиск:</strong> "аренда ems тренажера", "ems оборудование для тренеров"<br>
+                                    <strong>Бюджет:</strong> $15/день<br>
+                                    <strong>CPL прогноз:</strong> $8-12<br><br>
+                                    <strong>РСЯ:</strong> ретаргетинг + интересы<br>
+                                    <strong>Бюджет:</strong> $10/день<br><br>
+                                    <strong>Статус:</strong> Тестовый канал, результат не гарантируем
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Посадочная страница -->
+            <section class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <span class="section-icon">🎨</span>
+                        <span>ПОСАДОЧНАЯ СТРАНИЦА</span>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        
+                        <div class="subsection">
+                            <h3 class="subsection-title">Структура квиза (основная воронка)</h3>
+                            
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-title">Шаг 1: Хук</div>
+                                    <div class="timeline-text">"Хочешь зарабатывать €3000+ на EMS-тренировках? Узнай за 60 секунд, сколько клиентов тебе нужно"</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-title">Шаг 2: Опыт</div>
+                                    <div class="timeline-text">"Ты уже работаешь тренером или только планируешь?" → Да, работаю (персональные / в зале) / Нет, хочу начать</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-title">Шаг 3: Город</div>
+                                    <div class="timeline-text">"В каком городе планируешь работать?" (выпадающий список топ-30 городов)</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-title">Шаг 4: Цель</div>
+                                    <div class="timeline-text">"Какой доход хочешь выйти через 2 месяца?" → €2000-3000 / €3000-5000 / €5000+</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-title">Шаг 5: Thank You Page</div>
+                                    <div class="timeline-text">"Отлично! Мы рассчитали твой план. Оставь контакты — вышлем расчет + запись вебинара 'Старт с EMS за 7 дней'" → Форма: имя, телефон, email, Telegram</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">Альтернатива: Лендинг с лид-формой</h3>
+                            
+                            <div class="card">
+                                <div class="card-title">Заголовок</div>
+                                <div class="card-text">"Аренда EMS-тренажеров для тренеров. От €600/мес. Окупаемость — 30 дней"</div>
+                            </div>
+
+                            <div class="message-card">
+                                <div class="message-number">Структура лендинга:</div>
+                                <ul class="list">
+                                    <li class="list-item"><strong>Блок 1:</strong> Калькулятор доходности (интерактивный)</li>
+                                    <li class="list-item"><strong>Блок 2:</strong> "Как это работает" (3 шага: выбрал → привезли → зарабатываешь)</li>
+                                    <li class="list-item"><strong>Блок 3:</strong> Кейсы (3 истории с фото, цифрами, отзывами)</li>
+                                    <li class="list-item"><strong>Блок 4:</strong> Сравнение (покупка vs аренда в таблице)</li>
+                                    <li class="list-item"><strong>Блок 5:</strong> FAQ (8 вопросов)</li>
+                                    <li class="list-item"><strong>Блок 6:</strong> Форма "Получить расчет окупаемости"</li>
+                                </ul>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-title">УТП</div>
+                                <div class="card-text">"Гарантия возврата аренды, если не окупишь за 60 дней"</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Бенчмарк и прогноз -->
+            <section class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <span class="section-icon">📊</span>
+                        <span>БЕНЧМАРК СТОИМОСТИ ЛИДА И ПРОГНОЗ</span>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        
+                        <div class="subsection">
+                            <h3 class="subsection-title">Реалистичный CPL для ниши B2B фитнес-оборудование</h3>
+                            
+                            <div class="cards-grid">
+                                <div class="card">
+                                    <div class="card-title">Meta Ads (основной канал)</div>
+                                    <div class="card-text">
+                                        <strong>Квиз:</strong> $3-5<br>
+                                        <strong>Лид-форма:</strong> $5-8<br>
+                                        <strong>Конверсия в квал. лид:</strong> 25-35%<br>
+                                        <strong>Стоимость квал. лида:</strong> $12-16
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-title">Google Ads (тест)</div>
+                                    <div class="card-text">
+                                        <strong>Performance Max:</strong> $6-10<br>
+                                        <strong>YouTube:</strong> $5-7<br>
+                                        <strong>Конверсия в квал. лид:</strong> 25-35%<br>
+                                        <strong>Стоимость квал. лида:</strong> $17-22
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-title">Яндекс Директ (низкий приоритет)</div>
+                                    <div class="card-text">
+                                        <strong>Поиск:</strong> $8-12<br>
+                                        <strong>РСЯ:</strong> $6-9<br>
+                                        <strong>Конверсия в квал. лид:</strong> 20-30%<br>
+                                        <strong>Стоимость квал. лида:</strong> $20-28
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">Прогноз на 2 сценария бюджета</h3>
+                            
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Канал</th>
+                                            <th>Бюджет/день</th>
+                                            <th>Лиды/месяц</th>
+                                            <th>CPL</th>
+                                            <th>Квал. лиды</th>
+                                            <th>Стоимость квал.</th>
+                                            <th>Бюджет/месяц</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Meta Ads</strong></td>
+                                            <td>$130</td>
+                                            <td>975-1300</td>
+                                            <td>$3-4</td>
+                                            <td>290-390</td>
+                                            <td>$13.4</td>
+                                            <td>$3900</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Google Ads</td>
+                                            <td>$35</td>
+                                            <td>140-175</td>
+                                            <td>$6-7.5</td>
+                                            <td>40-53</td>
+                                            <td>$19.7</td>
+                                            <td>$1050</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Яндекс Директ</td>
+                                            <td>$25</td>
+                                            <td>95-125</td>
+                                            <td>$8-10</td>
+                                            <td>24-31</td>
+                                            <td>$24.2</td>
+                                            <td>$750</td>
+                                        </tr>
+                                        <tr class="table-total">
+                                            <td><strong>ИТОГО</strong></td>
+                                            <td><strong>$190</strong></td>
+                                            <td><strong>1210-1600</strong></td>
+                                            <td><strong>$3.6-4.2</strong></td>
+                                            <td><strong>354-474</strong></td>
+                                            <td><strong>$14.8</strong></td>
+                                            <td><strong>$5700</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="note">
+                                <strong>Консервативный сценарий (первый месяц):</strong><br>
+                                Бюджет: $3500/месяц | Лиды: 875-1050 | Квал. лиды: 220-300 | CPL: $3.8-4.2 | Стоимость квал. лида: $13.6-15.9
+                            </div>
+                        </div>
+
+                        <div class="subsection">
+                            <h3 class="subsection-title">Примечание об оптимизации</h3>
+                            <p>CPL снижается на 15-25% после 3 недель оптимизации. Конверсия в квал. лиды растет до 40% при доработке скриптов продаж и подключении AI-квалификатора.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Следующие шаги -->
+            <section class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <span class="section-icon">🚀</span>
+                        <span>СЛЕДУЮЩИЕ ШАГИ</span>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        
+                        <div class="subsection">
+                            <h3 class="subsection-title">Таймлайн запуска (7 дней)</h3>
+                            
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-title">День 1-2: Подготовка</div>
+                                    <div class="timeline-text">Бриф, доступы, аудит текущих материалов. Настройка аналитики (пиксели, CRM-интеграция)</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-title">День 3-4: Креативы</div>
+                                    <div class="timeline-text">Производство 15 креативов (видео + статика). Тексты объявлений, офферы</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-title">День 5-6: Посадочные</div>
+                                    <div class="timeline-text">Квиз на Tilda/Marquiz. Лендинг-альтернатива. Подключение Битрикс24</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-title">День 7: Запуск</div>
+                                    <div class="timeline-text">Публикация кампаний Meta, Google, Яндекс. Настройка автоматических правил</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-title">День 8-14: Оптимизация</div>
+                                    <div class="timeline-text">Анализ первых 50 лидов. Отключение слабых креативов. Масштабирование выигрышных связок</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Тарифы -->
+            <section class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <span class="section-icon">💰</span>
+                        <span>ТАРИФЫ СОТРУДНИЧЕСТВА</span>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        
+                        <div class="pricing-grid">
+                            <div class="pricing-card">
+                                <div class="pricing-name">СТАРТ</div>
+                                <div class="pricing-price">$450</div>
+                                <div class="pricing-budget">Рекламный бюджет: от $500/мес</div>
+                                <ul class="pricing-features">
+                                    <li>Анализ ниши и конкурентов</li>
+                                    <li>Тексты, креативы, сценарии</li>
+                                    <li>Запуск Meta, Яндекс, Google</li>
+                                    <li>Подключение аналитики и пикселей</li>
+                                    <li>Настройка медиаплана</li>
+                                    <li>Оптимизация под первые результаты</li>
+                                </ul>
+                                <div style="margin-top: 20px; font-size: 14px; color: #666;">
+                                    <strong>Подходит для:</strong> Тест ниши без посадочных страниц
+                                </div>
+                            </div>
+
+                            <div class="pricing-card recommended">
+                                <div class="pricing-badge">РЕКОМЕНДУЕМ</div>
+                                <div class="pricing-name">БАЗА</div>
+                                <div class="pricing-price">$900</div>
+                                <div class="pricing-budget">Рекламный бюджет: от $700/мес</div>
+                                <ul class="pricing-features">
+                                    <li>✓ Все из тарифа «Старт»</li>
+                                    <li>Построение воронки: реклама → квиз → лендинг → CRM</li>
+                                    <li>Создание посадочной страницы (до 10 блоков)</li>
+                                    <li>Подключение AI-квалификатора (фильтрация лидов)</li>
+                                    <li>Аудит CRM и автоматизация</li>
+                                    <li>Аналитика CPL, CPA, CTR, ROMI</li>
+                                    <li>Тестирование гипотез и сценариев</li>
+                                </ul>
+                                <div style="margin-top: 20px; font-size: 14px; color: #666;">
+                                    <strong>Результат:</strong> +25-40% к конверсии, ≥25 целевых заявок/мес
+                                </div>
+                            </div>
+
+                            <div class="pricing-card">
+                                <div class="pricing-name">ЭКСПЕРТ</div>
+                                <div class="pricing-price">$1,890</div>
+                                <div class="pricing-budget">Рекламный бюджет: от $3000/мес</div>
+                                <ul class="pricing-features">
+                                    <li>✓ Все из тарифа «База»</li>
+                                    <li>Подключение AI-РОП (контроль лидов и ОП)</li>
+                                    <li>6-часовая стратегия роста с маркетинг-директором</li>
+                                    <li>Несколько лендингов под сегменты</li>
+                                    <li>Глубокий разбор и улучшение воронки</li>
+                                    <li>Тренинг отдела продаж или аудит ОП</li>
+                                    <li>Полное тех. сопровождение (CRM, интеграции)</li>
+                                </ul>
+                                <div style="margin-top: 20px; font-size: 14px; color: #666;">
+                                    <strong>Результат:</strong> Рост продаж за 2 месяца. Контроль воронки
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- О команде -->
+            <section class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <span class="section-icon">👥</span>
+                        <span>О КОМАНДЕ</span>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        
+                        <p style="font-size: 16px; line-height: 1.8; margin-bottom: 20px;">
+                            <strong>WEBNOSTRA PERFORMANCE</strong> — узкоспециализированная трафик-команда.
+                        </p>
+                        
+                        <p style="font-size: 15px; line-height: 1.8; margin-bottom: 25px; color: #555;">
+                            За счет отсутствия громоздкой структуры обычных маркетинговых агентств и правильного выбора проектов, с которыми мы работаем, наша команда делает реально прибыльный digital-маркетинг для своих клиентов за справедливую цену.
+                        </p>
+
+                        <div class="cards-grid">
+                            <div class="card">
+                                <div class="card-title">Наш показатель LifeTime клиентов</div>
+                                <div class="card-text">
+                                    С нами сотрудничают в среднем <strong>1,5 года</strong>.<br>
+                                    Есть клиенты, которые уже более <strong>трех лет</strong> с нами зарабатывают деньги.
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-title">Почему выбирают нас</div>
+                                <div class="card-text">
+                                    ✓ Фокус на ROI, а не на показах<br>
+                                    ✓ Прозрачная отчетность и доступ к кабинетам<br>
+                                    ✓ Быстрый старт: от брифа до первых лидов — 10-14 дней<br>
+                                    ✓ Опыт работы с B2B-лидогенерацией в фитнес-индустрии
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="contact-title">Готовы начать?</h2>
+            <p class="contact-text">Свяжитесь с нами для обсуждения деталей проекта</p>
+            <div class="contact-buttons">
+                <a href="https://t.me/magosh_al" class="contact-btn" target="_blank">
+                    ✈️ Написать в Telegram
+                </a>
+                <a href="https://wa.me/77066671426" class="contact-btn" target="_blank">
+                    📱 Написать в WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2025 WEBNOSTRA PERFORMANCE | Боевой план лидогенерации EMS Future Fitness Club</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.parentElement;
+            section.classList.toggle('active');
+        }
+
+        // Открыть первую секцию по умолчанию
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.section');
+            if (firstSection && !firstSection.classList.contains('active')) {
+                firstSection.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
