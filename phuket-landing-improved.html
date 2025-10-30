@@ -2221,42 +2221,48 @@
             }
         }
         
-        // Инициализация placeholder при загрузке
+        // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', function() {
             updatePhonePlaceholder();
             detectCountryByIP(); // Автоопределение страны
+            
+            // Обновление placeholder при смене страны
+            document.getElementById('countryCode').addEventListener('change', function() {
+                updatePhonePlaceholder();
+                // Очищаем поле ввода при смене страны
+                document.getElementById('phoneNumber').value = '';
+            });
+            
+            // Real-time валидация при вводе номера
+            document.getElementById('phoneNumber').addEventListener('input', function(e) {
+                const countrySelect = document.getElementById('countryCode');
+                const selectedOption = countrySelect.options[countrySelect.selectedIndex];
+                const expectedLength = selectedOption.getAttribute('data-length');
+                const cleanedPhone = e.target.value.replace(/\D/g, '');
+                
+                // Определяем максимальную длину
+                let maxLen;
+                if (expectedLength.includes('-')) {
+                    maxLen = parseInt(expectedLength.split('-')[1]);
+                } else {
+                    maxLen = parseInt(expectedLength);
+                }
+                
+                // Блокируем ввод если превышена длина
+                if (cleanedPhone.length > maxLen) {
+                    e.target.value = cleanedPhone.substring(0, maxLen);
+                }
+            });
         });
         
-        // Обновление placeholder при смене страны
-        document.getElementById('countryCode').addEventListener('change', function() {
+        // Вызываем сразу для инициализации (если DOM уже загружен)
+        if (document.readyState === 'loading') {
+            // Ждем DOMContentLoaded
+        } else {
+            // DOM уже загружен
             updatePhonePlaceholder();
-            // Очищаем поле ввода при смене страны
-            document.getElementById('phoneNumber').value = '';
-        });
-        
-        // Real-time валидация при вводе номера
-        document.getElementById('phoneNumber').addEventListener('input', function(e) {
-            const countrySelect = document.getElementById('countryCode');
-            const selectedOption = countrySelect.options[countrySelect.selectedIndex];
-            const expectedLength = selectedOption.getAttribute('data-length');
-            const cleanedPhone = e.target.value.replace(/\D/g, '');
-            
-            // Определяем максимальную длину
-            let maxLen;
-            if (expectedLength.includes('-')) {
-                maxLen = parseInt(expectedLength.split('-')[1]);
-            } else {
-                maxLen = parseInt(expectedLength);
-            }
-            
-            // Блокируем ввод если превышена длина
-            if (cleanedPhone.length > maxLen) {
-                e.target.value = cleanedPhone.substring(0, maxLen);
-            }
-        });
-        
-        // Вызываем сразу для инициализации
-        updatePhonePlaceholder();
+            detectCountryByIP();
+        }
         
         // ========================================
         // ПЕРЕКЛЮЧЕНИЕ СПОСОБА СВЯЗИ
