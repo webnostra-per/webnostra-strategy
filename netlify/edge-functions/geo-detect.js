@@ -56,14 +56,29 @@ export default async (request, context) => {
   window.addEventListener('DOMContentLoaded', function() {
     const countrySelect = document.getElementById('countryCode');
     if (countrySelect) {
-      // Устанавливаем значение
-      countrySelect.value = detectedPhone;
+      // Сначала ищем по коду страны (data-country)
+      let option = Array.from(countrySelect.options).find(opt => 
+        opt.getAttribute('data-country') === detectedCountry
+      );
       
-      // Триггерим событие change для обновления placeholder
-      const changeEvent = new Event('change', { bubbles: true });
-      countrySelect.dispatchEvent(changeEvent);
+      // Если не нашли по коду страны, ищем по телефонному коду
+      if (!option) {
+        option = Array.from(countrySelect.options).find(opt => 
+          opt.value === detectedPhone
+        );
+      }
       
-      console.log('✅ Страна установлена автоматически:', detectedCountry, '→', detectedPhone);
+      if (option) {
+        countrySelect.value = detectedPhone;
+        
+        // Триггерим событие change для обновления placeholder
+        const changeEvent = new Event('change', { bubbles: true });
+        countrySelect.dispatchEvent(changeEvent);
+        
+        console.log('✅ Страна установлена автоматически:', detectedCountry, '→', detectedPhone);
+      } else {
+        console.warn('⚠️ Страна не найдена в списке:', detectedCountry);
+      }
     } else {
       console.warn('⚠️ Элемент countryCode не найден');
     }
