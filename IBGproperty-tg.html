@@ -123,78 +123,24 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            min-height: 400px;
+            min-height: 500px;
         }
 
         .phone-mockup {
-            width: 280px;
-            height: 570px;
-            background: #1a1a1a;
-            border-radius: 40px;
-            padding: 12px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-            position: relative;
+            max-width: 400px;
+            width: 100%;
             transition: transform 0.3s ease;
+            filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.3));
         }
 
         .phone-mockup:hover {
-            transform: scale(1.05) rotateY(5deg);
+            transform: scale(1.05) translateY(-10px);
         }
 
-        .phone-screen {
+        .phone-mockup img {
             width: 100%;
-            height: 100%;
-            background: white;
-            border-radius: 32px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .telegram-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .channel-info {
-            padding: 20px 16px;
-            background: #f7fafc;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .channel-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #1a202c;
-            margin-bottom: 4px;
-        }
-
-        .channel-subtitle {
-            font-size: 12px;
-            color: #718096;
-        }
-
-        .property-images {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            padding: 16px;
-        }
-
-        .property-image {
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(135deg, #e0e7ff 0%, #cfd9ff 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
+            height: auto;
+            display: block;
         }
 
         .cta-section {
@@ -293,13 +239,7 @@
             }
 
             .phone-mockup {
-                width: 240px;
-                height: 490px;
-            }
-
-            .property-image {
-                height: 80px;
-                font-size: 24px;
+                max-width: 280px;
             }
 
             .cta-button {
@@ -329,17 +269,11 @@
             }
 
             .mockup-section {
-                min-height: 350px;
+                min-height: 400px;
             }
 
             .phone-mockup {
-                width: 200px;
-                height: 410px;
-            }
-
-            .property-image {
-                height: 60px;
-                font-size: 20px;
+                max-width: 300px;
             }
         }
     </style>
@@ -355,7 +289,7 @@
         
         <p class="subtitle">
             Лучшие объекты со всего Королевства в одном Telegram-канале<br>
-            От студии в ипотеку до виллы прямо на берегу моря
+            От студии в ипотеку до виллы прямо на берегу океана
         </p>
 
         <div class="benefits">
@@ -372,24 +306,7 @@
 
         <div class="mockup-section">
             <div class="phone-mockup">
-                <div class="phone-screen">
-                    <div class="telegram-header">
-                        <span>17:45</span>
-                        <span>🛜 LTE</span>
-                    </div>
-                    
-                    <div class="channel-info">
-                        <div class="channel-title">🔥 Недвижимость Таиланд...</div>
-                        <div class="channel-subtitle">Загородные особняки, апартменты и категории</div>
-                    </div>
-
-                    <div class="property-images">
-                        <div class="property-image">🏖️</div>
-                        <div class="property-image">🏠</div>
-                        <div class="property-image">🌴</div>
-                        <div class="property-image">🏊</div>
-                    </div>
-                </div>
+                <img src="mockup.png" alt="Telegram Channel Mockup">
             </div>
         </div>
 
