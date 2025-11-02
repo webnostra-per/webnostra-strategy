@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 Горячая недвижимость Таиланда</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 32px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .hook-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: #1a202c;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .benefits {
+            margin: 40px 0;
+        }
+
+        .benefit-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 24px;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .benefit-item:hover::before {
+            opacity: 1;
+        }
+
+        .benefit-item::after {
+            content: '✓';
+            margin-right: 16px;
+            font-size: 24px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .mockup-section {
+            margin: 60px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .phone-mockup {
+            width: 280px;
+            height: 570px;
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .phone-mockup:hover {
+            transform: scale(1.05) rotateY(5deg);
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .telegram-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .channel-info {
+            padding: 20px 16px;
+            background: #f7fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .channel-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 4px;
+        }
+
+        .channel-subtitle {
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .property-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            padding: 16px;
+        }
+
+        .property-image {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #cfd9ff 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #0088cc 0%, #229ED9 100%);
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            padding: 18px 48px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0, 136, 204, 0.4);
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 136, 204, 0.5);
+            background: linear-gradient(135deg, #229ED9 0%, #0088cc 100%);
+        }
+
+        .telegram-icon {
+            width: 28px;
+            height: 28px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0088cc;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .cta-subtext {
+            margin-top: 16px;
+            font-size: 14px;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            z-index: -1;
+        }
+
+        .circle-1 {
+            width: 200px;
+            height: 200px;
+            top: -50px;
+            right: -50px;
+        }
+
+        .circle-2 {
+            width: 150px;
+            height: 150px;
+            bottom: -30px;
+            left: -30px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 24px;
+                border-radius: 24px;
+            }
+
+            .hook-badge {
+                display: block;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 32px;
+                text-align: center;
+            }
+
+            .subtitle {
+                font-size: 16px;
+                text-align: center;
+            }
+
+            .benefit-item {
+                font-size: 16px;
+                padding: 16px 20px;
+            }
+
+            .phone-mockup {
+                width: 240px;
+                height: 490px;
+            }
+
+            .property-image {
+                height: 80px;
+                font-size: 24px;
+            }
+
+            .cta-button {
+                font-size: 18px;
+                padding: 16px 36px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 32px 20px;
+            }
+
+            .hook-badge {
+                display: block;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 28px;
+                text-align: center;
+            }
+
+            .subtitle {
+                font-size: 15px;
+                text-align: center;
+            }
+
+            .mockup-section {
+                min-height: 350px;
+            }
+
+            .phone-mockup {
+                width: 200px;
+                height: 410px;
+            }
+
+            .property-image {
+                height: 60px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="decorative-circle circle-1"></div>
+        <div class="decorative-circle circle-2"></div>
+        
+        <div class="hook-badge">🔥 КАНАЛ №1</div>
+        
+        <h1>Горячая недвижимость Таиланда 🔥</h1>
+        
+        <p class="subtitle">
+            Лучшие объекты со всего Королевства в одном Telegram-канале<br>
+            От студии в ипотеку до виллы прямо на берегу океана
+        </p>
+
+        <div class="benefits">
+            <div class="benefit-item">
+                Показываем то, что не показывают в рекламе
+            </div>
+            <div class="benefit-item">
+                Только отборные квартиры и виллы от агентства IBG Property
+            </div>
+            <div class="benefit-item">
+                Полезная информация для покупателей и инвесторов
+            </div>
+        </div>
+
+        <div class="mockup-section">
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <div class="telegram-header">
+                        <span>17:45</span>
+                        <span>🛜 LTE</span>
+                    </div>
+                    
+                    <div class="channel-info">
+                        <div class="channel-title">🔥 Недвижимость Таиланд...</div>
+                        <div class="channel-subtitle">Загородные особняки, апартменты и категории</div>
+                    </div>
+
+                    <div class="property-images">
+                        <div class="property-image">🏖️</div>
+                        <div class="property-image">🏠</div>
+                        <div class="property-image">🌴</div>
+                        <div class="property-image">🏊</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <a href="https://t.me/your_channel" class="cta-button">
+                <span class="telegram-icon">✈️</span>
+                Перейти в канал
+            </a>
+            <div class="cta-subtext">
+                5000 человек уже следят за обновлениями!
+            </div>
+        </div>
+    </div>
+</body>
+</html>
