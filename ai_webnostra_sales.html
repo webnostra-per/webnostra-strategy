@@ -152,9 +152,37 @@
         }
 
         .advantages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            display: flex;
             gap: 30px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .advantages-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .advantages-grid::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .advantages-grid::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+        }
+
+        .advantages-grid::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(90deg, #5568d3 0%, #65408b 100%);
+        }
+
+        @media (max-width: 1024px) {
+            .advantages-grid {
+                gap: 20px;
+            }
         }
 
         .advantage-card {
@@ -166,6 +194,9 @@
             border: 2px solid #e2e8f0;
             position: relative;
             overflow: hidden;
+            min-width: 280px;
+            flex: 0 0 280px;
+            scroll-snap-align: start;
         }
 
         .advantage-card::before {
@@ -458,7 +489,13 @@
             }
 
             .advantages-grid {
-                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 10px 0;
+            }
+
+            .advantage-card {
+                min-width: 250px;
+                flex: 0 0 250px;
             }
 
             .contact-buttons,
