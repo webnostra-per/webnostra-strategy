@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боевой план VK рекламы | IBW-BASIC.COM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gradient-start: #667eea;
+            --gradient-end: #764ba2;
+            --dark-bg: #1a1a2e;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-dark: #2d3748;
+            --text-light: #ffffff;
+            --accent: #667eea;
+            --hover-accent: #5568d3;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: var(--text-light);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .meta-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .meta-item strong {
+            display: block;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .meta-item span {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--accent);
+        }
+
+        /* Content */
+        .content {
+            padding: 40px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .section-header .toggle-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .section-header.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            background: white;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .section-content.active {
+            padding: 25px;
+            max-height: 5000px;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+        }
+
+        .card h3 {
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .card ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Points List */
+        .points-list {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .points-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .points-list li:last-child {
+            border-bottom: none;
+        }
+
+        .points-list li:before {
+            content: "•";
+            position: absolute;
+            left: 10px;
+            color: var(--accent);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        /* Journey */
+        .journey {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .journey-point {
+            flex: 1;
+            min-width: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .journey-arrow {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        /* Messages */
+        .message-card {
+            background: white;
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .message-card:hover {
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+            transform: translateX(5px);
+        }
+
+        .message-number {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:hover {
+            background: #f7fafc;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 20px 0;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 30px;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--accent);
+        }
+
+        .timeline-item h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+        }
+
+        .timeline-item ul li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .timeline-item ul li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .pricing-card h3 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .pricing-card .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 20px 0;
+        }
+
+        .pricing-card .period {
+            color: #718096;
+            font-size: 1rem;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .pricing-card ul li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            border-bottom: 1px solid #f7fafc;
+        }
+
+        .pricing-card ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .pricing-card .recommended {
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        /* AI Services */
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .ai-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .ai-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .ai-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .ai-card .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 15px 0;
+            opacity: 0.9;
+        }
+
+        .ai-card h4 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .ai-card ul {
+            list-style: none;
+        }
+
+        .ai-card ul li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .ai-card ul li:before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .ai-card .result {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        /* Contact */
+        .contact-section {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .contact-btn {
+            background: white;
+            color: var(--accent);
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Note Box */
+        .note-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .note-box strong {
+            color: #856404;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .header-meta {
+                gap: 15px;
+            }
+
+            .journey {
+                flex-direction: column;
+            }
+
+            .journey-arrow {
+                transform: rotate(90deg);
+            }
+
+            .pricing-grid,
+            .ai-grid,
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .action-buttons,
+            .btn,
+            .toggle-icon {
+                display: none !important;
+            }
+
+            .section-content {
+                max-height: none !important;
+                padding: 25px !important;
+                display: block !important;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .section-header {
+                background: var(--gradient-start) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        /* Utility */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #667eea 0%, transparent 100%);
+            background-size: 100% 40%;
+            background-repeat: no-repeat;
+            background-position: 0 85%;
+            padding: 2px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Боевой план VK рекламы + Яндекс.Директ</h1>
+            <p>Комплексная стратегия привлечения клиентов для IBW-BASIC.COM</p>
+            
+            <div class="header-meta">
+                <div class="meta-item">
+                    <strong>Клиент</strong>
+                    <span>IBW-BASIC.COM</span>
+                </div>
+                <div class="meta-item">
+                    <strong>Каналы</strong>
+                    <span>VK Реклама + Яндекс.Директ</span>
+                </div>
+                <div class="meta-item">
+                    <strong>Цель</strong>
+                    <span>Выручка +1 млн ₽</span>
+                </div>
+                <div class="meta-item">
+                    <strong>Запуск</strong>
+                    <span>5 дней</span>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="https://webnostra-team.netlify.app/cases" class="btn btn-primary" target="_blank">
+                    📊 Посмотреть кейсы
+                </a>
+                <a href="#" class="btn btn-secondary" onclick="window.print(); return false;">
+                    📄 Скачать PDF
+                </a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Точка A -->
+            <div class="section">
+                <div class="section-header active" onclick="toggleSection(this)">
+                    <h2>Точка A: Текущая ситуация</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content active">
+                    <ul class="points-list">
+                        <li>10 лет работы в офлайн-формате с физической точкой в Екатеринбурге и партнерами в Москве</li>
+                        <li>Нулевой опыт онлайн-продаж и привлечения трафика через digital-каналы</li>
+                        <li>Отсутствие понимания стоимости лида и Unit-экономики онлайн-продаж</li>
+                        <li>Скептическое отношение к контекстной рекламе, требуется доказать экспертность</li>
+                        <li>Есть техническая база: сайт на Битрикс, онлайн-касса, подключается телефония</li>
+                        <li>УТП: бесплатный подбор базового гардероба (средний чек 50-60к руб за комплект)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Точка Б -->
+            <div class="section">
+                <div class="section-header active" onclick="toggleSection(this)">
+                    <h2>Точка Б: Куда идем</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content active">
+                    <div class="journey">
+                        <div class="journey-point">
+                            <h3>167 лидов</h3>
+                            <p>Квалифицированных в месяц</p>
+                        </div>
+                        <div class="journey-arrow">→</div>
+                        <div class="journey-point">
+                            <h3>800-1200 ₽</h3>
+                            <p>Средний CPL</p>
+                        </div>
+                        <div class="journey-arrow">→</div>
+                        <div class="journey-point">
+                            <h3>12%</h3>
+                            <p>Конверсия в продажу</p>
+                        </div>
+                        <div class="journey-arrow">→</div>
+                        <div class="journey-point">
+                            <h3>20 продаж</h3>
+                            <p>По 50 000 ₽</p>
+                        </div>
+                        <div class="journey-arrow">→</div>
+                        <div class="journey-point">
+                            <h3>+1 млн ₽</h3>
+                            <p>Выручка за месяц</p>
+                        </div>
+                    </div>
+                    
+                    <ul class="points-list">
+                        <li>Стабильный поток ~167 квалифицированных лидов в месяц по средней цене 800-1200 рублей</li>
+                        <li>Конверсия из лида в продажу 12%, что дает 20 продаж по среднему чеку 50 000 ₽</li>
+                        <li>Целевая выручка: +1 000 000 рублей в месяц</li>
+                        <li>Бюджет на привлечение: 200 000 ₽ (тест) → 500 000 ₽ (масштабирование)</li>
+                        <li>Отлаженная система квалификации через мессенджеры с AI-ассистентом</li>
+                        <li>База подписчиков в VK для повторных продаж и допродаж</li>
+                        <li>Эффективная связка VK (40% бюджета) + Яндекс.Директ (60% бюджета)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Тактика продвижения -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>Тактика продвижения</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="card-grid">
+                        <div class="card">
+                            <h3>🌍 Гео таргетинг</h3>
+                            <ul>
+                                <li><strong>Екатеринбург + 50км</strong> — база с физической точкой</li>
+                                <li><strong>Москва</strong> — есть партнеры, высокая платежеспособность</li>
+                                <li><strong>СПб, Казань, Новосибирск</strong> — города-миллионники</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>👥 Целевой портрет</h3>
+                            <ul>
+                                <li>Женщины 28-45 лет</li>
+                                <li>Доход средний+ и выше</li>
+                                <li>Интересы: мода, стиль, личностный рост</li>
+                                <li>Подписаны на fashion-блогеров</li>
+                                <li>Нехватка времени на шопинг</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>📊 Распределение бюджета</h3>
+                            <ul>
+                                <li><strong>VK Реклама — 40%</strong> прогрев + лидогенерация</li>
+                                <li><strong>Яндекс.Директ — 60%</strong> горячий спрос + РСЯ</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>🎨 Форматы</h3>
+                            <ul>
+                                <li>Карусель: до/после</li>
+                                <li>Видео: 15-30 сек</li>
+                                <li>Статика: инфографика</li>
+                                <li>Поиск Яндекс: текстово-графические</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--accent); margin-top: 30px; margin-bottom: 15px;">Структура кампаний</h3>
+                    
+                    <div class="card-grid">
+                        <div class="card" style="border-left-color: #667eea;">
+                            <h3 style="color: #667eea;">VK Реклама (40% бюджета)</h3>
+                            <p><strong>Воронка 1: Подписчики в сообщество</strong></p>
+                            <ul>
+                                <li>Прогрев холодной аудитории</li>
+                                <li>Контент: разборы образов, лайфхаки</li>
+                                <li>CPF: 50₽/подписчик</li>
+                            </ul>
+                            <p style="margin-top: 15px;"><strong>Воронка 2: Лидогенерация</strong></p>
+                            <ul>
+                                <li>Прямой оффер с квизом</li>
+                                <li>Бесплатный подбор гардероба</li>
+                                <li>CPL: 400₽/сообщение</li>
+                            </ul>
+                        </div>
+
+                        <div class="card" style="border-left-color: #ff0000;">
+                            <h3 style="color: #ff0000;">Яндекс.Директ (60% бюджета)</h3>
+                            <p><strong>Кампания 1: Поиск</strong></p>
+                            <ul>
+                                <li>Тематика: "подбор базового гардероба", "капсульный гардероб"</li>
+                                <li>Высокое намерение покупки</li>
+                                <li>Цель: заявки и звонки</li>
+                            </ul>
+                            <p style="margin-top: 15px;"><strong>Кампания 2: РСЯ</strong></p>
+                            <ul>
+                                <li>Fashion-аудитория, мода, имидж</li>
+                                <li>Ретаргетинг и Look-alike</li>
+                                <li>Баннеры 1080×1080</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--accent); margin-top: 30px; margin-bottom: 15px;">5 сильных месседжей</h3>
+                    
+                    <div class="message-card">
+                        <span class="message-number">1</span>
+                        <strong>Ценность:</strong> "Подбираем базовый гардероб бесплатно — вы платите только за вещи, которые решите купить"
+                    </div>
+
+                    <div class="message-card">
+                        <span class="message-number">2</span>
+                        <strong>Отстройка:</strong> "10 лет работы с гардеробами — знаем, как составить 50 образов из 15 вещей"
+                    </div>
+
+                    <div class="message-card">
+                        <span class="message-number">3</span>
+                        <strong>Экономия:</strong> "Перестаньте покупать вещи, которые не носите. Средний клиент экономит 40% бюджета на одежду"
+                    </div>
+
+                    <div class="message-card">
+                        <span class="message-number">4</span>
+                        <strong>Измеримость:</strong> "87% клиентов возвращаются за следующим сезонным подбором — проверенная система"
+                    </div>
+
+                    <div class="message-card">
+                        <span class="message-number">5</span>
+                        <strong>Следующий шаг:</strong> "Заполните короткий тест за 2 минуты — стилист свяжется в течение часа"
+                    </div>
+
+                    <h3 style="color: var(--accent); margin-top: 30px; margin-bottom: 15px;">4 креативных сюжета</h3>
+                    
+                    <div class="card-grid">
+                        <div class="card">
+                            <h3>1. Проблема-решение</h3>
+                            <p><strong>Смысл:</strong> Шкаф полон, а надеть нечего → 15 базовых вещей заменяют 50 ненужных</p>
+                            <p><strong>Визуал:</strong> Сплит-экран — хаос в шкафу / капсульный гардероб</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>2. Трансформация</h3>
+                            <p><strong>Смысл:</strong> Реальный кейс — стильно каждый день без усилий</p>
+                            <p><strong>Визуал:</strong> Видео "неделя образов", таймлапс луков</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>3. Экспертность</h3>
+                            <p><strong>Смысл:</strong> 10 лет опыта, сотни довольных клиентов</p>
+                            <p><strong>Визуал:</strong> Карусель отзывов до/после, "127 гардеробов в 2024"</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>4. Бесплатная ценность</h3>
+                            <p><strong>Смысл:</strong> Получите консультацию стилиста бесплатно</p>
+                            <p><strong>Визуал:</strong> Стилист за работой, счастливый клиент</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Бенчмарк и прогноз -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>Бенчмарк стоимости лида и прогноз</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <h3 style="color: var(--accent); margin-bottom: 15px;">Реалистичные показатели для ниши</h3>
+                    
+                    <div class="card-grid">
+                        <div class="card">
+                            <h3>CPF (подписчик VK)</h3>
+                            <p style="font-size: 2rem; color: var(--accent); font-weight: bold;">50-70 ₽</p>
+                        </div>
+                        <div class="card">
+                            <h3>CPL (сообщение в VK)</h3>
+                            <p style="font-size: 2rem; color: var(--accent); font-weight: bold;">300-500 ₽</p>
+                        </div>
+                        <div class="card">
+                            <h3>CPL (квалиф. лид)</h3>
+                            <p style="font-size: 2rem; color: var(--accent); font-weight: bold;">1500-2500 ₽</p>
+                        </div>
+                        <div class="card">
+                            <h3>Конверсия в продажу</h3>
+                            <p style="font-size: 2rem; color: var(--accent); font-weight: bold;">10-15%</p>
+                        </div>
+                    </div>
+
+                    <div class="note-box">
+                        <strong>Математика достижения цели +1 млн ₽:</strong><br>
+                        Цель: 1 000 000 ₽ выручки → Средний чек: 50 000 ₽ → Нужно: 20 продаж<br>
+                        При конверсии 12% из лида в продажу → Требуется: ~167 квалифицированных лидов<br>
+                        Средний CPL 800-1200₽ → Бюджет на привлечение: 134 000 - 200 000 ₽<br>
+                        <strong>ROI при бюджете 200к:</strong> (1 млн - 200к) / 200к × 100% = 400% 💰
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Показатель</th>
+                                    <th>Период 1: 200 000 ₽</th>
+                                    <th>Период 2: 500 000 ₽</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background: #f0f4ff;">
+                                    <td colspan="3"><strong>VK Реклама (40% бюджета)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Бюджет VK</strong></td>
+                                    <td>80 000 ₽</td>
+                                    <td>200 000 ₽</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Подписчики VK</strong> (30% от VK)</td>
+                                    <td>400 чел (CPF 60₽)</td>
+                                    <td>1000 чел</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Сообщения VK</strong> (70% от VK)</td>
+                                    <td>140 шт (CPL 400₽)</td>
+                                    <td>350 шт</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Квалифиц. лиды VK</strong> (40% конверсия)</td>
+                                    <td>56 шт (CPL 1430₽)</td>
+                                    <td>140 шт</td>
+                                </tr>
+                                <tr style="background: #fff5f5;">
+                                    <td colspan="3"><strong>Яндекс.Директ (60% бюджета)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Бюджет Яндекс</strong></td>
+                                    <td>120 000 ₽</td>
+                                    <td>300 000 ₽</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Лиды Поиск</strong> (50% бюджета)</td>
+                                    <td>75-109 шт (CPL 550-800₽)</td>
+                                    <td>187-273 шт</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Лиды РСЯ</strong> (50% бюджета)</td>
+                                    <td>35-55 шт (CPL 1100-1700₽)</td>
+                                    <td>88-136 шт</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Всего лидов Яндекс</strong></td>
+                                    <td>110-164 шт</td>
+                                    <td>275-409 шт</td>
+                                </tr>
+                                <tr style="background: #f0fff4;">
+                                    <td colspan="3"><strong>Итоговые показатели</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Всего квал. лидов</strong></td>
+                                    <td>166-220 шт</td>
+                                    <td>415-549 шт</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Средний CPL</strong></td>
+                                    <td>909-1205 ₽</td>
+                                    <td>911-1205 ₽</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Продажи</strong> (конверсия 12%)</td>
+                                    <td>20-26 шт</td>
+                                    <td>50-66 шт</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Выручка</strong> (чек 50 000 ₽)</td>
+                                    <td>1 000 000 - 1 300 000 ₽</td>
+                                    <td>2 500 000 - 3 300 000 ₽</td>
+                                </tr>
+                                <tr style="background: #f0fff4;">
+                                    <td><strong>ROI</strong></td>
+                                    <td><strong style="color: #48bb78;">400-550%</strong></td>
+                                    <td><strong style="color: #48bb78;">400-560%</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="note-box">
+                        <strong>Примечание:</strong> Показатели достижимы при качественных креативах и оперативной обработке лидов. После 2 недель работы ожидается снижение CPL на 15-25% за счет оптимизации.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Следующие шаги -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>Следующие шаги</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>День 1-2: Подготовка</h4>
+                            <ul>
+                                <li>Подписание договора и бриф</li>
+                                <li>Настройка доступов к VK кабинету и аналитике</li>
+                                <li>Разработка квиза для квалификации (7 вопросов)</li>
+                                <li>Подготовка скриптов обработки лидов для менеджеров</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h4>День 3-4: Производство</h4>
+                            <ul>
+                                <li>Создание 12 креативов (3 формата × 4 сюжета)</li>
+                                <li>Написание 8 вариантов текстов объявлений</li>
+                                <li>Настройка 4 кампаний (2 на сообщество, 2 на лидген)</li>
+                                <li>Подключение сквозной аналитики</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h4>День 5: Запуск</h4>
+                            <ul>
+                                <li>Модерация объявлений</li>
+                                <li>Запуск тестовых кампаний с бюджетом 3000 руб/день</li>
+                                <li>Настройка уведомлений о новых лидах</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h4>День 6-10: Тестирование</h4>
+                            <ul>
+                                <li>A/B тест офферов и креативов</li>
+                                <li>Анализ качества трафика по гео</li>
+                                <li>Отключение неэффективных связок</li>
+                                <li>Масштабирование успешных кампаний</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h4>День 11-30: Оптимизация</h4>
+                            <ul>
+                                <li>Еженедельные отчеты по ключевым метрикам</li>
+                                <li>Запуск ретаргетинга на подписчиков</li>
+                                <li>Тестирование lookalike-аудиторий</li>
+                                <li>Корректировка ставок и аудиторий</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Тарифы -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>Тарифы сотрудничества</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <h3>Тариф "Старт"</h3>
+                            <div class="price">$450<span class="period">/месяц</span></div>
+                            <p style="color: #718096; margin-bottom: 20px;">Тест ниши и быстрые заявки</p>
+                            <ul>
+                                <li>Анализ ниши и конкурентов</li>
+                                <li>Тексты, креативы, сценарии</li>
+                                <li>Запуск рекламы (VK + Яндекс)</li>
+                                <li>Подключение аналитики и пикселей</li>
+                                <li>Настройка медиаплана</li>
+                                <li>Оптимизация под первые результаты</li>
+                            </ul>
+                            <p style="margin-top: 20px; color: var(--accent); font-weight: 600;">Рекламный бюджет: от $500</p>
+                            <p style="margin-top: 10px; color: #48bb78; font-weight: 600;">✓ Возврат денег, если нет заявок</p>
+                        </div>
+
+                        <div class="pricing-card">
+                            <span class="recommended">Рекомендуем</span>
+                            <h3>Тариф "База"</h3>
+                            <div class="price">$900<span class="period">/месяц</span></div>
+                            <p style="color: #718096; margin-bottom: 20px;">Система заявок и контроль качества</p>
+                            <ul>
+                                <li>Все из тарифа "Старт"</li>
+                                <li>Построение воронки: реклама → квиз → лендинг → CRM</li>
+                                <li>Создание посадочной страницы (до 10 блоков)</li>
+                                <li>Подключение AI-квалификатора тариф Small</li>
+                                <li>Аудит CRM и автоматизация</li>
+                                <li>Аналитика CPL, CPA, CTR, ROMI</li>
+                                <li>Тестирование гипотез и сценариев</li>
+                            </ul>
+                            <p style="margin-top: 20px; color: var(--accent); font-weight: 600;">Рекламный бюджет: от $700</p>
+                            <p style="margin-top: 10px; color: #48bb78; font-weight: 600;">✓ Минимум 25 целевых лидов или доработка за наш счет</p>
+                        </div>
+
+                        <div class="pricing-card">
+                            <h3>Тариф "Эксперт"</h3>
+                            <div class="price">$1 890<span class="period">/месяц</span></div>
+                            <p style="color: #718096; margin-bottom: 20px;">Маркетинг и продажи под ключ</p>
+                            <ul>
+                                <li>Все из тарифа "База"</li>
+                                <li>Подключение AI-РОП (контроль лидов и ОП)</li>
+                                <li>6-часовая стратегия роста с маркетинг-директором</li>
+                                <li>Несколько лендингов под сегменты</li>
+                                <li>Глубокий разбор и улучшение воронки</li>
+                                <li>Тренинг отдела продаж или аудит ОП</li>
+                                <li>Полное тех. сопровождение (CRM, интеграции, аналитика)</li>
+                            </ul>
+                            <p style="margin-top: 20px; color: var(--accent); font-weight: 600;">Рекламный бюджет: от $3 000</p>
+                            <p style="margin-top: 10px; color: #48bb78; font-weight: 600;">✓ Рост продаж за 2 месяца или возврат средств</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI-автоматизация -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>AI-автоматизация вашего бизнеса</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <p style="text-align: center; font-size: 1.1rem; margin-bottom: 30px; color: var(--text-dark);">
+                        <strong>Улучшение процесса квалификации, продаж и других бизнес-процессов</strong>
+                    </p>
+                    <p style="text-align: center; margin-bottom: 30px;">
+                        Автоматизируйте рутину и масштабируйте отдел продаж без найма новых сотрудников. Внедряем искусственный интеллект, который обучается на ваших данных и работает 24/7
+                    </p>
+
+                    <div class="ai-grid">
+                        <div class="ai-card">
+                            <h3>Тариф 1: AI-квалификатор</h3>
+                            <div class="price">От $300</div>
+                            <p>Круглосуточная обработка входящих запросов</p>
+                            
+                            <h4>Что делает:</h4>
+                            <ul>
+                                <li>Мгновенно отвечает на входящие сообщения</li>
+                                <li>Квалифицирует лиды по критериям</li>
+                                <li>Создает задачи для менеджеров</li>
+                                <li>Заполняет карточки в CRM</li>
+                                <li>Определяет качество трафика</li>
+                            </ul>
+                            
+                            <div class="result">
+                                <strong>Результат:</strong> ни один лид не теряется, менеджеры работают только с теплыми клиентами
+                            </div>
+                        </div>
+
+                        <div class="ai-card">
+                            <h3>Тариф 2: AI-продавец</h3>
+                            <div class="price">От $500</div>
+                            <p>Голосовой помощник для звонков</p>
+                            
+                            <h4>Что делает:</h4>
+                            <ul>
+                                <li>Принимает входящие звонки</li>
+                                <li>Совершает исходящие звонки</li>
+                                <li>Квалифицирует по телефону</li>
+                                <li>Записывает на встречи</li>
+                                <li>Обрабатывает возражения</li>
+                            </ul>
+                            
+                            <div class="result">
+                                <strong>Результат:</strong> менеджеры освобождены от рутинных звонков
+                            </div>
+                        </div>
+
+                        <div class="ai-card">
+                            <h3>Тариф 3: Умный контроль</h3>
+                            <div class="price">От $700</div>
+                            <p>Автоматический аудит разговоров</p>
+                            
+                            <h4>Что делает:</h4>
+                            <ul>
+                                <li>Прослушивает 100% звонков</li>
+                                <li>Анализирует видеовстречи</li>
+                                <li>Выявляет отклонения от скриптов</li>
+                                <li>Фиксирует ошибки менеджеров</li>
+                                <li>Отправляет уведомления</li>
+                                <li>Формирует отчеты по качеству</li>
+                            </ul>
+                            
+                            <div class="result">
+                                <strong>Результат:</strong> вы видите все проблемы без прослушивания сотен часов записей
+                            </div>
+                        </div>
+
+                        <div class="ai-card">
+                            <h3>Тариф 4: Индивидуальная AI-автоматизация</h3>
+                            <div class="price">Индивидуально</div>
+                            <p>Любые AI-решения под ваш бизнес</p>
+                            
+                            <h4>Примеры задач:</h4>
+                            <ul>
+                                <li>Формирование коммерческих предложений</li>
+                                <li>Анализ обратной связи клиентов</li>
+                                <li>Предиктивная аналитика продаж</li>
+                                <li>Умные чат-боты для техподдержки</li>
+                                <li>Автоматизация документооборота</li>
+                                <li>Персонализация коммуникаций</li>
+                            </ul>
+                            
+                            <div class="result">
+                                <strong>Результат:</strong> решаем уникальные задачи вашего бизнеса с помощью AI
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <a href="https://ai.webnostra.kz/consulting" class="btn btn-primary" target="_blank" style="display: inline-flex;">
+                            Подробнее о нейросетях →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- О команде -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>О команде WEBNOSTRA PERFORMANCE</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <h3 style="color: var(--accent); margin-bottom: 15px;">Узкоспециализированная трафик-команда</h3>
+                    
+                    <p style="margin-bottom: 20px; line-height: 1.8;">
+                        За счет отсутствия громоздкой структуры обычных маркетинговых агентств и правильного выбора проектов, с которыми мы работаем, наша команда делает реально прибыльный digital-маркетинг для своих клиентов за справедливую цену.
+                    </p>
+
+                    <div class="card-grid">
+                        <div class="card">
+                            <h3>📊 Наш показатель LifeTime</h3>
+                            <ul>
+                                <li>С нами сотрудничают в среднем 1,5 года</li>
+                                <li>Есть клиенты более трех лет</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <h3>⭐ Почему выбирают нас</h3>
+                            <ul>
+                                <li>Фокус на ROI, а не на показах</li>
+                                <li>Прозрачная отчетность</li>
+                                <li>Быстрый старт: 10-14 дней</li>
+                                <li>Опыт в fashion-индустрии и подборе гардероба</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Контакты -->
+            <div class="contact-section">
+                <h2>Готовы начать?</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 10px;">Свяжитесь с нами для обсуждения деталей проекта</p>
+                
+                <div class="contact-buttons">
+                    <a href="https://t.me/magosh_al" class="contact-btn" target="_blank">
+                        ✈️ Написать в Telegram
+                    </a>
+                    <a href="https://wa.me/77066671426" class="contact-btn" target="_blank">
+                        📱 Написать в WhatsApp
+                    </a>
+                </div>
+
+                <p style="margin-top: 25px; opacity: 0.9;">
+                    WEBNOSTRA PERFORMANCE © 2025
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            const isActive = content.classList.contains('active');
+            
+            // Toggle active class
+            if (isActive) {
+                content.classList.remove('active');
+                header.classList.remove('active');
+            } else {
+                content.classList.add('active');
+                header.classList.add('active');
+            }
+        }
+
+        // Open first few sections by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            // Open first 2 sections by default
+            for (let i = 0; i < Math.min(2, sections.length); i++) {
+                const header = sections[i].querySelector('.section-header');
+                const content = sections[i].querySelector('.section-content');
+                header.classList.add('active');
+                content.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
