@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Коммерческое предложение по продвижению — WEBNOSTRA PERFORMANCE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #f7fafc;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .header p {
+            font-size: 20px;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+
+        .header .subtext {
+            font-size: 16px;
+            opacity: 0.85;
+            margin-top: 15px;
+        }
+        
+        .header-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+        
+        .btn-white {
+            background: white;
+            color: #6b46c1;
+        }
+        
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: #6b46c1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .intro-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .intro-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .intro-section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .intro-section .goal {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 17px;
+            font-weight: 600;
+        }
+        
+        .channels-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .channel-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 38px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+        
+        .accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .accordion:hover {
+            border-color: #6b46c1;
+            box-shadow: 0 4px 12px rgba(107, 70, 193, 0.1);
+        }
+        
+        .accordion-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 22px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: all 0.3s;
+        }
+        
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #5568d3 0%, #653a8d 100%);
+        }
+        
+        .accordion-header h2 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
+        .accordion-icon {
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+        
+        .accordion.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        
+        .accordion.active .accordion-content {
+            max-height: 5000px;
+        }
+        
+        .accordion-body {
+            padding: 30px;
+        }
+        
+        .accordion-body p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .accordion-body ul {
+            margin: 15px 0 15px 25px;
+        }
+        
+        .accordion-body ul li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .accordion-body strong {
+            color: #6b46c1;
+        }
+
+        .funnel-diagram {
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        .funnel-stage {
+            background: white;
+            border-left: 4px solid #6b46c1;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .funnel-stage h4 {
+            color: #6b46c1;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .funnel-stage p {
+            color: #4a5568;
+            font-size: 15px;
+        }
+
+        .funnel-arrow {
+            text-align: center;
+            font-size: 24px;
+            color: #6b46c1;
+            margin: 10px 0;
+        }
+
+        .channels-diagram {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .channel-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+
+        .channel-card:hover {
+            border-color: #6b46c1;
+            box-shadow: 0 6px 16px rgba(107, 70, 193, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .channel-card h4 {
+            color: #6b46c1;
+            font-size: 20px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .channel-card .channel-type {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .channel-card ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .channel-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .channel-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .channel-card ul li::before {
+            content: "✓";
+            color: #6b46c1;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .deliverable-card {
+            background: #f7fafc;
+            border-left: 4px solid #6b46c1;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .deliverable-card h4 {
+            color: #2d3748;
+            font-size: 17px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .deliverable-card p {
+            color: #4a5568;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .timeline-section {
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+
+        .timeline-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .timeline-content h4 {
+            color: #2d3748;
+            font-size: 18px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .timeline-content p {
+            color: #4a5568;
+            font-size: 15px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .cta-section h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            opacity: 0.95;
+        }
+
+        .proof-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .proof-placeholder {
+            background: #e2e8f0;
+            height: 150px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #718096;
+            font-size: 14px;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .work-examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .work-example-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .work-example-card:hover {
+            border-color: #6b46c1;
+            box-shadow: 0 8px 20px rgba(107, 70, 193, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .work-example-image {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            background: #f7fafc;
+            overflow: hidden;
+        }
+
+        .work-example-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-placeholder {
+            display: none;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+            font-weight: 600;
+        }
+
+        .work-example-caption {
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 15px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .team-member {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .team-number {
+            font-size: 36px;
+            font-weight: 700;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .team-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .team-role {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .tariffs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .tariff-card-new {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        .tariff-card-new:hover {
+            border-color: #6b46c1;
+            box-shadow: 0 8px 24px rgba(107, 70, 193, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .tariff-recommended {
+            border-color: #6b46c1;
+            box-shadow: 0 4px 16px rgba(107, 70, 193, 0.15);
+        }
+
+        .tariff-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .tariff-badge-recommended {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .tariff-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+            min-height: 50px;
+        }
+
+        .tariff-price-big {
+            font-size: 42px;
+            font-weight: 700;
+            color: #6b46c1;
+            margin-bottom: 10px;
+        }
+
+        .tariff-budget {
+            font-size: 14px;
+            color: #718096;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .tariff-section {
+            margin-bottom: 20px;
+        }
+
+        .tariff-label {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #6b46c1;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .tariff-section p {
+            color: #4a5568;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .tariff-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tariff-list li {
+            padding: 8px 0 8px 25px;
+            color: #4a5568;
+            font-size: 14px;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .tariff-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #6b46c1;
+            font-weight: bold;
+        }
+
+        .tariff-guarantee {
+            font-weight: 600;
+            color: #6b46c1;
+        }
+
+        .additional-services {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .service-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 25px;
+            border-bottom: 1px solid #e2e8f0;
+            transition: background 0.2s;
+        }
+
+        .service-row:last-child {
+            border-bottom: none;
+        }
+
+        .service-row:hover {
+            background: #f7fafc;
+        }
+
+        .service-name {
+            color: #2d3748;
+            font-size: 15px;
+            flex: 1;
+        }
+
+        .service-price {
+            color: #6b46c1;
+            font-weight: 700;
+            font-size: 16px;
+            margin-left: 20px;
+        }
+        
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .footer h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .footer p {
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        
+        .telegram {
+            background: #0088cc;
+            color: white;
+        }
+        
+        .telegram:hover {
+            background: #006699;
+            transform: translateY(-2px);
+        }
+        
+        .whatsapp {
+            background: #25D366;
+            color: white;
+        }
+        
+        .whatsapp:hover {
+            background: #1da851;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+            
+            .header p {
+                font-size: 16px;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .accordion-body {
+                padding: 20px;
+            }
+
+            .channels-diagram {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+            }
+
+            .timeline-number {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .tariffs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .work-examples-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .service-price {
+                margin-left: 0;
+            }
+        }
+
+        @media print {
+            .accordion {
+                page-break-inside: avoid;
+            }
+            
+            .accordion-content {
+                max-height: none !important;
+            }
+            
+            .header-buttons,
+            .footer,
+            .accordion-icon {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Коммерческое предложение<br>по продвижению</h1>
+            <p>Настройка и ведение платных рекламных каналов под ключ</p>
+            <p class="subtext">Формирование воронки, привлечение квалифицированных лидов и прогнозируемый рост заявок</p>
+            
+            <div class="header-buttons">
+                <a href="#cases" class="btn btn-white">Посмотреть кейсы</a>
+                <a href="#team" class="btn btn-outline">О команде</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- О проекте -->
+            <div class="intro-section">
+                <h2>🎯 О проекте</h2>
+                <p>Мы настраиваем и ведем платные рекламные каналы под ключ для малого и среднего бизнеса:</p>
+                
+                <div class="channels-list">
+                    <div class="channel-badge">Яндекс Директ</div>
+                    <div class="channel-badge">Meta Ads</div>
+                    <div class="channel-badge">Google Ads</div>
+                    <div class="channel-badge">Telegram Ads</div>
+                    <div class="channel-badge">VK Ads</div>
+                </div>
+
+                <div class="goal">
+                    <strong>🎯 Цель:</strong> Формирование эффективной воронки, привлечение квалифицированных лидов и прогнозируемый рост заявок для вашего бизнеса
+                </div>
+            </div>
+
+            <!-- Статистика команды -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">лет опыта в performance-маркетинге</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">$2.8M+</span>
+                    <span class="stat-label">управляемый рекламный бюджет</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">успешных кейсов</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">От $0.25</span>
+                    <span class="stat-label">стоимость лида CPL</span>
+                </div>
+            </div>
+
+            <!-- Примеры работ -->
+            <div class="accordion" id="cases">
+                <div class="accordion-header">
+                    <h2>📸 Примеры работ</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p style="margin-bottom: 25px;"><strong>Скриншоты работы нашей команды:</strong> дорожные карты, отчеты, анализы конкурентов, техзадания и примеры креативов</p>
+                        
+                        <div class="work-examples-grid">
+                            <div class="work-example-card">
+                                <div class="work-example-image">
+                                    <img src="placeholder1.jpg" alt="Пример дорожной карты" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="image-placeholder">
+                                        📋 Пример дорожной карты перед стартом работы
+                                    </div>
+                                </div>
+                                <p class="work-example-caption">Дорожная карта проекта</p>
+                            </div>
+
+                            <div class="work-example-card">
+                                <div class="work-example-image">
+                                    <img src="placeholder2.jpg" alt="Пример отчета" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="image-placeholder">
+                                        📊 Пример ежемесячного отчета
+                                    </div>
+                                </div>
+                                <p class="work-example-caption">Ежемесячный отчет</p>
+                            </div>
+
+                            <div class="work-example-card">
+                                <div class="work-example-image">
+                                    <img src="placeholder3.jpg" alt="Пример отчета" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="image-placeholder">
+                                        📈 Пример еженедельного отчета
+                                    </div>
+                                </div>
+                                <p class="work-example-caption">Еженедельный отчет</p>
+                            </div>
+
+                            <div class="work-example-card">
+                                <div class="work-example-image">
+                                    <img src="placeholder4.jpg" alt="Конкурентный анализ" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="image-placeholder">
+                                        🔍 Пример конкурентного анализа
+                                    </div>
+                                </div>
+                                <p class="work-example-caption">Конкурентный анализ</p>
+                            </div>
+
+                            <div class="work-example-card">
+                                <div class="work-example-image">
+                                    <img src="placeholder5.jpg" alt="Техническое задание" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="image-placeholder">
+                                        📝 Пример технического задания для съемки видео
+                                    </div>
+                                </div>
+                                <p class="work-example-caption">Техническое задание</p>
+                            </div>
+
+                            <div class="work-example-card">
+                                <div class="work-example-image">
+                                    <img src="placeholder6.jpg" alt="Рекламные креативы" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="image-placeholder">
+                                        🎨 Пример рекламных креативов
+                                    </div>
+                                </div>
+                                <p class="work-example-caption">Примеры креативов</p>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 30px; padding: 20px; background: #f7fafc; border-left: 4px solid #6b46c1; border-radius: 8px; font-size: 15px;">
+                            <strong>💡 Прозрачность работы:</strong> Каждый клиент получает доступ к подробным отчетам, дорожным картам и примерам работ на всех этапах сотрудничества.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- О команде -->
+            <div class="accordion" id="team">
+                <div class="accordion-header">
+                    <h2>👥 О команде</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p style="margin-bottom: 25px; font-size: 17px;"><strong>Команда, которую я задействую для работы над вашим проектом:</strong></p>
+                        
+                        <div class="team-grid">
+                            <div class="team-member">
+                                <div class="team-number">01</div>
+                                <div class="team-name">Магош Альшанский</div>
+                                <div class="team-role">Управляющий директор, руководитель производства WEBNOSTRA</div>
+                            </div>
+
+                            <div class="team-member">
+                                <div class="team-number">02</div>
+                                <div class="team-name">Владислав Марфин</div>
+                                <div class="team-role">Директор отдела клиентского сопровождения</div>
+                            </div>
+
+                            <div class="team-member">
+                                <div class="team-number">03</div>
+                                <div class="team-name">Юлия Гредина</div>
+                                <div class="team-role">Эксперт проектного офиса</div>
+                            </div>
+
+                            <div class="team-member">
+                                <div class="team-number">04</div>
+                                <div class="team-name">Дмитрий Добжанский</div>
+                                <div class="team-role">Руководитель направления рекламы</div>
+                            </div>
+
+                            <div class="team-member">
+                                <div class="team-number">05</div>
+                                <div class="team-name">Марат Шереметов</div>
+                                <div class="team-role">Технический директор группы</div>
+                            </div>
+
+                            <div class="team-member">
+                                <div class="team-number">06</div>
+                                <div class="team-name">Нурмухамед Коков</div>
+                                <div class="team-role">Специалист по поисковому и медийному продвижению в Яндексе</div>
+                            </div>
+
+                            <div class="team-member">
+                                <div class="team-number">07</div>
+                                <div class="team-name">Елена Коренькова</div>
+                                <div class="team-role">Специалист по поисковому и медийному продвижению в Google</div>
+                            </div>
+
+                            <div class="team-member">
+                                <div class="team-number">08</div>
+                                <div class="team-name">Наталья Романова</div>
+                                <div class="team-role">Таргетолог Meta Ads и VK реклама</div>
+                            </div>
+
+                            <div class="team-member">
+                                <div class="team-number">09</div>
+                                <div class="team-name">Исмаил Кенжекеев</div>
+                                <div class="team-role">Технический специалист</div>
+                            </div>
+
+                            <div class="team-member">
+                                <div class="team-number">10</div>
+                                <div class="team-name">Дарина Оводова</div>
+                                <div class="team-role">Дизайнер</div>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 30px;"><strong>WEBNOSTRA PERFORMANCE</strong> — узкоспециализированная трафик-команда.</p>
+                        
+                        <p style="margin-top: 15px;">За счет отсутствия громоздкой структуры обычных маркетинговых агентств и правильного выбора проектов, с которыми мы работаем, наша команда делает реально прибыльный digital-маркетинг для своих клиентов за справедливую цену.</p>
+                        
+                        <p style="margin-top: 20px;"><strong>Наш показатель LifeTime клиентов:</strong></p>
+                        <ul>
+                            <li>С нами сотрудничают в среднем 1,5 года</li>
+                            <li>Есть клиенты, которые уже более трех лет с нами зарабатывают деньги</li>
+                        </ul>
+                        
+                        <p style="margin-top: 20px;"><strong>Почему выбирают нас:</strong></p>
+                        <ul>
+                            <li>Фокус на ROI, а не на показах</li>
+                            <li>Прозрачная отчетность и доступ к кабинетам</li>
+                            <li>Быстрый старт: от брифа до первых лидов — 10-14 дней</li>
+                            <li>Опыт работы в различных нишах и международных рынках</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Этапы работы -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h2>⚙️ Этапы работы</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="timeline-section">
+                            <div class="timeline-item">
+                                <div class="timeline-number">1</div>
+                                <div class="timeline-content">
+                                    <h4>Бриф и анализ ниши</h4>
+                                    <p>Изучаем ваш продукт, целевую аудиторию, конкурентов и особенности рынка. Определяем точки роста и возможности.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-number">2</div>
+                                <div class="timeline-content">
+                                    <h4>Разработка тактики продвижения</h4>
+                                    <p>Формируем индивидуальную стратегию: выбираем каналы, определяем бюджеты, прогнозируем результаты.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-number">3</div>
+                                <div class="timeline-content">
+                                    <h4>Подбор каналов</h4>
+                                    <p>Определяем оптимальную связку рекламных площадок для максимального охвата вашей ЦА.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-number">4</div>
+                                <div class="timeline-content">
+                                    <h4>Создание креативов, лендингов, квизов</h4>
+                                    <p>Разрабатываем продающие креативы, посадочные страницы и интерактивные квизы для максимальной конверсии.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-number">5</div>
+                                <div class="timeline-content">
+                                    <h4>Запуск рекламы</h4>
+                                    <p>Настраиваем кампании, тестируем гипотезы, запускаем трафик на ваши предложения.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-number">6</div>
+                                <div class="timeline-content">
+                                    <h4>Ежедневная аналитика и оптимизация</h4>
+                                    <p>Мониторим результаты 24/7, оптимизируем кампании, масштабируем успешные связки.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Каналы и воронка -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h2>📊 Каналы и воронка</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Мы работаем с ключевыми рекламными платформами и строим эффективные воронки продаж:</strong></p>
+
+                        <div class="channels-diagram">
+                            <div class="channel-card">
+                                <h4>Meta Ads</h4>
+                                <div class="channel-type">Facebook & Instagram</div>
+                                <ul>
+                                    <li>Широкий охват аудитории</li>
+                                    <li>Визуальные креативы</li>
+                                    <li>Ретаргетинг и Lookalike</li>
+                                    <li>Ideal для B2C и импульсных покупок</li>
+                                </ul>
+                            </div>
+
+                            <div class="channel-card">
+                                <h4>Яндекс Директ</h4>
+                                <div class="channel-type">Поиск & РСЯ</div>
+                                <ul>
+                                    <li>Горячие запросы</li>
+                                    <li>Контекстная реклама</li>
+                                    <li>Медийная сеть</li>
+                                    <li>Ideal для услуг и локального бизнеса</li>
+                                </ul>
+                            </div>
+
+                            <div class="channel-card">
+                                <h4>Google Ads</h4>
+                                <div class="channel-type">Search & Display</div>
+                                <ul>
+                                    <li>Глобальный охват</li>
+                                    <li>YouTube реклама</li>
+                                    <li>Shopping кампании</li>
+                                    <li>Ideal для e-commerce и B2B</li>
+                                </ul>
+                            </div>
+
+                            <div class="channel-card">
+                                <h4>Telegram Ads</h4>
+                                <div class="channel-type">Каналы & Боты</div>
+                                <ul>
+                                    <li>Вовлеченная аудитория</li>
+                                    <li>Прямая коммуникация</li>
+                                    <li>Автоматизация через ботов</li>
+                                    <li>Ideal для инфобизнеса и подписок</li>
+                                </ul>
+                            </div>
+
+                            <div class="channel-card">
+                                <h4>VK Ads</h4>
+                                <div class="channel-type">VK & OK</div>
+                                <ul>
+                                    <li>Русскоязычная аудитория</li>
+                                    <li>Таргетинг по интересам</li>
+                                    <li>Сообщества и охваты</li>
+                                    <li>Ideal для массового сегмента</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3 style="margin-top: 35px; margin-bottom: 20px; color: #2d3748;">Как мы строим воронку продаж:</h3>
+
+                        <div class="funnel-diagram">
+                            <div class="funnel-stage">
+                                <h4>🎯 Привлечение внимания</h4>
+                                <p>Цепляющие креативы в рекламных каналах → первый контакт с аудиторией</p>
+                            </div>
+                            <div class="funnel-arrow">↓</div>
+                            
+                            <div class="funnel-stage">
+                                <h4>🔍 Квалификация интереса</h4>
+                                <p>Интерактивный квиз или лид-форма → сегментация и отсев нецелевой аудитории</p>
+                            </div>
+                            <div class="funnel-arrow">↓</div>
+                            
+                            <div class="funnel-stage">
+                                <h4>📝 Получение заявки</h4>
+                                <p>Квалифицированный лид с контактными данными → готов к общению с менеджером</p>
+                            </div>
+                            <div class="funnel-arrow">↓</div>
+                            
+                            <div class="funnel-stage">
+                                <h4>📞 Коммуникация</h4>
+                                <p>Звонок менеджера или автоматизированный бот → консультация и закрытие на продажу</p>
+                            </div>
+                            <div class="funnel-arrow">↓</div>
+                            
+                            <div class="funnel-stage">
+                                <h4>💰 Продажа</h4>
+                                <p>Конверсия в оплату → возврат инвестиций и масштабирование</p>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 25px; color: #718096; font-size: 15px;"><strong>Важно:</strong> Все каналы работают синхронно и дополняют друг друга, создавая многоканальную систему привлечения клиентов.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Тактика продвижения -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h2>🎁 Тактика продвижения — что получает клиент</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p style="font-size: 17px; margin-bottom: 25px;"><strong>Если вы оставляете заявку, мы разрабатываем для вас индивидуальную тактику продвижения, которая включает:</strong></p>
+
+                        <div class="deliverables-grid">
+                            <div class="deliverable-card">
+                                <h4>📍 Стратегия запуска</h4>
+                                <p>Детальный план с геотаргетингом, описанием целевой аудитории, интересами и поведенческими факторами</p>
+                            </div>
+
+                            <div class="deliverable-card">
+                                <h4>🏗️ Структура кампаний</h4>
+                                <p>Индивидуальная архитектура рекламных кампаний под ваши цели и бюджет</p>
+                            </div>
+
+                            <div class="deliverable-card">
+                                <h4>🎨 Подбор связок</h4>
+                                <p>Креативы + офферы + тексты → готовые варианты для тестирования</p>
+                            </div>
+
+                            <div class="deliverable-card">
+                                <h4>🔄 Сценарии воронки</h4>
+                                <p>Лендинг, квиз, боты, лид-формы — всё под вашу специфику</p>
+                            </div>
+
+                            <div class="deliverable-card">
+                                <h4>💵 Прогноз CPL</h4>
+                                <p>Расчет стоимости лида и квалифицированного обращения на основе нашего опыта</p>
+                            </div>
+
+                            <div class="deliverable-card">
+                                <h4>📊 Экономика бизнеса</h4>
+                                <p>ROI, окупаемость, срок возврата инвестиций — прозрачные цифры</p>
+                            </div>
+
+                            <div class="deliverable-card">
+                                <h4>📦 Рекомендации по упаковке</h4>
+                                <p>Как улучшить ваше предложение для повышения конверсии</p>
+                            </div>
+
+                            <div class="deliverable-card">
+                                <h4>🎯 План тестирования</h4>
+                                <p>Гипотезы и A/B тесты для быстрого нахождения лучших связок</p>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 30px; padding: 20px; background: #f7fafc; border-left: 4px solid #6b46c1; border-radius: 8px;">
+                            <strong>💡 Итог:</strong> Вы получаете не просто запуск рекламы, а комплексную маркетинговую стратегию с прогнозами, расчетами и четким пониманием, как будет работать ваша воронка продаж.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Сроки и тайминг -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h2>⏱️ Сроки и тайминг</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="timeline-section">
+                            <div class="timeline-item">
+                                <div class="timeline-number">1-3</div>
+                                <div class="timeline-content">
+                                    <h4>Разработка тактики</h4>
+                                    <p><strong>1-3 рабочих дня</strong> — анализ, стратегия, подбор инструментов и подготовка тактического плана продвижения</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-number">5-7</div>
+                                <div class="timeline-content">
+                                    <h4>Запуск рекламы</h4>
+                                    <p><strong>От 5 до 7 дней</strong> с момента согласования — настройка кампаний, создание креативов, подготовка воронки и старт</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-number">10-14</div>
+                                <div class="timeline-content">
+                                    <h4>Первые результаты</h4>
+                                    <p><strong>10-14 дней</strong> от старта работы — первые лиды, аналитика, оптимизация и масштабирование</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 25px; padding: 20px; background: #f7fafc; border-radius: 8px;">
+                            <strong>⚡ Быстрый старт:</strong> Мы не тянем время — от первого контакта до запущенной рекламы проходит в среднем 10-14 дней. Вы начинаете получать лиды уже на второй неделе работы.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Тарифы -->
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h2>💰 Тарифы</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p style="margin-bottom: 30px; font-size: 17px;"><strong>Выберите тариф, который подходит под ваши задачи и бюджет:</strong></p>
+
+                        <div class="tariffs-grid">
+                            <!-- Тариф СТАРТ -->
+                            <div class="tariff-card-new">
+                                <div class="tariff-badge">СТАРТ</div>
+                                <div class="tariff-title">Быстрый запуск рекламы</div>
+                                <div class="tariff-price-big">$450</div>
+                                <div class="tariff-budget">Рекламный бюджет: от $500</div>
+                                
+                                <div class="tariff-section">
+                                    <div class="tariff-label">Цель</div>
+                                    <p>Тест ниши и быстрые заявки</p>
+                                </div>
+
+                                <div class="tariff-section">
+                                    <div class="tariff-label">Что включено</div>
+                                    <ul class="tariff-list">
+                                        <li>Анализ ниши и конкурентов</li>
+                                        <li>Тексты, креативы, сценарии</li>
+                                        <li>Запуск рекламы (Meta, Яндекс, Google, ВК, TG ads)</li>
+                                        <li>Подключение аналитики и пикселей</li>
+                                        <li>Настройка медиаплана</li>
+                                        <li>Оптимизация под первые результаты</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tariff-section">
+                                    <div class="tariff-label">Результат</div>
+                                    <p>Первые целевые лиды, прогноз CPL</p>
+                                </div>
+
+                                <div class="tariff-section">
+                                    <div class="tariff-label">Подходит для</div>
+                                    <p>Малый бизнес, тест ниши</p>
+                                </div>
+
+                                <div class="tariff-section">
+                                    <div class="tariff-label">Гарантия</div>
+                                    <p class="tariff-guarantee">Возврат денег, если нет заявок</p>
+                                </div>
+                            </div>
+
+                            <!-- Тариф БАЗА -->
+                            <div class="tariff-card-new tariff-recommended">
+                                <div class="tariff-badge tariff-badge-recommended">БАЗА (рекомендуем)</div>
+                                <div class="tariff-title">Система заявок и контроль качества</div>
+                                <div class="tariff-price-big">$900</div>
+                                <div class="tariff-budget">Рекламный бюджет: от $700</div>
+                                
+                                <div class="tariff-section">
+                                    <div class="tariff-label">Цель</div>
+                                    <p>Стабильный поток клиентов и прозрачная аналитика</p>
+                                </div>
+
+                                <div class="tariff-section">
+                                    <div class="tariff-label">Что включено</div>
+                                    <ul class="tariff-list">
+                                        <li>Все из тарифа «Старт»</li>
+                                        <li>Построение воронки: реклама → квиз → лендинг → CRM</li>
+                                        <li>Создание посадочной страницы (до 10 блоков)</li>
+                                        <li>Подключение AI-квалификатора тариф Small</li>
+                                        <li>Аудит CRM и автоматизация</li>
+                                        <li>Аналитика CPL, CPA, CTR, ROMI</li>
+                                        <li>Тестирование гипотез и сценариев рекламы</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tariff-section">
+                                    <div class="tariff-label">Результат</div>
+                                    <p>+25–40% к конверсии • ≥25 целевых заявок в месяц • Рост эффективности рекламы</p>
+                                </div>
+
+                                <div class="tariff-section">
+                                    <div class="tariff-label">Подходит для</div>
+                                    <p>Компании, которым нужна предсказуемая воронка</p>
+                                </div>
+
+                                <div class="tariff-section">
+                                    <div class="tariff-label">Гарантия</div>
+                                    <p class="tariff-guarantee">Минимум 25 целевых лидов — или доработка за наш счёт</p>
+                                </div>
+                            </div>
+
+                            <!-- Тариф ЭКСПЕРТ -->
+                            <div class="tariff-card-new">
+                                <div class="tariff-badge">ЭКСПЕРТ</div>
+                                <div class="tariff-title">Маркетинг и продажи под ключ</div>
+                                <div class="tariff-price-big">$1,890</div>
+                                <div class="tariff-budget">Рекламный бюджет: от $3,000</div>
+                                
+                                <div class="tariff-section">
+                                    <div class="tariff-label">Цель</div>
+                                    <p>Рост продаж и выстроенная воронка</p>
+                                </div>
+
+                                <div class="tariff-section">
+                                    <div class="tariff-label">Что включено</div>
+                                    <ul class="tariff-list">
+                                        <li>Все из тарифа «База»</li>
+                                        <li>Подключение AI-РОП (контроль лидов и отдела продаж)</li>
+                                        <li>6-часовая стратегия роста с маркетинг-директором</li>
+                                        <li>Несколько лендингов под сегменты</li>
+                                        <li>Глубокий разбор и улучшение воронки</li>
+                                        <li>Тренинг отдела продаж или аудит ОП</li>
+                                        <li>Полное тех. сопровождение (CRM, интеграции, аналитика)</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tariff-section">
+                                    <div class="tariff-label">Результат</div>
+                                    <p>Рост продаж за 2 месяца • Контроль и предсказуемость воронки</p>
+                                </div>
+
+                                <div class="tariff-section">
+                                    <div class="tariff-label">Подходит для</div>
+                                    <p>Бизнес, который хочет рост и контроль</p>
+                                </div>
+
+                                <div class="tariff-section">
+                                    <div class="tariff-label">Гарантия</div>
+                                    <p class="tariff-guarantee">Рост продаж за 2 месяца — или возврат средств</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 35px; padding: 25px; background: #f7fafc; border-left: 4px solid #6b46c1; border-radius: 8px;">
+                            <strong>📝 Важно:</strong> Рекламный бюджет оплачивается отдельно напрямую в рекламные платформы (Meta Ads, Яндекс, Google и др.). Стоимость услуг агентства фиксированная и не зависит от объема бюджета. Указанные тарифы — это стоимость работы за ведение одного рекламного канала.
+                        </p>
+
+                        <h3 style="margin-top: 45px; margin-bottom: 20px; font-size: 22px;">Дополнительные услуги</h3>
+                        
+                        <div class="additional-services">
+                            <div class="service-row">
+                                <div class="service-name">Посадочная страница (до 10 блоков, дизайн + тексты)</div>
+                                <div class="service-price">$500</div>
+                            </div>
+                            <div class="service-row">
+                                <div class="service-name">AI-квалификатор (фильтрация лидов)</div>
+                                <div class="service-price">$600/мес</div>
+                            </div>
+                            <div class="service-row">
+                                <div class="service-name">AI-РОП (контроль лидов и работы отдела продаж)</div>
+                                <div class="service-price">$600/мес</div>
+                            </div>
+                            <div class="service-row">
+                                <div class="service-name">Стратегическая сессия с маркетинг-директором (2×3ч)</div>
+                                <div class="service-price">$500</div>
+                            </div>
+                            <div class="service-row">
+                                <div class="service-name">Несколько лендингов под сегменты</div>
+                                <div class="service-price">от $400</div>
+                            </div>
+                            <div class="service-row">
+                                <div class="service-name">Глубокий разбор и улучшение воронки</div>
+                                <div class="service-price">$400</div>
+                            </div>
+                            <div class="service-row">
+                                <div class="service-name">Тренинг или аудит отдела продаж</div>
+                                <div class="service-price">$300</div>
+                            </div>
+                            <div class="service-row">
+                                <div class="service-name">Полное тех. сопровождение (CRM, аналитика, интеграции)</div>
+                                <div class="service-price">$250/мес</div>
+                            </div>
+                            <div class="service-row">
+                                <div class="service-name">Аналитика CPL, CPA, CTR, ROMI</div>
+                                <div class="service-price">$250</div>
+                            </div>
+                            <div class="service-row">
+                                <div class="service-name">CRM + подключение, настройка, отчеты</div>
+                                <div class="service-price">$250</div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 35px; padding: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px;">
+                            <h4 style="font-size: 20px; margin-bottom: 15px;">💡 Экономия с тарифами WEBNOSTRA</h4>
+                            <p style="margin-bottom: 10px;">Если собирать все услуги вручную — выходит <strong>$2,800+</strong>, без стратегии и гарантий.</p>
+                            <p><strong>С нашими тарифами вы экономите до $2,500</strong> и получаете комплексное решение с гарантией результата.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Призыв к действию -->
+            <div class="cta-section">
+                <h3>💬 Готовы получать прозрачный трафик и квалифицированные лиды?</h3>
+                <p>Оставьте заявку, и мы сформируем для вас индивидуальную тактику продвижения с прогнозами, расчетами экономики и четким планом действий.</p>
+                <p style="font-size: 16px; margin-bottom: 30px; opacity: 0.9;">✓ Работаем по договору &nbsp;&nbsp; ✓ Ежедневная отчетность &nbsp;&nbsp; ✓ Полный доступ к кабинетам</p>
+                <div class="header-buttons">
+                    <a href="https://t.me/magosh_al" class="btn btn-white" target="_blank">Написать в Telegram</a>
+                    <a href="https://wa.me/77066671426" class="btn btn-outline" target="_blank">Написать в WhatsApp</a>
+                </div>
+            </div>
+
+    </div>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordion = header.parentElement;
+                const wasActive = accordion.classList.contains('active');
+                
+                // Optional: Close other accordions
+                // document.querySelectorAll('.accordion').forEach(acc => {
+                //     acc.classList.remove('active');
+                // });
+                
+                if (!wasActive) {
+                    accordion.classList.add('active');
+                } else {
+                    accordion.classList.remove('active');
+                }
+            });
+        });
+
+        // Print functionality - open all accordions
+        window.addEventListener('beforeprint', () => {
+            document.querySelectorAll('.accordion').forEach(accordion => {
+                accordion.classList.add('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
