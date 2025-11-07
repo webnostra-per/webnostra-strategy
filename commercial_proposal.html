@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Коммерческое предложение - Автоматизация бронирования</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-top: 10px;
+        }
+
+        .header .cta-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .header .cta-link:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        /* Key Info Section */
+        .key-info {
+            background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%);
+            padding: 30px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            border-bottom: 4px solid #667eea;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .info-item .label {
+            font-size: 0.85em;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .info-item .value {
+            font-size: 1.3em;
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        /* Content */
+        .content {
+            padding: 40px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            box-shadow: 0 8px 15px rgba(102,126,234,0.15);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.3em;
+            transition: all 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .section-header .icon {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .section-header.active .icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: #f8f9fa;
+        }
+
+        .section-content.active {
+            max-height: 5000px;
+        }
+
+        .section-content-inner {
+            padding: 30px 25px;
+        }
+
+        /* Value Proposition */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .value-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.2);
+        }
+
+        .value-card .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        /* Features */
+        .feature-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #764ba2;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(118,75,162,0.2);
+        }
+
+        .feature-item h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .feature-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-item li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .feature-item li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Process Steps */
+        .process-steps {
+            display: grid;
+            gap: 15px;
+            counter-reset: step-counter;
+        }
+
+        .process-step {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.15);
+        }
+
+        .process-step:before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        /* Pricing Table */
+        .pricing-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(102,126,234,0.2);
+            border-color: #667eea;
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #667eea;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.08) translateY(-10px);
+        }
+
+        .pricing-card h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .pricing-card .price {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #2d3748;
+            margin: 20px 0;
+        }
+
+        .pricing-card .price span {
+            font-size: 0.5em;
+            color: #718096;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .pricing-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .pricing-card li:before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.15);
+        }
+
+        .timeline-item:before {
+            content: "";
+            position: absolute;
+            left: -35px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-item h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        /* Requirements */
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .requirement-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border-top: 4px solid #764ba2;
+            transition: all 0.3s ease;
+        }
+
+        .requirement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(118,75,162,0.15);
+        }
+
+        .requirement-card .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        /* Team Section */
+        .team-info {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+        }
+
+        .team-info h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .team-info p {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        .team-info a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .team-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .action-btn {
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102,126,234,0.6);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header .subtitle {
+                font-size: 1.1em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .key-info {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .pricing-table {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .action-buttons {
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .action-btn {
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+
+            .value-grid,
+            .requirements-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .action-buttons {
+                display: none;
+            }
+
+            .section-content {
+                max-height: none !important;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .header {
+                page-break-after: avoid;
+            }
+        }
+
+        /* Accordion Specific Styles */
+        .accordion {
+            margin-bottom: 15px;
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #667eea;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, rgba(102,126,234,0.2) 0%, rgba(118,75,162,0.2) 100%);
+            border-color: #667eea;
+        }
+
+        .accordion-header.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: white;
+        }
+
+        .accordion-content.active {
+            max-height: 3000px;
+        }
+
+        .accordion-content-inner {
+            padding: 20px;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Коммерческое предложение</h1>
+            <div class="subtitle">Автоматизация бронирования через мессенджеры</div>
+            <a href="https://ai.webnostra.kz" class="cta-link" target="_blank">📊 Посмотреть кейсы</a>
+        </div>
+
+        <!-- Key Information -->
+        <div class="key-info">
+            <div class="info-item">
+                <div class="label">Решение</div>
+                <div class="value">AI-автоматизация</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Платформы</div>
+                <div class="value">Telegram + WhatsApp</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Срок внедрения</div>
+                <div class="value">3 недели</div>
+            </div>
+            <div class="info-item">
+                <div class="label">От</div>
+                <div class="value">50 000 ₽</div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- 30 Seconds Value -->
+            <div class="section">
+                <div class="section-header active" onclick="toggleSection(this)">
+                    <span>⚡ 30 секунд ценности</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content active">
+                    <div class="section-content-inner">
+                        <div class="value-grid">
+                            <div class="value-card">
+                                <div class="icon">💬</div>
+                                <strong>Мгновенный ответ</strong><br>
+                                Гость получает расчет сразу в чате (Telegram/WhatsApp/VK)
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">📅</div>
+                                <strong>Единый календарь</strong><br>
+                                Никаких дублей и путаницы с занятостью
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">💰</div>
+                                <strong>Автоматический расчет</strong><br>
+                                Стоимость по вашим тарифам в режиме реального времени
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">💳</div>
+                                <strong>Прием оплаты</strong><br>
+                                Опционально через Prodamus прямо в чате
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">⏱️</div>
+                                <strong>Экономия времени</strong><br>
+                                Меньше ручной работы, больше подтвержденных броней
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- What We Implement -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span>🔧 Что мы внедряем</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-content-inner">
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <h4>💬 Квалификатор в мессенджерах</h4>
+                                <ul>
+                                    <li>Подключение Telegram и WhatsApp</li>
+                                    <li>Бот задает простые вопросы: даты, количество гостей, желаемый номер</li>
+                                    <li>Показывает доступные варианты и стоимость</li>
+                                    <li>Сохраняет контакты и отправляет уведомление администратору</li>
+                                </ul>
+                            </div>
+
+                            <div class="feature-item">
+                                <h4>📅 Единый календарь занятости</h4>
+                                <ul>
+                                    <li>Google Calendar — единая точка правды для 27 номеров</li>
+                                    <li>Автоматическое резервирование дат</li>
+                                    <li>Статусы: "ожидает оплату", "подтверждено", "отмена"</li>
+                                    <li>Исключает двойные бронирования</li>
+                                </ul>
+                            </div>
+
+                            <div class="feature-item">
+                                <h4>💰 Автоматический расчет по тарифам</h4>
+                                <ul>
+                                    <li>Таблица Google Sheets: категории номеров, сезоны, будни/выходные</li>
+                                    <li>Бот считает стоимость в реальном времени</li>
+                                    <li>Изменили цену в таблице — бот обновляется автоматически</li>
+                                    <li>Учет дополнительных мест и детских тарифов</li>
+                                </ul>
+                            </div>
+
+                            <div class="feature-item">
+                                <h4>💳 Прием оплаты (опционально)</h4>
+                                <ul>
+                                    <li>Интеграция с Prodamus</li>
+                                    <li>Автоматическая отправка ссылки на оплату</li>
+                                    <li>Подтверждение брони после успешной оплаты</li>
+                                    <li>Чеки и уведомления по правилам вашего кабинета</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span>⚙️ Как работает процесс</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-content-inner">
+                        <div class="process-steps">
+                            <div class="process-step">
+                                Гость пишет в мессенджер
+                            </div>
+                            <div class="process-step">
+                                Бот задает 3-5 вопросов
+                            </div>
+                            <div class="process-step">
+                                Проверяет доступность в календаре
+                            </div>
+                            <div class="process-step">
+                                Рассчитывает стоимость из таблицы
+                            </div>
+                            <div class="process-step">
+                                Отправляет ссылку на оплату (опционально)
+                            </div>
+                            <div class="process-step">
+                                Вы видите бронь в календаре и получаете уведомление
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expected Results -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span>📈 Результаты через 30-60 дней</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-content-inner">
+                        <div class="value-grid">
+                            <div class="value-card">
+                                <div class="icon">🔄</div>
+                                <strong>Мгновенный ответ</strong><br>
+                                Гостям 24/7 без выходных
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">✅</div>
+                                <strong>Минимум ошибок</strong><br>
+                                В бронировании и расчетах
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">💸</div>
+                                <strong>Больше предоплат</strong><br>
+                                При подключении оплаты
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">👀</div>
+                                <strong>Прозрачность</strong><br>
+                                Картина занятости в реальном времени
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">⏰</div>
+                                <strong>Экономия</strong><br>
+                                Времени персонала на рутине
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span>💎 Стоимость и варианты</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-content-inner">
+                        <div class="pricing-table">
+                            <div class="pricing-card">
+                                <h3>Базовая интеграция</h3>
+                                <div class="price">50 000 ₽</div>
+                                <ul>
+                                    <li>Telegram + WhatsApp</li>
+                                    <li>Настройка диалогов</li>
+                                    <li>Google Calendar</li>
+                                    <li>Расчет по тарифам</li>
+                                    <li>Уведомления админу</li>
+                                </ul>
+                            </div>
+
+                            <div class="pricing-card featured">
+                                <h3>С автоматической оплатой</h3>
+                                <div class="price">80 000 ₽</div>
+                                <ul>
+                                    <li>Все из базовой</li>
+                                    <li>Интеграция Prodamus</li>
+                                    <li>Ссылки на оплату</li>
+                                    <li>Автоподтверждение</li>
+                                    <li>Уведомления гостю</li>
+                                </ul>
+                            </div>
+
+                            <div class="pricing-card">
+                                <h3>Поддержка</h3>
+                                <div class="price">5 000 ₽<span>/мес</span></div>
+                                <ul>
+                                    <li>До 2 правок/месяц</li>
+                                    <li>Мониторинг системы</li>
+                                    <li>Обучение персонала</li>
+                                    <li>Еженедельные проверки</li>
+                                    <li>Устранение неполадок</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 30px; padding: 20px; background: white; border-radius: 10px; border-left: 4px solid #667eea;">
+                            <strong>Важно:</strong> Вы оплачиваете сервисы (Suvvy-токены, Prodamus) напрямую. Все доступы остаются у вас.
+                        </div>
+
+                        <!-- Accordion for detailed packages -->
+                        <div style="margin-top: 30px;">
+                            <div class="accordion">
+                                <div class="accordion-header active" onclick="toggleAccordion(this)">
+                                    <span>Детали базовой интеграции</span>
+                                    <span class="accordion-icon">▼</span>
+                                </div>
+                                <div class="accordion-content active">
+                                    <div class="accordion-content-inner">
+                                        <ul style="list-style: none; padding: 0;">
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Подключение и настройка Telegram-бота</li>
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Подключение и настройка WhatsApp</li>
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Разработка сценариев диалогов</li>
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Настройка Google Calendar как единого календаря</li>
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Создание и настройка таблицы тарифов</li>
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Интеграция расчета стоимости</li>
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Настройка уведомлений администратору</li>
+                                            <li style="padding: 8px 0;">✓ Обучение работе с системой</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion">
+                                <div class="accordion-header" onclick="toggleAccordion(this)">
+                                    <span>Детали интеграции с оплатой</span>
+                                    <span class="accordion-icon">▼</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <div class="accordion-content-inner">
+                                        <p style="margin-bottom: 15px;"><strong>Дополнительно к базовой интеграции:</strong></p>
+                                        <ul style="list-style: none; padding: 0;">
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Подключение и настройка Prodamus</li>
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Автоматическая генерация ссылок на оплату</li>
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Webhook для отслеживания статуса оплаты</li>
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Автоматическое изменение статуса брони</li>
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Уведомления гостю о подтверждении</li>
+                                            <li style="padding: 8px 0;">✓ Настройка чеков и документов</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion">
+                                <div class="accordion-header" onclick="toggleAccordion(this)">
+                                    <span>Что входит в поддержку</span>
+                                    <span class="accordion-icon">▼</span>
+                                </div>
+                                <div class="accordion-content">
+                                    <div class="accordion-content-inner">
+                                        <ul style="list-style: none; padding: 0;">
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ До 2 правок сценариев или тарифов в месяц</li>
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Мониторинг работы системы</li>
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Устранение технических неполадок</li>
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Обучение персонала работе с ботом</li>
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Консультации по оптимизации процессов</li>
+                                            <li style="padding: 8px 0; border-bottom: 1px solid #e2e8f0;">✓ Еженедельная проверка корректности бронирований</li>
+                                            <li style="padding: 8px 0;">✓ Приоритетная техническая поддержка</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span>📅 Сроки внедрения</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-content-inner">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4>Неделя 1: Подготовка и настройка</h4>
+                                <p>Сбор тарифов и правил, настройка календаря, подключение мессенджеров, создание черновых диалогов</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>Неделя 2: Интеграция и тестирование</h4>
+                                <p>Финальная логика расчета, проверка резервов в календаре, тестирование сценариев, обучение персонала</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>Неделя 3: Запуск и наблюдение</h4>
+                                <p>Запуск в работу, наблюдение за первыми бронированиями, оперативные корректировки, сбор обратной связи</p>
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #764ba2;">
+                            <strong>При выборе интеграции с Prodamus:</strong> подключение системы оплаты происходит параллельно 1-2 неделе
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Requirements -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span>📋 Что нужно от вас</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-content-inner">
+                        <div class="requirements-grid">
+                            <div class="requirement-card">
+                                <div class="icon">💬</div>
+                                <strong>Мессенджеры</strong><br>
+                                Доступы к Telegram-боту и WhatsApp (или провайдеру WhatsApp)
+                            </div>
+                            <div class="requirement-card">
+                                <div class="icon">📅</div>
+                                <strong>Календарь</strong><br>
+                                Доступ к Google Calendar (или создадим новые календари для 27 номеров)
+                            </div>
+                            <div class="requirement-card">
+                                <div class="icon">📊</div>
+                                <strong>Тарифы</strong><br>
+                                Информация о тарифах (дадим шаблон и поможем заполнить)
+                            </div>
+                            <div class="requirement-card">
+                                <div class="icon">💳</div>
+                                <strong>Оплата (опционально)</strong><br>
+                                Доступ к аккаунту Prodamus при выборе пакета с оплатой
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guarantees -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span>🛡️ Гарантии</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-content-inner">
+                        <div class="value-grid">
+                            <div class="value-card">
+                                <div class="icon">🎯</div>
+                                <strong>Только нужное</strong><br>
+                                Настраиваем только необходимые инструменты без лишнего
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">👥</div>
+                                <strong>Простота</strong><br>
+                                Персонал сможет сам изменять цены и даты
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">🔐</div>
+                                <strong>Ваши аккаунты</strong><br>
+                                Все сервисы на ваших аккаунтах, полный контроль
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">📚</div>
+                                <strong>Обучение</strong><br>
+                                Передаем доступы и обучаем работе с системой
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Info -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span>👥 О команде</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-content-inner">
+                        <div class="team-info">
+                            <h3>AI.WEBNOSTRA</h3>
+                            <p><strong>Команда специалистов по автоматизации бизнес-процессов через искусственный интеллект.</strong></p>
+                            <p>Мы помогаем компаниям внедрять AI-решения для оптимизации работы с клиентами: от умных чат-ботов до полноценных систем автоматического бронирования и продаж.</p>
+                            <p>Наш подход — прозрачность, простота использования и быстрый результат. Все интеграции на ваших аккаунтах, полный контроль в ваших руках.</p>
+                            <p><strong>Сайт:</strong> <a href="https://ai.webnostra.kz" target="_blank">ai.webnostra.kz</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <h2>Готовы обсудить детали?</h2>
+            <p style="font-size: 1.1em; margin-top: 10px;">Пришлем шаблон таблицы тарифов и чек-лист доступов — начнем настройку</p>
+            <div class="contact-buttons">
+                <a href="https://t.me/magosh_al" class="contact-btn" target="_blank">
+                    ✈️ Написать в Telegram
+                </a>
+                <a href="https://wa.me/77066671426" class="contact-btn" target="_blank">
+                    📱 Написать в WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button class="action-btn" onclick="window.print()">📄 Скачать PDF</button>
+        <a href="https://ai.webnostra.kz" class="action-btn" target="_blank">📊 Посмотреть кейсы</a>
+    </div>
+
+    <script>
+        // Toggle section visibility
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+            
+            if (isActive) {
+                header.classList.remove('active');
+                content.classList.remove('active');
+            } else {
+                header.classList.add('active');
+                content.classList.add('active');
+            }
+        }
+
+        // Toggle accordion
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+            
+            // Close all other accordions in the same parent
+            const parent = header.parentElement.parentElement;
+            const allAccordions = parent.querySelectorAll('.accordion-header');
+            allAccordions.forEach(acc => {
+                if (acc !== header) {
+                    acc.classList.remove('active');
+                    acc.nextElementSibling.classList.remove('active');
+                }
+            });
+            
+            if (isActive) {
+                header.classList.remove('active');
+                content.classList.remove('active');
+            } else {
+                header.classList.add('active');
+                content.classList.add('active');
+            }
+        }
+
+        // Open first section by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.section-header');
+            if (firstSection && !firstSection.classList.contains('active')) {
+                firstSection.classList.add('active');
+                firstSection.nextElementSibling.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
