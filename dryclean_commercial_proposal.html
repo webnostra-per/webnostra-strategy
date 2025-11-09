@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Коммерческое предложение - Химчистка</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-top: 10px;
+        }
+
+        .header .cta-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .header .cta-link:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        /* Key Info Section */
+        .key-info {
+            background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%);
+            padding: 30px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            border-bottom: 4px solid #667eea;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .info-item .label {
+            font-size: 0.85em;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .info-item .value {
+            font-size: 1.3em;
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        /* Content */
+        .content {
+            padding: 40px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            box-shadow: 0 8px 15px rgba(102,126,234,0.15);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.3em;
+            transition: all 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .section-header .icon {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .section-header.active .icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: #f8f9fa;
+        }
+
+        .section-content.active {
+            max-height: 10000px;
+        }
+
+        .section-content-inner {
+            padding: 30px 25px;
+        }
+
+        /* Alert Box */
+        .alert-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .alert-box.danger {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+
+        .alert-box.success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .alert-box strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        /* Value Grid */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .value-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.2);
+        }
+
+        .value-card .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        /* Package Cards */
+        .package-grid {
+            display: grid;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            border: 3px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .package-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 20px rgba(102,126,234,0.15);
+            transform: translateY(-5px);
+        }
+
+        .package-card.featured {
+            border-color: #28a745;
+            border-width: 4px;
+            background: #f0fff4;
+        }
+
+        .package-card h3 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .package-card .price {
+            font-size: 2em;
+            font-weight: 700;
+            color: #2d3748;
+            margin: 15px 0;
+        }
+
+        .package-card .price.total {
+            color: #28a745;
+            font-size: 2.5em;
+        }
+
+        .package-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .package-card li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .package-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-top: 20px;
+        }
+
+        .timeline:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.15);
+        }
+
+        .timeline-item:before {
+            content: "";
+            position: absolute;
+            left: -35px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-item h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .result-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border-top: 4px solid #28a745;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(40,167,69,0.15);
+        }
+
+        .result-card .metric {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #28a745;
+            margin: 10px 0;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .action-btn {
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102,126,234,0.6);
+        }
+
+        /* Team Info */
+        .team-info {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+        }
+
+        .team-info h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .team-info p {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        .team-info a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .team-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header .subtitle {
+                font-size: 1.1em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .key-info {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .action-buttons {
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .action-btn {
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+
+            .value-grid,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .action-buttons {
+                display: none;
+            }
+
+            .section-content {
+                max-height: none !important;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .header {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Коммерческое предложение</h1>
+            <div class="subtitle">AI-автоматизация для химчистки и реставрации одежды</div>
+            <a href="https://ai.webnostra.kz" class="cta-link" target="_blank">📊 Посмотреть кейсы</a>
+        </div>
+
+        <!-- Key Information -->
+        <div class="key-info">
+            <div class="info-item">
+                <div class="label">Проект</div>
+                <div class="value">Химчистка</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Обращений/мес</div>
+                <div class="value">~2 000</div>
+            </div>
+            <div class="info-item">
+                <div class="label">CRM</div>
+                <div class="value">Битрикс24</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Языки</div>
+                <div class="value">3 языка</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Срок</div>
+                <div class="value">4 недели</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Стоимость</div>
+                <div class="value">180 000 ₽</div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Project Overview -->
+            <div class="section">
+                <div class="section-header active" onclick="toggleSection(this)">
+                    <span>🧥 О проекте</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content active">
+                    <div class="section-content-inner">
+                        <div style="background: white; padding: 25px; border-radius: 12px; border-left: 5px solid #667eea;">
+                            <h3 style="color: #667eea; margin-bottom: 15px; font-size: 1.4em;">Химчистка и реставрация одежды</h3>
+                            <p style="margin-bottom: 10px;"><strong>Каналы:</strong> Instagram Direct, WhatsApp (2 номера), TikTok (опция)</p>
+                            <p style="margin-bottom: 10px;"><strong>CRM:</strong> Переход на Битрикс24</p>
+                            <p style="margin-bottom: 20px;"><strong>Языки:</strong> Грузинский / Русский / Английский</p>
+                        </div>
+
+                        <h4 style="color: #667eea; margin-top: 25px; margin-bottom: 15px; font-size: 1.2em;">Текущая ситуация</h4>
+                        <div class="value-grid">
+                            <div class="value-card">
+                                <div class="icon">👥</div>
+                                <strong>Менеджеры</strong><br>
+                                2 МОП обрабатывают вручную
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">📊</div>
+                                <strong>Поток</strong><br>
+                                ~2 000 обращений/мес, ~1 000 закрытых
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">💰</div>
+                                <strong>Выручка</strong><br>
+                                60 000 $/мес (средний чек 60 $)
+                            </div>
+                        </div>
+
+                        <div class="alert-box danger" style="margin-top: 25px;">
+                            <strong>Проблемы:</strong>
+                            <ul style="list-style: none; padding: 0; margin-top: 15px;">
+                                <li style="padding: 8px 0;">❌ Текущая CRM (Helloclient.by) без интеграций</li>
+                                <li style="padding: 8px 0;">❌ Данные вносятся вручную</li>
+                                <li style="padding: 8px 0;">❌ Теряются клиенты, которые не пришли или отложили</li>
+                                <li style="padding: 8px 0;">❌ Нет автоматической обработки обращений</li>
+                                <li style="padding: 8px 0;">❌ Нет понятных отчетов для руководителя</li>
+                            </ul>
+                        </div>
+
+                        <div class="alert-box success" style="margin-top: 25px;">
+                            <strong>Цель проекта</strong>
+                            <p>Автоматизировать обработку сообщений из Instagram и WhatsApp (и при необходимости TikTok), быстро задавать нужные вопросы, заносить все заявки в CRM, возвращать "не пришедших/отложивших" и дать руководителю понятные отчеты.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 30 Seconds Value -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span>⚡ 30 секунд ценности</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-content-inner">
+                        <div class="value-grid">
+                            <div class="value-card">
+                                <div class="icon">🤖</div>
+                                <strong>AI-бот 24/7</strong><br>
+                                Отвечает клиентам на трех языках
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">📋</div>
+                                <strong>Автоматизация</strong><br>
+                                Все обращения в Битрикс24
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">🔔</div>
+                                <strong>Возвраты</strong><br>
+                                Напоминания "непришедших"
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">📊</div>
+                                <strong>Отчеты</strong><br>
+                                По каналам, этапам и деньгам
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">📈</div>
+                                <strong>Результат</strong><br>
+                                +15-25% к конверсии
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package Breakdown -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span>💎 Пакет "под ключ" - 180 000 ₽</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-content-inner">
+                        <p style="font-size: 1.1em; margin-bottom: 25px; color: #667eea; font-weight: 600; text-align: center;">Блоки можно брать по отдельности</p>
+
+                        <div class="package-grid">
+                            <!-- Package 1 -->
+                            <div class="package-card">
+                                <h3>1) CRM Битрикс24 + подключение каналов</h3>
+                                <div class="price">50 000 ₽</div>
+                                
+                                <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">Что сделаем:</h4>
+                                <ul>
+                                    <li>Подключим Instagram Direct и оба WhatsApp-номера к Битрикс24</li>
+                                    <li>Автоматическое создание карточек клиентов с источником, языком и контактами</li>
+                                    <li>Простая воронка: <strong>Новый → Квалификация → Принят/Забор → В работе → Готов → Оплачен → Выдан → Повтор</strong></li>
+                                    <li>Импорт базы из Helloclient.by (загрузка таблицы, базовая очистка и объединение дублей)</li>
+                                    <li>Уведомления менеджерам о новых обращениях и важных событиях</li>
+                                </ul>
+
+                                <div style="margin-top: 20px; padding: 15px; background: #f0fff4; border-radius: 8px; border-left: 4px solid #28a745;">
+                                    <strong>Результат:</strong> все обращения попадают в CRM, понятные статусы, ничего не теряется
+                                </div>
+                            </div>
+
+                            <!-- Package 2 -->
+                            <div class="package-card featured">
+                                <h3>2) AI-бот для WA/IG</h3>
+                                <div class="price">100 000 ₽</div>
+                                
+                                <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">Что сделаем:</h4>
+                                <ul>
+                                    <li>Диалоги на трех языках: что нужно почистить/отремонтировать → сроки → доставка/самовывоз → ориентировочная цена/условия → подтверждение</li>
+                                    <li>Короткие и понятные ответы, можно быстро поправить тексты по ходу запуска</li>
+                                    <li>Связь с CRM: бот сам создает/обновляет карточки, прикладывает фото и данные</li>
+                                    <li>Напоминания и "дожимы": если клиент не ответил - мягкие напоминания через 15 мин, сутки, неделю; для отложивших - через 7 и 30 дней</li>
+                                    <li>Отдельные сценарии для "не пришел", "передумал", "дорого", "позже"</li>
+                                    <li>Передача диалога менеджеру по словам-триггерам (сложный случай, VIP и т.п.)</li>
+                                    <li>Два WhatsApp-номера поддерживаются одновременно</li>
+                                    <li>Автоопределение языка + возможность переключить язык командой</li>
+                                </ul>
+
+                                <div style="margin-top: 20px; padding: 20px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+                                    <strong>Важно про расходы:</strong>
+                                    <p style="margin-top: 10px;">Вы сами оплачиваете токены/лимиты AI-платформы в своем кабинете - видите реальные траты и управляете ими.</p>
+                                    <p style="margin-top: 10px;">Мы берем на себя настройку, подключение и поддержку.</p>
+                                </div>
+                            </div>
+
+                            <!-- Package 3 -->
+                            <div class="package-card">
+                                <h3>3) Отчеты и дашборд в Битрикс24</h3>
+                                <div class="price">50 000 ₽</div>
+                                
+                                <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">Что сделаем:</h4>
+                                
+                                <p style="margin: 15px 0;"><strong>Показатели на одном экране:</strong></p>
+                                <ul>
+                                    <li>Сколько обращений по каждому каналу</li>
+                                    <li>Конверсия по этапам</li>
+                                    <li>Эффективность менеджеров</li>
+                                    <li>Доля потерянных и почему</li>
+                                    <li>Выручка и средний чек</li>
+                                    <li>Результаты напоминаний и возвратов</li>
+                                </ul>
+
+                                <p style="margin: 15px 0;"><strong>Дополнительно:</strong></p>
+                                <ul>
+                                    <li>Еженедельный письмо-отчет руководителю</li>
+                                    <li>Выгрузка данных в Google Sheets для маркетинга</li>
+                                </ul>
+
+                                <div style="margin-top: 20px; padding: 15px; background: #f0fff4; border-radius: 8px; border-left: 4px solid #28a745;">
+                                    <strong>Результат:</strong> понятная картина по каналам, этапам и деньгам
+                                </div>
+                            </div>
+
+                            <!-- Package 4 -->
+                            <div class="package-card" style="border-color: #764ba2;">
+                                <h3>4) TikTok (опционально)</h3>
+                                <div class="price">+60 000 ₽</div>
+                                
+                                <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">Что сделаем:</h4>
+                                <ul>
+                                    <li>Подключим входящие сообщения TikTok через официального партнера (если доступно для вашего региона) и свяжем с ботом и CRM</li>
+                                    <li>Если прямые сообщения недоступны, настроим простой маршрут: контакт из TikTok → в WhatsApp/Instagram с отметкой "TikTok" в CRM</li>
+                                    <li>Отдельные шаблоны ответов с учетом правил платформы</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span>📅 Сроки запуска - 4 недели</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-content-inner">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4>Неделя 1</h4>
+                                <p>Доступы, подключение Instagram/WhatsApp, черновая настройка CRM, перенос базы</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>Неделя 2</h4>
+                                <p>Настройка бота на трех языках, связь бота с CRM, первые тесты, правки</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>Неделя 3</h4>
+                                <p>Включаем напоминания и возвраты, настраиваем дашборд и еженедельный отчет</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>Неделя 4</h4>
+                                <p>Запуск в рабочем режиме, наблюдение, мелкие правки, обучение команды</p>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 20px; color: #718096; font-style: italic;">* TikTok - параллельно, по доступности</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Requirements -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span>📋 Что понадобится от вас</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-content-inner">
+                        <div class="value-grid">
+                            <div class="value-card">
+                                <div class="icon">📱</div>
+                                <strong>Доступы к каналам</strong><br>
+                                Instagram Business, 2 WhatsApp (бизнес-аккаунты), TikTok Business (опция)
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">💼</div>
+                                <strong>Битрикс24</strong><br>
+                                Доступ к аккаунту
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">📂</div>
+                                <strong>База клиентов</strong><br>
+                                Выгрузка из Helloclient.by (контакты, история)
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">📝</div>
+                                <strong>Услуги и цены</strong><br>
+                                Список услуг и базовые цены/условия
+                            </div>
+                            <div class="value-card">
+                                <div class="icon">💬</div>
+                                <strong>Скрипты</strong><br>
+                                Ваши текущие скрипты - мы упростим и переведем
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expected Results -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span>📈 Ожидаемые результаты через 30-45 дней</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-content-inner">
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <div class="metric">100%</div>
+                                <strong>Обращений в CRM</strong><br>
+                                Автоматически попадают в систему
+                            </div>
+                            <div class="result-card">
+                                <div class="metric">15-30 сек</div>
+                                <strong>Первый ответ</strong><br>
+                                Время ответа ботом
+                            </div>
+                            <div class="result-card">
+                                <div class="metric">+15-25%</div>
+                                <strong>К конверсии</strong><br>
+                                Обращение → принятие заказа
+                            </div>
+                            <div class="result-card">
+                                <div class="metric">+10-15%</div>
+                                <strong>К повторным</strong><br>
+                                Заказам за счет возвратов
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 30px; padding: 25px; background: white; border-radius: 12px; border-left: 5px solid #667eea;">
+                            <p style="margin-bottom: 10px;">✓ Руководитель видит прозрачные числа по каналам и этапам</p>
+                            <p>✓ Маркетинг понимает, что реально окупается</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guarantees -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span>🛡️ Дополнительные гарантии</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-content-inner">
+                        <div class="alert-box success">
+                            <strong>Официальные интеграции</strong>
+                            <p>Подтверждаем документом, что использование официальных интеграций Instagram и WhatsApp через API не ведет к блокировкам.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Info -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span>👥 О команде</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-content-inner">
+                        <div class="team-info">
+                            <h3>AI.WEBNOSTRA</h3>
+                            <p><strong>Команда специалистов по автоматизации бизнес-процессов через искусственный интеллект.</strong></p>
+                            <p>Мы помогаем компаниям внедрять AI-решения для оптимизации работы с клиентами: от умных чат-ботов до полноценных систем CRM и аналитики.</p>
+                            <p>Наш подход - прозрачность, простота использования и быстрый результат. Все интеграции на ваших аккаунтах, полный контроль в ваших руках.</p>
+                            <p><strong>Сайт:</strong> <a href="https://ai.webnostra.kz" target="_blank">ai.webnostra.kz</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <h2>Готовы обсудить детали?</h2>
+            <p style="font-size: 1.1em; margin-top: 10px;">Пришлем детальный план внедрения и начнем работу</p>
+            <div class="contact-buttons">
+                <a href="https://t.me/magosh_al" class="contact-btn" target="_blank">
+                    ✈️ Написать в Telegram
+                </a>
+                <a href="https://wa.me/77066671426" class="contact-btn" target="_blank">
+                    📱 Написать в WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button class="action-btn" onclick="window.print()">📄 Скачать PDF</button>
+        <a href="https://ai.webnostra.kz" class="action-btn" target="_blank">📊 Посмотреть кейсы</a>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+            
+            if (isActive) {
+                header.classList.remove('active');
+                content.classList.remove('active');
+            } else {
+                header.classList.add('active');
+                content.classList.add('active');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.section-header');
+            if (firstSection && !firstSection.classList.contains('active')) {
+                firstSection.classList.add('active');
+                firstSection.nextElementSibling.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
