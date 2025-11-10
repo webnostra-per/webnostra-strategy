@@ -17,7 +17,16 @@
             color: #1a202c;
             background: #ffffff;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
+        
+        /* Performance optimizations */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
         
         .container {
             max-width: 1400px;
@@ -42,20 +51,12 @@
         
         /* Header */
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
-            background-size: 200% 200%;
-            animation: gradientShift 15s ease infinite;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 100px 40px 80px;
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
         
         .header::before {
@@ -65,32 +66,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
-            opacity: 0.8;
-            animation: pulse 8s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 0.9; }
-        }
-        
-        .header::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.12) 0%, transparent 60%);
+            opacity: 0.7;
         }
         
         .header-content {
@@ -341,6 +318,7 @@
 
         .work-example-card:hover {
             transform: translateY(-10px);
+            will-change: transform;
             box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
             border-color: rgba(102, 126, 234, 0.2);
         }
@@ -357,6 +335,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            will-change: transform;
+            backface-visibility: hidden;
         }
 
         .work-example-caption {
@@ -629,6 +609,7 @@
             border-color: #6b46c1;
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
             transform: translateY(-8px);
+            will-change: transform;
         }
 
         .channel-detail-card h4 {
@@ -1502,7 +1483,7 @@
                             <li>Широкий охват аудитории</li>
                             <li>Визуальные креативы</li>
                             <li>Ретаргетинг и Lookalike</li>
-                            <li>Ideal для B2C и импульсных покупок</li>
+                            <li>Подходит для B2C и импульсных покупок</li>
                         </ul>
                     </div>
 
@@ -1513,7 +1494,7 @@
                             <li>Горячие запросы</li>
                             <li>Контекстная реклама</li>
                             <li>Медийная сеть</li>
-                            <li>Ideal для услуг и локального бизнеса</li>
+                            <li>Подходит для услуг и локального бизнеса</li>
                         </ul>
                     </div>
 
@@ -1524,7 +1505,7 @@
                             <li>Глобальный охват</li>
                             <li>YouTube реклама</li>
                             <li>Shopping кампании</li>
-                            <li>Ideal для e-commerce и B2B</li>
+                            <li>Подходит для e-commerce и B2B</li>
                         </ul>
                     </div>
 
@@ -1535,7 +1516,7 @@
                             <li>Вовлеченная аудитория</li>
                             <li>Прямая коммуникация</li>
                             <li>Автоматизация через ботов</li>
-                            <li>Ideal для инфобизнеса</li>
+                            <li>Подходит для инфобизнеса</li>
                         </ul>
                     </div>
 
@@ -1546,7 +1527,7 @@
                             <li>Русскоязычная аудитория</li>
                             <li>Таргетинг по интересам</li>
                             <li>Сообщества и охваты</li>
-                            <li>Ideal для массового сегмента</li>
+                            <li>Подходит для массового сегмента</li>
                         </ul>
                     </div>
                 </div>
