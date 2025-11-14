@@ -59,12 +59,12 @@ section{padding:5rem 2rem}
 .service-metric{font-size:1.3rem;font-weight:700;color:var(--blue)}
 .cases{background:var(--bg)}
 .cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;align-items:stretch}
-.case-card{background:#fff;border-radius:16px;overflow:hidden;border:2px solid var(--border);transition:all .3s;display:flex;flex-direction:column;height:100%}
+.case-card{background:#fff;border-radius:16px;overflow:hidden;border:2px solid var(--border);transition:all .3s;display:flex;flex-direction:column;height:100%;min-height:500px}
 .case-card:hover{border-color:var(--blue);box-shadow:0 8px 30px rgba(51,102,255,.15);transform:translateY(-4px)}
 .case-header{background:linear-gradient(135deg,var(--blue),var(--dark-blue));color:#fff;padding:2rem;min-height:120px;display:flex;flex-direction:column;justify-content:center}
 .case-header h3{font-size:1.3rem;margin-bottom:.5rem;line-height:1.3;font-weight:800}
 .case-header p{opacity:.95;font-size:.95rem;font-weight:600}
-.case-body{padding:2rem;display:flex;flex-direction:column;flex:1}
+.case-body{padding:2rem;display:flex;flex-direction:column;flex:1;gap:1rem}
 .case-section{margin-bottom:1.5rem}
 .case-section h4{font-size:.8rem;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem;letter-spacing:1.2px;font-weight:700}
 .case-section ul{list-style:none;padding:0}
@@ -159,13 +159,7 @@ section{padding:5rem 2rem}
 .faq-a{max-height:0;overflow:hidden;transition:all .4s ease;padding:0 2rem;opacity:0}
 .faq-item.active .faq-a{max-height:300px;padding:0 2rem 2rem 5.5rem;opacity:1}
 .faq-a p{color:var(--gray);line-height:1.8;font-size:1.05rem;margin:0}
-@media (max-width:768px){
 
-header{padding:.75rem 0}
-.header-container{padding:0 1rem}
-.logo span{font-size:1rem!important}
-.header-cta{padding:.6rem 1.2rem;font-size:.85rem;border-radius:6px}
-}
 .faq-q{padding:1.5rem;gap:1rem}
 .faq-number{font-size:1.2rem;min-width:40px}
 .faq-q h3{font-size:1rem}
@@ -188,7 +182,7 @@ footer{background:var(--text);color:#fff;padding:3rem 2rem 2rem}
 .footer-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:3rem}
 .footer-section h4{margin-bottom:1.5rem;font-size:1.1rem}
 .footer-section p{color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:.5rem}
-.social-buttons{display:flex;flex-direction:column;gap:.75rem;max-width:280px}
+
 .social-btn{display:flex;align-items:center;justify-content:center;gap:.75rem;padding:.9rem 1.5rem;border-radius:10px;text-decoration:none;font-weight:600;transition:all .3s;font-size:.95rem}
 .social-btn svg{width:22px;height:22px;flex-shrink:0}
 .telegram-btn{background:#0088cc;color:#fff}
@@ -240,7 +234,7 @@ section{padding:3rem 1rem}
 .pricing-table{overflow-x:auto}
 .pricing-table table{min-width:600px}
 .footer-container{grid-template-columns:1fr;gap:2rem;text-align:center}
-.social-buttons{align-items:stretch;max-width:100%}
+
 footer{padding:2rem 1rem 1.5rem}
 }
 @media (max-width:480px){
@@ -307,7 +301,7 @@ footer{padding:2rem 1rem 1.5rem}
 footer{padding:2rem 1rem}
 .footer-container{grid-template-columns:1fr;gap:2rem}
 .footer-section{text-align:center}
-.social-buttons{justify-content:center;margin-top:1rem}
+
 .social-btn{width:100%;max-width:200px}
 }
 
@@ -317,6 +311,78 @@ footer{padding:2rem 1rem}
 .audience-slider{display:block!important;padding-bottom:3rem}
 .audience-slider .swiper-slide{height:auto}
 .audience-card{margin:0}
+}
+
+/* Footer base */
+
+
+/* Mobile footer */
+@media (max-width:768px){
+footer{padding:2rem 1rem}
+.footer-container{grid-template-columns:1fr;gap:2rem;text-align:center}
+.footer-section{text-align:center}
+
+.social-btn{width:100%;max-width:250px}
+}
+
+@media (max-width:768px){
+header{padding:.75rem 0}
+.header-container{padding:0 1rem;gap:1rem}
+.logo{gap:.5rem}
+.logo span:first-child{font-size:1rem!important}
+.logo span:last-child{font-size:1rem!important}
+.header-cta{padding:.6rem 1rem;font-size:.85rem;white-space:nowrap}
+}
+
+@media (max-width:768px){
+.hero{padding:4rem 1rem 3rem}
+.hero h1{font-size:2rem;line-height:1.2}
+.hero-subtitle{font-size:1rem}
+.hero-badges{gap:1rem;font-size:.9rem}
+.hero-cta{padding:1rem 1.75rem;font-size:1rem}
+}
+
+@media (max-width:768px){
+.cases{padding:3rem 1rem}
+.section-title{font-size:1.75rem}
+.section-subtitle{font-size:.95rem}
+.cases-grid{display:none!important}
+.cases-slider{display:block!important;overflow:visible!important}
+.cases-slider .swiper-wrapper{padding:1rem 0}
+.cases-slider .swiper-slide{height:auto}
+.case-card{margin:0 auto;max-width:340px}
+.case-header{padding:1.5rem;min-height:100px}
+.case-header h3{font-size:1rem}
+.case-header p{font-size:.85rem}
+.case-body{padding:1.5rem}
+.case-section{margin-bottom:1.25rem}
+.case-section h4{font-size:.75rem}
+.case-section li{font-size:.85rem;padding:.25rem 0}
+.case-results{padding:1.25rem;gap:.75rem}
+.result-value{font-size:1.4rem}
+.result-label{font-size:.7rem}
+.case-cta{padding:.85rem;font-size:.9rem}
+.more-cases-btn{padding:1rem 2rem;font-size:1rem}
+}
+
+@media (max-width:768px){
+.ai-section{padding:3rem 1rem}
+.ai-grid{grid-template-columns:1fr;gap:1.25rem}
+.ai-card{padding:1.5rem}
+.ai-card h3{font-size:1.05rem;margin-bottom:.75rem}
+.ai-card p{font-size:.9rem;line-height:1.6}
+}
+.social-buttons{display:flex!important;gap:1rem;flex-wrap:wrap;margin-top:1rem}
+.social-btn{display:flex!important;align-items:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:8px;text-decoration:none;font-weight:600;transition:all .3s;color:#fff}
+.telegram-btn{background:#0088cc}
+.telegram-btn:hover{background:#006699;transform:translateY(-2px)}
+.whatsapp-btn{background:#25D366}
+.whatsapp-btn:hover{background:#1da851;transform:translateY(-2px)}
+.social-btn svg{width:20px;height:20px}
+
+@media (max-width:768px){
+.case-card{min-height:480px;max-width:340px;margin:0 auto}
+.case-body{padding:1.5rem;gap:.75rem}
 }
 </style>
 </head>
@@ -1184,6 +1250,24 @@ B2B, высокочековые продукты
 
 <footer>
 <div class="footer-container">
+<div class="footer-section">
+<h4>WEBNOSTRA</h4>
+<p>Performance Marketing Agency</p>
+<p style="margin-top:1rem">Meta Ads • Google Ads • Яндекс Директ • VK Реклама</p>
+</div>
+<div class="footer-section">
+<h4>Связаться</h4>
+<div class="social-buttons">
+<a href="https://t.me/magosh_al" class="social-btn telegram-btn" target="_blank">
+<svg viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161l-1.84 8.673c-.137.645-.503.803-1.02.5l-2.816-2.075-1.36 1.308c-.15.15-.277.277-.568.277l.203-2.88 5.25-4.747c.228-.203-.05-.316-.354-.113l-6.491 4.087-2.795-.874c-.608-.19-.62-.608.127-.9l10.93-4.213c.508-.19.952.113.787.9z"/></svg>
+<span>Telegram</span>
+</a>
+<a href="https://wa.me/77066671426" class="social-btn whatsapp-btn" target="_blank">
+<svg viewBox="0 0 24 24" fill="white"><path d="M12.031 1.5C6.219 1.5 1.5 6.198 1.5 12c0 2.003.569 3.866 1.547 5.451L1.5 22.5l5.273-1.486A10.425 10.425 0 0012.031 22.5c5.812 0 10.531-4.698 10.531-10.5S17.843 1.5 12.031 1.5zm6.208 14.875c-.281.787-1.391 1.445-2.281 1.63-.623.125-1.436.226-4.184-.899-3.524-1.441-5.784-5.064-5.959-5.298-.169-.234-1.408-1.873-1.408-3.574 0-1.7.891-2.539 1.206-2.886.315-.347.687-.435.918-.435.23 0 .461 0 .663.012.213.012.497-.08.777.593.281.679.96 2.344 1.044 2.516.084.172.14.372.028.606-.112.234-.168.38-.336.585-.168.204-.353.458-.504.616-.168.172-.343.358-.147.7.196.33.871 1.435 1.869 2.325 1.285 1.143 2.366 1.498 2.703 1.666.337.168.533.14.73-.084.196-.224.843-.984 1.069-1.323.224-.339.45-.282.756-.168.315.112 1.99.938 2.33 1.108.337.168.561.252.645.393.084.14.084.8-.197 1.587z"/></svg>
+<span>WhatsApp</span>
+</a>
+</div>
+</div>
 <div class="footer-section">
 <h4>Документы</h4>
 <a href="https://webnostra.kz/policy" target="_blank">Политика конфиденциальности</a>
