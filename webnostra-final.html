@@ -30,6 +30,9 @@ header{position:fixed;top:0;width:100%;background:rgba(255,255,255,.98);backdrop
 .mobile-menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px)}
 .mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,.1);z-index:999;max-height:0;overflow:hidden;transition:max-height .3s ease}
 .mobile-menu.active{max-height:400px;padding:1.5rem 2rem}
+.mobile-menu-logo{display:flex;align-items:center;gap:.5rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.mobile-menu-logo span:first-child{font-size:1.2rem;font-weight:800;color:var(--blue)}
+.mobile-menu-logo span:last-child{font-size:1.2rem;font-weight:800;color:var(--text)}
 .mobile-menu a{display:block;padding:1rem 0;color:var(--text);text-decoration:none;font-weight:600;border-bottom:1px solid var(--border);transition:color .3s}
 .mobile-menu a:last-child{border-bottom:none}
 .mobile-menu a:hover{color:var(--blue)}
@@ -314,16 +317,18 @@ section{padding:3rem 1rem}
 
 /* Target Audience */
 .target-audience{padding:3rem 1rem!important}
+.target-audience .container{padding:0 1rem}
 .audience-grid{display:none!important}
-.audience-slider{display:block!important;padding-bottom:3rem!important;margin:0 -1rem;padding-left:1rem;padding-right:1rem}
-.audience-slider .swiper-wrapper{padding:1rem 0;display:flex}
-.audience-slider .swiper-slide{height:auto;padding:0 .5rem;width:100%;max-width:300px;flex-shrink:0}
-.audience-card{padding:2rem 1.5rem!important;border-radius:12px;display:flex;flex-direction:column;align-items:center;text-align:center;min-height:200px;justify-content:center}
-.audience-icon{display:flex;justify-content:center;margin-bottom:1rem}
-.audience-icon svg{width:48px!important;height:48px!important;fill:var(--blue);margin-bottom:0}
-.audience-card h3{font-size:1.15rem!important;margin-bottom:.75rem!important;font-weight:700;color:var(--text)}
-.audience-card p{font-size:.95rem!important;line-height:1.6;color:var(--gray);margin:0}
-.audience-slider .swiper-pagination{position:relative!important;margin-top:1.5rem!important;bottom:auto!important}
+.audience-slider{display:block!important;padding-bottom:3rem!important;margin:0 -1rem!important;padding-left:1rem!important;padding-right:1rem!important;overflow:visible!important}
+.audience-slider .swiper-wrapper{padding:1rem 0;display:flex;align-items:stretch}
+.audience-slider .swiper-slide{height:auto;padding:0 .5rem;width:100%!important;max-width:300px!important;flex-shrink:0;display:flex}
+.audience-slider .swiper-slide .audience-card{width:100%;height:100%}
+.audience-card{padding:2rem 1.5rem!important;border-radius:12px;display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important;min-height:220px!important;justify-content:center!important;background:var(--bg)!important;border-top:4px solid var(--blue)!important}
+.audience-icon{display:flex!important;justify-content:center!important;margin-bottom:1rem!important;width:100%}
+.audience-icon svg{width:48px!important;height:48px!important;fill:var(--blue)!important;margin-bottom:0}
+.audience-card h3{font-size:1.15rem!important;margin-bottom:.75rem!important;font-weight:700!important;color:var(--text)!important;width:100%}
+.audience-card p{font-size:.95rem!important;line-height:1.6!important;color:var(--gray)!important;margin:0!important;width:100%}
+.audience-slider .swiper-pagination{position:relative!important;margin-top:1.5rem!important;bottom:auto!important;text-align:center!important}
 
 /* Founder */
 .founder{background:var(--bg);padding:3rem 1rem!important}
@@ -354,8 +359,8 @@ footer{padding:2rem 1rem 1.5rem}
 .footer-container{grid-template-columns:1fr;gap:2rem;text-align:center}
 .footer-section h4{font-size:1rem;margin-bottom:1rem}
 .footer-section p{font-size:.9rem;margin-bottom:.4rem}
-.social-buttons{display:flex!important;flex-direction:column;gap:.75rem;margin-top:1rem;align-items:center}
-.social-btn{width:100%;max-width:250px;padding:.75rem 1.5rem;font-size:.9rem}
+.social-buttons{display:flex!important;flex-direction:column;gap:.75rem;margin-top:1rem;align-items:center!important;justify-content:center!important;width:100%}
+.social-btn{width:100%!important;max-width:250px!important;padding:.75rem 1.5rem;font-size:.9rem;margin:0 auto!important;justify-content:center!important}
 .footer-section a{font-size:.9rem;margin-bottom:.4rem}
 .footer-bottom{padding-top:1.5rem;font-size:.85rem}
 
@@ -417,6 +422,10 @@ section{padding:2.5rem .75rem}
 <a href="#quiz" class="header-cta">Получить аудит</a>
 </div>
 <div class="mobile-menu">
+<div class="mobile-menu-logo">
+<span>WEBNOSTRA</span>
+<span>PERFORMANCE</span>
+</div>
 <a href="#quiz" onclick="toggleMobileMenu()">Получить аудит</a>
 <a href="#services" onclick="toggleMobileMenu()">Услуги</a>
 <a href="#cases" onclick="toggleMobileMenu()">Кейсы</a>
@@ -805,7 +814,15 @@ B2B, высокочековые продукты
 </ul>
 </div>
 <div class="case-results">
-<div class="result-item"><div class="result-value">818</div><div class="result-label">лидов</div></div></div><div class="swiper-slide"><div class="case-card">
+<div class="result-item"><div class="result-value">818</div><div class="result-label">лидов</div></div>
+<div class="result-item"><div class="result-value">$2.9</div><div class="result-label">CPL</div></div>
+<div class="result-item"><div class="result-value">8.3%</div><div class="result-label">конверсия</div></div>
+<div class="result-item"><div class="result-value">4.2</div><div class="result-label">ROAS</div></div>
+</div>
+<a href="https://webnostra-team.netlify.app/cases" target="_blank" class="case-cta">Узнать больше →</a>
+</div>
+</div>
+</div></div><div class="swiper-slide"><div class="case-card">
 <div class="case-header">
 <h3>ФРАНШИЗА ВЕНДИНГОВЫХ АППАРАТОВ</h3>
 <p>Google Ads + Meta</p>
@@ -820,7 +837,14 @@ B2B, высокочековые продукты
 </ul>
 </div>
 <div class="case-results">
-<div class="result-item"><div class="result-value">600+</div><div class="result-label">заявок</div></div></div><div class="swiper-slide"><div class="case-card">
+<div class="result-item"><div class="result-value">600+</div><div class="result-label">заявок</div></div>
+<div class="result-item"><div class="result-value">$12.3</div><div class="result-label">CPL</div></div>
+<div class="result-item" style="grid-column:span 2"><div class="result-value">100%</div><div class="result-label">аналитика</div></div>
+</div>
+<a href="https://webnostra-team.netlify.app/cases" target="_blank" class="case-cta">Узнать больше →</a>
+</div>
+</div>
+</div></div><div class="swiper-slide"><div class="case-card">
 <div class="case-header">
 <h3>МАРКИРОВКА ТОВАРОВ (B2B)</h3>
 <p>Яндекс Директ</p>
@@ -835,7 +859,15 @@ B2B, высокочековые продукты
 </ul>
 </div>
 <div class="case-results">
-<div class="result-item"><div class="result-value">322</div><div class="result-label">заявки</div></div></div><div class="swiper-slide"><div class="case-card">
+<div class="result-item"><div class="result-value">322</div><div class="result-label">заявки</div></div>
+<div class="result-item"><div class="result-value">$13.3</div><div class="result-label">CPL</div></div>
+<div class="result-item"><div class="result-value">20</div><div class="result-label">продаж</div></div>
+<div class="result-item"><div class="result-value">$111K</div><div class="result-label">выручка</div></div>
+</div>
+<a href="https://webnostra-team.netlify.app/cases" target="_blank" class="case-cta">Узнать больше →</a>
+</div>
+</div>
+</div></div><div class="swiper-slide"><div class="case-card">
 <div class="case-header">
 <h3>АГЕНТСТВО НЕДВИЖИМОСТИ (СОЧИ)</h3>
 <p>Яндекс Директ + Meta</p>
@@ -850,7 +882,15 @@ B2B, высокочековые продукты
 </ul>
 </div>
 <div class="case-results">
-<div class="result-item"><div class="result-value">481</div><div class="result-label">заявка</div></div></div><div class="swiper-slide"><div class="case-card">
+<div class="result-item"><div class="result-value">481</div><div class="result-label">заявка</div></div>
+<div class="result-item"><div class="result-value">$13.8</div><div class="result-label">CPL</div></div>
+<div class="result-item"><div class="result-value">62%</div><div class="result-label">квалиф.</div></div>
+<div class="result-item"><div class="result-value">+ROI</div><div class="result-label">с 1 мес</div></div>
+</div>
+<a href="https://webnostra-team.netlify.app/cases" target="_blank" class="case-cta">Узнать больше →</a>
+</div>
+</div>
+</div></div><div class="swiper-slide"><div class="case-card">
 <div class="case-header">
 <h3>УПАКОВКА ДЛЯ СЕЛЛЕРОВ (B2B)</h3>
 <p>Meta Ads + Google</p>
@@ -865,7 +905,14 @@ B2B, высокочековые продукты
 </ul>
 </div>
 <div class="case-results">
-<div class="result-item"><div class="result-value">1,700</div><div class="result-label">заявок</div></div></div><div class="swiper-slide"><div class="case-card">
+<div class="result-item"><div class="result-value">1,700</div><div class="result-label">заявок</div></div>
+<div class="result-item"><div class="result-value">$11.3</div><div class="result-label">CPL</div></div>
+<div class="result-item" style="grid-column:span 2"><div class="result-value">$19,225</div><div class="result-label">бюджет</div></div>
+</div>
+<a href="https://webnostra-team.netlify.app/cases" target="_blank" class="case-cta">Узнать больше →</a>
+</div>
+</div>
+</div></div><div class="swiper-slide"><div class="case-card">
 <div class="case-header">
 <h3>НЕДВИЖИМОСТЬ В ДУБАЕ</h3>
 <p>Meta Ads</p>
@@ -880,7 +927,13 @@ B2B, высокочековые продукты
 </ul>
 </div>
 <div class="case-results">
-<div class="result-item"><div class="result-value">632</div><div class="result-label">лида</div></div></div>
+<div class="result-item"><div class="result-value">632</div><div class="result-label">лида</div></div>
+<div class="result-item"><div class="result-value">$7.4</div><div class="result-label">CPL</div></div>
+<div class="result-item" style="grid-column:span 2"><div class="result-value">3-5%</div><div class="result-label">конверсия</div></div>
+</div>
+<a href="https://webnostra-team.netlify.app/cases" target="_blank" class="case-cta">Узнать больше →</a>
+</div>
+</div>
 </div>
 <div class="swiper-pagination"></div>
 </div>
