@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEBNOSTRA — Performance Marketing | Meta Ads, Google Ads, Яндекс, VK</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script>
+    // Ленивая загрузка Swiper CSS только на мобильных
+    if(window.innerWidth <= 768) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css';
+        document.head.appendChild(link);
+    }
+    </script>
     <style>
 * {margin:0;padding:0;box-sizing:border-box}
 :root {
@@ -375,6 +383,17 @@ footer{background:var(--text);color:#fff;padding:3rem 2rem 2rem}
 
 /* Mobile styles */
 @media (max-width:768px){
+/* Оптимизация производительности на мобильных */
+.mobile-menu{backdrop-filter:none!important}
+.quiz{backdrop-filter:none!important}
+.ai-visual{backdrop-filter:none!important}
+.hero-shape{backdrop-filter:none!important;animation:none!important}
+.hero::before{animation:none!important}
+.hero::after{animation:none!important}
+.quiz-section::before{animation:none!important}
+.quiz-progress-bar-fill::after{animation:none!important}
+.badge svg{animation:none!important}
+
 /* Header - улучшенная мобильная верстка */
 header{padding:1rem 0;box-shadow:var(--shadow-sm)}
 .header-container{padding:0 1.25rem;gap:1rem}
@@ -382,7 +401,7 @@ header{padding:1rem 0;box-shadow:var(--shadow-sm)}
 .logo span{font-size:1.25rem!important}
 .mobile-menu-toggle{display:flex}
 .header-cta{display:none}
-.mobile-menu{display:block;backdrop-filter:blur(10px);background:rgba(255,255,255,.98)}
+.mobile-menu{display:block;background:rgba(255,255,255,.98)}
 .mobile-menu .header-cta{display:block;text-align:center;margin-top:1rem;background:var(--gradient-yellow);color:var(--text);padding:.875rem 1.5rem;border-radius:10px;border-bottom:none;box-shadow:var(--shadow-md);font-weight:700}
 
 /* Hero - улучшенная мобильная верстка */
@@ -1555,7 +1574,15 @@ B2B, высокочековые продукты
 </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+// Ленивая загрузка Swiper только на мобильных для производительности
+if(window.innerWidth <= 768) {
+    const swiperScript = document.createElement('script');
+    swiperScript.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
+    swiperScript.async = true;
+    document.head.appendChild(swiperScript);
+}
+</script>
 <script>
 let quizStep=1;
 window.quizAnswers = {
@@ -1878,7 +1905,7 @@ const menu=document.querySelector('.mobile-menu');
 const toggle=document.querySelector('.mobile-menu-toggle');
 menu.classList.toggle('active');
 toggle.classList.toggle('active');
-document.body.style.overflow=menu.classList.contains('active')?'hidden':'auto';
+// Не блокируем скролл вообще, только закрываем меню при клике
 }
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
 a.addEventListener('click',function(e){
@@ -2305,7 +2332,7 @@ const toggle=document.querySelector('.mobile-menu-toggle');
 if(menu&&toggle&&menu.classList.contains('active')){
 menu.classList.remove('active');
 toggle.classList.remove('active');
-document.body.style.overflow='auto';
+// Не меняем overflow - он уже установлен в CSS
 }
 }
 });
