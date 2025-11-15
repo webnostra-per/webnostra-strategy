@@ -1584,8 +1584,6 @@ if(window.innerWidth <= 768) {
 }
 </script>
 <script>
-// ОБНОВЛЕНО: Версия с исправленной анимацией чисел
-console.log('✅ Script loaded - v2.0');
 let quizStep=1;
 window.quizAnswers = {
 channel: '',
@@ -2364,23 +2362,28 @@ toggle.classList.remove('active');
 });
 
 // Scroll Progress Bar and Scroll to Top button
+// Оптимизированный единый обработчик scroll с throttle
+let scrollTicking=false;
 window.addEventListener('scroll',function(){
+if(!scrollTicking){
+window.requestAnimationFrame(function(){
+const scrollY=window.scrollY;
+// 1. Progress bar
 const scrollProgress=document.querySelector('.scroll-progress');
 if(scrollProgress){
 const windowHeight=document.documentElement.scrollHeight-document.documentElement.clientHeight;
-const scrolled=(window.scrollY/windowHeight)*100;
+const scrolled=(scrollY/windowHeight)*100;
 scrollProgress.style.width=scrolled+'%';
 }
+// 2. Scroll to top button
 const scrollTopBtn=document.querySelector('.scroll-to-top');
 if(scrollTopBtn){
-if(window.scrollY>300){
+if(scrollY>300){
 scrollTopBtn.style.display='flex';
 scrollTopBtn.style.alignItems='center';
 scrollTopBtn.style.justifyContent='center';
-setTimeout(()=>{
 scrollTopBtn.style.opacity='1';
 scrollTopBtn.style.transform='translateY(0)';
-},10);
 }else{
 scrollTopBtn.style.opacity='0';
 scrollTopBtn.style.transform='translateY(20px)';
@@ -2388,6 +2391,27 @@ setTimeout(()=>{
 if(window.scrollY<=300)scrollTopBtn.style.display='none';
 },300);
 }
+}
+// 3. Hero parallax
+const hero=document.querySelector('.hero');
+if(hero&&scrollY<hero.offsetHeight){
+hero.style.transform=`translateY(${scrollY*.5}px)`;
+}
+// 4. Sticky CTA
+const stickyButton=document.querySelector('.sticky-cta');
+const quizSection=document.getElementById('quiz');
+if(stickyButton&&quizSection){
+const quizRect=quizSection.getBoundingClientRect();
+const isQuizVisible=quizRect.top<window.innerHeight&&quizRect.bottom>0;
+if(scrollY>500&&!isQuizVisible){
+stickyButton.classList.add('visible');
+}else{
+stickyButton.classList.remove('visible');
+}
+}
+scrollTicking=false;
+});
+scrollTicking=true;
 }
 });
 
@@ -2413,80 +2437,28 @@ el.style.transitionDelay=(index%3)*.1+'s';
 observer.observe(el);
 });
 
-// Parallax effect for hero
-let lastScroll=0;
-window.addEventListener('scroll',function(){
-const scrolled=window.pageYOffset;
-const hero=document.querySelector('.hero');
-if(hero&&scrolled<hero.offsetHeight){
-const parallax=scrolled*.5;
-hero.style.transform=`translateY(${parallax}px)`;
-}
-lastScroll=scrolled;
-});
-
-// Простая и надежная анимация чисел для всех устройств - ОБНОВЛЕНО
-function animateNumber(element,target){
-console.log('🎬 START animation for:',target);
-const isDecimal=target%1!==0;
-const originalText=element.textContent.trim();
-const hasPrefix=originalText.includes('$');
-const prefix=hasPrefix?'$':'';
-console.log('Text:',originalText,'Has$:',hasPrefix,'isDecimal:',isDecimal);
-let current=0;
-const duration=1500;
-const startTime=performance.now();
-function update(){
-const elapsed=performance.now()-startTime;
-const progress=Math.min(elapsed/duration,1);
-current=target*progress;
-if(isDecimal){
-element.textContent=prefix+current.toFixed(1);
-}else{
-element.textContent=prefix+Math.round(current);
-}
-if(progress<1){
-requestAnimationFrame(update);
-}else{
-console.log('✅ COMPLETE:',element.textContent);
-}
-}
-requestAnimationFrame(update);
-}
-// Запуск анимации
-const initBadgeAnimation=()=>{
-console.log('🚀 Init animation');
-const badgeNumbers=document.querySelectorAll('.badge-number');
-console.log('Found:',badgeNumbers.length,'elements');
-if(badgeNumbers.length===0){
-console.error('❌ No elements!');
-return;
-}
-badgeNumbers.forEach((element,index)=>{
-const dataTarget=element.getAttribute('data-target');
-const target=parseFloat(dataTarget);
-console.log(`Element ${index}: data-target="${dataTarget}" parsed=${target}`);
-if(!target){
-console.error('❌ Bad target:',index);
-return;
-}
+// Простая анимация чисел
 setTimeout(()=>{
-console.log(`⏰ Start ${index}`);
-animateNumber(element,target);
-},500+index*200);
-});
-};
-console.log('📋 readyState:',document.readyState);
-if(document.readyState==='loading'){
-console.log('⏳ Wait DOMContentLoaded');
-document.addEventListener('DOMContentLoaded',()=>{
-console.log('✅ DOM ready');
-setTimeout(initBadgeAnimation,100);
-});
-}else{
-console.log('✅ Already loaded');
-setTimeout(initBadgeAnimation,100);
+const badgeNumbers=document.querySelectorAll('.badge-number');
+badgeNumbers.forEach((el,idx)=>{
+const target=parseFloat(el.getAttribute('data-target'));
+if(!target)return;
+const isDecimal=target%1!==0;
+const hasPrefix=el.textContent.includes('$');
+const prefix=hasPrefix?'$':'';
+let start=0;
+const duration=1200;
+const startTime=Date.now();
+function animate(){
+const elapsed=Date.now()-startTime;
+const progress=Math.min(elapsed/duration,1);
+const current=target*progress;
+el.textContent=prefix+(isDecimal?current.toFixed(1):Math.round(current));
+if(progress<1)requestAnimationFrame(animate);
 }
+setTimeout(animate,300+idx*150);
+});
+},200);
 });
 
 // Выбор способа связи в квизе
@@ -2525,20 +2497,7 @@ function selectContactMethod(method) {
     }
 }
 
-// Sticky CTA для мобильных
-window.addEventListener('scroll', function() {
-    const stickyButton = document.querySelector('.sticky-cta');
-    const quizSection = document.getElementById('quiz');
-    if (stickyButton && quizSection) {
-        const quizRect = quizSection.getBoundingClientRect();
-        const isQuizVisible = quizRect.top < window.innerHeight && quizRect.bottom > 0;
-        if (window.scrollY > 500 && !isQuizVisible) {
-            stickyButton.classList.add('visible');
-        } else {
-            stickyButton.classList.remove('visible');
-        }
-    }
-});
+// Sticky CTA теперь обрабатывается в едином scroll обработчике выше
 
 // Инициализация WhatsApp по умолчанию при загрузке формы квиза
 document.addEventListener('DOMContentLoaded', function() {
