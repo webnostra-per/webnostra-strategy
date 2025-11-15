@@ -2404,13 +2404,16 @@ function animateNumber(element,target,duration=2000){
 const start=0;
 const increment=target/(duration/16);
 let current=start;
+const isDecimal=target%1!==0;
+const hasPrefix=element.textContent.trim().startsWith('$');
+const prefix=hasPrefix?'$':'';
 const timer=setInterval(()=>{
 current+=increment;
 if(current>=target){
-element.textContent=target.toFixed(1);
+element.textContent=prefix+(isDecimal?target.toFixed(1):Math.round(target));
 clearInterval(timer);
 }else{
-element.textContent=current.toFixed(1);
+element.textContent=prefix+(isDecimal?current.toFixed(1):Math.round(current));
 }
 },16);
 }
@@ -2426,7 +2429,7 @@ entry.target.classList.add('animated');
 }
 }
 });
-},{threshold:.5});
+},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
 badgeNumbers.forEach(num=>badgeObserver.observe(num));
 }
 });
