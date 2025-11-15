@@ -1584,6 +1584,8 @@ if(window.innerWidth <= 768) {
 }
 </script>
 <script>
+// ОБНОВЛЕНО: Версия с исправленной анимацией чисел
+console.log('✅ Script loaded - v2.0');
 let quizStep=1;
 window.quizAnswers = {
 channel: '',
@@ -2090,6 +2092,8 @@ child.style.removeProperty('opacity');
 child.style.removeProperty('position');
 child.style.removeProperty('left');
 });
+try{
+if(typeof Swiper!=='undefined'){
 new Swiper('.services-slider',{
 slidesPerView:1,
 spaceBetween:20,
@@ -2097,6 +2101,12 @@ pagination:{el:'.services-slider .swiper-pagination',clickable:true},
 loop:true,
 autoplay:{delay:3000,disableOnInteraction:false}
 });
+}else{
+console.warn('Swiper not loaded for services-slider');
+}
+}catch(e){
+console.error('Error init services-slider:',e);
+}
 }
 const casesSlider=document.querySelector('.cases-slider');
 // CRITICAL: Only init on mobile AND ensure we're still on mobile
@@ -2160,6 +2170,8 @@ pagination.style.setProperty('opacity','1','important');
 }
 // Final check before initializing Swiper
 if(window.innerWidth<=768){
+try{
+if(typeof Swiper!=='undefined'){
 new Swiper('.cases-slider',{
 slidesPerView:'auto',
 spaceBetween:12,
@@ -2174,6 +2186,12 @@ direction:'horizontal',
 slidesPerGroup:1,
 speed:300
 });
+}else{
+console.warn('Swiper not loaded for cases-slider');
+}
+}catch(e){
+console.error('Error init cases-slider:',e);
+}
 }
 }
 const audienceSlider=document.querySelector('.audience-slider');
@@ -2194,6 +2212,8 @@ child.style.removeProperty('opacity');
 child.style.removeProperty('position');
 child.style.removeProperty('left');
 });
+try{
+if(typeof Swiper!=='undefined'){
 new Swiper('.audience-slider',{
 slidesPerView:'auto',
 spaceBetween:16,
@@ -2202,6 +2222,12 @@ loop:false,
 freeMode:true,
 grabCursor:true
 });
+}else{
+console.warn('Swiper not loaded for audience-slider');
+}
+}catch(e){
+console.error('Error init audience-slider:',e);
+}
 }
 }
 }
@@ -2399,38 +2425,67 @@ hero.style.transform=`translateY(${parallax}px)`;
 lastScroll=scrolled;
 });
 
-// Animate numbers in badges
-function animateNumber(element,target,duration=2000){
-const start=0;
-const increment=target/(duration/16);
-let current=start;
+// Простая и надежная анимация чисел для всех устройств - ОБНОВЛЕНО
+function animateNumber(element,target){
+console.log('🎬 START animation for:',target);
 const isDecimal=target%1!==0;
-const hasPrefix=element.textContent.trim().startsWith('$');
+const originalText=element.textContent.trim();
+const hasPrefix=originalText.includes('$');
 const prefix=hasPrefix?'$':'';
-const timer=setInterval(()=>{
-current+=increment;
-if(current>=target){
-element.textContent=prefix+(isDecimal?target.toFixed(1):Math.round(target));
-clearInterval(timer);
+console.log('Text:',originalText,'Has$:',hasPrefix,'isDecimal:',isDecimal);
+let current=0;
+const duration=1500;
+const startTime=performance.now();
+function update(){
+const elapsed=performance.now()-startTime;
+const progress=Math.min(elapsed/duration,1);
+current=target*progress;
+if(isDecimal){
+element.textContent=prefix+current.toFixed(1);
 }else{
-element.textContent=prefix+(isDecimal?current.toFixed(1):Math.round(current));
+element.textContent=prefix+Math.round(current);
 }
-},16);
+if(progress<1){
+requestAnimationFrame(update);
+}else{
+console.log('✅ COMPLETE:',element.textContent);
 }
+}
+requestAnimationFrame(update);
+}
+// Запуск анимации
+const initBadgeAnimation=()=>{
+console.log('🚀 Init animation');
 const badgeNumbers=document.querySelectorAll('.badge-number');
-if(badgeNumbers.length>0){
-const badgeObserver=new IntersectionObserver((entries)=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-const target=parseFloat(entry.target.getAttribute('data-target'));
-if(target&&!entry.target.classList.contains('animated')){
-animateNumber(entry.target,target);
-entry.target.classList.add('animated');
+console.log('Found:',badgeNumbers.length,'elements');
+if(badgeNumbers.length===0){
+console.error('❌ No elements!');
+return;
 }
+badgeNumbers.forEach((element,index)=>{
+const dataTarget=element.getAttribute('data-target');
+const target=parseFloat(dataTarget);
+console.log(`Element ${index}: data-target="${dataTarget}" parsed=${target}`);
+if(!target){
+console.error('❌ Bad target:',index);
+return;
 }
+setTimeout(()=>{
+console.log(`⏰ Start ${index}`);
+animateNumber(element,target);
+},500+index*200);
 });
-},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
-badgeNumbers.forEach(num=>badgeObserver.observe(num));
+};
+console.log('📋 readyState:',document.readyState);
+if(document.readyState==='loading'){
+console.log('⏳ Wait DOMContentLoaded');
+document.addEventListener('DOMContentLoaded',()=>{
+console.log('✅ DOM ready');
+setTimeout(initBadgeAnimation,100);
+});
+}else{
+console.log('✅ Already loaded');
+setTimeout(initBadgeAnimation,100);
 }
 });
 
