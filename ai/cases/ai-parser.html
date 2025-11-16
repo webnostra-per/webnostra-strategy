@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-парсер Telegram для логистики — Кейс WEBNOSTRA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f1f5f9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Animated Background */
+        .bg-animated {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .bg-animated::before,
+        .bg-animated::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bg-animated::before {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            top: -200px;
+            right: -200px;
+            animation-delay: 0s;
+        }
+
+        .bg-animated::after {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            bottom: -150px;
+            left: -150px;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -50px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 24px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+            line-height: 1.2;
+        }
+
+        header .subtitle {
+            font-size: 1.35rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Sections */
+        section {
+            position: relative;
+            padding: 100px 0;
+        }
+
+        .section-light {
+            background: var(--white);
+        }
+
+        .section-dark {
+            background: var(--light);
+        }
+
+        h2 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--dark);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 60px;
+            max-width: 700px;
+        }
+
+        /* Client Card */
+        .client-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 48px;
+            border-radius: 24px;
+            color: white;
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .client-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .client-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .client-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .stat-item p {
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        /* Problem Cards */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 32px;
+            border-radius: 20px;
+            border: 2px solid var(--light);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .problem-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            border-radius: 20px 0 0 20px;
+        }
+
+        .problem-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .problem-card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .problem-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--gray);
+        }
+
+        /* Solution Steps */
+        .solution-steps {
+            display: grid;
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .step-card {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            box-shadow: 0 12px 48px rgba(99, 102, 241, 0.15);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: start;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+
+        .step-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .step-content p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+
+        .step-content ul {
+            margin-top: 16px;
+            padding-left: 20px;
+        }
+
+        .step-content li {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--gray);
+            margin-bottom: 12px;
+        }
+
+        .step-content strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .result-card {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--light);
+            transition: all 0.3s ease;
+        }
+
+        .result-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .result-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+
+        .result-text {
+            font-size: 1.05rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Video Section */
+        .video-section {
+            background: var(--light);
+        }
+
+        .video-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-top: 48px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-text h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .video-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+
+        .video-text ul {
+            margin-top: 20px;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .video-text li {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--gray);
+            margin-bottom: 12px;
+            padding-left: 32px;
+            position: relative;
+        }
+
+        .video-text li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        /* Why Better Section */
+        .why-better {
+            background: white;
+            padding: 48px;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            margin-top: 60px;
+        }
+
+        .why-better h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: var(--dark);
+            text-align: center;
+        }
+
+        .why-better-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .why-item {
+            text-align: center;
+        }
+
+        .why-item .icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .why-item p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--gray);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 48px 24px;
+        }
+
+        footer p {
+            opacity: 0.7;
+            font-size: 0.95rem;
+        }
+
+        footer .brand {
+            font-weight: 700;
+            opacity: 1;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .video-container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .video-container.reverse {
+                direction: ltr;
+            }
+
+            .video-wrapper {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            header .subtitle {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.05rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .client-card {
+                padding: 32px 24px;
+            }
+
+            .problem-grid,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step-card {
+                padding: 28px 24px;
+            }
+
+            .step-header {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .result-number {
+                font-size: 2.8rem;
+            }
+
+            .why-better {
+                padding: 32px 24px;
+            }
+
+            .why-better-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="bg-animated"></div>
+        <div class="container">
+            <div class="badge">Кейс WEBNOSTRA AI</div>
+            <h1>AI-парсер Telegram для логистики</h1>
+            <p class="subtitle">Как AI-радар по лидам приносит до 5 горячих заявок в день из Telegram-чатов без траты на рекламу</p>
+        </div>
+    </header>
+
+    <section class="section-light">
+        <div class="container">
+            <h2>О клиенте</h2>
+            <p class="section-subtitle">Логистическая компания с большими тратами на рекламу</p>
+            
+            <div class="client-card">
+                <h3>Логистическая компания</h3>
+                <div class="client-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">🚛</div>
+                        <p><strong>Грузоперевозки</strong><br>по России и СНГ</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">💰</div>
+                        <p><strong>Лиды из рекламы</strong><br>Яндекс и Авито</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">💬</div>
+                        <p><strong>10+ чатов</strong><br>в Telegram с заявками</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-dark">
+        <div class="container">
+            <h2>Проблема</h2>
+            <p class="section-subtitle">Постоянные траты на рекламу и пропущенные горячие заявки в Telegram</p>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <span class="icon">💸</span>
+                    <h4>Постоянные траты на рекламу</h4>
+                    <p>Бюджет уходил в Яндекс и Авито, но результат был нестабильный</p>
+                </div>
+                
+                <div class="problem-card">
+                    <span class="icon">📱</span>
+                    <h4>10+ чатов без контроля</h4>
+                    <p>Заявки "иногда проскакивали", но не было системы их отслеживания</p>
+                </div>
+                
+                <div class="problem-card">
+                    <span class="icon">👀</span>
+                    <h4>Ручной мониторинг</h4>
+                    <p>Менеджеры сидели в личных аккаунтах, листали ленту и пропускали запросы</p>
+                </div>
+                
+                <div class="problem-card">
+                    <span class="icon">🎯</span>
+                    <h4>Потерянные горячие лиды</h4>
+                    <p>Пока менеджер замечал запрос, клиент уже находил другого перевозчика</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-light">
+        <div class="container">
+            <h2>Решение — AI-радар по лидам</h2>
+            <p class="section-subtitle">Автоматический парсер Telegram, который находит клиентов вместо вас</p>
+            
+            <div class="solution-steps">
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-icon">🔍</div>
+                        <div>
+                            <h3>24/7 мониторинг десятков чатов</h3>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <p>AI-парсер непрерывно отслеживает тематические чаты и каналы в Telegram, выявляя фразы вроде:</p>
+                        <ul>
+                            <li><strong>"нужна фура до Казани"</strong></li>
+                            <li><strong>"кто перевезет 20 паллет?"</strong></li>
+                            <li><strong>"ищем перевозчика, срочно сегодня"</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-icon">🧠</div>
+                        <div>
+                            <h3>Понимает контекст, а не только ключевые слова</h3>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <p>AI отличает "просто обсуждение" от реального запроса на перевозку:</p>
+                        <ul>
+                            <li>Игнорирует флуд и переписки "для обсуждения"</li>
+                            <li>Выцепляет сообщения с бюджетом, сроками, городами</li>
+                            <li>Анализирует намерение и готовность заказчика</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-icon">💬</div>
+                        <div>
+                            <h3>Сам пишет первый вежливый ответ</h3>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <p>Формирует живое сообщение с уточнением деталей, например:</p>
+                        <p><em>"Добрый день! Можем перевезти ваш груз из Екатеринбурга в Казань. Подскажите, пожалуйста, тоннаж и желаемые даты погрузки/выгрузки?"</em></p>
+                        <p>Тон и стиль — как у живого менеджера, без "робота" и спама.</p>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-icon">📊</div>
+                        <div>
+                            <h3>Квалифицирует и заводит лид в канал</h3>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <p>Все найденные запросы летят в закрытый Telegram-канал для менеджеров. К каждому лиду парсер прикладывает:</p>
+                        <ul>
+                            <li>Краткую сводку: что за запрос, из какого чата</li>
+                            <li>Какие уже есть данные (города, даты, объем)</li>
+                            <li>Статус лида (новый / теплый / готов к сделке)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-header">
+                        <div class="step-icon">🔔</div>
+                        <div>
+                            <h3>Уведомляет о теплых лидах</h3>
+                        </div>
+                    </div>
+                    <div class="step-content">
+                        <p>Если в диалоге клиент ответил и подтвердил интерес, AI помечает лид как теплый и отправляет пуш-уведомление:</p>
+                        <p><em>"Есть теплый лид: фура 20 т, Москва → Ростов, погрузка завтра. Нужен расчет цены и созвон"</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="video-section">
+        <div class="container">
+            <h2>Как это работает</h2>
+            <p class="section-subtitle">Смотрите, как AI-парсер находит и обрабатывает заявки в реальном времени</p>
+            
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <video controls loop muted playsinline>
+                        <source src="https://ee5e4feb6be69967cd25ddfa270555a8.r2.cloudflarestorage.com/video" type="video/mp4">
+                        Ваш браузер не поддерживает видео
+                    </video>
+                </div>
+                <div class="video-text">
+                    <h3>Процесс работы AI-парсера</h3>
+                    <p>AI сам "пасет" тематические чаты и каналы, находит живые запросы и пишет аккуратный первый ответ.</p>
+                    <ul>
+                        <li>Парсер мониторит десятки чатов одновременно</li>
+                        <li>Находит запросы и сразу отвечает от лица компании</li>
+                        <li>Пересылает лид в общий канал с пометкой статуса</li>
+                        <li>Менеджер заходит в готовый диалог с заинтересованным клиентом</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-light">
+        <div class="container">
+            <h2>Результаты за первый месяц</h2>
+            <p class="section-subtitle">Измеримый эффект от внедрения AI-парсера</p>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <span class="result-number">До 5</span>
+                    <p class="result-text">горячих лидов в день только из Telegram</p>
+                </div>
+                
+                <div class="result-card">
+                    <span class="result-number">+5%</span>
+                    <p class="result-text">к выручке уже в первый месяц работы</p>
+                </div>
+                
+                <div class="result-card">
+                    <span class="result-number">3 недели</span>
+                    <p class="result-text">срок окупаемости парсера</p>
+                </div>
+                
+                <div class="result-card">
+                    <span class="result-number">0 руб</span>
+                    <p class="result-text">на рекламу — лиды идут из бесплатных чатов</p>
+                </div>
+                
+                <div class="result-card">
+                    <span class="result-number">100%</span>
+                    <p class="result-text">менеджеров избавились от рутины мониторинга</p>
+                </div>
+                
+                <div class="result-card">
+                    <span class="result-number">Масштаб</span>
+                    <p class="result-text">все права переданы клиенту — можно расширять на другие города</p>
+                </div>
+            </div>
+
+            <div class="why-better">
+                <h3>Почему это сильнее, чем просто "бот в чате"</h3>
+                <div class="why-better-grid">
+                    <div class="why-item">
+                        <div class="icon">🎯</div>
+                        <p>AI не ждет, пока к вам придут — он сам находит клиентов там, где они уже просят помощи</p>
+                    </div>
+                    <div class="why-item">
+                        <div class="icon">⚡</div>
+                        <p>Менеджер заходит в диалог тогда, когда клиент уже ответил и проявил интерес</p>
+                    </div>
+                    <div class="why-item">
+                        <div class="icon">📈</div>
+                        <p>Лидогенерация превращается из "лотереи в рекламе" в понятный канал горячих заявок</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="brand">WEBNOSTRA AI</p>
+            <p>Автоматизация бизнеса через искусственный интеллект</p>
+            <p style="margin-top: 16px; opacity: 0.5; font-size: 0.85rem;">ai.webnostra.kz</p>
+        </div>
+    </footer>
+
+</body>
+</html>
