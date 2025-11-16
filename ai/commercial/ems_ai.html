@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Коммерческое предложение - AI-автоматизация для EMS-бизнеса</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        /* Action buttons in header */
+        .header-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Value Proposition */
+        .value-block {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .value-block h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .value-items {
+            display: grid;
+            gap: 15px;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+        }
+
+        .value-item::before {
+            content: "✓";
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #48bb78;
+            flex-shrink: 0;
+        }
+
+        /* Content */
+        .content {
+            padding: 40px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: linear-gradient(135deg, #5568d3 0%, #65408b 100%);
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .section.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background: white;
+        }
+
+        .section.active .section-content {
+            max-height: 5000px;
+        }
+
+        .section-body {
+            padding: 30px;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+            border-left-color: #764ba2;
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #ebf4ff 0%, #e9d8fd 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .highlight-box strong {
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .result-item {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .result-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .result-item .metric {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .result-item .label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            border: 3px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .pricing-card:hover {
+            border-color: #667eea;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .pricing-card.recommended {
+            border-color: #48bb78;
+            border-width: 4px;
+        }
+
+        .pricing-card.recommended::before {
+            height: 8px;
+            background: linear-gradient(90deg, #48bb78 0%, #38a169 100%);
+        }
+
+        .recommended-badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 10px rgba(72, 187, 120, 0.3);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .pricing-card.recommended .price {
+            color: #48bb78;
+        }
+
+        .price-sub {
+            color: #718096;
+            margin-bottom: 25px;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #a0aec0;
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .discount-label {
+            background: #48bb78;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .price-details {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .price-details h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .pricing-card.recommended .price-details h4 {
+            color: #48bb78;
+        }
+
+        .price-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .price-details ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .price-details ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin-top: 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            background: #edf2f7;
+            transform: translateX(5px);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-item h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        /* ROI Box */
+        .roi-box {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .roi-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .roi-formula {
+            font-size: 1.3rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .section-content {
+                max-height: none !important;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .btn, .toggle-icon {
+                display: none;
+            }
+
+            .section-header {
+                background: #667eea !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .contact-section, .header {
+                background: #667eea !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .header-actions {
+                display: none;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .header .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .cards-grid,
+            .pricing-grid,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-buttons,
+            .header-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .mt-30 {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Коммерческое предложение</h1>
+            <div class="subtitle">Умный помощник для работы с клиентами + аналитика разговоров для EMS-бизнеса</div>
+            
+            <div class="value-block">
+                <h2>Что вы получите</h2>
+                <div class="value-items">
+                    <div class="value-item">
+                        <span><strong>На 20-40% больше готовых к покупке клиентов.</strong> Каждая заявка получает мгновенный ответ и попадает к нужному специалисту - для дилеров, партнеров или конечных покупателей у вас будут свои воронки</span>
+                    </div>
+                    <div class="value-item">
+                        <span><strong>Ответ каждому клиенту в течение часа.</strong> Если менеджер не успел связаться - система сама делает звонки и отправляет сообщения по проверенному алгоритму</span>
+                    </div>
+                    <div class="value-item">
+                        <span><strong>Полная видимость работы отдела продаж.</strong> Вы будете слышать и читать все разговоры, видеть оценки качества работы и получать конкретные рекомендации для каждого менеджера</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="#" class="btn btn-primary" onclick="window.print(); return false;">
+                    <span>📄</span>
+                    <span>Скачать PDF</span>
+                </a>
+                <a href="https://ai.webnostra.kz/consulting" class="btn btn-secondary" target="_blank">
+                    <span>📊</span>
+                    <span>Посмотреть кейсы</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Section: Что мы внедряем -->
+            <div class="section active">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>Что мы внедряем</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h3>Умный помощник</h3>
+                                <p style="margin-bottom: 20px;">Это как если бы у вас был сотрудник, который никогда не спит и отвечает на каждую заявку в первую же минуту.</p>
+                                
+                                <h4 class="mt-30">Что он делает:</h4>
+                                <ul>
+                                    <li>Сразу связывается с каждым новым клиентом и собирает все контакты - телефон, email, сайт компании</li>
+                                    <li>Выясняет, кто перед вами: крупный дилер, небольшой партнер, человек для себя или клиент с ремонтом</li>
+                                    <li>Отправляет готовую заявку нужному менеджеру с пометкой "связаться в течение часа"</li>
+                                    <li>Следит за менеджером - если тот не связался, напоминает ему</li>
+                                    <li>Если клиент не отвечает - делает 8 попыток связаться (4 звонка + 4 SMS) по проверенному графику в течение 2 недель</li>
+                                </ul>
+                                
+                                <div class="highlight-box mt-30">
+                                    <strong>Как оплачивается:</strong> от 15 до 25 рублей за каждый диалог с клиентом. То есть платите только когда система реально работает
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <h3>Аналитика разговоров</h3>
+                                <p style="margin-bottom: 20px;">Представьте, что вы можете прослушать любой звонок за 30 секунд вместо 20 минут - система превращает голос в текст и сразу показывает главное.</p>
+                                
+                                <h4 class="mt-30">Что она делает:</h4>
+                                <ul>
+                                    <li><strong>Расшифровывает все разговоры.</strong> Можете искать по словам, как в Google - набрали "цена доставки в Казахстан" и сразу видите все обсуждения этой темы</li>
+                                    <li><strong>Оценивает работу менеджера по вашему скрипту:</strong> поздоровался ли, задал нужные вопросы, рассказал о продукте, договорился о следующем шаге</li>
+                                    <li><strong>Показывает картину целиком:</strong> у каких менеджеров лучшие результаты, на каком этапе теряются клиенты, кто забывает перезванивать</li>
+                                    <li><strong>Работает с видеозвонками в Zoom</strong> - анализирует так же подробно, как обычные звонки</li>
+                                    <li><strong>Дает конкретные подсказки</strong> каждому менеджеру - что улучшить в следующий раз</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section: Как работает -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>Как это работает в вашем бизнесе</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4>Пришла заявка с сайта или из рекламы</h4>
+                                <p>Умный помощник моментально связывается с человеком, уточняет детали и определяет, кто это - дилер, партнер или покупатель для себя</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>Заявка попадает к нужному менеджеру</h4>
+                                <p>Система сама выбирает специалиста, который работает с таким типом клиентов, и ставит задачу: "Позвонить в течение часа"</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>Все звонки записываются и анализируются</h4>
+                                <p>Вы в любой момент можете посмотреть, как прошел разговор, что обсуждали, какие возражения были - все в виде текста с оценками</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>Система не дает забыть про клиента</h4>
+                                <p>Если менеджер не дозвонился или клиент попросил перезвонить позже - система автоматически продолжает попытки связаться по проверенному графику</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section: Результаты -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>Какие результаты вы получите через 2-3 месяца</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="metric">95%</div>
+                                <div class="label">клиентов получают<br>ответ в течение часа</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="metric">100%</div>
+                                <div class="label">заявок с полными<br>контактами</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="metric">+10-15%</div>
+                                <div class="label">больше отправленных<br>коммерческих предложений</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="metric">+5-10%</div>
+                                <div class="label">больше подписанных<br>договоров</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="metric">-20-40%</div>
+                                <div class="label">меньше тренажеров,<br>отправленных зря</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="metric">+15-25%</div>
+                                <div class="label">улучшение качества<br>работы менеджеров</div>
+                            </div>
+                        </div>
+
+                        <div class="roi-box">
+                            <h3>Пример окупаемости</h3>
+                            <div class="roi-formula">
+                                100 заявок в месяц × средний чек 150 000 ₽ × всего +2% к продажам<br>
+                                = <strong>+2 дополнительные продажи ≈ +300 000 ₽ в месяц</strong>
+                            </div>
+                            <p style="font-size: 1.1rem; margin-top: 15px;">При затратах примерно 50-60 тысяч рублей в месяц на обе системы</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section: Тарифы -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>Тарифы и стоимость</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <div class="pricing-grid">
+                            <div class="pricing-card">
+                                <h3>Только умный помощник</h3>
+                                <div class="price">$500</div>
+                                <div class="price-sub">≈ 40 000 ₽ - разовая настройка</div>
+                                <div class="price">$100<span style="font-size: 1.2rem;">/мес</span></div>
+                                <div class="price-sub">ежемесячная поддержка</div>
+
+                                <div class="price-details">
+                                    <h4>Что входит в настройку:</h4>
+                                    <ul>
+                                        <li>Разбираем вашу воронку продаж</li>
+                                        <li>Пишем сценарии общения с клиентами</li>
+                                        <li>Обучаем помощника на ваших реальных примерах</li>
+                                        <li>Подключаем к вашей CRM (Bitrix24)</li>
+                                        <li>Тестируем и запускаем в работу</li>
+                                    </ul>
+                                </div>
+
+                                <div class="price-details mt-30">
+                                    <h4>Что входит в поддержку:</h4>
+                                    <ul>
+                                        <li>Исправляем ошибки и сбои</li>
+                                        <li>Меняем сценарии до 2 раз в месяц</li>
+                                        <li>Каждую неделю отчет о работе</li>
+                                        <li>Консультации как улучшить результаты</li>
+                                    </ul>
+                                </div>
+
+                                <div class="highlight-box mt-30">
+                                    <strong>+ Оплата диалогов:</strong><br>
+                                    15-25 ₽ за каждое общение с клиентом. Платите только за реальную работу
+                                </div>
+                            </div>
+
+                            <div class="pricing-card">
+                                <h3>Только аналитика разговоров</h3>
+                                <div class="price">$800</div>
+                                <div class="price-sub">≈ 64 000 ₽ - разовая настройка</div>
+                                <div class="price">$100<span style="font-size: 1.2rem;">/мес</span></div>
+                                <div class="price-sub">ежемесячная поддержка</div>
+
+                                <div class="price-details">
+                                    <h4>Что входит в настройку:</h4>
+                                    <ul>
+                                        <li>Подключаем к вашей телефонии и Zoom</li>
+                                        <li>Настраиваем запись и расшифровку</li>
+                                        <li>Создаем чек-листы под ваш скрипт продаж</li>
+                                        <li>Делаем панели управления для руководителя</li>
+                                        <li>Настраиваем уведомления о проблемах</li>
+                                        <li>Обучаем вашу команду</li>
+                                    </ul>
+                                </div>
+
+                                <div class="price-details mt-30">
+                                    <h4>Что входит в поддержку:</h4>
+                                    <ul>
+                                        <li>Проверяем качество расшифровок</li>
+                                        <li>Обновляем чек-листы до 2 раз в месяц</li>
+                                        <li>Каждую неделю аналитика с инсайтами</li>
+                                        <li>Раз в квартал калибруем систему оценки</li>
+                                    </ul>
+                                </div>
+
+                                <div class="highlight-box mt-30">
+                                    <strong>+ Дополнительные расходы:</strong><br>
+                                    Расшифровка звонков, хранение записей, отправка SMS - по тарифам провайдеров (настроим контроль расходов)
+                                </div>
+                            </div>
+
+                            <div class="pricing-card recommended">
+                                <div class="recommended-badge">РЕКОМЕНДУЕМ</div>
+                                <h3>Полный пакет</h3>
+                                <div class="discount-label">Экономия 20%</div>
+                                <div>
+                                    <span class="old-price">$1,300</span>
+                                    <span class="price" style="display: inline;">$1,040</span>
+                                </div>
+                                <div class="price-sub">≈ 83 200 ₽ - разовая настройка</div>
+                                <div>
+                                    <span class="old-price" style="font-size: 1.2rem;">$200</span>
+                                    <span class="price" style="display: inline;">$160<span style="font-size: 1.2rem;">/мес</span></span>
+                                </div>
+                                <div class="price-sub">ежемесячная поддержка</div>
+
+                                <div class="price-details">
+                                    <h4>Все включено:</h4>
+                                    <ul>
+                                        <li><strong>Умный помощник:</strong> автоматическая обработка каждой заявки круглосуточно</li>
+                                        <li><strong>Аналитика разговоров:</strong> записи, расшифровки, оценки качества</li>
+                                        <li>Полная интеграция обеих систем друг с другом</li>
+                                        <li>Единая панель управления для руководителя</li>
+                                        <li>Подробные отчеты по всей воронке продаж</li>
+                                        <li>Приоритетная поддержка</li>
+                                        <li>Регулярные улучшения на основе ваших данных</li>
+                                    </ul>
+                                </div>
+
+                                <div class="highlight-box mt-30" style="border-left-color: #48bb78;">
+                                    <strong style="color: #48bb78;">Почему это выгоднее:</strong><br>
+                                    Системы усиливают друг друга. Умный помощник собирает максимум информации о клиенте, а аналитика показывает, как менеджеры с этим работают и где можно улучшить процесс
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section: Сроки -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>Как проходит внедрение (1 месяц)</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4>Неделя 1 - Подготовка</h4>
+                                <p>Изучаем как у вас устроены продажи, пишем сценарии общения с клиентами, делаем макеты того, как все будет работать</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>Неделя 2 - Подключение</h4>
+                                <p>Интегрируем системы с вашей CRM и телефонией, проводим технические тесты</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>Неделя 3 - Обучение</h4>
+                                <p>Показываем вашим менеджерам и руководителям как работать с новыми инструментами, тестируем вместе</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>Неделя 4 - Запуск</h4>
+                                <p>Запускаем аккуратно - сначала на части заявок, потом на всех. Устраняем мелкие шероховатости в процессе</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section: Обучение -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>Обучение и поддержка</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h3>Обучение менеджеров</h3>
+                                <ul>
+                                    <li>Две встречи по полтора часа</li>
+                                    <li>Как работать с автоматическими задачами от системы</li>
+                                    <li>Правила 8 касаний - как не потерять клиента</li>
+                                    <li>Работа со статусами и переходами между этапами</li>
+                                </ul>
+                            </div>
+
+                            <div class="card">
+                                <h3>Обучение руководителей</h3>
+                                <ul>
+                                    <li>Как читать аналитические панели</li>
+                                    <li>Разбор отчетов и метрик</li>
+                                    <li>Настройка системы оценки под себя</li>
+                                    <li>Как составлять план улучшений на основе данных</li>
+                                </ul>
+                            </div>
+
+                            <div class="card">
+                                <h3>Материалы</h3>
+                                <ul>
+                                    <li>Пошаговые инструкции на каждый случай</li>
+                                    <li>Видеозаписи всех обучающих встреч</li>
+                                    <li>Примеры хороших и плохих звонков с разбором</li>
+                                    <li>Короткие памятки для ежедневной работы</li>
+                                </ul>
+                            </div>
+
+                            <div class="card">
+                                <h3>Постоянная поддержка</h3>
+                                <ul>
+                                    <li>Каждую неделю отчет о работе систем</li>
+                                    <li>Раз в месяц встреча по стратегии развития</li>
+                                    <li>Быстрая помощь при любых проблемах</li>
+                                    <li>Конкретные рекомендации по улучшениям</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <h2>Готовы обсудить детали?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">Свяжитесь с нами удобным способом</p>
+            
+            <div class="contact-buttons">
+                <a href="https://wa.me/77066671426" class="btn btn-primary" target="_blank">
+                    <span>📱</span>
+                    <span>WhatsApp</span>
+                </a>
+                <a href="https://t.me/magosh_al" class="btn btn-secondary" target="_blank">
+                    <span>✈️</span>
+                    <span>Telegram</span>
+                </a>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.3);">
+                <p style="font-size: 1rem; opacity: 0.9;">WEBNOSTRA PERFORMANCE</p>
+                <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 10px;">Специализированное агентство по платному трафику и AI-автоматизации</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.parentElement;
+            section.classList.toggle('active');
+        }
+
+        // Open first section by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.section');
+            if (firstSection) {
+                firstSection.classList.add('active');
+            }
+        });
+
+        // Print optimization
+        window.onbeforeprint = function() {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('active');
+            });
+        };
+    </script>
+</body>
+</html>

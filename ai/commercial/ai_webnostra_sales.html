@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-автоматизация бизнеса - WEBNOSTRA PERFORMANCE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        /* Action buttons in header */
+        .header-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Value Proposition */
+        .value-block {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .value-block h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .value-items {
+            display: grid;
+            gap: 15px;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+        }
+
+        .value-item::before {
+            content: "✓";
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #48bb78;
+            flex-shrink: 0;
+        }
+
+        /* Content */
+        .content {
+            padding: 40px;
+        }
+
+        /* Advantages Section */
+        .advantages-section {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .advantages-section h2 {
+            text-align: center;
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .advantages-grid {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .advantages-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .advantages-grid::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .advantages-grid::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+        }
+
+        .advantages-grid::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(90deg, #5568d3 0%, #65408b 100%);
+        }
+
+        @media (max-width: 1024px) {
+            .advantages-grid {
+                gap: 20px;
+            }
+        }
+
+        .advantage-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+            min-width: 280px;
+            flex: 0 0 280px;
+            scroll-snap-align: start;
+        }
+
+        .advantage-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+
+        .advantage-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .advantage-card h3 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .advantage-card p {
+            color: #4a5568;
+            font-size: 1rem;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: linear-gradient(135deg, #5568d3 0%, #65408b 100%);
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .section.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background: white;
+        }
+
+        .section.active .section-content {
+            max-height: 8000px;
+        }
+
+        .section-body {
+            padding: 30px;
+        }
+
+        /* AI Services Grid */
+        .ai-services-grid {
+            display: grid;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .ai-service-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .ai-service-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+            border-left-color: #764ba2;
+        }
+
+        .ai-service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .ai-service-card h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            flex: 1;
+        }
+
+        .ai-price {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .ai-service-subtitle {
+            color: #718096;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .ai-service-card h4 {
+            color: #2d3748;
+            margin: 20px 0 15px 0;
+            font-size: 1.1rem;
+        }
+
+        .ai-service-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .ai-service-card ul li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #4a5568;
+        }
+
+        .ai-service-card ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .result-badge {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .section-content {
+                max-height: none !important;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .btn, .toggle-icon {
+                display: none;
+            }
+
+            .section-header {
+                background: #667eea !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .contact-section, .header {
+                background: #667eea !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .header-actions {
+                display: none;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .header .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .advantages-grid {
+                gap: 15px;
+                padding: 10px 0;
+            }
+
+            .advantage-card {
+                min-width: 250px;
+                flex: 0 0 250px;
+            }
+
+            .contact-buttons,
+            .header-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .ai-service-header {
+                flex-direction: column;
+            }
+
+            .ai-price {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>AI-автоматизация для вашего бизнеса</h1>
+            <div class="subtitle">Внедряем умных помощников, которые работают 24/7 и масштабируют отдел продаж без найма новых сотрудников</div>
+            
+            <div class="value-block">
+                <h2>Что вы получите</h2>
+                <div class="value-items">
+                    <div class="value-item">
+                        <span><strong>Автоматизация рутины.</strong> Искусственный интеллект обрабатывает входящие запросы, звонит клиентам, заполняет CRM и создает задачи менеджерам</span>
+                    </div>
+                    <div class="value-item">
+                        <span><strong>Контроль качества 24/7.</strong> AI анализирует все разговоры с клиентами, выявляет ошибки менеджеров и отправляет отчеты руководителю</span>
+                    </div>
+                    <div class="value-item">
+                        <span><strong>Рост продаж без найма.</strong> Ваша команда фокусируется на сложных сделках, пока AI обрабатывает типовые запросы и квалифицирует клиентов</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <a href="#" class="btn btn-primary" onclick="window.print(); return false;">
+                    <span>📄</span>
+                    <span>Скачать PDF</span>
+                </a>
+                <a href="https://ai.webnostra.kz/consulting" class="btn btn-secondary" target="_blank">
+                    <span>📊</span>
+                    <span>Посмотреть кейсы</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Advantages Section -->
+            <div class="advantages-section">
+                <h2>Почему выбирают нас</h2>
+                <div class="advantages-grid">
+                    <div class="advantage-card">
+                        <div class="advantage-icon">💎</div>
+                        <h3>Прозрачная оплата</h3>
+                        <p>Вы владеете всеми сервисами и оплачиваете их напрямую. Никаких скрытых комиссий и наценок - видите каждый рубль</p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <div class="advantage-icon">⏱️</div>
+                        <h3>Точность сроков</h3>
+                        <p>Прописываем сроки внедрения в договоре и несем ответственность за их соблюдение. Вы планируете работу заранее</p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <div class="advantage-icon">🎯</div>
+                        <h3>Гибкое ценообразование</h3>
+                        <p>Используем только те сервисы, которые действительно нужны вашему бизнесу. Не переплачиваете за лишние функции</p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <div class="advantage-icon">⚙️</div>
+                        <h3>Полная кастомизация</h3>
+                        <p>Создаем индивидуальное решение под ваши процессы с использованием самых современных AI-моделей</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section: AI Services -->
+            <div class="section active">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>Решения для автоматизации бизнеса</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <p style="font-size: 1.1rem; color: #4a5568; margin-bottom: 30px;">
+                            Автоматизируйте рутину и масштабируйте отдел продаж без найма новых сотрудников. Внедряем искусственный интеллект, который обучается на ваших данных и работает круглосуточно.
+                        </p>
+
+                        <div class="ai-services-grid">
+                            <!-- Service 1 -->
+                            <div class="ai-service-card">
+                                <div class="ai-service-header">
+                                    <h3>AI-квалификатор</h3>
+                                    <div class="ai-price">От $300 за интеграцию</div>
+                                </div>
+                                <div class="ai-service-subtitle">Круглосуточная обработка входящих запросов</div>
+                                
+                                <h4>Что делает:</h4>
+                                <ul>
+                                    <li>Мгновенно отвечает на входящие сообщения в любое время суток</li>
+                                    <li>Квалифицирует лиды по вашим критериям</li>
+                                    <li>Автоматически создает задачи для менеджеров</li>
+                                    <li>Заполняет карточки клиентов в CRM</li>
+                                    <li>Определяет качество трафика и приоритетность обращений</li>
+                                </ul>
+
+                                <div class="result-badge">
+                                    <strong>Результат:</strong> ни один лид не теряется, менеджеры работают только с теплыми клиентами
+                                </div>
+                            </div>
+
+                            <!-- Service 2 -->
+                            <div class="ai-service-card">
+                                <div class="ai-service-header">
+                                    <h3>AI-продавец</h3>
+                                    <div class="ai-price">От $500 за интеграцию</div>
+                                </div>
+                                <div class="ai-service-subtitle">Голосовой помощник для входящих и исходящих звонков</div>
+                                
+                                <h4>Что делает:</h4>
+                                <ul>
+                                    <li>Принимает входящие звонки и консультирует клиентов</li>
+                                    <li>Совершает исходящие звонки для напоминаний о встречах, оплатах, акциях</li>
+                                    <li>Квалифицирует клиентов по телефону</li>
+                                    <li>Записывает на встречи и консультации</li>
+                                    <li>Обрабатывает типовые возражения по скрипту</li>
+                                </ul>
+
+                                <div class="result-badge">
+                                    <strong>Результат:</strong> ваши менеджеры освобождены от рутинных звонков и фокусируются на сложных сделках
+                                </div>
+                            </div>
+
+                            <!-- Service 3 -->
+                            <div class="ai-service-card">
+                                <div class="ai-service-header">
+                                    <h3>Умный контроль качества</h3>
+                                    <div class="ai-price">От $700 за интеграцию</div>
+                                </div>
+                                <div class="ai-service-subtitle">Автоматический аудит всех разговоров с клиентами</div>
+                                
+                                <h4>Что делает:</h4>
+                                <ul>
+                                    <li>Прослушивает 100% телефонных звонков</li>
+                                    <li>Анализирует видеовстречи в Zoom/Google Meet</li>
+                                    <li>Выявляет отклонения от скриптов продаж</li>
+                                    <li>Фиксирует критические ошибки менеджеров</li>
+                                    <li>Отправляет уведомления руководителю в реальном времени</li>
+                                    <li>Формирует отчеты по качеству работы каждого сотрудника</li>
+                                </ul>
+
+                                <div class="result-badge">
+                                    <strong>Результат:</strong> вы видите все проблемы в отделе продаж без прослушивания сотен часов записей
+                                </div>
+                            </div>
+
+                            <!-- Service 4 -->
+                            <div class="ai-service-card">
+                                <div class="ai-service-header">
+                                    <h3>Индивидуальная AI-автоматизация</h3>
+                                    <div class="ai-price">Стоимость индивидуально</div>
+                                </div>
+                                <div class="ai-service-subtitle">Любые AI и алгоритмические решения под ваш бизнес</div>
+                                
+                                <h4>Примеры задач:</h4>
+                                <ul>
+                                    <li>Автоматическое формирование коммерческих предложений</li>
+                                    <li>Анализ обратной связи и отзывов клиентов</li>
+                                    <li>Предиктивная аналитика продаж и прогнозирование</li>
+                                    <li>Умные чат-боты для техподдержки</li>
+                                    <li>Автоматизация документооборота</li>
+                                    <li>Персонализация маркетинговых коммуникаций</li>
+                                </ul>
+
+                                <div class="result-badge">
+                                    <strong>Результат:</strong> решаем уникальные задачи вашего бизнеса с помощью AI и алгоритмов
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #ebf4ff 0%, #e9d8fd 100%); border-radius: 15px; text-align: center;">
+                            <p style="font-size: 1.1rem; color: #667eea; font-weight: 600;">
+                                Подробнее о нейросетях и наших услугах: <a href="https://ai.webnostra.kz/consulting" target="_blank" style="color: #764ba2; text-decoration: underline;">ai.webnostra.kz/consulting</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <h2>Как мы работаем</h2>
+                <p>Итоговая цена и состав решения рассчитываются индивидуально после бесплатной диагностики ваших бизнес-процессов</p>
+                
+                <div style="background: rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 30px; margin-top: 30px;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Что входит в бесплатную диагностику:</h3>
+                    <div style="text-align: left; max-width: 600px; margin: 0 auto;">
+                        <p style="margin-bottom: 10px;">✓ Анализ текущих бизнес-процессов</p>
+                        <p style="margin-bottom: 10px;">✓ Выявление точек для автоматизации</p>
+                        <p style="margin-bottom: 10px;">✓ Расчет окупаемости внедрения</p>
+                        <p style="margin-bottom: 10px;">✓ Индивидуальный план внедрения умных помощников</p>
+                        <p>✓ Точная стоимость под ваши задачи</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <a href="https://wa.me/77066671426" class="btn btn-primary" target="_blank" style="background: white; color: #48bb78; border-color: white;">
+                        <span>📱</span>
+                        <span>Получить бесплатную диагностику</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Section: How it works -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>Процесс внедрения (от 2 до 4 недель)</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <div style="display: grid; gap: 25px;">
+                            <div style="display: flex; gap: 20px; align-items: start;">
+                                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; flex-shrink: 0;">1</div>
+                                <div>
+                                    <h3 style="color: #667eea; margin-bottom: 10px;">Бесплатная диагностика</h3>
+                                    <p style="color: #4a5568;">Изучаем ваши процессы, выявляем узкие места и возможности для автоматизации. Рассчитываем окупаемость</p>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 20px; align-items: start;">
+                                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; flex-shrink: 0;">2</div>
+                                <div>
+                                    <h3 style="color: #667eea; margin-bottom: 10px;">Разработка решения</h3>
+                                    <p style="color: #4a5568;">Создаем индивидуальное решение: пишем сценарии, обучаем AI на ваших данных, настраиваем интеграции</p>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 20px; align-items: start;">
+                                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; flex-shrink: 0;">3</div>
+                                <div>
+                                    <h3 style="color: #667eea; margin-bottom: 10px;">Тестирование</h3>
+                                    <p style="color: #4a5568;">Запускаем на тестовых данных, обучаем вашу команду, проверяем все сценарии работы</p>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 20px; align-items: start;">
+                                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; flex-shrink: 0;">4</div>
+                                <div>
+                                    <h3 style="color: #667eea; margin-bottom: 10px;">Запуск и поддержка</h3>
+                                    <p style="color: #4a5568;">Плавный запуск в работу, мониторинг результатов, регулярные улучшения и техподдержка</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section: Support -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2>Что входит в поддержку</h2>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-body">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+                            <div style="background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); padding: 25px; border-radius: 12px; border-left: 4px solid #667eea;">
+                                <h3 style="color: #667eea; margin-bottom: 15px;">Техническая поддержка</h3>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 5px 0; color: #4a5568;">✓ Исправление ошибок</li>
+                                    <li style="padding: 5px 0; color: #4a5568;">✓ Обновление сценариев</li>
+                                    <li style="padding: 5px 0; color: #4a5568;">✓ Мониторинг работы системы</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); padding: 25px; border-radius: 12px; border-left: 4px solid #667eea;">
+                                <h3 style="color: #667eea; margin-bottom: 15px;">Аналитика и отчеты</h3>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 5px 0; color: #4a5568;">✓ Еженедельные отчеты о работе</li>
+                                    <li style="padding: 5px 0; color: #4a5568;">✓ Анализ эффективности</li>
+                                    <li style="padding: 5px 0; color: #4a5568;">✓ Рекомендации по улучшению</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); padding: 25px; border-radius: 12px; border-left: 4px solid #667eea;">
+                                <h3 style="color: #667eea; margin-bottom: 15px;">Обучение команды</h3>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 5px 0; color: #4a5568;">✓ Инструкции и материалы</li>
+                                    <li style="padding: 5px 0; color: #4a5568;">✓ Консультации по работе</li>
+                                    <li style="padding: 5px 0; color: #4a5568;">✓ Помощь при вопросах</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); padding: 25px; border-radius: 12px; border-left: 4px solid #667eea;">
+                                <h3 style="color: #667eea; margin-bottom: 15px;">Развитие решения</h3>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="padding: 5px 0; color: #4a5568;">✓ Новые функции</li>
+                                    <li style="padding: 5px 0; color: #4a5568;">✓ Оптимизация процессов</li>
+                                    <li style="padding: 5px 0; color: #4a5568;">✓ Масштабирование системы</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final CTA -->
+            <div class="cta-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <h2>Готовы автоматизировать ваш бизнес?</h2>
+                <p>Начните с бесплатной диагностики - мы покажем, где теряются деньги и как AI может помочь</p>
+                
+                <div class="contact-buttons" style="margin-top: 30px;">
+                    <a href="https://wa.me/77066671426" class="btn btn-primary" target="_blank">
+                        <span>📱</span>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="https://t.me/magosh_al" class="btn btn-secondary" target="_blank">
+                        <span>✈️</span>
+                        <span>Telegram</span>
+                    </a>
+                    <a href="https://ai.webnostra.kz/consulting" class="btn btn-secondary" target="_blank">
+                        <span>📊</span>
+                        <span>Посмотреть кейсы</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <div style="padding: 20px 0;">
+                <p style="font-size: 1.1rem; opacity: 0.95; margin-bottom: 15px;">
+                    Все AI-решения создаются индивидуально под ваш бизнес.
+                </p>
+                <p style="font-size: 1rem; opacity: 0.9;">
+                    Стоимость рассчитывается после бесплатной диагностики ваших процессов.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.parentElement;
+            section.classList.toggle('active');
+        }
+
+        // Open first section by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.section');
+            if (firstSection) {
+                firstSection.classList.add('active');
+            }
+        });
+
+        // Print optimization
+        window.onbeforeprint = function() {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('active');
+            });
+        };
+    </script>
+</body>
+</html>
