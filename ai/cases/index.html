@@ -234,10 +234,10 @@
             color: var(--gray);
         }
 
-        /* Cases Grid - КРИТИЧНО: 3 колонки на десктопе */
+        /* Cases Grid - КРИТИЧНО: 2 колонки на десктопе для больших карточек */
         .cases-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 32px;
             margin-top: 60px;
         }
@@ -263,7 +263,7 @@
         .case-header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            padding: 28px 24px;
+            padding: 36px 32px;
             position: relative;
             overflow: hidden;
         }
@@ -281,32 +281,32 @@
         .case-badge {
             display: inline-block;
             background: rgba(255, 255, 255, 0.2);
-            padding: 6px 16px;
+            padding: 8px 20px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .case-header h3 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             position: relative;
             z-index: 1;
-            line-height: 1.3;
+            line-height: 1.2;
         }
 
         .case-header .industry {
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             opacity: 0.9;
             position: relative;
             z-index: 1;
         }
 
         .case-body {
-            padding: 28px 24px;
+            padding: 32px;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -315,40 +315,40 @@
         .case-metrics {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-bottom: 24px;
+            gap: 20px;
+            margin-bottom: 28px;
         }
 
         .metric {
             text-align: center;
-            padding: 16px 12px;
+            padding: 20px 16px;
             background: var(--light);
-            border-radius: 12px;
+            border-radius: 16px;
         }
 
         .metric-value {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 900;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             line-height: 1;
         }
 
         .metric-label {
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             color: var(--gray);
-            line-height: 1.3;
+            line-height: 1.4;
         }
 
         .case-description {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--gray);
-            line-height: 1.6;
-            margin-bottom: 24px;
+            line-height: 1.7;
+            margin-bottom: 28px;
             flex: 1;
         }
 
@@ -358,11 +358,11 @@
             gap: 8px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 14px 28px;
+            padding: 16px 32px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.05rem;
             transition: all 0.3s ease;
             width: 100%;
             justify-content: center;
@@ -609,7 +609,11 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .cases-grid,
+            .cases-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+
             .benefits-grid,
             .why-us-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -782,6 +786,31 @@
                         </div>
                         <p class="case-description">AI-парсер мониторит тематические чаты, находит запросы на перевозки и сам пишет первый ответ от лица компании.</p>
                         <a href="https://webnostra.pro/ai/cases/ai-parser" class="case-btn">
+                            Смотреть кейс →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Case 4: Контроль качества -->
+                <div class="case-card">
+                    <div class="case-header">
+                        <div class="case-badge">B2B · Продажи</div>
+                        <h3>AI-контроль качества продаж</h3>
+                        <p class="industry">Автоматизация отдела КК</p>
+                    </div>
+                    <div class="case-body">
+                        <div class="case-metrics">
+                            <div class="metric">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">покрытие созвонов</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">+17%</span>
+                                <span class="metric-label">к конверсии в оплату</span>
+                            </div>
+                        </div>
+                        <p class="case-description">AI заменил отдел контроля качества, разбирает каждую встречу и строит еженедельный отчет для руководителя.</p>
+                        <a href="https://webnostra.pro/ai/cases/ai-okk" class="case-btn">
                             Смотреть кейс →
                         </a>
                     </div>
