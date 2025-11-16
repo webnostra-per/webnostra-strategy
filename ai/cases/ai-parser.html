@@ -401,12 +401,15 @@
             border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            background: #000;
+            min-height: 300px;
         }
 
         .video-wrapper video {
             width: 100%;
             height: auto;
             display: block;
+            object-fit: contain;
         }
 
         .video-text h3 {
@@ -737,10 +740,39 @@
             
             <div class="video-container">
                 <div class="video-wrapper">
-                    <video controls loop muted playsinline>
-                        <source src="https://ee5e4feb6be69967cd25ddfa270555a8.r2.cloudflarestorage.com/video" type="video/mp4">
-                        Ваш браузер не поддерживает видео
+                    <video id="demoVideo" controls muted playsinline preload="auto" style="width: 100%; height: auto; display: block; background: #000;">
+                        <source src="https://pub-f8075f15f66a4e4293f689daa625ef1d.r2.dev/IMG_4240.MP4" type="video/mp4">
+                        <p style="color: white; padding: 40px; text-align: center;">
+                            Видео не загружается в вашем браузере. 
+                            <a href="https://pub-f8075f15f66a4e4293f689daa625ef1d.r2.dev/IMG_4240.MP4" target="_blank" style="color: #6366f1; text-decoration: underline;">Открыть видео в новой вкладке</a>
+                        </p>
                     </video>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const video = document.getElementById('demoVideo');
+                            
+                            // Принудительная загрузка
+                            video.load();
+                            
+                            // Обработка ошибок
+                            video.addEventListener('error', function(e) {
+                                console.error('Ошибка загрузки видео:', e);
+                                console.error('Video error code:', video.error ? video.error.code : 'unknown');
+                            });
+                            
+                            // Проверка загрузки
+                            video.addEventListener('loadeddata', function() {
+                                console.log('Видео успешно загружено');
+                            });
+                            
+                            // Попытка воспроизведения при клике на контейнер
+                            video.addEventListener('click', function() {
+                                if (video.paused) {
+                                    video.play().catch(e => console.error('Ошибка воспроизведения:', e));
+                                }
+                            });
+                        });
+                    </script>
                 </div>
                 <div class="video-text">
                     <h3>Процесс работы AI-парсера</h3>
