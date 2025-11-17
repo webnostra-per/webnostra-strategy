@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBNOSTRA AI — Автоматизация бизнеса через искусственный интеллект</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8b5cf6;
+            --primary-light: #a78bfa;
+            --primary-dark: #7c3aed;
+            --accent: #ec4899;
+            --success: #10b981;
+            --dark-bg: #0a0a0f;
+            --dark-card: #141420;
+            --dark-lighter: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --border-color: #27272a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'SF Pro Display', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            background: var(--dark-bg);
+            padding: 160px 24px 120px;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        .header-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.4;
+            animation: float-glow 20s ease-in-out infinite;
+        }
+
+        .glow-1 {
+            top: -300px;
+            right: -100px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.6) 0%, transparent 70%);
+            animation-delay: 0s;
+        }
+
+        .glow-2 {
+            bottom: -200px;
+            left: -100px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.5) 0%, transparent 70%);
+            animation-delay: 7s;
+        }
+
+        .glow-3 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+            animation-delay: 14s;
+        }
+
+        @keyframes float-glow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -80px) scale(1.2); }
+            66% { transform: translate(-50px, 50px) scale(0.9); }
+        }
+
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: var(--primary-light);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 28px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 28px;
+            letter-spacing: -0.03em;
+            position: relative;
+            z-index: 1;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header .subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 48px;
+            position: relative;
+            z-index: 1;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 18px 48px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
+            position: relative;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 48px rgba(139, 92, 246, 0.6);
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            padding: 60px 0;
+            background: var(--dark-bg);
+            border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .tech-stack h3 {
+            text-align: center;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .tech-slider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .tech-track {
+            display: flex;
+            gap: 80px;
+            animation: scroll 30s linear infinite;
+            width: fit-content;
+        }
+
+        .tech-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .tech-item {
+            flex-shrink: 0;
+            width: 160px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .tech-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .tech-item svg,
+        .tech-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-lighter) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            border-radius: 32px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .quiz-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .quiz-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .quiz-step {
+            display: none;
+        }
+
+        .quiz-step.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .quiz-progress {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 40px;
+        }
+
+        .progress-dot {
+            flex: 1;
+            height: 4px;
+            background: var(--dark-lighter);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: var(--text-primary);
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 16px;
+        }
+
+        .quiz-option {
+            background: var(--dark-lighter);
+            border: 2px solid var(--border-color);
+            padding: 20px 24px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            background: rgba(139, 92, 246, 0.1);
+            transform: translateX(8px);
+        }
+
+        .quiz-result {
+            text-align: center;
+        }
+
+        .quiz-result h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--success);
+        }
+
+        .quiz-result p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .form-input {
+            background: var(--dark-lighter);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .benefit-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Cases Section */
+        .cases-section {
+            background: var(--dark-lighter);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 968px) {
+            .cases-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        .case-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .case-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+        }
+
+        .case-header {
+            padding: 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .case-badge {
+            display: inline-block;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: var(--primary-light);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .case-header h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .case-industry {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .case-body {
+            padding: 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .case-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 20px;
+            background: var(--dark-lighter);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .metric-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .case-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 32px;
+            flex: 1;
+        }
+
+        .case-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .case-btn:hover {
+            gap: 12px;
+            color: var(--primary);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--dark-bg);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0;
+        }
+
+        .stats-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .stats-header h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .stats-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--dark-card) 0%, var(--dark-lighter) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.4);
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .stat-description {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        /* ROI Section */
+        .roi-section {
+            background: var(--dark-bg);
+        }
+
+        .roi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .roi-text h3 {
+            font-size: 2rem;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .roi-text p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .roi-chart {
+            display: grid;
+            gap: 20px;
+        }
+
+        .chart-bar {
+            display: grid;
+            gap: 12px;
+        }
+
+        .chart-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .bar-container {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            height: 60px;
+        }
+
+        .bar-fill {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 20px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: width 1s ease;
+        }
+
+        /* Why Us Section */
+        .why-us-section {
+            background: var(--dark-lighter);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .why-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            padding: 36px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .why-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .why-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .why-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .why-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            background: var(--dark-bg);
+            text-align: center;
+            padding: 120px 0;
+        }
+
+        .final-cta h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .final-cta p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .final-cta-note {
+            margin-top: 24px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-card);
+            border-top: 1px solid var(--border-color);
+            padding: 60px 0 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .footer-section h4 {
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-light);
+            transform: translateX(4px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--dark-lighter);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-link svg {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .social-link.whatsapp:hover {
+            background: #25D366;
+            border-color: #25D366;
+            color: white;
+        }
+
+        .social-link.telegram:hover {
+            background: #0088cc;
+            border-color: #0088cc;
+            color: white;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.3);
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .quiz-container {
+                padding: 40px 30px;
+            }
+
+            .roi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .tech-item {
+                width: 140px;
+                height: 70px;
+            }
+
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                flex-direction: column;
+            }
+
+            .social-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            header {
+                padding: 100px 24px 80px;
+            }
+
+            .quiz-container {
+                padding: 30px 20px;
+            }
+
+            .case-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .tech-item {
+                width: 120px;
+                height: 60px;
+            }
+
+            .tech-track {
+                gap: 40px;
+            }
+        }
+    
+        /* Sticky Nav */
+        .sticky-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            transform: translateY(-100%); transition: transform 0.3s ease;
+        }
+        .sticky-nav.visible { transform: translateY(0); }
+        .nav-content {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 24px; max-width: 1280px; margin: 0 auto;
+        }
+        .nav-logo {
+            font-size: 1.2rem; font-weight: 900;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .nav-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white; padding: 10px 24px; border-radius: 50px;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4); }
+
+        /* Trust Section */
+        .trust-section {
+            padding: 40px 0;
+            background: var(--dark-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .trust-grid {
+            display: flex; gap: 60px; justify-content: center; align-items: center; flex-wrap: wrap;
+        }
+        .trust-item { text-align: center; }
+        .trust-number {
+            font-size: 2.5rem; font-weight: 900; color: var(--primary-light);
+            display: block; margin-bottom: 8px;
+        }
+        .trust-label {
+            font-size: 0.9rem; color: var(--text-secondary);
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+
+        /* Hero Stats */
+        .hero-stats {
+            display: flex; gap: 40px; justify-content: center; margin: 40px 0;
+            position: relative; z-index: 1; flex-wrap: wrap;
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat-number {
+            font-size: 2.5rem; font-weight: 900; display: block; margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-stat-label { font-size: 0.95rem; color: var(--text-secondary); }
+
+        /* Badge Pulse */
+        .badge-pulse {
+            width: 8px; height: 8px; background: var(--success); border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        /* Colored case badges */
+        .case-badge.education { 
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+        }
+        .case-badge.medical { 
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: #34d399;
+        }
+        .case-badge.logistics { 
+            background: rgba(245, 158, 11, 0.15);
+            border-color: rgba(245, 158, 11, 0.3);
+            color: #fbbf24;
+        }
+        .case-badge.sales { 
+            background: rgba(236, 72, 153, 0.15);
+            border-color: rgba(236, 72, 153, 0.3);
+            color: #f472b6;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Sticky Navigation -->
+    <nav class="sticky-nav" id="stickyNav">
+        <div class="nav-content">
+            <div class="nav-logo">WEBNOSTRA AI</div>
+            <a href="#quiz" class="nav-cta">Бесплатная диагностика</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="header-bg">
+            <div class="header-glow glow-1"></div>
+            <div class="header-glow glow-2"></div>
+            <div class="header-glow glow-3"></div>
+            <div class="grid-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="badge">
+                <span class="badge-pulse"></span>WEBNOSTRA AI</div>
+            <h1>Зарабатывайте больше<br>с AI-автоматизацией</h1>
+            <p class="subtitle">Увеличивайте конверсию в 2 раза и экономьте на зарплатах. AI берет рутину — вы зарабатываете больше. Окупаемость от 2 недель.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">×2</span>
+                    <span class="hero-stat-label">рост прибыли</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">от 2 недель</span>
+                    <span class="hero-stat-label">окупаемость</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">$18k+</span>
+                    <span class="hero-stat-label">экономия в год</span>
+                </div>
+            </div>
+            
+
+            <button class="cta-btn" onclick="scrollToQuiz()">
+                Рассчитать мою прибыль →
+            </button>
+        </div>
+    </header>
+    <!-- Trust Indicators -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <span class="trust-number">+47%</span>
+                    <span class="trust-label">средний рост выручки</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-number">от 2 недель</span>
+                    <span class="trust-label">до первой прибыли</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-number">15+</span>
+                    <span class="trust-label">проектов запущено</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Tech Stack -->
+    <section class="tech-stack">
+        <div class="container">
+            <h3>Технологии, которые мы используем</h3>
+        </div>
+        <div class="tech-slider">
+            <div class="tech-track">
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="5" y="28" font-family="Arial" font-weight="bold" font-size="20" fill="#10a37f">ChatGPT</text>
+                    </svg>
+                </div>
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="15" y="28" font-family="Arial" font-weight="bold" font-size="22" fill="#d97757">Claude</text>
+                    </svg>
+                </div>
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="12" y="28" font-family="Arial" font-weight="bold" font-size="22" fill="#8e75f0">Gemini</text>
+                    </svg>
+                </div>
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="0" y="28" font-family="Arial" font-weight="bold" font-size="19" fill="#00a6a6">Perplexity</text>
+                    </svg>
+                </div>
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="35" y="30" font-family="Arial" font-weight="bold" font-size="28" fill="#ea4b71">n8n</text>
+                    </svg>
+                </div>
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="15" y="28" font-family="Arial" font-weight="bold" font-size="20" fill="#ff4a00">Zapier</text>
+                    </svg>
+                </div>
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="15" y="28" font-family="Arial" font-weight="bold" font-size="20" fill="#5b4cdb">Albato</text>
+                    </svg>
+                </div>
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="0" y="28" font-family="Arial" font-weight="bold" font-size="18" fill="#8b5cf6">Midjourney</text>
+                    </svg>
+                </div>
+                <!-- Duplicate for infinite scroll -->
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="5" y="28" font-family="Arial" font-weight="bold" font-size="20" fill="#10a37f">ChatGPT</text>
+                    </svg>
+                </div>
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="15" y="28" font-family="Arial" font-weight="bold" font-size="22" fill="#d97757">Claude</text>
+                    </svg>
+                </div>
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="12" y="28" font-family="Arial" font-weight="bold" font-size="22" fill="#8e75f0">Gemini</text>
+                    </svg>
+                </div>
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="0" y="28" font-family="Arial" font-weight="bold" font-size="19" fill="#00a6a6">Perplexity</text>
+                    </svg>
+                </div>
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="35" y="30" font-family="Arial" font-weight="bold" font-size="28" fill="#ea4b71">n8n</text>
+                    </svg>
+                </div>
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="15" y="28" font-family="Arial" font-weight="bold" font-size="20" fill="#ff4a00">Zapier</text>
+                    </svg>
+                </div>
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="15" y="28" font-family="Arial" font-weight="bold" font-size="20" fill="#5b4cdb">Albato</text>
+                    </svg>
+                </div>
+                <div class="tech-item">
+                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
+                        <text x="0" y="28" font-family="Arial" font-weight="bold" font-size="18" fill="#8b5cf6">Midjourney</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Quiz Section -->
+    <section class="quiz-section" id="quiz">
+        <div class="container">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h2>Узнайте, сколько вы<br>заработаете с AI</h2>
+                    <p>Ответьте на 4 вопроса — покажем потенциал прибыли</p>
+                </div>
+
+                <div class="quiz-progress">
+                    <div class="progress-dot active"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                </div>
+
+                <!-- Step 1 -->
+                <div class="quiz-step active" data-step="1">
+                    <h3 class="quiz-question">Какая у вас ниша?</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="nextStep(2)">🏥 Медицина / Здоровье</div>
+                        <div class="quiz-option" onclick="nextStep(2)">🎓 Образование / Курсы</div>
+                        <div class="quiz-option" onclick="nextStep(2)">🏠 Недвижимость</div>
+                        <div class="quiz-option" onclick="nextStep(2)">🚚 Логистика / Доставка</div>
+                        <div class="quiz-option" onclick="nextStep(2)">💼 B2B услуги</div>
+                        <div class="quiz-option" onclick="nextStep(2)">🛍️ E-commerce / Retail</div>
+                        <div class="quiz-option" onclick="nextStep(2)">🔧 Другое</div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="quiz-step" data-step="2">
+                    <h3 class="quiz-question">Сколько заявок обрабатываете в день?</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="nextStep(3)">📊 До 10 заявок</div>
+                        <div class="quiz-option" onclick="nextStep(3)">📈 10-50 заявок</div>
+                        <div class="quiz-option" onclick="nextStep(3)">🚀 50-100 заявок</div>
+                        <div class="quiz-option" onclick="nextStep(3)">💥 Более 100 заявок</div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="quiz-step" data-step="3">
+                    <h3 class="quiz-question">Какая главная проблема?</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="nextStep(4)">⏰ Медленная обработка заявок</div>
+                        <div class="quiz-option" onclick="nextStep(4)">📉 Низкая конверсия в запись</div>
+                        <div class="quiz-option" onclick="nextStep(4)">🔄 Много рутинных вопросов</div>
+                        <div class="quiz-option" onclick="nextStep(4)">👥 Нужно масштабироваться</div>
+                        <div class="quiz-option" onclick="nextStep(4)">🌙 Заявки теряются вечером/ночью</div>
+                        <div class="quiz-option" onclick="nextStep(4)">🎯 Нужен поиск новых клиентов</div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="quiz-step" data-step="4">
+                    <h3 class="quiz-question">Когда планируете запустить?</h3>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="showResult()">🔥 Как можно скорее</div>
+                        <div class="quiz-option" onclick="showResult()">📅 В течение месяца</div>
+                        <div class="quiz-option" onclick="showResult()">🤔 Пока изучаю варианты</div>
+                    </div>
+                </div>
+
+                <!-- Result -->
+                <div class="quiz-step" data-step="result">
+                    <div class="quiz-result">
+                        <h3>Отлично! Вы можете заработать<br>дополнительно $47,000 в год</h3>
+                        <p>Оставьте контакты — отправим расчет прибыли и покажем, как быстро окупится автоматизация</p>
+                        
+                        <form class="contact-form" onsubmit="submitQuiz(event)">
+                            <input type="text" class="form-input" placeholder="Ваше имя" required>
+                            <input type="tel" class="form-input" placeholder="Телефон или Telegram" required>
+                            <button type="submit" class="cta-btn" style="width: 100%;">Получить аудит бесплатно</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    
+    <!-- Financial Results -->
+    
+
+
+    
+
+<!-- Cases -->
+    <section class="cases-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Кейсы автоматизации</h2>
+                <p>Результаты в разных нишах — от образования до логистики</p>
+            </div>
+            <div class="cases-grid">
+                <!-- Case 1 -->
+                <div class="case-card">
+                    <div class="case-header">
+                        <div class="case-badge education">Образование</div>
+                        <h3>AI-администратор для школы вокала</h3>
+                        <p class="case-industry">Автоматизация записи на занятия</p>
+                    </div>
+                    <div class="case-body">
+                        <div class="case-metrics">
+                            <div class="metric">
+                                <span class="metric-value">85%</span>
+                                <span class="metric-label">диалогов закрывает бот</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">+40%</span>
+                                <span class="metric-label">пробных уроков</span>
+                            </div>
+                        </div>
+                        <p class="case-description">Было: конверсия 40%, 2 админа тратят 60% времени на рутину. Стало: конверсия 70%, AI обрабатывает 85% диалогов. <strong>Финансы:</strong> +40% пробных уроков = +$12k/год выручки, экономия $24k/год на админах = $36k чистой прибыли. <strong>Окупилось за 1 месяц.</strong></p>
+                        <div style="margin: 20px 0; padding: 16px; background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px;">
+                            <p style="font-size: 0.9rem; color: var(--primary-light); margin-bottom: 8px;">💬 Можно протестировать бота прямо сейчас</p>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary);">Напишите в Telegram и пообщайтесь с AI-администратором</p>
+                        </div>
+                        <a href="https://webnostra.pro/ai/cases/ai-admin" class="case-btn" target="_blank">
+                            Смотреть кейс →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Case 2 -->
+                <div class="case-card">
+                    <div class="case-header">
+                        <div class="case-badge medical">Медицина</div>
+                        <h3>AI-квалификатор для медцентра</h3>
+                        <p class="case-industry">Возврат конверсии в 2 раза</p>
+                    </div>
+                    <div class="case-body">
+                        <div class="case-metrics">
+                            <div class="metric">
+                                <span class="metric-value">58-62%</span>
+                                <span class="metric-label">конверсия (было 30%)</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">70%</span>
+                                <span class="metric-label">диалогов без ручной работы</span>
+                            </div>
+                        </div>
+                        <p class="case-description">Было: 2150 лидов/мес, конверсия 30%, выручка ~$45k/мес. Стало: конверсия 60%, AI обрабатывает 70%. <strong>Финансы:</strong> удвоение конверсии = +$45k/мес = +$540k/год выручки. Минус затраты $6k/год = <strong>$534k чистой дополнительной прибыли.</strong> <strong>Окупилось за 2 дня.</strong></p>
+                        <div style="margin: 20px 0; padding: 16px; background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px;">
+                            <p style="font-size: 0.9rem; color: var(--primary-light); margin-bottom: 8px;">💬 Можно протестировать квалификатор</p>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary);">Напишите и посмотрите, как AI задает вопросы</p>
+                        </div>
+                        <a href="https://webnostra.pro/ai/cases/ai-medic" class="case-btn" target="_blank">
+                            Смотреть кейс →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Case 3 -->
+                <div class="case-card">
+                    <div class="case-header">
+                        <div class="case-badge logistics">B2B</div>
+                        <h3>AI-парсер чатов для логистики</h3>
+                        <p class="case-industry">Поиск заявок в Telegram</p>
+                    </div>
+                    <div class="case-body">
+                        <div class="case-metrics">
+                            <div class="metric">
+                                <span class="metric-value">До 5</span>
+                                <span class="metric-label">горячих лидов в день</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">0₽</span>
+                                <span class="metric-label">затрат на рекламу</span>
+                            </div>
+                        </div>
+                        <p class="case-description">Было: менеджеры 4 часа/день в чатах = $15k/год потерь рабочего времени. Стало: AI находит до 5 лидов/день бесплатно. <strong>Финансы:</strong> +5% = +$18k/год, экономия $15k/год на времени менеджеров = <strong>$33k прибыли.</strong> 0₽ на рекламу. <strong>Окупилось за 2 недели.</strong></p>
+                        <a href="https://webnostra.pro/ai/cases/ai-parser" class="case-btn" target="_blank">
+                            Смотреть кейс →
+                        </a>
+                    </div>
+                </div>
+
+<!-- Case 4: ОКК -->
+                <div class="case-card">
+                    <div class="case-header">
+                        <div class="case-badge sales">B2B Продажи</div>
+                        <h3>AI-контроль качества звонков</h3>
+                        <p class="case-industry">Автоматический разбор созвонов</p>
+                    </div>
+                    <div class="case-body">
+                        <div class="case-metrics">
+                            <div class="metric">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">покрытие созвонов</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">+17%</span>
+                                <span class="metric-label">к конверсии в оплату</span>
+                            </div>
+                        </div>
+                        <p class="case-description">Было: РОП слушает 5 созвонов/день из 30, средний чек $2k, конверсия 25%. Стало: AI разбирает 100% звонков, конверсия 42%, средний чек $2.4k. <strong>Финансы:</strong> +17% к выручке = +$120k/год, качество контроля = +$50k/год от роста чека = <strong>$170k дополнительной прибыли.</strong> <strong>Окупилось за 1 неделю.</strong></p>
+                        <a href="https://webnostra.pro/ai/cases/ai-okk" class="case-btn" target="_blank">
+                            Смотреть кейс →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 80px 0; background: linear-gradient(135deg, #10b981 0%, #059669 100%); position: relative; overflow: hidden;">
+        <div class="container" style="position: relative; z-index: 1;">
+            <div style="text-align: center; color: white; margin-bottom: 60px;">
+                <h2 style="color: white; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 20px;">
+                    Финансовые результаты внедрения
+                </h2>
+                <p style="font-size: 1.3rem; opacity: 0.95; max-width: 700px; margin: 0 auto;">
+                    Реальные цифры прибыли среднего клиента за первый год
+                </p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; max-width: 1000px; margin: 0 auto;">
+                <div style="text-align: center; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 40px; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.3);">
+                    <div style="font-size: 3.5rem; font-weight: 900; margin-bottom: 12px; color: white;">$47k</div>
+                    <div style="font-size: 1.1rem; opacity: 0.95;">от роста конверсии ×2</div>
+                </div>
+                
+                <div style="text-align: center; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 40px; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.3);">
+                    <div style="font-size: 3.5rem; font-weight: 900; margin-bottom: 12px; color: white;">$18k</div>
+                    <div style="font-size: 1.1rem; opacity: 0.95;">экономия на зарплатах</div>
+                </div>
+                
+                <div style="text-align: center; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 40px; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.3);">
+                    <div style="font-size: 3.5rem; font-weight: 900; margin-bottom: 12px; color: white;">-$3.6k</div>
+                    <div style="font-size: 1.1rem; opacity: 0.95;">затраты на AI</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 48px; padding: 40px; background: white; border-radius: 24px; max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 48px;">
+                <div style="font-size: 1.2rem; color: #0f172a; margin-bottom: 12px; font-weight: 600;">ИТОГО ЧИСТАЯ ПРИБЫЛЬ</div>
+                <div style="font-size: 4.5rem; font-weight: 900; color: #10b981; margin-bottom: 16px;">$65,000</div>
+                <div style="font-size: 1.1rem; color: #64748b;">за первый год работы</div>
+                <div style="margin-top: 24px; padding: 16px; background: #f1f5f9; border-radius: 12px;">
+                    <div style="font-size: 1rem; color: #0f172a; font-weight: 600;">Окупаемость: от 2 недель</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Что умеет AI вместо<br>ваших сотрудников</h2>
+                <p>От первого контакта до закрытия сделки</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <span class="benefit-icon">⚡</span>
+                    <h3>Каждая заявка конвертируется в прибыль</h3>
+                    <p>Мгновенный ответ = довольный клиент = больше продаж. Ни одна заявка не теряется, даже ночью и в выходные. Каждый лид конвертируется в прибыль.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">🎯</span>
+                    <h3>Бесплатный поток новых лидов</h3>
+                    <p>Новые клиенты из бесплатных чатов без затрат на рекламу. AI находит горячие заявки и передает готовых к покупке клиентов.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">🔄</span>
+                    <h3>Рост конверсии на 100%+</h3>
+                    <p>Не теряет клиентов на этапе "подумаю". Автоматические напоминания повышают явку на 40%. Каждый лид доходит до оплаты.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">📊</span>
+                    <h3>Отчитывается по метрикам</h3>
+                    <p>Видите конверсию на каждом этапе, время обработки и причины отказов. Полная интеграция с CRM и аналитикой.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">💰</span>
+                    <h3>Экономия $18,000+ в год</h3>
+                    <p>Нет зарплат, отпусков, больничных. Один AI = 2-3 сотрудника за $300/мес. Экономия $18,000/год идет в прибыль бизнеса.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">📈</span>
+                    <h3>Рост без найма персонала</h3>
+                    <p>Хотите расти? Просто направляйте больше трафика. AI обработает любой объем. Масштабируйте бизнес без найма и обучения.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-header">
+                <h2>Как клиенты зарабатывают<br>с AI-автоматизацией</h2>
+                <p>Реальная прибыль и окупаемость внедренных проектов</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-icon">🤖</span>
+                    <span class="stat-number">85%</span>
+                    <p class="stat-label">диалогов AI закрывает<br>без участия человека</p>
+                    <p class="stat-description">Экономия $24,000/год на зарплатах</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">📈</span>
+                    <span class="stat-number">×2</span>
+                    <p class="stat-label">рост конверсии<br>из обращения в запись</p>
+                    <p class="stat-description">+$47,000 годовой прибыли от роста конверсии</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">⚡</span>
+                    <span class="stat-number">30 сек</span>
+                    <p class="stat-label">время первого ответа<br>в любое время суток</p>
+                    <p class="stat-description">Каждая заявка = потенциальная прибыль</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">💰</span>
+                    <span class="stat-number">3-6 мес</span>
+                    <p class="stat-label">срок окупаемости<br>проекта автоматизации</p>
+                    <p class="stat-description">Быстрая окупаемость, затем чистая прибыль</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI -->
+    <section class="roi-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Сколько вы заработаете с AI</h2>
+                <p>Расчет прибыли от автоматизации за первый год</p>
+            </div>
+            <div class="roi-grid">
+                <div class="roi-text">
+                    <h3>Ваша прибыль от автоматизации</h3>
+                    <p><strong>Окупаемость от 2 недель.</strong> После окупаемости каждый месяц — чистая дополнительная прибыль для вашего бизнеса.</p>
+                    <p><strong>×2 рост конверсии</strong> = удвоение выручки от текущего потока заявок. Плюс экономия $18,000+ в год на зарплатах.</p>
+                    <p><strong>Итого прибыль:</strong> +$47,000/год от роста конверсии + $18,000/год экономии на зарплатах = <strong>$65,000 чистой дополнительной прибыли.</strong></p>
+                </div>
+                <div class="roi-chart">
+                    <div class="chart-bar">
+                        <div class="chart-label">Затраты на AI (год)</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 10%; background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);">$3,600</div>
+                        </div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="chart-label">Экономия на зарплатах</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 35%; background: linear-gradient(90deg, #10b981 0%, #059669 100%);">$18,000</div>
+                        </div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="chart-label">Прибыль от роста конверсии</div>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 90%; background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);">$47,000</div>
+                        </div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="chart-label" style="font-weight: 800; color: var(--success);">ИТОГО ПРИБЫЛЬ ЗА ГОД</div>
+                        <div class="bar-container" style="border: 2px solid var(--success);">
+                            <div class="bar-fill" style="width: 100%; background: linear-gradient(90deg, var(--success) 0%, #059669 100%); font-size: 1.3rem;">$65,000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section class="why-us-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Почему выбирают нас</h2>
+                <p>Опыт, прозрачность и результат</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-icon">💎</div>
+                    <h3>Прозрачная оплата</h3>
+                    <p>Вы владеете всеми сервисами и оплачиваете их напрямую. Никаких скрытых комиссий и наценок — видите каждый рубль.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">⏱️</div>
+                    <h3>Точность сроков</h3>
+                    <p>Прописываем сроки внедрения в договоре и несем ответственность за их соблюдение. Вы планируете работу заранее.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🎯</div>
+                    <h3>Только нужные функции</h3>
+                    <p>Используем только те сервисы, которые действительно нужны вашему бизнесу. Не переплачиваете за лишнее.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">⚙️</div>
+                    <h3>Полная кастомизация</h3>
+                    <p>Создаем индивидуальное решение под ваши процессы с использованием самых современных AI-моделей.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🚀</div>
+                    <h3>Быстрое внедрение</h3>
+                    <p>От диагностики до запуска — 2-4 недели. Обучаем вашу команду и поддерживаем на всех этапах.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">📈</div>
+                    <h3>Измеримый результат</h3>
+                    <p>Видите конкретные метрики: конверсию, время обработки, экономию. Отчеты по работе AI каждую неделю.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Получите расчет вашей прибыли</h2>
+            <p>Рассчитаем, сколько вы заработаете с AI-автоматизацией. Покажем цифры окупаемости и прибыли для вашей ниши.</p>
+            <button class="cta-btn" onclick="scrollToQuiz()">
+                Рассчитать прибыль →
+            </button>
+            <p class="final-cta-note">Ответим в течение 15 минут • Бесплатный расчет прибыли • Без обязательств</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-brand">WEBNOSTRA AI</div>
+                    <p class="footer-text">Автоматизация бизнеса через искусственный интеллект</p>
+                    <p class="footer-text">Часть экосистемы WEBNOSTRA PERFORMANCE — агентства перфоманс-маркетинга с опытом управления $2.8M+ рекламных бюджетов</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/77066671426" class="social-link whatsapp" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                        <a href="https://t.me/magosh_al" class="social-link telegram" target="_blank">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                            </svg>
+                            Telegram
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <div class="footer-links">
+                        <a href="#quiz" class="footer-link">Диагностика</a>
+                        <a href="https://webnostra.pro/ai/cases/ai-admin" class="footer-link" target="_blank">Кейс: Школа вокала</a>
+                        <a href="https://webnostra.pro/ai/cases/ai-medic" class="footer-link" target="_blank">Кейс: Медцентр</a>
+                        <a href="https://webnostra.pro/ai/cases/ai-parser" class="footer-link" target="_blank">Кейс: Логистика</a>
+                        <a href="https://webnostra.pro/ai/cases/ai-okk" class="footer-link" target="_blank">Кейс: Контроль качества</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Документы</h4>
+                    <div class="footer-links">
+                        <a href="https://ai.webnostra.kz/company" class="footer-link">О компании</a>
+                        <a href="https://ai.webnostra.kz/policy" class="footer-link">Политика конфиденциальности</a>
+                        <a href="https://ai.webnostra.kz/cookie" class="footer-link">Политика Cookie</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 WEBNOSTRA PERFORMANCE. Все права защищены. | ai.webnostra.kz</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentStep = 1;
+
+        function scrollToQuiz() {
+            document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function nextStep(step) {
+            // Hide current step
+            document.querySelector('.quiz-step.active').classList.remove('active');
+            
+            // Show next step
+            document.querySelector(`.quiz-step[data-step="${step}"]`).classList.add('active');
+            
+            // Update progress
+            updateProgress(step);
+            
+            currentStep = step;
+        }
+
+        function updateProgress(step) {
+            const dots = document.querySelectorAll('.progress-dot');
+            dots.forEach((dot, index) => {
+                if (index < step) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function showResult() {
+            document.querySelector('.quiz-step.active').classList.remove('active');
+            document.querySelector('.quiz-step[data-step="result"]').classList.add('active');
+            
+            // Fill all progress dots
+            document.querySelectorAll('.progress-dot').forEach(dot => {
+                dot.classList.add('active');
+            });
+        }
+
+        function submitQuiz(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const contact = formData.get('contact');
+            
+            // Here you would normally send this to your backend
+            // For now, we'll just show an alert
+            alert('Спасибо! Мы свяжемся с вами в течение 15 минут.');
+            
+            // Redirect to WhatsApp or Telegram
+            window.open('https://wa.me/77066671426', '_blank');
+        }
+
+        // Animate bars on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.getAttribute('style').match(/width:\s*(\d+%)/)[1];
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.bar-fill').forEach(bar => {
+            observer.observe(bar);
+        });
+    
+        // Sticky Navigation
+        let lastScroll = 0;
+        const stickyNav = document.getElementById('stickyNav');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 600) {
+                stickyNav.classList.add('visible');
+            } else {
+                stickyNav.classList.remove('visible');
+            }
+            lastScroll = currentScroll;
+        });
+
+    </script>
+</body>
+</html>
