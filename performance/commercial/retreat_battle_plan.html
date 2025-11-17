@@ -485,6 +485,13 @@
             background-clip: text;
         }
 
+        .pricing-budget {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
         .pricing-features {
             list-style: none;
             padding: 0;
@@ -1193,60 +1200,241 @@
                 <div class="section-header" onclick="toggleSection(this)">
                     <div class="section-title">
                         <span class="section-icon">💼</span>
-                        Тарифы сотрудничества
+                        Тарифы на лидогенерацию
                     </div>
                     <span class="toggle-icon">▼</span>
                 </div>
                 <div class="section-content">
                     <div class="section-body">
                         
+                        <p style="font-size: 18px; margin-bottom: 30px; color: var(--text-dark);">
+                            <strong>Платите только за результат</strong><br><br>
+                            Выбирайте комфортный для вас тариф — от быстрого старта до полного сопровождения с гарантиями. Мы не берем деньги, если нет результата.
+                        </p>
+
                         <div class="pricing-grid">
+                            <!-- ТАРИФ СТАРТ -->
                             <div class="pricing-card">
                                 <div class="pricing-header">
-                                    <div class="pricing-name">Тариф START</div>
-                                    <div class="pricing-desc">Для быстрого теста гипотез и первых лидов</div>
-                                    <div class="pricing-price">$800/месяц</div>
+                                    <div class="pricing-name">ТАРИФ СТАРТ</div>
+                                    <div class="pricing-desc">Быстрый запуск рекламы</div>
+                                    <div class="pricing-price">$450</div>
+                                    <div class="pricing-budget">+ рекламный бюджет от $500</div>
+                                </div>
+                                <div style="margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                    <strong style="color: var(--purple-main);">Цель:</strong> Тест ниши и быстрые заявки
+                                </div>
+                                <div style="margin-bottom: 15px;">
+                                    <strong style="color: var(--text-dark);">Что включено:</strong>
                                 </div>
                                 <ul class="pricing-features">
-                                    <li>Настройка 2 рекламных кампаний</li>
-                                    <li>8-10 креативов</li>
-                                    <li>Базовая аналитика и еженедельные отчеты</li>
-                                    <li>Техподдержка в рабочее время</li>
+                                    <li>Анализ ниши и конкурентов</li>
+                                    <li>Текста, креативы, сценарии</li>
+                                    <li>Запуск рекламы (Meta, Яндекс, Google, ВК, TG ads)</li>
+                                    <li>Подключение аналитики и пикселей</li>
+                                    <li>Настройка медиаплана</li>
+                                    <li>Оптимизация под первые результаты</li>
                                 </ul>
-                                <div class="pricing-note">Подходит для первого запуска трафика и проверки спроса</div>
+                                <div style="margin-top: 15px; padding: 12px; background: #e8f5e9; border-radius: 6px;">
+                                    <strong style="color: #2e7d32;">Результат:</strong> Первые целевые лиды, прогноз CPL
+                                </div>
+                                <div style="margin-top: 10px; padding: 12px; background: #fff3e0; border-radius: 6px;">
+                                    <strong style="color: #e65100;">Подходит для:</strong> Малый бизнес, тест ниши
+                                </div>
+                                <div class="pricing-note">Гарантия: Возврат денег, если нет заявок</div>
                             </div>
 
-                            <div class="pricing-card">
+                            <!-- ТАРИФ БАЗА -->
+                            <div class="pricing-card pricing-card-recommended">
+                                <div class="recommended-badge">🏆 РЕКОМЕНДУЕМ</div>
                                 <div class="pricing-header">
-                                    <div class="pricing-name">Тариф SCALE</div>
-                                    <div class="pricing-desc">Для стабильного потока лидов и роста</div>
-                                    <div class="pricing-price">$1500/месяц</div>
+                                    <div class="pricing-name">ТАРИФ БАЗА</div>
+                                    <div class="pricing-desc">Система заявок и контроль качества</div>
+                                    <div class="pricing-price">$900</div>
+                                    <div class="pricing-budget">+ рекламный бюджет от $700</div>
+                                </div>
+                                <div style="margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                    <strong style="color: var(--purple-main);">Цель:</strong> Стабильный поток клиентов и прозрачная аналитика
+                                </div>
+                                <div style="margin-bottom: 15px;">
+                                    <strong style="color: var(--text-dark);">Что включено:</strong>
                                 </div>
                                 <ul class="pricing-features">
-                                    <li>Настройка 3-4 кампаний (полный набор воронок)</li>
-                                    <li>15-20 креативов ежемесячно</li>
-                                    <li>Углубленная аналитика, A/B-тесты</li>
-                                    <li>Приоритетная поддержка 6 дней в неделю</li>
-                                    <li>Оптимизация конверсии лендингов/квизов</li>
+                                    <li>Все из тарифа «Старт»</li>
+                                    <li>Построение воронки: реклама → квиз → лендинг → CRM</li>
+                                    <li>Создание посадочной страницы (до 10 блоков)</li>
+                                    <li>Подключение AI-квалификатора тариф Small (фильтрация лидов)</li>
+                                    <li>Аудит CRM и автоматизация</li>
+                                    <li>Аналитика CPL, CPA, CTR, ROMI</li>
+                                    <li>Тестирование гипотез и сценариев рекламы</li>
                                 </ul>
-                                <div class="pricing-note">Подходит для масштабирования после успешных тестов</div>
+                                <div style="margin-top: 15px; padding: 12px; background: #e8f5e9; border-radius: 6px;">
+                                    <strong style="color: #2e7d32;">Результат:</strong> +25–40% к конверсии, ≥25 целевых заявок в месяц, рост эффективности рекламы
+                                </div>
+                                <div style="margin-top: 10px; padding: 12px; background: #fff3e0; border-radius: 6px;">
+                                    <strong style="color: #e65100;">Подходит для:</strong> Компании, которым нужна предсказуемая воронка
+                                </div>
+                                <div class="pricing-note">Гарантия: Минимум 25 целевых лидов — или доработка за наш счёт</div>
                             </div>
 
+                            <!-- ТАРИФ ЭКСПЕРТ -->
                             <div class="pricing-card">
                                 <div class="pricing-header">
-                                    <div class="pricing-name">Тариф FULL PERFORMANCE</div>
-                                    <div class="pricing-desc">Максимум результата: от трафика до продаж</div>
-                                    <div class="pricing-price">$2500/месяц</div>
+                                    <div class="pricing-name">ТАРИФ ЭКСПЕРТ</div>
+                                    <div class="pricing-desc">Маркетинг и продажи под ключ</div>
+                                    <div class="pricing-price">$1,890</div>
+                                    <div class="pricing-budget">+ рекламный бюджет от $3,000</div>
+                                </div>
+                                <div style="margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                    <strong style="color: var(--purple-main);">Цель:</strong> Рост продаж и выстроенная воронка
+                                </div>
+                                <div style="margin-bottom: 15px;">
+                                    <strong style="color: var(--text-dark);">Что включено:</strong>
                                 </div>
                                 <ul class="pricing-features">
-                                    <li>Полное ведение рекламы на всех этапах воронки</li>
-                                    <li>Безлимитное количество креативов и тестов</li>
-                                    <li>Разработка стратегии масштабирования</li>
-                                    <li>Настройка CRM и сквозной аналитики</li>
-                                    <li>Консультации по оптимизации отдела продаж</li>
-                                    <li>Личный менеджер проекта 7 дней в неделю</li>
+                                    <li>Все из тарифа «База»</li>
+                                    <li>Подключение AI-РОП (контроль лидов и отдела продаж)</li>
+                                    <li>6-часовая стратегия роста с маркетинг-директором</li>
+                                    <li>Несколько лендингов под сегменты</li>
+                                    <li>Глубокий разбор и улучшение воронки</li>
+                                    <li>Тренинг отдела продаж или аудит ОП</li>
+                                    <li>Полное тех. сопровождение (CRM, интеграции, аналитика)</li>
                                 </ul>
-                                <div class="pricing-note">Подходит для серьезного масштабирования и выхода на стабильные 100+ лидов/мес</div>
+                                <div style="margin-top: 15px; padding: 12px; background: #e8f5e9; border-radius: 6px;">
+                                    <strong style="color: #2e7d32;">Результат:</strong> Рост продаж за 2 месяца, контроль и предсказуемость воронки
+                                </div>
+                                <div style="margin-top: 10px; padding: 12px; background: #fff3e0; border-radius: 6px;">
+                                    <strong style="color: #e65100;">Подходит для:</strong> Бизнес, который хочет рост и контроль
+                                </div>
+                                <div class="pricing-note">Гарантия: Рост продаж за 2 месяца — или возврат средств</div>
+                            </div>
+                        </div>
+
+                        <!-- Таблица дополнительных услуг -->
+                        <div class="message-block" style="margin-top: 50px;">
+                            <div class="message-title">Дополнительные услуги</div>
+                            
+                            <div style="overflow-x: auto; margin-top: 20px;">
+                                <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden;">
+                                    <thead>
+                                        <tr style="background: var(--gradient-2); color: white;">
+                                            <th style="padding: 15px; text-align: left; font-weight: 600;">Услуга</th>
+                                            <th style="padding: 15px; text-align: center; font-weight: 600;">Стоимость</th>
+                                            <th style="padding: 15px; text-align: center; font-weight: 600;">СТАРТ</th>
+                                            <th style="padding: 15px; text-align: center; font-weight: 600;">БАЗА</th>
+                                            <th style="padding: 15px; text-align: center; font-weight: 600;">ЭКСПЕРТ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="border-bottom: 1px solid #eee;">
+                                            <td style="padding: 12px;">Посадочная страница (до 10 блоков, дизайн + тексты)</td>
+                                            <td style="padding: 12px; text-align: center; font-weight: 600;">$500</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">❌</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid #eee; background: #fafafa;">
+                                            <td style="padding: 12px;">AI-квалификатор (фильтрация лидов)</td>
+                                            <td style="padding: 12px; text-align: center; font-weight: 600;">$600/мес</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">❌</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid #eee;">
+                                            <td style="padding: 12px;">AI-РОП (контроль лидов и работы отдела продаж)</td>
+                                            <td style="padding: 12px; text-align: center; font-weight: 600;">$600/мес</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">❌</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">❌</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid #eee; background: #fafafa;">
+                                            <td style="padding: 12px;">Стратегическая сессия с маркетинг-директором (2×3 ч)</td>
+                                            <td style="padding: 12px; text-align: center; font-weight: 600;">$500</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">❌</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">❌</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid #eee;">
+                                            <td style="padding: 12px;">Несколько лендингов под сегменты</td>
+                                            <td style="padding: 12px; text-align: center; font-weight: 600;">$400+</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">❌</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">❌</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid #eee; background: #fafafa;">
+                                            <td style="padding: 12px;">Глубокий разбор и улучшение воронки</td>
+                                            <td style="padding: 12px; text-align: center; font-weight: 600;">$400</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">❌</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">❌</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid #eee;">
+                                            <td style="padding: 12px;">Тренинг или аудит отдела продаж</td>
+                                            <td style="padding: 12px; text-align: center; font-weight: 600;">$300</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">❌</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">❌</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid #eee; background: #fafafa;">
+                                            <td style="padding: 12px;">Полное тех. сопровождение (CRM, аналитика, интеграции)</td>
+                                            <td style="padding: 12px; text-align: center; font-weight: 600;">$250/мес</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">❌</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">❌</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid #eee;">
+                                            <td style="padding: 12px;">Запуск рекламы (Meta, Яндекс, Google, VK, TG ads)</td>
+                                            <td style="padding: 12px; text-align: center; font-weight: 600;">Входит</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid #eee; background: #fafafa;">
+                                            <td style="padding: 12px;">Настройка медиаплана + аналитики</td>
+                                            <td style="padding: 12px; text-align: center; font-weight: 600;">Входит</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid #eee;">
+                                            <td style="padding: 12px;">Аналитика CPL, CPA, CTR, ROMI</td>
+                                            <td style="padding: 12px; text-align: center; font-weight: 600;">$250</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                        </tr>
+                                        <tr style="background: #fafafa;">
+                                            <td style="padding: 12px;">CRM + подключение, настройка, отчеты</td>
+                                            <td style="padding: 12px; text-align: center; font-weight: 600;">$250</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">❌</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                            <td style="padding: 12px; text-align: center; font-size: 20px;">✅</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div style="margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; color: white;">
+                                <h4 style="font-size: 20px; margin-bottom: 15px; font-weight: 700;">💰 Экономия с тарифами WEBNOSTRA</h4>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+                                        <div style="font-size: 14px; opacity: 0.9; margin-bottom: 5px;">СТАРТ</div>
+                                        <div style="font-size: 18px; font-weight: 700;">4 услуги за $450</div>
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 8px;">
+                                        <div style="font-size: 14px; opacity: 0.9; margin-bottom: 5px;">БАЗА</div>
+                                        <div style="font-size: 18px; font-weight: 700;">7 услуг за $900</div>
+                                        <div style="font-size: 13px; opacity: 0.85; margin-top: 5px;">экономия до $1,900</div>
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+                                        <div style="font-size: 14px; opacity: 0.9; margin-bottom: 5px;">ЭКСПЕРТ</div>
+                                        <div style="font-size: 18px; font-weight: 700;">12 услуг за $1,890</div>
+                                        <div style="font-size: 13px; opacity: 0.85; margin-top: 5px;">экономия до $2,500</div>
+                                    </div>
+                                </div>
+                                <p style="margin-top: 20px; font-size: 14px; opacity: 0.9; text-align: center;">
+                                    Общая стоимость по отдельности: $2,800+ без стратегии и гарантий
+                                </p>
                             </div>
                         </div>
 
