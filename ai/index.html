@@ -726,8 +726,10 @@
 
         .chart-label {
             color: var(--text-secondary);
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
+            word-wrap: break-word;
+            line-height: 1.4;
         }
 
         .bar-container {
@@ -744,12 +746,13 @@
             height: 100%;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            padding-right: 20px;
+            justify-content: center;
+            padding: 0 12px;
             color: white;
             font-weight: 700;
             font-size: 1.1rem;
             transition: width 1s ease;
+            min-width: 85px;
         }
 
         /* Why Us Section */
@@ -1086,6 +1089,97 @@
             color: #f472b6;
         }
 
+    
+        /* Mobile optimization for ROI Chart */
+        @media (max-width: 768px) {
+            .chart-label {
+                font-size: 0.85rem;
+                line-height: 1.3;
+            }
+            
+            .bar-container {
+                height: 50px;
+            }
+            
+            .bar-fill {
+                font-size: 0.95rem;
+                padding: 0 10px;
+                min-width: 75px;
+            }
+            
+            .roi-text {
+                padding: 24px;
+            }
+            
+            .roi-text h3 {
+                font-size: 1.3rem;
+            }
+            
+            .roi-text p {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .chart-label {
+                font-size: 0.75rem;
+                font-weight: 500;
+            }
+            
+            .bar-container {
+                height: 45px;
+            }
+            
+            .bar-fill {
+                font-size: 0.85rem;
+                padding: 0 8px;
+                min-width: 70px;
+            }
+            
+            h1 {
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            h2 {
+                font-size: 1.75rem !important;
+            }
+            
+            .hero-stats {
+                gap: 16px !important;
+            }
+            
+            .hero-stat-number {
+                font-size: 2rem !important;
+            }
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .comp-row {
+                grid-template-columns: 1fr !important;
+                gap: 12px !important;
+            }
+            
+            .chart-label {
+                font-size: 0.75rem;
+                line-height: 1.3;
+            }
+            
+            .bar-container {
+                height: 40px;
+            }
+            
+            .bar-fill {
+                font-size: 0.85rem;
+                min-width: 70px;
+            }
+            
+            .faq-question {
+                font-size: 1rem !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1176,7 +1270,7 @@
                 </div>
                 <div class="tech-item">
                     <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
-                        <text x="0" y="28" font-family="Arial" font-weight="bold" font-size="19" fill="#00a6a6">Perplexity</text>
+                        <text x="0" y="28" font-family="Arial" font-weight="bold" font-size="17" fill="#00a6a6">Voximplant</text>
                     </svg>
                 </div>
                 <div class="tech-item">
@@ -1217,7 +1311,7 @@
                 </div>
                 <div class="tech-item">
                     <svg width="120" height="40" viewBox="0 0 120 40" fill="none">
-                        <text x="0" y="28" font-family="Arial" font-weight="bold" font-size="19" fill="#00a6a6">Perplexity</text>
+                        <text x="0" y="28" font-family="Arial" font-weight="bold" font-size="17" fill="#00a6a6">Voximplant</text>
                     </svg>
                 </div>
                 <div class="tech-item">
@@ -1586,7 +1680,7 @@
                     <div class="chart-bar">
                         <div class="chart-label">Затраты на AI (год)</div>
                         <div class="bar-container">
-                            <div class="bar-fill" style="width: 10%; background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);">$3,600</div>
+                            <div class="bar-fill" style="width: 10%; min-width: 90px; background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);">$3,600</div>
                         </div>
                     </div>
                     <div class="chart-bar">
@@ -1654,7 +1748,229 @@
         </div>
     </section>
 
-    <!-- Final CTA -->
+
+    <!-- COMPARISON TABLE -->
+    <section style="padding: 80px 0; background: var(--dark-lighter);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ваш бизнес БЕЗ AI vs С AI</h2>
+                <p>Наглядное сравнение результатов</p>
+            </div>
+            <div style="background: var(--dark-card); border-radius: 24px; overflow: hidden; margin-top: 48px;">
+                <div class="comp-row" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; padding: 24px; background: var(--dark); border-bottom: 1px solid var(--border-color);">
+                    <div></div>
+                    <div style="text-align: center;"><span style="display: inline-block; padding: 8px 16px; background: rgba(239,68,68,0.2); color: #ef4444; border-radius: 8px; font-weight: 700; font-size: 0.9rem;">БЕЗ AI</span></div>
+                    <div style="text-align: center;"><span style="display: inline-block; padding: 8px 16px; background: rgba(16,185,129,0.2); color: #10b981; border-radius: 8px; font-weight: 700; font-size: 0.9rem;">С AI ✨</span></div>
+                </div>
+                <div class="comp-row" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; padding: 24px; border-bottom: 1px solid var(--border-color); align-items: center;">
+                    <div><h4 style="color: var(--text); margin: 0 0 4px; font-size: 1.1rem;">Время ответа клиенту</h4><p style="color: var(--text-secondary); margin: 0; font-size: 0.9rem;">Скорость первого контакта</p></div>
+                    <div style="text-align: center; padding: 16px; background: rgba(239,68,68,0.05); border-left: 3px solid #ef4444; border-radius: 8px;"><div style="font-size: 1.5rem; font-weight: 800; color: #ef4444; margin-bottom: 4px;">2-3 часа</div><p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Админ занят или спит</p></div>
+                    <div style="text-align: center; padding: 16px; background: rgba(16,185,129,0.05); border-left: 3px solid #10b981; border-radius: 8px;"><div style="font-size: 1.5rem; font-weight: 800; color: #10b981; margin-bottom: 4px;">30 секунд</div><p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">24/7 мгновенно</p></div>
+                </div>
+                <div class="comp-row" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; padding: 24px; border-bottom: 1px solid var(--border-color); align-items: center;">
+                    <div><h4 style="color: var(--text); margin: 0 0 4px; font-size: 1.1rem;">Конверсия в запись</h4><p style="color: var(--text-secondary); margin: 0; font-size: 0.9rem;">% заявок → клиенты</p></div>
+                    <div style="text-align: center; padding: 16px; background: rgba(239,68,68,0.05); border-left: 3px solid #ef4444; border-radius: 8px;"><div style="font-size: 1.5rem; font-weight: 800; color: #ef4444; margin-bottom: 4px;">30-40%</div><p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Уходят к конкурентам</p></div>
+                    <div style="text-align: center; padding: 16px; background: rgba(16,185,129,0.05); border-left: 3px solid #10b981; border-radius: 8px;"><div style="font-size: 1.5rem; font-weight: 800; color: #10b981; margin-bottom: 4px;">60-70%</div><p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Максимальная конверсия</p></div>
+                </div>
+                <div class="comp-row" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; padding: 24px; border-bottom: 1px solid var(--border-color); align-items: center;">
+                    <div><h4 style="color: var(--text); margin: 0 0 4px; font-size: 1.1rem;">Работа ночью и в выходные</h4><p style="color: var(--text-secondary); margin: 0; font-size: 0.9rem;">Обработка заявок 24/7</p></div>
+                    <div style="text-align: center; padding: 16px; background: rgba(239,68,68,0.05); border-left: 3px solid #ef4444; border-radius: 8px;"><div style="font-size: 1.5rem; font-weight: 800; color: #ef4444; margin-bottom: 4px;">0%</div><p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Теряете 30% клиентов</p></div>
+                    <div style="text-align: center; padding: 16px; background: rgba(16,185,129,0.05); border-left: 3px solid #10b981; border-radius: 8px;"><div style="font-size: 1.5rem; font-weight: 800; color: #10b981; margin-bottom: 4px;">100%</div><p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">AI работает всегда</p></div>
+                </div>
+                <div class="comp-row" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; padding: 24px; border-bottom: 1px solid var(--border-color); align-items: center;">
+                    <div><h4 style="color: var(--text); margin: 0 0 4px; font-size: 1.1rem;">Затраты на персонал</h4><p style="color: var(--text-secondary); margin: 0; font-size: 0.9rem;">Год работы</p></div>
+                    <div style="text-align: center; padding: 16px; background: rgba(239,68,68,0.05); border-left: 3px solid #ef4444; border-radius: 8px;"><div style="font-size: 1.5rem; font-weight: 800; color: #ef4444; margin-bottom: 4px;">$24,000</div><p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">2 админа + налоги</p></div>
+                    <div style="text-align: center; padding: 16px; background: rgba(16,185,129,0.05); border-left: 3px solid #10b981; border-radius: 8px;"><div style="font-size: 1.5rem; font-weight: 800; color: #10b981; margin-bottom: 4px;">$3,600</div><p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0;">Только AI</p></div>
+                </div>
+                <div class="comp-row" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; padding: 32px 24px; background: linear-gradient(135deg, rgba(139,92,246,0.05), rgba(124,58,237,0.05)); align-items: center;">
+                    <div><h3 style="color: var(--text); margin: 0; font-size: 1.3rem;">ИТОГО ПРИБЫЛЬ В ГОД</h3></div>
+                    <div style="text-align: center; padding: 16px; opacity: 0.5;"><div style="font-size: 1.2rem; color: var(--text-secondary);">Базовый уровень</div></div>
+                    <div style="text-align: center; padding: 20px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 12px;"><div style="font-size: 2rem; font-weight: 900; color: white; margin-bottom: 4px;">+$65,000</div><p style="font-size: 0.9rem; color: rgba(255,255,255,0.9); margin: 0;">Дополнительная прибыль</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="padding: 80px 0; background: var(--dark);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Частые вопросы</h2>
+                <p>Ответы на самые популярные вопросы</p>
+            </div>
+            <div style="max-width: 900px; margin: 48px auto 0;">
+                <div class="faq-item" style="margin-bottom: 16px; background: var(--dark-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden;">
+                    <button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; padding: 24px; text-align: left; background: transparent; border: none; color: var(--text); font-size: 1.1rem; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Сколько времени займет внедрение?</span>
+                        <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+                    </button>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                        <div style="padding: 0 24px 24px; color: var(--text-secondary); line-height: 1.7;">
+                            <p><strong>2-4 недели от первого звонка до полного запуска.</strong></p>
+                            <ul style="margin: 16px 0; padding-left: 20px;">
+                                <li>Неделя 1: Консультация, анализ бизнес-процессов, подбор решения</li>
+                                <li>Неделя 2-3: Настройка AI, обучение на ваших данных, интеграции</li>
+                                <li>Неделя 4: Тестирование, корректировки, запуск</li>
+                            </ul>
+                            <p>Бесплатная техподдержка первые 3 месяца включена.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" style="margin-bottom: 16px; background: var(--dark-card); border: 1px solid var(--border-color); border-radius: 16px;">
+                    <button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; padding: 24px; text-align: left; background: transparent; border: none; color: var(--text); font-size: 1.1rem; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Нужны ли технические знания для работы с AI?</span>
+                        <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+                    </button>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                        <div style="padding: 0 24px 24px; color: var(--text-secondary); line-height: 1.7;">
+                            <p><strong>Нет, мы делаем всё "под ключ".</strong></p>
+                            <p>Вам нужно только:</p>
+                            <ul style="margin: 16px 0; padding-left: 20px;">
+                                <li>Рассказать о вашем бизнесе и процессах</li>
+                                <li>Предоставить доступы к мессенджерам/CRM</li>
+                                <li>Проверить работу AI после запуска</li>
+                            </ul>
+                            <p>Всё остальное — настройка, обучение AI, интеграции — делаем мы. Вы получаете работающее решение.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" style="margin-bottom: 16px; background: var(--dark-card); border: 1px solid var(--border-color); border-radius: 16px;">
+                    <button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; padding: 24px; text-align: left; background: transparent; border: none; color: var(--text); font-size: 1.1rem; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Что если AI не справится с вопросом клиента?</span>
+                        <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+                    </button>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                        <div style="padding: 0 24px 24px; color: var(--text-secondary); line-height: 1.7;">
+                            <p><strong>AI автоматически передает оператору.</strong></p>
+                            <p>Система работает так:</p>
+                            <ul style="margin: 16px 0; padding-left: 20px;">
+                                <li>85-90% типовых вопросов AI закрывает сам</li>
+                                <li>Сложные кейсы передаются человеку с полным контекстом диалога</li>
+                                <li>Вы устанавливаете правила: какие вопросы AI решает сам, какие — только оператор</li>
+                            </ul>
+                            <p>Клиент получает ответ в любом случае — либо от AI мгновенно, либо от оператора с приоритетом.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" style="margin-bottom: 16px; background: var(--dark-card); border: 1px solid var(--border-color); border-radius: 16px;">
+                    <button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; padding: 24px; text-align: left; background: transparent; border: none; color: var(--text); font-size: 1.1rem; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Можно ли интегрировать с нашей CRM?</span>
+                        <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+                    </button>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                        <div style="padding: 0 24px 24px; color: var(--text-secondary); line-height: 1.7;">
+                            <p><strong>Да, работаем с любыми системами.</strong></p>
+                            <p>Готовые интеграции:</p>
+                            <ul style="margin: 16px 0; padding-left: 20px;">
+                                <li>Bitrix24, amoCRM, Salesforce</li>
+                                <li>WhatsApp, Telegram, Instagram, VK</li>
+                                <li>Google Календарь, Яндекс Календарь</li>
+                                <li>1C, МойСклад, RetailCRM</li>
+                            </ul>
+                            <p>Если вашей системы нет в списке — подключим через API за 1-2 дня. Опыт работы с 50+ сервисами.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" style="margin-bottom: 16px; background: var(--dark-card); border: 1px solid var(--border-color); border-radius: 16px;">
+                    <button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; padding: 24px; text-align: left; background: transparent; border: none; color: var(--text); font-size: 1.1rem; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Сколько стоит и как окупается?</span>
+                        <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+                    </button>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                        <div style="padding: 0 24px 24px; color: var(--text-secondary); line-height: 1.7;">
+                            <p><strong>От $300/месяц. Окупается за 2-4 недели.</strong></p>
+                            <p>Стоимость зависит от:</p>
+                            <ul style="margin: 16px 0; padding-left: 20px;">
+                                <li>Количества заявок (от 100/мес до неограниченно)</li>
+                                <li>Количества интеграций (мессенджеры, CRM, календари)</li>
+                                <li>Дополнительных функций (голосовые звонки, парсинг чатов, контроль качества)</li>
+                            </ul>
+                            <p>В среднем: $300-500/мес при экономии $18,000/год на зарплатах + рост прибыли $47,000/год от увеличения конверсии.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" style="margin-bottom: 16px; background: var(--dark-card); border: 1px solid var(--border-color); border-radius: 16px;">
+                    <button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; padding: 24px; text-align: left; background: transparent; border: none; color: var(--text); font-size: 1.1rem; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Можно ли протестировать бесплатно?</span>
+                        <span class="faq-icon" style="font-size: 1.5rem; transition: transform 0.3s;">+</span>
+                    </button>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+                        <div style="padding: 0 24px 24px; color: var(--text-secondary); line-height: 1.7;">
+                            <p><strong>Да, делаем бесплатный пилот на 7 дней.</strong></p>
+                            <p>Что входит в тест:</p>
+                            <ul style="margin: 16px 0; padding-left: 20px;">
+                                <li>Настройка AI под ваш бизнес</li>
+                                <li>Подключение 1-2 мессенджеров</li>
+                                <li>Обработка реальных заявок 7 дней</li>
+                                <li>Отчет с результатами и рекомендациями</li>
+                            </ul>
+                            <p>После теста вы принимаете решение: продолжать или нет. Никаких обязательств.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTEGRATIONS -->
+    <section style="padding: 80px 0; background: linear-gradient(135deg, var(--dark) 0%, var(--dark-lighter) 100%);">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI интегрируется с вашими системами</h2>
+                <p>Работаем с популярными мессенджерами, CRM и сервисами</p>
+            </div>
+            <div style="max-width: 1000px; margin: 60px auto 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+                    <div style="background: var(--dark-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 32px;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #25D366, #128C7E); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 2rem;">💬</div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 1.2rem;">Мессенджеры</h3>
+                        <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-secondary); line-height: 2;">
+                            <li>✅ WhatsApp Business API</li>
+                            <li>✅ Telegram Bot API</li>
+                            <li>✅ Instagram Direct</li>
+                            <li>✅ VK сообщения</li>
+                            <li>✅ Facebook Messenger</li>
+                            <li>✅ Viber</li>
+                        </ul>
+                    </div>
+                    <div style="background: var(--dark-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 32px;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #8b5cf6, #7c3aed); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 2rem;">📊</div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 1.2rem;">CRM системы</h3>
+                        <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-secondary); line-height: 2;">
+                            <li>✅ Bitrix24</li>
+                            <li>✅ amoCRM</li>
+                            <li>✅ Salesforce</li>
+                            <li>✅ HubSpot</li>
+                            <li>✅ RetailCRM</li>
+                            <li>✅ Мегаплан</li>
+                        </ul>
+                    </div>
+                    <div style="background: var(--dark-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 32px;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 2rem;">📅</div>
+                        <h3 style="color: var(--text); margin-bottom: 12px; font-size: 1.2rem;">Календари и другое</h3>
+                        <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-secondary); line-height: 2;">
+                            <li>✅ Google Calendar</li>
+                            <li>✅ Яндекс Календарь</li>
+                            <li>✅ 1C</li>
+                            <li>✅ МойСклад</li>
+                            <li>✅ Roistat</li>
+                            <li>✅ Calltouch</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 48px; text-align: center; padding: 32px; background: var(--dark-card); border: 1px solid var(--border-color); border-radius: 16px;">
+                    <h3 style="color: var(--text); margin-bottom: 16px; font-size: 1.3rem;">+ еще 50+ интеграций через API</h3>
+                    <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 0 auto;">
+                        Если вашего сервиса нет в списке — подключим через API за 1-2 дня. 
+                        Опыт работы с любыми системами, которые имеют открытый API.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <!-- Final CTA -->
     <section class="final-cta">
         <div class="container">
             <h2>Получите расчет вашей прибыли</h2>
@@ -1805,5 +2121,31 @@
         });
 
     </script>
+
+    <script>
+    function toggleFAQ(button) {
+        const item = button.parentElement;
+        const answer = item.querySelector('.faq-answer');
+        const icon = button.querySelector('.faq-icon');
+        const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+        
+        // Close all other FAQs
+        document.querySelectorAll('.faq-answer').forEach(a => {
+            a.style.maxHeight = '0';
+        });
+        document.querySelectorAll('.faq-icon').forEach(i => {
+            i.textContent = '+';
+            i.style.transform = 'rotate(0deg)';
+        });
+        
+        // Toggle current FAQ
+        if (!isOpen) {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            icon.textContent = '−';
+            icon.style.transform = 'rotate(180deg)';
+        }
+    }
+    </script>
+
 </body>
 </html>
