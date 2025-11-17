@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боевой план Meta Ads - eSIM продвижение | WEBNOSTRA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gradient-start: #667eea;
+            --gradient-end: #764ba2;
+            --text-dark: #1a202c;
+            --text-light: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 10px 40px rgba(102, 126, 234, 0.2);
+            --shadow-hover: 0 15px 50px rgba(102, 126, 234, 0.3);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: var(--text-light);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .key-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px 40px;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .key-info-item {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .key-info-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .key-info-item h3 {
+            color: var(--gradient-start);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .key-info-item p {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* Content */
+        .content {
+            padding: 40px;
+        }
+
+        /* Accordion Section */
+        .accordion-section {
+            margin-bottom: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .accordion-section:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: var(--text-light);
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #7c93f0 0%, #8b5bb5 100%);
+        }
+
+        .accordion-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .accordion-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-section.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: white;
+        }
+
+        .accordion-section.active .accordion-content {
+            max-height: 5000px;
+        }
+
+        .accordion-body {
+            padding: 30px 25px;
+        }
+
+        /* Grid Cards */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--gradient-start);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow);
+        }
+
+        .card h3 {
+            color: var(--gradient-end);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .card ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gradient-start);
+            font-weight: bold;
+        }
+
+        /* Message Cards */
+        .message-card {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 12px;
+            border-left: 4px solid var(--gradient-start);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .message-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .message-card h4 {
+            color: var(--gradient-end);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .message-card p {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        /* Table */
+        .pricing-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .pricing-table thead {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: var(--text-light);
+        }
+
+        .pricing-table th,
+        .pricing-table td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .pricing-table tbody tr {
+            border-bottom: 1px solid #e2e8f0;
+            transition: background 0.3s ease;
+        }
+
+        .pricing-table tbody tr:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        /* Tariff Cards */
+        .tariff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .tariff-card {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tariff-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+        }
+
+        .tariff-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--gradient-start);
+        }
+
+        .tariff-card.recommended {
+            border: 2px solid var(--gradient-start);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.25);
+        }
+
+        .tariff-card.recommended:before {
+            height: 8px;
+        }
+
+        .tariff-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .tariff-card h3 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .tariff-card .subtitle {
+            color: #718096;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .tariff-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gradient-end);
+            margin: 20px 0;
+        }
+
+        .tariff-price span {
+            font-size: 1rem;
+            color: #718096;
+            font-weight: 400;
+        }
+
+        .tariff-features {
+            list-style: none;
+            margin: 25px 0;
+        }
+
+        .tariff-features li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #4a5568;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tariff-features li:last-child {
+            border-bottom: none;
+        }
+
+        .tariff-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gradient-start);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .tariff-budget {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 600;
+            color: var(--gradient-end);
+        }
+
+        /* Services Grid */
+        .services-comparison {
+            overflow-x: auto;
+            margin: 30px 0;
+        }
+
+        .services-table {
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-collapse: collapse;
+        }
+
+        .services-table th {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            padding: 18px 15px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .services-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .services-table tr:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .check-mark {
+            color: #48bb78;
+            font-size: 1.5rem;
+            text-align: center;
+            display: block;
+        }
+
+        .cross-mark {
+            color: #f56565;
+            font-size: 1.5rem;
+            text-align: center;
+            display: block;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 30px 0;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 25px;
+            margin: 15px 0;
+            border-radius: 12px;
+            border-left: 5px solid var(--gradient-start);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .timeline-item h4 {
+            color: var(--gradient-end);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Reference Images Section */
+        .references-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .reference-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .reference-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .reference-placeholder {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gradient-end);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .reference-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .reference-card .reference-info {
+            padding: 20px;
+        }
+
+        .reference-card h4 {
+            color: var(--gradient-end);
+            margin-bottom: 8px;
+        }
+
+        .reference-card p {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--gradient-start);
+            border: 2px solid var(--gradient-start);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gradient-start);
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: var(--text-light);
+            padding: 50px 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contact-buttons .btn {
+            background: white;
+            color: var(--gradient-start);
+        }
+
+        .contact-buttons .btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a202c;
+            color: #a0aec0;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .accordion-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .tariff-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .accordion-content {
+                max-height: none !important;
+            }
+
+            .accordion-icon {
+                display: none;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            .contact-section {
+                background: #f7fafc;
+                color: var(--text-dark);
+            }
+
+            .footer {
+                background: white;
+                color: var(--text-dark);
+            }
+
+            .accordion-section,
+            .card,
+            .tariff-card {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Highlight */
+        .highlight {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--gradient-start);
+        }
+
+        .highlight strong {
+            color: var(--gradient-end);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📊 Боевой план Meta Ads</h1>
+            <p>Продвижение электронных сим-карт (eSIM)</p>
+        </div>
+
+        <!-- Key Info -->
+        <div class="key-info">
+            <div class="key-info-item">
+                <h3>Продукт</h3>
+                <p>eSIM карты</p>
+            </div>
+            <div class="key-info-item">
+                <h3>Стартовый бюджет</h3>
+                <p>$1,500</p>
+            </div>
+            <div class="key-info-item">
+                <h3>Целевой CPL</h3>
+                <p>$0,5-1,5</p>
+            </div>
+            <div class="key-info-item">
+                <h3>Срок запуска</h3>
+                <p>5-10 дней</p>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Buttons -->
+            <div style="text-align: center; margin-bottom: 30px;">
+                <button onclick="window.print()" class="btn">📥 Скачать PDF</button>
+                <a href="https://webnostra-team.netlify.app/cases" class="btn btn-secondary" target="_blank">🎯 Посмотреть кейсы</a>
+            </div>
+
+            <!-- Point A & B -->
+            <div class="accordion-section active">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h2>🎯 Точка A → Точка Б</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="grid-2">
+                            <div class="card">
+                                <h3>📍 Точка A: Текущая ситуация</h3>
+                                <ul>
+                                    <li>Нет запущенного трафика на лидогенерацию</li>
+                                    <li>Нет данных по стоимости привлечения клиента в канале Meta</li>
+                                    <li>Бюджет на старт: $1500</li>
+                                    <li>Две точки конверсии: WhatsApp и сайт</li>
+                                    <li>Многоязычная аудитория требует сегментации по языкам</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h3>🎯 Точка Б: Целевое состояние</h3>
+                                <ul>
+                                    <li>Стабильный поток 50-70 квалифицированных лидов в неделю</li>
+                                    <li>CPL в диапазоне $0,5-1,5 на холодную аудиторию</li>
+                                    <li>Конверсия из лида в продажу 30-45%</li>
+                                    <li>Прозрачная аналитика по всем этапам воронки</li>
+                                    <li>Достижение 1000 продаж за счет масштабирования успешных связок</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategy -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h2>🎯 Тактика продвижения</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="grid-2">
+                            <div class="card">
+                                <h3>🌍 Гео-таргетинг</h3>
+                                <ul>
+                                    <li>СНГ - 50% бюджета</li>
+                                    <li>Европа - 50% бюджета</li>
+                                    <li>Далее перераспределение на более эффективные страны</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h3>👥 Целевой портрет</h3>
+                                <p><strong>Демография:</strong></p>
+                                <ul>
+                                    <li>Возраст: 18-55 лет</li>
+                                    <li>Доход: средний и выше среднего</li>
+                                    <li>Пол: мужчины, женщины</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="highlight">
+                            <strong>Интересы и поведение:</strong>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>Подписки на авиакомпании, booking.com, airbnb</li>
+                                <li>Интерес к путешествиям, международному туризму</li>
+                                <li>Посещали зарубежные страны за последние 6 месяцев</li>
+                                <li>Активность в группах про визы, переезды, удаленную работу</li>
+                                <li>Использование мобильного интернета за границей</li>
+                                <li>Частые международные транзакции</li>
+                                <li>Поиск информации о роуминге</li>
+                                <li>Интерес к цифровым сервисам и технологиям</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Campaigns -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h2>📢 Структура кампаний</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="grid-2">
+                            <div class="card">
+                                <h3>💬 Кампания 1: WhatsApp лидогенерация (50% бюджета)</h3>
+                                <ul>
+                                    <li>Цель: Сообщения в WhatsApp</li>
+                                    <li>Быстрые ответы через автоквалификатор</li>
+                                    <li>Призыв: получить инструкцию по активации</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h3>📝 Кампания 2: Квиз на сайте (50% бюджета)</h3>
+                                <ul>
+                                    <li>Цель: Конверсии (отправка квиза)</li>
+                                    <li>Подбор тарифа за 4 вопроса</li>
+                                    <li>Сбор контакта для персонального предложения</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3 style="margin-top: 30px; color: var(--gradient-end);">Сегментация тестов</h3>
+                        
+                        <h4 style="margin-top: 20px; color: var(--gradient-start);">Офферы (A/B):</h4>
+                        <div class="message-card">
+                            <p><strong>💰</strong> "Интернет в 120 странах от $5" — акцент на цену</p>
+                        </div>
+                        <div class="message-card">
+                            <p><strong>⚡</strong> "Подключайтесь за 2 минуты без похода в салон" — удобство</p>
+                        </div>
+                        <div class="message-card">
+                            <p><strong>💸</strong> "Роуминг без переплат: экономьте до 90%" — экономия</p>
+                        </div>
+                        <div class="message-card">
+                            <p><strong>🌐</strong> "Безлимитный интернет в путешествии" — свобода</p>
+                        </div>
+
+                        <h4 style="margin-top: 20px; color: var(--gradient-start);">Форматы креативов:</h4>
+                        <ul style="padding-left: 20px; margin-top: 10px;">
+                            <li>Видео 15-30 сек</li>
+                            <li>Карусель 3-5 слайдов</li>
+                            <li>Статичное изображение с текстом</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h2>💡 Месседжи: 5 сильных смыслов</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="message-card">
+                            <h4>1️⃣ Ценность</h4>
+                            <p>"Интернет в 120+ странах мира сразу после покупки. Установка за 2 минуты прямо в телефоне"</p>
+                        </div>
+                        <div class="message-card">
+                            <h4>2️⃣ Отстройка</h4>
+                            <p>"Никаких пластиковых карт и походов в салон связи. Всё онлайн — купил, получил QR-код, активировал"</p>
+                        </div>
+                        <div class="message-card">
+                            <h4>3️⃣ Экономия</h4>
+                            <p>"Экономия до 85% по сравнению с роумингом вашего оператора. Тариф от $5 вместо $50 за неделю"</p>
+                        </div>
+                        <div class="message-card">
+                            <h4>4️⃣ Измеримость</h4>
+                            <p>"Выбирайте точный объем гигабайт под вашу поездку: 1GB, 3GB, 5GB, безлимит. Платите только за то, что нужно"</p>
+                        </div>
+                        <div class="message-card">
+                            <h4>5️⃣ Следующий шаг</h4>
+                            <p>"Напишите в WhatsApp прямо сейчас — отправим инструкцию и промокод на первую покупку со скидкой 15%"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Creative Concepts -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h2>🎨 Креативные сюжеты</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="grid-2">
+                            <div class="card">
+                                <h3>✈️ Концепция 1: Боль в аэропорту</h3>
+                                <p><strong>Смысл:</strong> момент осознания проблемы — "забыл подключить интернет"</p>
+                                <p><strong>Визуал:</strong> турист в аэропорту смотрит на телефон без сигнала, далее — легкое решение через eSIM</p>
+                            </div>
+                            <div class="card">
+                                <h3>💰 Концепция 2: Сравнение чеков</h3>
+                                <p><strong>Смысл:</strong> наглядная экономия в цифрах</p>
+                                <p><strong>Визуал:</strong> два чека рядом — роуминг оператора $80 vs eSIM $12 за неделю в Европе</p>
+                            </div>
+                            <div class="card">
+                                <h3>⚡ Концепция 3: Процесс за 60 секунд</h3>
+                                <p><strong>Смысл:</strong> простота установки, никакой технической сложности</p>
+                                <p><strong>Визуал:</strong> таймлапс установки eSIM: сканирование QR → настройка → готово</p>
+                            </div>
+                            <div class="card">
+                                <h3>⭐ Концепция 4: Отзывы путешественников</h3>
+                                <p><strong>Смысл:</strong> социальное доказательство от реальных клиентов</p>
+                                <p><strong>Визуал:</strong> короткие видео-отзывы из разных стран (Дубай, Париж, Стамбул) с цифрами экономии</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- References -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h2>🖼️ Референсы посадочных и креативов</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p style="margin-bottom: 20px; color: #718096;">Примеры посадочных страниц и креативов для вдохновения:</p>
+                        <div class="references-grid">
+                            <div class="reference-card">
+                                <img src="пс1.png" alt="Пример посадочной страницы 1">
+                                <div class="reference-info">
+                                    <h4>Пример посадочной страницы 1</h4>
+                                </div>
+                            </div>
+                            <div class="reference-card">
+                                <img src="пс2.png" alt="Пример посадочной страницы 2">
+                                <div class="reference-info">
+                                    <h4>Пример посадочной страницы 2</h4>
+                                </div>
+                            </div>
+                            <div class="reference-card">
+                                <img src="пс3.png" alt="Пример посадочной страницы 3">
+                                <div class="reference-info">
+                                    <h4>Пример посадочной страницы 3</h4>
+                                </div>
+                            </div>
+                            <div class="reference-card">
+                                <img src="кр1.png" alt="Пример креатива 1">
+                                <div class="reference-info">
+                                    <h4>Пример креатива 1</h4>
+                                </div>
+                            </div>
+                            <div class="reference-card">
+                                <img src="кр2.png" alt="Пример креатива 2">
+                                <div class="reference-info">
+                                    <h4>Пример креатива 2</h4>
+                                </div>
+                            </div>
+                            <div class="reference-card">
+                                <img src="кр3.png" alt="Пример креатива 3">
+                                <div class="reference-info">
+                                    <h4>Пример креатива 3</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Budget Forecast -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h2>📊 Бенчмарк стоимости лида и прогноз</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="highlight">
+                            <strong>Реалистичные показатели для ниши:</strong>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>CPL: $0,5-1,5</li>
+                                <li>Конверсия в продажу: 30-45%</li>
+                            </ul>
+                        </div>
+
+                        <h3 style="margin: 25px 0 15px; color: var(--gradient-end);">Прогноз по бюджетам</h3>
+                        <table class="pricing-table">
+                            <thead>
+                                <tr>
+                                    <th>Показатель</th>
+                                    <th>Бюджет до $500</th>
+                                    <th>Бюджет до $2000</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Лиды</strong></td>
+                                    <td>333-1000</td>
+                                    <td>1333-4000</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Конверсия в продажу</strong></td>
+                                    <td>30-45%</td>
+                                    <td>30-45%</td>
+                                </tr>
+                                <tr style="background: rgba(72, 187, 120, 0.1);">
+                                    <td><strong>Продажи</strong></td>
+                                    <td style="color: #2f855a; font-weight: 700;">100-450</td>
+                                    <td style="color: #2f855a; font-weight: 700;">400-1800</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CPL средний</strong></td>
+                                    <td>$0,5-1,5</td>
+                                    <td>$0,5-1,5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="highlight" style="margin-top: 25px;">
+                            <strong>💡 Ключевые метрики:</strong>
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>При бюджете $500: ожидаемо <strong style="color: var(--gradient-end);">100-450 продаж</strong></li>
+                                <li>При бюджете $2000: ожидаемо <strong style="color: var(--gradient-end);">400-1800 продаж</strong></li>
+                                <li>Средняя стоимость привлечения клиента: <strong style="color: var(--gradient-end);">$1,1-5</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Plan -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h2>🚀 Следующие шаги</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4>📅 День 1-2: Подготовка</h4>
+                                <ul>
+                                    <li>Настройка Business Manager и рекламного кабинета</li>
+                                    <li>Установка пикселя на сайт и события конверсий</li>
+                                    <li>Создание квиза на сайте с 4 вопросами</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>📅 День 3-4: Создание кампаний</h4>
+                                <ul>
+                                    <li>Создание креативов</li>
+                                    <li>Написание сценариев для видео</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>📅 День 5: Запуск</h4>
+                                <ul>
+                                    <li>Публикация всех кампаний</li>
+                                    <li>Первичный мониторинг: CPL, CPM, CTR</li>
+                                    <li>Проверка срабатывания пикселя и передачи лидов</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>📅 День 6-10: Анализ и первая оптимизация</h4>
+                                <ul>
+                                    <li>Ежедневный мониторинг показателей</li>
+                                    <li>Отключение слабых креативов (CTR < 1,5%)</li>
+                                    <li>Перераспределение бюджета на лучшие связки</li>
+                                    <li>Корректировка ставок и плейсментов</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-item">
+                                <h4>📅 День 11-15: Масштабирование</h4>
+                                <ul>
+                                    <li>Увеличение бюджета на +20% на успешные адсеты</li>
+                                    <li>Создание lookalike-аудиторий с покупателей</li>
+                                    <li>Тестирование новых креативов на основе данных</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tariffs -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h2>💼 Тарифы сотрудничества</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="tariff-grid">
+                            <!-- Tariff START -->
+                            <div class="tariff-card">
+                                <h3>Тариф СТАРТ</h3>
+                                <p class="subtitle">Быстрый запуск рекламы</p>
+                                <div class="tariff-price">$450</div>
+                                <div class="tariff-budget">Рекламный бюджет от $500</div>
+                                
+                                <p style="margin: 20px 0 15px; font-weight: 600; color: var(--gradient-end);">Цель:</p>
+                                <p style="margin-bottom: 20px; color: #718096;">Тест ниши и быстрые заявки</p>
+                                
+                                <ul class="tariff-features">
+                                    <li>Анализ ниши и конкурентов</li>
+                                    <li>Тексты, креативы, сценарии</li>
+                                    <li>Запуск рекламы (Meta, Яндекс, Google, ВК, TG ads)</li>
+                                    <li>Подключение аналитики и пикселей</li>
+                                    <li>Настройка медиаплана</li>
+                                    <li>Оптимизация под первые результаты</li>
+                                </ul>
+
+                                <div style="margin-top: 25px; padding: 15px; background: rgba(72, 187, 120, 0.1); border-radius: 8px; color: #2f855a; font-weight: 600; text-align: center;">
+                                    ✓ Гарантия: возврат денег, если нет заявок
+                                </div>
+                                
+                                <p style="margin-top: 15px; color: #718096; font-size: 0.9rem;"><strong>Результат:</strong> Первые целевые лиды, прогноз CPL</p>
+                                <p style="color: #718096; font-size: 0.9rem;"><strong>Подходит для:</strong> Малый бизнес, тест ниши</p>
+                            </div>
+
+                            <!-- Tariff BASE -->
+                            <div class="tariff-card recommended">
+                                <span class="tariff-badge">⭐ Рекомендуем</span>
+                                <h3>Тариф БАЗА</h3>
+                                <p class="subtitle">Система заявок и контроль качества</p>
+                                <div class="tariff-price">$900</div>
+                                <div class="tariff-budget">Рекламный бюджет от $700</div>
+                                
+                                <p style="margin: 20px 0 15px; font-weight: 600; color: var(--gradient-end);">Цель:</p>
+                                <p style="margin-bottom: 20px; color: #718096;">Стабильный поток клиентов и прозрачная аналитика</p>
+                                
+                                <ul class="tariff-features">
+                                    <li>Все из тарифа «Старт»</li>
+                                    <li>Построение воронки: реклама → квиз → лендинг → CRM</li>
+                                    <li>Создание посадочной страницы (до 10 блоков)</li>
+                                    <li>Подключение AI-квалификатора тариф Small (фильтрация лидов)</li>
+                                    <li>Аудит CRM и автоматизация</li>
+                                    <li>Аналитика CPL, CPA, CTR, ROMI</li>
+                                    <li>Тестирование гипотез и сценариев рекламы</li>
+                                </ul>
+
+                                <div style="margin-top: 25px; padding: 15px; background: rgba(72, 187, 120, 0.1); border-radius: 8px; color: #2f855a; font-weight: 600; text-align: center;">
+                                    ✓ Гарантия: минимум 25 целевых лидов — или доработка за наш счёт
+                                </div>
+                                
+                                <p style="margin-top: 15px; color: #718096; font-size: 0.9rem;"><strong>Результат:</strong> +25-40% к конверсии, ≥25 целевых заявок в месяц</p>
+                                <p style="color: #718096; font-size: 0.9rem;"><strong>Подходит для:</strong> Компании, которым нужна предсказуемая воронка</p>
+                            </div>
+
+                            <!-- Tariff EXPERT -->
+                            <div class="tariff-card">
+                                <h3>Тариф ЭКСПЕРТ</h3>
+                                <p class="subtitle">Маркетинг и продажи под ключ</p>
+                                <div class="tariff-price">$1,890</div>
+                                <div class="tariff-budget">Рекламный бюджет от $3,000</div>
+                                
+                                <p style="margin: 20px 0 15px; font-weight: 600; color: var(--gradient-end);">Цель:</p>
+                                <p style="margin-bottom: 20px; color: #718096;">Рост продаж и выстроенная воронка</p>
+                                
+                                <ul class="tariff-features">
+                                    <li>Все из тарифа «База»</li>
+                                    <li>Подключение AI-РОП (контроль лидов и отдела продаж)</li>
+                                    <li>6-часовая стратегия роста с маркетинг-директором</li>
+                                    <li>Несколько лендингов под сегменты</li>
+                                    <li>Глубокий разбор и улучшение воронки</li>
+                                    <li>Тренинг отдела продаж или аудит ОП</li>
+                                    <li>Полное тех. сопровождение (CRM, интеграции, аналитика)</li>
+                                </ul>
+
+                                <div style="margin-top: 25px; padding: 15px; background: rgba(72, 187, 120, 0.1); border-radius: 8px; color: #2f855a; font-weight: 600; text-align: center;">
+                                    ✓ Гарантия: рост продаж за 2 месяца — или возврат средств
+                                </div>
+                                
+                                <p style="margin-top: 15px; color: #718096; font-size: 0.9rem;"><strong>Результат:</strong> Рост продаж за 2 месяца. Контроль и предсказуемость воронки</p>
+                                <p style="color: #718096; font-size: 0.9rem;"><strong>Подходит для:</strong> Бизнес, который хочет рост и контроль</p>
+                            </div>
+                        </div>
+
+                        <!-- Services Comparison -->
+                        <h3 style="margin: 50px 0 25px; text-align: center; color: var(--gradient-end); font-size: 1.8rem;">Сравнение тарифов</h3>
+                        
+                        <div class="services-comparison">
+                            <table class="services-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 40%;">Услуга</th>
+                                        <th style="text-align: center;">Стоимость</th>
+                                        <th style="text-align: center;">СТАРТ</th>
+                                        <th style="text-align: center;">БАЗА</th>
+                                        <th style="text-align: center;">ЭКСПЕРТ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Запуск рекламы (Meta, Яндекс, Google, VK, TG ads)</td>
+                                        <td style="text-align: center; font-weight: 600;">Входит</td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Настройка медиаплана + аналитики</td>
+                                        <td style="text-align: center; font-weight: 600;">Входит</td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Посадочная страница (до 10 блоков, дизайн + тексты)</td>
+                                        <td style="text-align: center; font-weight: 600;">$500</td>
+                                        <td style="text-align: center;"><span class="cross-mark">✕</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>AI-квалификатор (фильтрация лидов)</td>
+                                        <td style="text-align: center; font-weight: 600;">$600/мес</td>
+                                        <td style="text-align: center;"><span class="cross-mark">✕</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Аналитика CPL, CPA, CTR, ROMI</td>
+                                        <td style="text-align: center; font-weight: 600;">$250</td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>CRM + подключение, настройка, отчеты</td>
+                                        <td style="text-align: center; font-weight: 600;">$250</td>
+                                        <td style="text-align: center;"><span class="cross-mark">✕</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>AI-РОП (контроль лидов и работы отдела продаж)</td>
+                                        <td style="text-align: center; font-weight: 600;">$600/мес</td>
+                                        <td style="text-align: center;"><span class="cross-mark">✕</span></td>
+                                        <td style="text-align: center;"><span class="cross-mark">✕</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Стратегическая сессия с маркетинг-директором (2×3 ч)</td>
+                                        <td style="text-align: center; font-weight: 600;">$500</td>
+                                        <td style="text-align: center;"><span class="cross-mark">✕</span></td>
+                                        <td style="text-align: center;"><span class="cross-mark">✕</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Несколько лендингов под сегменты</td>
+                                        <td style="text-align: center; font-weight: 600;">$400+</td>
+                                        <td style="text-align: center;"><span class="cross-mark">✕</span></td>
+                                        <td style="text-align: center;"><span class="cross-mark">✕</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Глубокий разбор и улучшение воронки</td>
+                                        <td style="text-align: center; font-weight: 600;">$400</td>
+                                        <td style="text-align: center;"><span class="cross-mark">✕</span></td>
+                                        <td style="text-align: center;"><span class="cross-mark">✕</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Тренинг или аудит отдела продаж</td>
+                                        <td style="text-align: center; font-weight: 600;">$300</td>
+                                        <td style="text-align: center;"><span class="cross-mark">✕</span></td>
+                                        <td style="text-align: center;"><span class="cross-mark">✕</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Полное тех. сопровождение (CRM, аналитика, интеграции)</td>
+                                        <td style="text-align: center; font-weight: 600;">$250/мес</td>
+                                        <td style="text-align: center;"><span class="cross-mark">✕</span></td>
+                                        <td style="text-align: center;"><span class="cross-mark">✕</span></td>
+                                        <td style="text-align: center;"><span class="check-mark">✔</span></td>
+                                    </tr>
+                                    <tr style="background: rgba(102, 126, 234, 0.1); font-weight: 700;">
+                                        <td>ИТОГО включено услуг</td>
+                                        <td style="text-align: center;">—</td>
+                                        <td style="text-align: center;">4</td>
+                                        <td style="text-align: center;">7</td>
+                                        <td style="text-align: center;">12</td>
+                                    </tr>
+                                    <tr style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%); font-weight: 700; font-size: 1.1rem;">
+                                        <td style="color: var(--gradient-end);">ЦЕНА ТАРИФА</td>
+                                        <td style="text-align: center;">—</td>
+                                        <td style="text-align: center; color: var(--gradient-end);">$450</td>
+                                        <td style="text-align: center; color: var(--gradient-end);">$900</td>
+                                        <td style="text-align: center; color: var(--gradient-end);">$1,890</td>
+                                    </tr>
+                                    <tr style="background: rgba(72, 187, 120, 0.1);">
+                                        <td style="color: #2f855a; font-weight: 600;">Экономия</td>
+                                        <td style="text-align: center;">—</td>
+                                        <td style="text-align: center; color: #2f855a; font-weight: 600;">—</td>
+                                        <td style="text-align: center; color: #2f855a; font-weight: 600;">до $1,900</td>
+                                        <td style="text-align: center; color: #2f855a; font-weight: 600;">до $2,500</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="highlight" style="margin-top: 30px;">
+                            <strong>💡 С тарифами WEBNOSTRA:</strong>
+                            <p style="margin-top: 10px;">Если собирать все услуги вручную — выходит $2,800+, без стратегии и гарантий</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Automation -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h2>🤖 AI-автоматизация вашего бизнеса</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p style="margin-bottom: 30px; font-size: 1.1rem; color: #4a5568;">Автоматизируйте рутину и масштабируйте отдел продаж без найма новых сотрудников. Внедряем искусственный интеллект, который обучается на ваших данных и работает 24/7.</p>
+
+                        <div class="grid-2">
+                            <div class="card">
+                                <h3>🔍 AI-квалификатор</h3>
+                                <p style="margin-bottom: 15px; color: var(--gradient-end); font-weight: 600;">От $300 за интеграцию</p>
+                                <p style="margin-bottom: 10px;"><strong>Что делает:</strong></p>
+                                <ul>
+                                    <li>Мгновенно отвечает на входящие сообщения в любое время суток</li>
+                                    <li>Квалифицирует лиды по вашим критериям</li>
+                                    <li>Автоматически создает задачи для менеджеров</li>
+                                    <li>Заполняет карточки клиентов в CRM</li>
+                                    <li>Определяет качество трафика и приоритетность обращений</li>
+                                </ul>
+                                <p style="margin-top: 15px; padding: 10px; background: rgba(72, 187, 120, 0.1); border-radius: 6px; color: #2f855a;"><strong>Результат:</strong> ни один лид не теряется, менеджеры работают только с теплыми клиентами</p>
+                            </div>
+
+                            <div class="card">
+                                <h3>📞 AI-продавец</h3>
+                                <p style="margin-bottom: 15px; color: var(--gradient-end); font-weight: 600;">От $500 за интеграцию</p>
+                                <p style="margin-bottom: 10px;"><strong>Что делает:</strong></p>
+                                <ul>
+                                    <li>Принимает входящие звонки и консультирует клиентов</li>
+                                    <li>Совершает исходящие звонки для напоминаний о встречах, оплатах, акциях</li>
+                                    <li>Квалифицирует клиентов по телефону</li>
+                                    <li>Записывает на встречи и консультации</li>
+                                    <li>Обрабатывает типовые возражения по скрипту</li>
+                                </ul>
+                                <p style="margin-top: 15px; padding: 10px; background: rgba(72, 187, 120, 0.1); border-radius: 6px; color: #2f855a;"><strong>Результат:</strong> ваши менеджеры освобождены от рутинных звонков и фокусируются на сложных сделках</p>
+                            </div>
+
+                            <div class="card">
+                                <h3>✅ Умный контроль качества</h3>
+                                <p style="margin-bottom: 15px; color: var(--gradient-end); font-weight: 600;">От $700 за интеграцию</p>
+                                <p style="margin-bottom: 10px;"><strong>Что делает:</strong></p>
+                                <ul>
+                                    <li>Прослушивает 100% телефонных звонков</li>
+                                    <li>Анализирует видеовстречи в Zoom/Google Meet</li>
+                                    <li>Выявляет отклонения от скриптов продаж</li>
+                                    <li>Фиксирует критические ошибки менеджеров</li>
+                                    <li>Отправляет уведомления руководителю в реальном времени</li>
+                                    <li>Формирует отчеты по качеству работы каждого сотрудника</li>
+                                </ul>
+                                <p style="margin-top: 15px; padding: 10px; background: rgba(72, 187, 120, 0.1); border-radius: 6px; color: #2f855a;"><strong>Результат:</strong> вы видите все проблемы в отделе продаж без прослушивания сотен часов записей</p>
+                            </div>
+
+                            <div class="card">
+                                <h3>⚙️ Индивидуальная AI-автоматизация</h3>
+                                <p style="margin-bottom: 15px; color: var(--gradient-end); font-weight: 600;">Стоимость рассчитывается индивидуально</p>
+                                <p style="margin-bottom: 10px;"><strong>Примеры задач:</strong></p>
+                                <ul>
+                                    <li>Автоматическое формирование коммерческих предложений</li>
+                                    <li>Анализ обратной связи и отзывов клиентов</li>
+                                    <li>Предиктивная аналитика продаж и прогнозирование</li>
+                                    <li>Умные чат-боты для техподдержки</li>
+                                    <li>Автоматизация документооборота</li>
+                                    <li>Персонализация маркетинговых коммуникаций</li>
+                                </ul>
+                                <p style="margin-top: 15px; padding: 10px; background: rgba(72, 187, 120, 0.1); border-radius: 6px; color: #2f855a;"><strong>Результат:</strong> решаем уникальные задачи вашего бизнеса с помощью AI и алгоритмов</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Team -->
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h2>👥 О команде WEBNOSTRA PERFORMANCE</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <div class="highlight">
+                            <p style="font-size: 1.1rem; margin-bottom: 15px;">За счет отсутствия громоздкой структуры обычных маркетинговых агентств и правильного выбора проектов, с которыми мы работаем, наша команда делает реально прибыльный digital-маркетинг для своих клиентов за справедливую цену.</p>
+                        </div>
+
+                        <h3 style="margin: 25px 0 15px; color: var(--gradient-end);">📊 Наш показатель LifeTime клиентов:</h3>
+                        <div class="grid-2">
+                            <div class="card">
+                                <h3>⏱️ Средняя длительность</h3>
+                                <p style="font-size: 2rem; color: var(--gradient-end); font-weight: 700; margin: 15px 0;">1,5 года</p>
+                                <p>С нами сотрудничают в среднем</p>
+                            </div>
+                            <div class="card">
+                                <h3>🏆 Долгосрочное партнерство</h3>
+                                <p style="font-size: 2rem; color: var(--gradient-end); font-weight: 700; margin: 15px 0;">3+ года</p>
+                                <p>Есть клиенты, которые уже более трех лет с нами зарабатывают деньги</p>
+                            </div>
+                        </div>
+
+                        <h3 style="margin: 25px 0 15px; color: var(--gradient-end);">✨ Почему выбирают нас:</h3>
+                        <div class="message-card">
+                            <h4>🎯 Фокус на ROI, а не на показах</h4>
+                            <p>Мы ориентируемся на реальные результаты вашего бизнеса</p>
+                        </div>
+                        <div class="message-card">
+                            <h4>📊 Прозрачная отчетность и доступ к кабинетам</h4>
+                            <p>Полный контроль над вашими рекламными кампаниями</p>
+                        </div>
+                        <div class="message-card">
+                            <h4>⚡ Быстрый старт</h4>
+                            <p>От брифа до первых лидов — 10-14 дней</p>
+                        </div>
+                        <div class="message-card">
+                            <h4>💼 Опыт работы с e-commerce и цифровыми продуктами</h4>
+                            <p>Специализация на travel-нише и цифровых сервисах</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <h2>📞 Готовы начать?</h2>
+            <p style="font-size: 1.1rem; margin: 20px 0;">Свяжитесь с нами для обсуждения вашего проекта</p>
+            <div class="contact-buttons">
+                <a href="https://t.me/webnostra" class="btn" target="_blank">✈️ Написать в Telegram</a>
+                <a href="https://wa.me/yourwhatsappnumber" class="btn" target="_blank">📱 Написать в WhatsApp</a>
+                <a href="https://webnostra-team.netlify.app/cases" class="btn" target="_blank">🎯 Посмотреть кейсы</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="margin-bottom: 10px; font-size: 1.2rem; color: white; font-weight: 600;">WEBNOSTRA PERFORMANCE</p>
+                <p style="margin-bottom: 15px;">Узкоспециализированная трафик-команда</p>
+                <p style="font-size: 0.9rem;">© 2025 WEBNOSTRA. Все права защищены.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Accordion toggle
+        function toggleAccordion(header) {
+            const section = header.parentElement;
+            const wasActive = section.classList.contains('active');
+            
+            // Optional: close all other sections
+            // document.querySelectorAll('.accordion-section').forEach(s => {
+            //     s.classList.remove('active');
+            // });
+            
+            if (wasActive) {
+                section.classList.remove('active');
+            } else {
+                section.classList.add('active');
+            }
+        }
+
+        // Print handling
+        window.addEventListener('beforeprint', function() {
+            document.querySelectorAll('.accordion-section').forEach(section => {
+                section.classList.add('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
