@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>КП — AI-квалификатор 24/7 для GROMKOM</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #8b5cf6;
+            --primary-light: #a78bfa;
+            --accent: #ec4899;
+            --success: #10b981;
+            --dark-bg: #0a0a0f;
+            --dark-card: #141420;
+            --dark-lighter: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --border-color: #27272a;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--dark-bg);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Header */
+        header {
+            position: relative;
+            background: var(--dark-bg);
+            padding: 140px 24px 100px;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .header-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary), transparent);
+            filter: blur(120px);
+            opacity: 0.4;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: glow 8s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+        }
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+        header .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-link {
+            display: inline-block;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 48px rgba(139, 92, 246, 0.6);
+        }
+        
+        /* Section */
+        section { padding: 100px 24px; }
+        section h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+        }
+        
+        /* Client Brief - Compact */
+        .brief-compact {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .brief-before h3, .brief-after h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .brief-before h3 {
+            color: #ef4444;
+        }
+        .brief-after h3 {
+            color: var(--success);
+        }
+        .brief-before ul, .brief-after ul {
+            list-style: none;
+            padding: 0;
+        }
+        .brief-before li, .brief-after li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+        .brief-before li:before {
+            content: "❌";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        .brief-after li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        /* Value Cards */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+        }
+        .value-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .value-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(139, 92, 246, 0.2);
+        }
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .value-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--primary-light);
+        }
+        .value-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        /* Implementation Section */
+        .implementation-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        .implementation-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            margin-bottom: 20px;
+        }
+        .implementation-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        .implementation-card li {
+            padding: 12px 0;
+            padding-left: 32px;
+            position: relative;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .implementation-card li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Timeline */
+        .process-flow {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            font-size: 1.15rem;
+            line-height: 2.2;
+            color: var(--text-secondary);
+        }
+        .process-flow strong {
+            color: var(--primary-light);
+        }
+        
+        /* Before/After */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 60px;
+        }
+        .comparison-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+        }
+        .comparison-card.before {
+            border-left: 4px solid #ef4444;
+        }
+        .comparison-card.after {
+            border-left: 4px solid var(--success);
+        }
+        .comparison-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+        }
+        .comparison-card.before h3 {
+            color: #ef4444;
+        }
+        .comparison-card.after h3 {
+            color: var(--success);
+        }
+        .comparison-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .comparison-card li {
+            padding: 12px 0;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        
+        /* Pricing */
+        .pricing-card {
+            background: var(--dark-card);
+            border: 2px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px auto;
+            max-width: 600px;
+        }
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        .pricing-card .price {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary-light);
+            margin: 20px 0;
+        }
+        .pricing-card .description {
+            color: var(--text-secondary);
+            margin: 20px 0;
+            font-size: 1.05rem;
+        }
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .pricing-card li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .pricing-card li:last-child {
+            border-bottom: none;
+        }
+        .pricing-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .support-pricing {
+            background: var(--dark-lighter);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        .support-pricing h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            text-align: center;
+        }
+        .support-pricing .price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-light);
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        /* ROI */
+        .roi-section {
+            background: var(--dark-card);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .roi-content {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 50px;
+            margin-top: 40px;
+        }
+        .roi-text {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--text-secondary);
+        }
+        .roi-text strong {
+            color: var(--primary-light);
+            font-size: 1.2rem;
+        }
+        .roi-highlight {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .roi-highlight h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .roi-highlight .amount {
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 10px 0;
+        }
+        
+        /* Cases */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        .case-card {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+        .case-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(139, 92, 246, 0.2);
+        }
+        .case-badge {
+            background: var(--primary);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+        .case-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        .case-card .industry {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+        .case-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .metric {
+            background: var(--dark-lighter);
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-light);
+            display: block;
+        }
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 4px;
+        }
+        .case-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .case-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .case-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Timeline */
+        .timeline-section {
+            background: var(--dark-lighter);
+            border-radius: 24px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+        .timeline-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--primary-light);
+        }
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .timeline-item {
+            background: var(--dark-card);
+            padding: 20px;
+            border-radius: 16px;
+            border-left: 4px solid var(--primary);
+        }
+        .timeline-item h4 {
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        .timeline-item p {
+            color: var(--text-secondary);
+        }
+        
+        /* CTA */
+        .cta-section {
+            background: var(--dark-bg);
+            text-align: center;
+        }
+        .cta-box {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            padding: 60px 40px;
+            border-radius: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        .cta-box h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        .cta-box p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
+        }
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 48px rgba(139, 92, 246, 0.6);
+        }
+        
+        /* Alert */
+        .alert-box {
+            background: rgba(139, 92, 246, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        .alert-box strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: var(--primary-light);
+        }
+        .alert-box p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            header h1 { font-size: 2.5rem; }
+            section h2 { font-size: 2rem; }
+            .comparison-grid, .brief-compact, .timeline-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-glow"></div>
+        <div class="container">
+            <h1>AI-квалификатор 24/7</h1>
+            <div class="subtitle">для GROMKOM + бесплатная телефония</div>
+            <a href="https://webnostra.pro/ai/cases/" class="cta-link" target="_blank">📊 Посмотреть кейсы</a>
+        </div>
+    </header>
+
+    <!-- Client Brief - Compact -->
+    <section>
+        <div class="container">
+            <div class="brief-compact">
+                <div class="brief-before">
+                    <h3>Сейчас</h3>
+                    <ul>
+                        <li>350-450 лидов/мес, средний чек $22k</li>
+                        <li>Ответ 10-15 мин в раб. время</li>
+                        <li>Вечером/выходные задержки</li>
+                        <li>Теряются клиенты</li>
+                    </ul>
+                </div>
+                <div class="brief-after">
+                    <h3>С AI</h3>
+                    <ul>
+                        <li>Ответ за минуты 24/7</li>
+                        <li>Вывод на встречу: офис/объект/дизайнер</li>
+                        <li>Телефония: автодозвон</li>
+                        <li>+$22k-$66k выручки/мес</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 30 секунд ценности -->
+    <section style="background: var(--dark-card); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <h2>30 секунд ценности</h2>
+            
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Ответ за минуты</h3>
+                    <p>Любой входящий лид получает ответ за минуты — в нерабочее время, вечером и в выходные</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>Вывод на встречу</h3>
+                    <p>Короткий диалог в чате собирает ключевые данные и выводит на встречу</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">📞</div>
+                    <h3>Телефония бесплатно</h3>
+                    <p>Пропущенные звонки не теряются, есть автодозвон/сообщения</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Что внедряем -->
+    <section>
+        <div class="container">
+            <h2>Что мы внедряем</h2>
+            
+            <div class="implementation-card">
+                <h3>AI-квалификатор под ваши каналы</h3>
+                <ul>
+                    <li>Подключим любой из ваших каналов (например, WhatsApp / Telegram / VK / Viber — по вашему выбору)</li>
+                    <li>Бот вежливо задаёт 3–5 вопросов: тип запроса (дизайн/ремонт), объект, сроки, бюджет, контакт</li>
+                    <li>Предлагает следующий шаг: встреча в офисе, на объекте или встреча с дизайнером</li>
+                    <li>Работает 24/7 на русском (по желанию добавим английский/грузинский)</li>
+                </ul>
+            </div>
+
+            <div class="implementation-card">
+                <h3>Телефония — бесплатно в рамках проекта</h3>
+                <ul>
+                    <li>Базовая настройка SIP-телефонии: входящие/пропущенные/перезвоны</li>
+                    <li>Пропущенный звонок → автосообщение и/или автодозвон</li>
+                    <li>Готовые сценарии для вечера и выходных</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Как работает -->
+    <section style="background: var(--dark-card); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <h2>Как это работает в жизни</h2>
+            
+            <div class="process-flow">
+                <strong>Лид пришёл</strong> из рекламы или написал в мессенджер — AI отвечает сразу
+                →
+                За <strong>1–2 минуты</strong> собираем суть запроса и фиксируем следующий шаг (встречу)
+                →
+                Если клиент звонит — телефония <strong>перехватывает пропущенные</strong>, отправляет сообщение и предлагает связаться
+                →
+                Вы получаете <strong>уведомления по горячим лидам</strong> и видите, кто на каком шаге
+            </div>
+        </div>
+    </section>
+
+    <!-- До/После -->
+    <section>
+        <div class="container">
+            <h2>Выгоды: «До» → «После»</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card before">
+                    <h3>До</h3>
+                    <ul>
+                        <li>Вечером и в выходные часть лидов остаётся без ответа или получает ответ с задержкой</li>
+                        <li>Потенциальные клиенты уходят к тем, кто ответил быстрее</li>
+                        <li>Встреча не назначается сразу — «разговор рассасывается»</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card after">
+                    <h3>После</h3>
+                    <ul>
+                        <li>100% лидов получают ответ быстро; даже если менеджеры заняты или уже не в офисе</li>
+                        <li>В каждом диалоге цель — встреча: офис / объект / дизайнер</li>
+                        <li>Пропущенные звонки закрываются автоматикой: сообщение + повторный контакт</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Стоимость -->
+    <section style="background: var(--dark-card); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <h2>Стоимость и условия</h2>
+            
+            <div class="pricing-card">
+                <h3>Проект "под ключ"</h3>
+                <div class="price">$740</div>
+                <p class="description" style="font-weight: 600; margin-bottom: 20px;">Что включено:</p>
+                <ul>
+                    <li>Подключение выбранных каналов (например, WhatsApp / Telegram / VK / Viber)</li>
+                    <li>Настройка сценариев диалога (формулировки, порядок вопросов, вывод на встречу)</li>
+                    <li>Бесплатная базовая настройка телефонии (входящие, пропущенные, автодозвон/сообщение)</li>
+                    <li>Тестирование на ваших реальных обращениях и запуск</li>
+                </ul>
+                
+                <div class="support-pricing">
+                    <h4>Поддержка</h4>
+                    <div class="price">$60/мес</div>
+                    <ul>
+                        <li>До двух небольших правок сценариев в месяц (формулировки, порядок вопросов, текст напоминаний)</li>
+                        <li>Устранение неполадок и контроль стабильности ответа</li>
+                        <li>Короткое обучение персонала: как смотреть диалоги, что делать со «следующим шагом»</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <strong>Прозрачно и на вашей стороне</strong>
+                <p>Вы самостоятельно оплачиваете внешние сервисы (например, токены в сервисе бота, телефонию и т. п.) на своих аккаунтах. Все доступы, номера и кабинеты принадлежат вам и остаются у вас.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI -->
+    <section class="roi-section">
+        <div class="container">
+            <h2>Расчёт эффекта</h2>
+            <p class="section-subtitle">Консервативно, для вашего потока</p>
+            
+            <div class="roi-content">
+                <div class="roi-text">
+                    <p><strong>Вводные от вас:</strong></p>
+                    <p>Лидов в месяц: <strong>350–450</strong></p>
+                    <p>Сейчас ответ в рабочее время <strong>~10–15 минут</strong>, вечера/выходные — часто позже</p>
+                    <p>Средний чек: <strong>$22,000</strong></p>
+                    <p>Цель — вывести на встречу, затем к договору</p>
+                    <br>
+                    <p><strong>Что меняем с AI-квалификатором:</strong></p>
+                    <p>Ответ <strong>1–3 минуты круглосуточно</strong> (вечера/выходные закрыты)</p>
+                    <p>Пропущенные звонки — автосообщение/перезвон</p>
+                    <p>В каждом диалоге жёсткая фиксация следующего шага (тип встречи + время)</p>
+                    <br>
+                    <p><strong>Консервативный сценарий только от скорости и дисциплины шага:</strong></p>
+                    <p>Спасаем от потери всего <strong>2–3% лидов</strong> → +7…14 лидов/мес</p>
+                    <p>До встречи доходит <strong>30–40%</strong> из них → +2…6 встреч/мес</p>
+                    <p>В продажи превращаются <strong>1…3 сделки/мес</strong> (зависит от цикла и сметы)</p>
+                </div>
+                
+                <div class="roi-highlight">
+                    <h4>Доп. выручка</h4>
+                    <div class="amount">$22k…$66k/мес</div>
+                    <p style="margin-top: 15px; font-size: 1.05rem;">Даже 1 дополнительная сделка уже многократно перекрывает разовый проект $740 и ежемесячную поддержку $60</p>
+                    <p style="margin-top: 10px; opacity: 0.9;">Реальный эффект может быть выше, если вы параллельно нарастите трафик</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases -->
+    <section>
+        <div class="container">
+            <h2>Наши кейсы</h2>
+            
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div class="case-badge">Образование</div>
+                    <h3>AI-администратор для школы вокала</h3>
+                    <p class="industry">Автоматизация записи на занятия</p>
+                    <div class="case-metrics">
+                        <div class="metric">
+                            <span class="metric-value">85%</span>
+                            <span class="metric-label">диалогов закрывает бот</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">+40%</span>
+                            <span class="metric-label">пробных уроков</span>
+                        </div>
+                    </div>
+                    <p class="case-description">Автоматизация обработки обращений в мессенджерах. Бот записывает на занятия и напоминает без участия администраторов.</p>
+                    <a href="https://webnostra.pro/ai/cases/ai-admin" class="case-btn" target="_blank">
+                        Смотреть кейс →
+                    </a>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-badge">Медицина</div>
+                    <h3>AI-квалификатор для медцентра</h3>
+                    <p class="industry">Возврат конверсии в запись</p>
+                    <div class="case-metrics">
+                        <div class="metric">
+                            <span class="metric-value">58-62%</span>
+                            <span class="metric-label">конверсия (было 30%)</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">×2</span>
+                            <span class="metric-label">рост конверсии</span>
+                        </div>
+                    </div>
+                    <p class="case-description">Возврат конверсии с помощью AI-квалификатора с интеграцией в Bitrix24 и Roistat. Полная автоматизация обработки лидов.</p>
+                    <a href="https://webnostra.pro/ai/cases/ai-medic" class="case-btn" target="_blank">
+                        Смотреть кейс →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section style="background: var(--dark-card); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <h2>Сроки</h2>
+            
+            <div class="timeline-section">
+                <h3>2 недели под ключ</h3>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">с учётом выбранных форматов каналов</p>
+                
+                <div class="timeline-grid">
+                    <div class="timeline-item">
+                        <h4>Неделя 1</h4>
+                        <p>Подключение каналов, подготовка сценариев, первичные тесты</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Неделя 2</h4>
+                        <p>Полевые прогоны, доработка формулировок, обучение и запуск</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Что нужно -->
+    <section>
+        <div class="container">
+            <h2>Что понадобится от вас</h2>
+            
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon">🔑</div>
+                    <h3>Доступы</h3>
+                    <p>К выбранным каналам (боты/сообщества/номера)</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">💬</div>
+                    <h3>Примеры диалогов</h3>
+                    <p>Короткие примеры «как отвечаете вы» (2–3 скриншота/диалога) и формулировки для приглашения на встречу</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">⏰</div>
+                    <h3>Режимы работы</h3>
+                    <p>Когда особенно важно отвечать — вечера/выходные</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Готовы обсудить детали?</h2>
+                <p>Проведем аудит и предложим оптимальный план внедрения для GROMKOM</p>
+                <div class="cta-buttons">
+                    <a href="https://t.me/magosh_al" class="cta-btn" target="_blank">
+                        ✈️ Написать в Telegram
+                    </a>
+                    <a href="https://wa.me/77066671426" class="cta-btn" target="_blank">
+                        📱 Написать в WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
