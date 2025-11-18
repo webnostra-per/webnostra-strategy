@@ -1408,9 +1408,9 @@
                         <h3>Отлично! Вы можете заработать<br>дополнительно $47,000 в год</h3>
                         <p>Оставьте контакты — отправим расчет прибыли и покажем, как быстро окупится автоматизация</p>
                         
-                        <form class="contact-form" onsubmit="submitQuiz(event)">
-                            <input type="text" class="form-input" placeholder="Ваше имя" required>
-                            <input type="tel" class="form-input" placeholder="Телефон или Telegram" required>
+                        <form class="contact-form" id="quizForm">
+                            <input type="text" class="form-input" id="quiz-name" name="name" placeholder="Ваше имя" required>
+                            <input type="tel" class="form-input" id="quiz-phone" name="phone" placeholder="Телефон или Telegram" required>
                             <button type="submit" class="cta-btn" style="width: 100%;">Получить аудит бесплатно</button>
                         </form>
                     </div>
@@ -2144,6 +2144,107 @@
             icon.textContent = '−';
             icon.style.transform = 'rotate(180deg)';
         }
+    }
+    </script>
+
+    <!-- ============================================ -->
+    <!-- GOOGLE SHEETS INTEGRATION -->
+    <!-- ============================================ -->
+    <script>
+    // ЗАМЕНИ URL НА СВОЙ ИЗ APPS SCRIPT!
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwMy4CH-PGbZX0pck66hRyYUFdOK6r2VXQcA5RM2ajScSjVE5Lwi3NoQ3HiKfR0NTK3zw/exec';
+
+    // Хранилище ответов квиза
+    let quizAnswers = {
+        niche: '',
+        leads: '',
+        problem: '',
+        timing: ''
+    };
+
+    // Функция отправки данных в Google Sheets
+    async function sendToGoogleSheets(formData) {
+        try {
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            console.log('✅ Данные отправлены в Google Sheets');
+            return true;
+        } catch (error) {
+            console.error('❌ Ошибка отправки в Google Sheets:', error);
+            return false;
+        }
+    }
+
+    // Обработчик Quiz формы
+    document.addEventListener('DOMContentLoaded', function() {
+        const quizForm = document.getElementById('quizForm');
+        if (quizForm) {
+            quizForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const submitButton = this.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                submitButton.textContent = 'Отправка...';
+                submitButton.disabled = true;
+                
+                const formData = {
+                    name: document.getElementById('quiz-name')?.value || '',
+                    phone: document.getElementById('quiz-phone')?.value || '',
+                    niche: quizAnswers.niche || '',
+                    leads: quizAnswers.leads || '',
+                    problem: quizAnswers.problem || '',
+                    timing: quizAnswers.timing || ''
+                };
+                
+                const success = await sendToGoogleSheets(formData);
+                
+                if (success) {
+                    alert('✅ Спасибо! Мы свяжемся с вами в течение 15 минут.');
+                    this.reset();
+                } else {
+                    alert('⚠️ Произошла ошибка. Попробуйте еще раз или свяжитесь с нами напрямую.');
+                }
+                
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            });
+        }
+        
+        console.log('📊 Google Sheets интеграция активна');
+    });
+
+    // Обновленные функции квиза для сохранения ответов
+    function nextStep(step) {
+        const currentStep = document.querySelector('.quiz-step.active');
+        const currentStepNum = parseInt(currentStep.dataset.step);
+        const selectedOption = event.target.textContent;
+        
+        // Сохраняем ответ
+        if (currentStepNum === 1) quizAnswers.niche = selectedOption;
+        if (currentStepNum === 2) quizAnswers.leads = selectedOption;
+        if (currentStepNum === 3) quizAnswers.problem = selectedOption;
+        
+        currentStep.classList.remove('active');
+        document.querySelector(`[data-step="${step}"]`).classList.add('active');
+        
+        const dots = document.querySelectorAll('.progress-dot');
+        dots[step - 1].classList.add('active');
+    }
+
+    function showResult() {
+        const currentStep = document.querySelector('.quiz-step.active');
+        const selectedOption = event.target.textContent;
+        quizAnswers.timing = selectedOption;
+        
+        currentStep.classList.remove('active');
+        document.querySelector('[data-step="result"]').classList.add('active');
     }
     </script>
 
