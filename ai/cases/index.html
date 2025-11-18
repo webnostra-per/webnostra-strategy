@@ -12,15 +12,22 @@
         }
 
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
+            --primary: #8b5cf6;
+            --primary-light: #a78bfa;
+            --primary-dark: #7c3aed;
             --secondary: #8b5cf6;
             --accent: #ec4899;
             --success: #10b981;
-            --dark: #0f172a;
-            --gray: #64748b;
-            --light: #f1f5f9;
-            --white: #ffffff;
+            --dark: #ffffff;
+            --dark-bg: #0a0a0f;
+            --dark-card: #141420;
+            --dark-lighter: #1a1a2e;
+            --gray: #a1a1aa;
+            --light: #1a1a2e;
+            --white: #0a0a0f;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --border-color: #27272a;
         }
 
         html {
@@ -30,8 +37,8 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: var(--dark);
-            background: var(--white);
+            color: var(--text-primary);
+            background: var(--dark-bg);
             overflow-x: hidden;
         }
 
@@ -42,41 +49,6 @@
         }
 
         /* Animated Background */
-        .bg-animated {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        .bg-animated::before,
-        .bg-animated::after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.2;
-            animation: float 25s infinite ease-in-out;
-        }
-
-        .bg-animated::before {
-            width: 700px;
-            height: 700px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            top: -250px;
-            right: -250px;
-        }
-
-        .bg-animated::after {
-            width: 600px;
-            height: 600px;
-            background: linear-gradient(135deg, var(--accent), var(--secondary));
-            bottom: -200px;
-            left: -200px;
-            animation-delay: 12s;
         }
 
         @keyframes float {
@@ -88,11 +60,46 @@
         /* Header */
         header {
             position: relative;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--dark-bg);
             color: white;
             padding: 140px 24px 100px;
             text-align: center;
             overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        .header-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.4;
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -80px) scale(1.2); }
+            66% { transform: translate(-50px, 50px) scale(0.9); }
+        }
+
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
         }
 
         header h1 {
@@ -103,11 +110,15 @@
             position: relative;
             z-index: 1;
             line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         header .subtitle {
             font-size: 1.5rem;
-            opacity: 0.95;
+            color: var(--text-secondary);
             max-width: 900px;
             margin: 0 auto 48px;
             position: relative;
@@ -118,22 +129,25 @@
 
         .badge {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: var(--primary-light);
             padding: 10px 24px;
             border-radius: 50px;
             font-size: 1rem;
             font-weight: 700;
             margin-bottom: 28px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
             letter-spacing: 0.05em;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
         }
 
         .header-cta-btn {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            background: white;
+            background: var(--dark-card);
             color: var(--primary);
             padding: 20px 48px;
             border-radius: 50px;
@@ -165,18 +179,20 @@
         }
 
         .section-light {
-            background: var(--white);
+            background: var(--dark-bg);
         }
 
         .section-dark {
-            background: var(--light);
+            background: var(--dark-card);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
         h2 {
             font-size: 3.2rem;
             font-weight: 900;
             margin-bottom: 20px;
-            color: var(--dark);
+            color: var(--text-primary);
             letter-spacing: -0.03em;
             line-height: 1.2;
             text-align: center;
@@ -184,7 +200,7 @@
 
         .section-subtitle {
             font-size: 1.3rem;
-            color: var(--gray);
+            color: var(--text-secondary);
             margin-bottom: 70px;
             max-width: 800px;
             margin-left: auto;
@@ -201,18 +217,17 @@
         }
 
         .benefit-card {
-            background: white;
+            background: var(--dark-card);
             padding: 40px;
             border-radius: 24px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
-            border: 2px solid transparent;
         }
 
         .benefit-card:hover {
             border-color: var(--primary);
             transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
         }
 
         .benefit-icon {
@@ -225,13 +240,13 @@
             font-size: 1.6rem;
             font-weight: 700;
             margin-bottom: 16px;
-            color: var(--dark);
+            color: var(--text-primary);
         }
 
         .benefit-card p {
             font-size: 1.1rem;
             line-height: 1.7;
-            color: var(--gray);
+            color: var(--text-secondary);
         }
 
         /* Cases Grid - КРИТИЧНО: 2 колонки на десктопе для больших карточек */
@@ -243,12 +258,11 @@
         }
 
         .case-card {
-            background: white;
+            background: var(--dark-card);
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
-            border: 2px solid var(--light);
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -256,12 +270,13 @@
 
         .case-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 16px 48px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 16px 48px rgba(139, 92, 246, 0.2);
             border-color: var(--primary);
         }
 
         .case-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: var(--dark-lighter);
+            border-bottom: 1px solid var(--border-color);
             color: white;
             padding: 36px 32px;
             position: relative;
@@ -275,18 +290,19 @@
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
         }
 
         .case-badge {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: var(--primary-light);
             padding: 8px 20px;
             border-radius: 20px;
             font-size: 0.9rem;
             font-weight: 600;
             margin-bottom: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .case-header h3 {
@@ -322,7 +338,8 @@
         .metric {
             text-align: center;
             padding: 20px 16px;
-            background: var(--light);
+            background: rgba(139, 92, 246, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.1);
             border-radius: 16px;
         }
 
@@ -340,13 +357,13 @@
 
         .metric-label {
             font-size: 0.95rem;
-            color: var(--gray);
+            color: var(--text-secondary);
             line-height: 1.4;
         }
 
         .case-description {
             font-size: 1.1rem;
-            color: var(--gray);
+            color: var(--text-secondary);
             line-height: 1.7;
             margin-bottom: 28px;
             flex: 1;
@@ -383,19 +400,18 @@
         }
 
         .why-card {
-            background: white;
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
             padding: 40px 32px;
             border-radius: 24px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
             text-align: center;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
         }
 
         .why-card:hover {
             border-color: var(--primary);
             transform: translateY(-6px);
-            box-shadow: 0 16px 48px rgba(99, 102, 241, 0.15);
+            box-shadow: 0 16px 48px rgba(139, 92, 246, 0.2);
         }
 
         .why-icon {
@@ -407,18 +423,20 @@
             font-size: 1.4rem;
             font-weight: 700;
             margin-bottom: 12px;
-            color: var(--dark);
+            color: var(--text-primary);
         }
 
         .why-card p {
             font-size: 1rem;
             line-height: 1.6;
-            color: var(--gray);
+            color: var(--text-secondary);
         }
 
         /* ROI Chart */
         .roi-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--dark-card);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
             color: white;
             position: relative;
             overflow: hidden;
@@ -491,12 +509,13 @@
 
         /* CTA Section */
         .cta-section {
-            background: var(--light);
+            background: var(--dark-bg);
             text-align: center;
         }
 
         .cta-box {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
             color: white;
             padding: 60px 40px;
             border-radius: 32px;
@@ -509,15 +528,15 @@
         .cta-box::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
         }
 
         .cta-box h2 {
-            color: white;
+            color: var(--text-primary);
             font-size: 2.8rem;
             margin-bottom: 20px;
             position: relative;
@@ -526,7 +545,7 @@
 
         .cta-box p {
             font-size: 1.3rem;
-            opacity: 0.95;
+            color: var(--text-secondary);
             margin-bottom: 40px;
             position: relative;
             z-index: 1;
@@ -545,20 +564,31 @@
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            background: white;
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
             padding: 18px 40px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
             font-size: 1.15rem;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
         }
 
         .cta-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 48px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 12px 48px rgba(139, 92, 246, 0.6);
+        }
+
+        .cta-btn.secondary {
+            background: var(--dark-lighter);
+            border: 2px solid var(--border-color);
+            box-shadow: none;
+        }
+
+        .cta-btn.secondary:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
         }
 
         .cta-btn.secondary {
@@ -570,7 +600,8 @@
 
         /* Footer */
         footer {
-            background: var(--dark);
+            background: var(--dark-bg);
+            border-top: 1px solid var(--border-color);
             color: white;
             padding: 60px 24px 40px;
         }
@@ -671,15 +702,16 @@
 <body>
 
     <header>
-        <div class="bg-animated"></div>
+        <div class="header-bg">
+            <div class="header-glow glow-1"></div>
+            <div class="header-glow glow-2"></div>
+            <div class="header-glow glow-3"></div>
+            <div class="grid-overlay"></div>
+        </div>
         <div class="container">
-            <div class="badge">КЕЙСЫ WEBNOSTRA AI</div>
-            <h1>Результаты AI-автоматизации</h1>
-            <p class="subtitle">Изучите наши кейсы и узнайте, как искусственный интеллект увеличивает продажи, экономит время команды и окупается за 3-6 месяцев</p>
-            
-            <a href="#cases" class="header-cta-btn">
-                Смотреть кейсы
-            </a>
+            <div class="badge">Кейсы WEBNOSTRA AI</div>
+            <h1>Кейсы автоматизации бизнеса</h1>
+            <p class="subtitle">Посмотрите, как AI-решения помогают компаниям экономить время и увеличивать прибыль</p>
         </div>
     </header>
 
@@ -820,11 +852,14 @@
     </section>
 
     <section class="roi-section">
-        <div class="bg-animated"></div>
+        <div class="header-bg">
+            <div class="header-glow glow-1"></div>
+            <div class="header-glow glow-2"></div>
+        </div>
         <div class="container">
             <div class="roi-content">
-                <h2 style="color: white;">Экономика внедрения AI</h2>
-                <p class="section-subtitle" style="color: white; opacity: 0.95;">Сравнение затрат на AI-автоматизацию и найм сотрудников</p>
+                <h2>Экономика внедрения AI</h2>
+                <p class="section-subtitle">Сравнение затрат на AI-автоматизацию и найм сотрудников</p>
                 
                 <div class="roi-grid">
                     <div class="roi-text">

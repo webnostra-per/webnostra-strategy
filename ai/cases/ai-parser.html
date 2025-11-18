@@ -12,21 +12,26 @@
         }
 
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
             --secondary: #8b5cf6;
             --accent: #ec4899;
-            --dark: #0f172a;
-            --gray: #64748b;
-            --light: #f1f5f9;
-            --white: #ffffff;
+            --dark: #ffffff;
+            --gray: #a1a1aa;
+            --light: #1a1a2e;
+            --white: #0a0a0f;
+            --dark-bg: #0a0a0f;
+            --dark-card: #141420;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --border-color: #27272a;
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: var(--dark);
-            background: var(--white);
+            color: var(--text-primary);
+            background: var(--dark-bg);
             overflow-x: hidden;
         }
 
@@ -37,7 +42,7 @@
         }
 
         /* Animated Background */
-        .bg-animated {
+        .bg-animated, .header-bg {
             position: absolute;
             top: 0;
             left: 0;
@@ -45,6 +50,57 @@
             bottom: 0;
             overflow: hidden;
             z-index: 0;
+        }
+
+        .header-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.4;
+            animation: float-glow 20s ease-in-out infinite;
+        }
+
+        .glow-1 {
+            top: -300px;
+            right: -100px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.6) 0%, transparent 70%);
+            animation-delay: 0s;
+        }
+
+        .glow-2 {
+            bottom: -200px;
+            left: -100px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.5) 0%, transparent 70%);
+            animation-delay: 7s;
+        }
+
+        .glow-3 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+            animation-delay: 14s;
+        }
+
+        @keyframes float-glow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -80px) scale(1.2); }
+            66% { transform: translate(-50px, 50px) scale(0.9); }
+        }
+
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
         }
 
         .bg-animated::before,
@@ -84,11 +140,12 @@
         /* Header */
         header {
             position: relative;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--dark-bg);
             color: white;
             padding: 120px 24px;
             text-align: center;
             overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
         }
 
         header h1 {
@@ -99,11 +156,15 @@
             position: relative;
             z-index: 1;
             line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         header .subtitle {
             font-size: 1.35rem;
-            opacity: 0.95;
+            color: var(--text-secondary);
             max-width: 800px;
             margin: 0 auto;
             position: relative;
@@ -114,14 +175,14 @@
 
         .badge {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: #a78bfa;
             padding: 8px 20px;
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 600;
             margin-bottom: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         /* Sections */
@@ -131,25 +192,27 @@
         }
 
         .section-light {
-            background: var(--white);
+            background: var(--dark-bg);
         }
 
         .section-dark {
-            background: var(--light);
+            background: var(--dark-card);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
         h2 {
             font-size: 2.75rem;
             font-weight: 800;
             margin-bottom: 16px;
-            color: var(--dark);
+            color: var(--text-primary);
             letter-spacing: -0.02em;
             line-height: 1.2;
         }
 
         .section-subtitle {
             font-size: 1.2rem;
-            color: var(--gray);
+            color: var(--text-secondary);
             margin-bottom: 60px;
             max-width: 700px;
         }
@@ -160,7 +223,7 @@
             padding: 48px;
             border-radius: 24px;
             color: white;
-            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -216,10 +279,10 @@
         }
 
         .problem-card {
-            background: white;
+            background: var(--dark-card);
             padding: 32px;
             border-radius: 20px;
-            border: 2px solid var(--light);
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
             position: relative;
         }
@@ -227,7 +290,7 @@
         .problem-card:hover {
             border-color: var(--primary);
             transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.15);
         }
 
         .problem-card::before {
@@ -251,13 +314,13 @@
             font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 12px;
-            color: var(--dark);
+            color: var(--text-primary);
         }
 
         .problem-card p {
             font-size: 1rem;
             line-height: 1.6;
-            color: var(--gray);
+            color: var(--text-secondary);
         }
 
         /* Solution Steps */
@@ -268,7 +331,7 @@
         }
 
         .step-card {
-            background: white;
+            background: var(--dark-card);
             padding: 40px;
             border-radius: 24px;
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
@@ -276,7 +339,7 @@
         }
 
         .step-card:hover {
-            box-shadow: 0 12px 48px rgba(99, 102, 241, 0.15);
+            box-shadow: 0 12px 48px rgba(139, 92, 246, 0.15);
         }
 
         .step-header {
@@ -303,13 +366,13 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 12px;
-            color: var(--dark);
+            color: var(--text-primary);
         }
 
         .step-content p {
             font-size: 1.05rem;
             line-height: 1.7;
-            color: var(--gray);
+            color: var(--text-secondary);
             margin-bottom: 16px;
         }
 
@@ -321,12 +384,12 @@
         .step-content li {
             font-size: 1.05rem;
             line-height: 1.7;
-            color: var(--gray);
+            color: var(--text-secondary);
             margin-bottom: 12px;
         }
 
         .step-content strong {
-            color: var(--dark);
+            color: var(--text-primary);
             font-weight: 600;
         }
 
@@ -339,20 +402,20 @@
         }
 
         .result-card {
-            background: white;
+            background: var(--dark-card);
             padding: 40px;
             border-radius: 24px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            border: 2px solid var(--light);
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
 
         .result-card:hover {
             border-color: var(--primary);
             transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
         }
 
         .result-card::before {
@@ -379,13 +442,13 @@
 
         .result-text {
             font-size: 1.05rem;
-            color: var(--gray);
+            color: var(--text-secondary);
             line-height: 1.6;
         }
 
         /* Video Section */
         .video-section {
-            background: var(--light);
+            background: var(--dark-card);
         }
 
         .video-container {
@@ -416,13 +479,13 @@
             font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 20px;
-            color: var(--dark);
+            color: var(--text-primary);
         }
 
         .video-text p {
             font-size: 1.1rem;
             line-height: 1.7;
-            color: var(--gray);
+            color: var(--text-secondary);
             margin-bottom: 16px;
         }
 
@@ -435,7 +498,7 @@
         .video-text li {
             font-size: 1.05rem;
             line-height: 1.7;
-            color: var(--gray);
+            color: var(--text-secondary);
             margin-bottom: 12px;
             padding-left: 32px;
             position: relative;
@@ -452,7 +515,7 @@
 
         /* Why Better Section */
         .why-better {
-            background: white;
+            background: var(--dark-card);
             padding: 48px;
             border-radius: 24px;
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
@@ -463,7 +526,7 @@
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 32px;
-            color: var(--dark);
+            color: var(--text-primary);
             text-align: center;
         }
 
@@ -485,12 +548,13 @@
         .why-item p {
             font-size: 1.05rem;
             line-height: 1.7;
-            color: var(--gray);
+            color: var(--text-secondary);
         }
 
         /* Footer */
         footer {
-            background: var(--dark);
+            background: var(--dark-bg);
+            border-top: 1px solid var(--border-color);
             color: white;
             text-align: center;
             padding: 48px 24px;
@@ -580,7 +644,12 @@
 <body>
 
     <header>
-        <div class="bg-animated"></div>
+        <div class="bg-animated">
+            <div class="header-glow glow-1"></div>
+            <div class="header-glow glow-2"></div>
+            <div class="header-glow glow-3"></div>
+            <div class="grid-overlay"></div>
+        </div>
         <div class="container">
             <div class="badge">Кейс WEBNOSTRA AI</div>
             <h1>AI-парсер Telegram для логистики</h1>
@@ -851,7 +920,7 @@
             <p class="section-subtitle">Посмотрите, как AI помогает бизнесу в разных нишах</p>
             
             <div style="text-align: center; margin-top: 40px;">
-                <a href="https://webnostra.pro/ai/cases/" style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.15rem; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4);">
+                <a href="https://webnostra.pro/ai/cases/" style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.15rem; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);">
                     📊 Смотреть все кейсы
                 </a>
             </div>
