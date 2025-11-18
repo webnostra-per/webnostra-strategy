@@ -6,10 +6,7 @@
     <meta name="description" content="Все локации, факты и лайфхаки Пхукета в одном месте">
     <title>Экскурсии на Пхукете 2025</title>
     
-    <!-- TGTrack Script -->
-    <script src="https://api.tgtrack.ru/API/landing_script/v1/?linkID=0fbf3be5ddac4b&chat=ekskursii_na_phukete_2025&type=fb&fbpxid=1399100830794020" type="text/javascript" defer></script>
-    
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code - PRIORITY LOAD -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -21,11 +18,15 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1399100830794020');
     fbq('track', 'PageView');
+    console.log('FB Pixel PageView fired');
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
+    
+    <!-- TGTrack Script -->
+    <script src="https://api.tgtrack.ru/API/landing_script/v1/?linkID=0fbf3be5ddac4b&chat=ekskursii_na_phukete_2025&type=fb&fbpxid=1399100830794020" type="text/javascript"></script>
     
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -85,14 +86,14 @@
             flex-direction: column;
             justify-content: space-between;
             z-index: 1;
-            padding: 20px;
+            padding: 20px 15px 25px;
         }
 
         /* Main content */
         .content {
             position: relative;
             z-index: 10;
-            padding-top: 60px;
+            padding-top: 40px;
             max-width: 500px;
             margin: 0 auto;
             width: 100%;
@@ -100,19 +101,19 @@
 
         h1 {
             color: #fff;
-            font-size: 42px;
+            font-size: 38px;
             font-weight: 800;
             text-align: center;
             line-height: 1.15;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-shadow: 2px 4px 16px rgba(0,0,0,0.8);
         }
 
         .subtitle {
             color: #fff;
-            font-size: 19px;
+            font-size: 18px;
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
             line-height: 1.5;
             text-shadow: 1px 2px 8px rgba(0,0,0,0.7);
             font-weight: 400;
@@ -122,15 +123,15 @@
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
             border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 30px;
+            padding: 20px;
+            margin-bottom: 20px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         }
 
         .feature-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
             color: #fff;
         }
 
@@ -139,15 +140,15 @@
         }
 
         .feature-icon {
-            font-size: 24px;
-            margin-right: 12px;
+            font-size: 22px;
+            margin-right: 10px;
             flex-shrink: 0;
-            line-height: 1;
+            line-height: 1.2;
         }
 
         .feature-text {
-            font-size: 16px;
-            line-height: 1.5;
+            font-size: 15px;
+            line-height: 1.4;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
             font-weight: 500;
         }
@@ -159,14 +160,14 @@
             max-width: 500px;
             margin: 0 auto;
             width: 100%;
-            padding-bottom: 40px;
+            padding-bottom: 0;
         }
 
         .cta-text {
             color: #fff;
-            font-size: 17px;
+            font-size: 16px;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             line-height: 1.5;
             text-shadow: 1px 2px 6px rgba(0,0,0,0.7);
             font-weight: 600;
@@ -180,9 +181,9 @@
             background: #0088cc;
             color: white;
             text-decoration: none;
-            padding: 18px 32px;
+            padding: 16px 28px;
             border-radius: 12px;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 600;
             transition: all 0.2s ease;
             box-shadow: 0 6px 20px rgba(0, 136, 204, 0.5);
@@ -202,9 +203,9 @@
 
         /* Telegram logo SVG */
         .telegram-logo {
-            width: 28px;
-            height: 28px;
-            margin-right: 12px;
+            width: 26px;
+            height: 26px;
+            margin-right: 10px;
             flex-shrink: 0;
         }
 
@@ -224,55 +225,118 @@
 
         /* Mobile optimizations */
         @media (max-width: 480px) {
+            .container {
+                padding: 15px 15px 20px;
+            }
+
             .content {
-                padding-top: 40px;
+                padding-top: 30px;
             }
 
             h1 {
-                font-size: 36px;
+                font-size: 34px;
+                margin-bottom: 12px;
             }
 
             .subtitle {
                 font-size: 17px;
-                margin-bottom: 30px;
+                margin-bottom: 20px;
             }
 
             .features {
-                padding: 20px;
+                padding: 18px;
+                margin-bottom: 15px;
+            }
+
+            .feature-item {
+                margin-bottom: 12px;
             }
 
             .feature-text {
-                font-size: 15px;
+                font-size: 14px;
             }
 
             .telegram-button {
-                font-size: 17px;
-                padding: 16px 28px;
+                font-size: 16px;
+                padding: 15px 24px;
             }
 
             .cta-text {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+        }
+
+        @media (max-width: 390px) {
+            h1 {
+                font-size: 30px;
+            }
+
+            .subtitle {
                 font-size: 16px;
+            }
+
+            .features {
+                padding: 16px;
+            }
+
+            .feature-text {
+                font-size: 13px;
             }
         }
 
         @media (max-width: 360px) {
             h1 {
-                font-size: 32px;
-            }
-
-            .subtitle {
-                font-size: 16px;
+                font-size: 28px;
             }
         }
 
         @media (min-height: 800px) {
             .container {
                 justify-content: center;
-                gap: 60px;
+                gap: 40px;
             }
 
             .content {
                 padding-top: 0;
+            }
+
+            .cta-section {
+                padding-bottom: 20px;
+            }
+        }
+
+        @media (max-height: 700px) {
+            .content {
+                padding-top: 20px;
+            }
+
+            h1 {
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+                margin-bottom: 18px;
+            }
+
+            .features {
+                padding: 16px;
+                margin-bottom: 15px;
+            }
+
+            .feature-item {
+                margin-bottom: 10px;
+            }
+
+            .feature-text {
+                font-size: 14px;
+            }
+
+            .cta-text {
+                font-size: 15px;
+                margin-bottom: 10px;
             }
         }
     </style>
