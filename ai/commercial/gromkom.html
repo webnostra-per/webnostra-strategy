@@ -586,12 +586,194 @@
             line-height: 1.7;
         }
         
+        /* Scenario grids */
+        .scenario-card {
+            background: var(--dark-card);
+            border: 2px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        .scenario-card.featured {
+            border-color: var(--primary);
+        }
+        .scenario-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .scenario-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .scenario-subtitle {
+            margin-top: 10px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .scenario-expenses-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .scenario-conversions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .scenario-box {
+            background: var(--dark-lighter);
+            padding: 24px;
+            border-radius: 16px;
+        }
+        .scenario-box h5 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .conversion-card {
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .conversion-card.low {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .conversion-card.medium {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(249, 115, 22, 0.05));
+            border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+        .conversion-card.high {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
+            border: 2px solid var(--success);
+        }
+        .conversion-rate {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+        .conversion-rate.low { color: #ef4444; }
+        .conversion-rate.medium { color: #f97316; }
+        .conversion-rate.high { color: var(--success); }
+        .conversion-metric {
+            background: rgba(0,0,0,0.3);
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .conversion-revenue {
+            background: rgba(16, 185, 129, 0.2);
+            padding: 12px;
+            border-radius: 12px;
+        }
+        .payback-box {
+            text-align: center;
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 12px;
+        }
+        
         /* Responsive */
         @media (max-width: 968px) {
             header h1 { font-size: 2.5rem; }
             section h2 { font-size: 2rem; }
             .comparison-grid, .brief-compact, .timeline-grid {
                 grid-template-columns: 1fr;
+            }
+            .scenario-expenses-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .scenario-conversions-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            header h1 { font-size: 2rem; }
+            header .subtitle { font-size: 1.2rem; }
+            section { padding: 60px 24px; }
+            section h2 { font-size: 1.8rem; }
+            .section-subtitle { font-size: 1rem; }
+            .key-info {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                padding: 30px 20px;
+            }
+            .value-grid {
+                grid-template-columns: 1fr;
+            }
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+            .case-metrics {
+                grid-template-columns: 1fr;
+            }
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .roi-content {
+                padding: 30px 20px;
+            }
+            .roi-text {
+                font-size: 1rem;
+                line-height: 1.8;
+            }
+            .roi-highlight {
+                padding: 20px;
+            }
+            .roi-highlight .amount {
+                font-size: 2.2rem;
+            }
+            .pricing-card {
+                padding: 30px 20px;
+            }
+            .pricing-card .price {
+                font-size: 2.5rem;
+            }
+            .cta-box {
+                padding: 40px 20px;
+            }
+            .cta-box h2 {
+                font-size: 2rem;
+            }
+            .cta-box p {
+                font-size: 1.1rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+            }
+            .cta-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .scenario-card {
+                padding: 24px 16px;
+            }
+            .scenario-badge {
+                font-size: 1.1rem;
+                padding: 10px 20px;
+            }
+            .scenario-box {
+                padding: 16px;
+            }
+            .conversion-card {
+                padding: 20px 16px;
+            }
+            .conversion-rate {
+                font-size: 1.8rem;
+            }
+            .payback-box {
+                padding: 16px;
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -825,16 +1007,16 @@
                 </div>
                 
                 <!-- Scenario A -->
-                <div style="background: var(--dark-card); border: 2px solid var(--border-color); border-radius: 24px; padding: 40px; margin-bottom: 30px;">
-                    <div style="text-align: center; margin-bottom: 30px;">
-                        <div style="display: inline-block; background: linear-gradient(135deg, var(--primary), var(--accent)); padding: 12px 30px; border-radius: 30px; font-size: 1.3rem; font-weight: 700;">
+                <div class="scenario-card">
+                    <div class="scenario-header">
+                        <div class="scenario-badge">
                             Сценарий А: 400 лидов/мес
                         </div>
                     </div>
                     
-                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 30px; margin-bottom: 30px;">
-                        <div style="background: var(--dark-lighter); padding: 24px; border-radius: 16px;">
-                            <h5 style="color: var(--text-primary); margin-bottom: 15px; font-size: 1.1rem;">Расходы/мес</h5>
+                    <div class="scenario-expenses-grid">
+                        <div class="scenario-box">
+                            <h5>Расходы/мес</h5>
                             <div style="color: var(--text-secondary); margin-bottom: 8px;">Диалоги: 400 × $0.25 = <strong style="color: var(--text-primary);">$100</strong></div>
                             <div style="color: var(--text-secondary); margin-bottom: 8px;">Поддержка: <strong style="color: var(--text-primary);">$60</strong></div>
                             <div style="border-top: 1px solid var(--border-color); margin: 12px 0; padding-top: 12px;">
@@ -842,71 +1024,71 @@
                             </div>
                         </div>
                         
-                        <div style="background: var(--dark-lighter); padding: 24px; border-radius: 16px;">
-                            <h5 style="color: var(--text-primary); margin-bottom: 15px; font-size: 1.1rem;">Что получаем</h5>
+                        <div class="scenario-box">
+                            <h5>Что получаем</h5>
                             <div style="color: var(--text-secondary); margin-bottom: 8px;">Спасаем 2-3% лидов → <strong style="color: var(--text-primary);">+8-12 лидов</strong></div>
                             <div style="color: var(--text-secondary); margin-bottom: 8px;">Встречи (30-40%) → <strong style="color: var(--text-primary);">+2-5 встреч</strong></div>
                         </div>
                     </div>
                     
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05)); border: 1px solid rgba(239, 68, 68, 0.3); padding: 24px; border-radius: 16px; text-align: center;">
+                    <div class="scenario-conversions-grid">
+                        <div class="conversion-card low">
                             <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;">Конверсия встреча → сделка</div>
-                            <div style="font-size: 2rem; font-weight: 900; color: #ef4444; margin-bottom: 15px;">10%</div>
-                            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 12px; margin-bottom: 10px;">
+                            <div class="conversion-rate low">10%</div>
+                            <div class="conversion-metric">
                                 <div style="font-size: 0.85rem; color: var(--text-secondary);">Доп. сделок/мес</div>
                                 <div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">+0.2-0.5</div>
                             </div>
-                            <div style="background: rgba(16, 185, 129, 0.2); padding: 12px; border-radius: 12px;">
+                            <div class="conversion-revenue">
                                 <div style="font-size: 0.85rem; color: var(--text-secondary);">Выручка/мес</div>
                                 <div style="font-size: 1.3rem; font-weight: 700; color: var(--success);">$4k-$11k</div>
                             </div>
                         </div>
                         
-                        <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(249, 115, 22, 0.05)); border: 1px solid rgba(249, 115, 22, 0.3); padding: 24px; border-radius: 16px; text-align: center;">
+                        <div class="conversion-card medium">
                             <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;">Конверсия встреча → сделка</div>
-                            <div style="font-size: 2rem; font-weight: 900; color: #f97316; margin-bottom: 15px;">20%</div>
-                            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 12px; margin-bottom: 10px;">
+                            <div class="conversion-rate medium">20%</div>
+                            <div class="conversion-metric">
                                 <div style="font-size: 0.85rem; color: var(--text-secondary);">Доп. сделок/мес</div>
                                 <div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">+0.5-1.0</div>
                             </div>
-                            <div style="background: rgba(16, 185, 129, 0.2); padding: 12px; border-radius: 12px;">
+                            <div class="conversion-revenue">
                                 <div style="font-size: 0.85rem; color: var(--text-secondary);">Выручка/мес</div>
                                 <div style="font-size: 1.3rem; font-weight: 700; color: var(--success);">$11k-$22k</div>
                             </div>
                         </div>
                         
-                        <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05)); border: 2px solid var(--success); padding: 24px; border-radius: 16px; text-align: center;">
+                        <div class="conversion-card high">
                             <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;">Конверсия встреча → сделка</div>
-                            <div style="font-size: 2rem; font-weight: 900; color: var(--success); margin-bottom: 15px;">34%</div>
-                            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 12px; margin-bottom: 10px;">
+                            <div class="conversion-rate high">34%</div>
+                            <div class="conversion-metric">
                                 <div style="font-size: 0.85rem; color: var(--text-secondary);">Доп. сделок/мес</div>
                                 <div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">+0.8-1.6</div>
                             </div>
-                            <div style="background: rgba(16, 185, 129, 0.2); padding: 12px; border-radius: 12px;">
+                            <div class="conversion-revenue">
                                 <div style="font-size: 0.85rem; color: var(--text-secondary);">Выручка/мес</div>
                                 <div style="font-size: 1.5rem; font-weight: 900; color: var(--success);">$17k-$35k</div>
                             </div>
                         </div>
                     </div>
                     
-                    <div style="text-align: center; margin-top: 25px; padding: 20px; background: rgba(16, 185, 129, 0.1); border-radius: 12px;">
+                    <div class="payback-box">
                         <strong style="color: var(--success); font-size: 1.1rem;">✓ Окупаемость: даже 1 доп. сделка перекрывает интеграцию $740 и месячные расходы $160</strong>
                     </div>
                 </div>
                 
                 <!-- Scenario B -->
-                <div style="background: var(--dark-card); border: 2px solid var(--primary); border-radius: 24px; padding: 40px;">
-                    <div style="text-align: center; margin-bottom: 30px;">
-                        <div style="display: inline-block; background: linear-gradient(135deg, var(--primary), var(--accent)); padding: 12px 30px; border-radius: 30px; font-size: 1.3rem; font-weight: 700;">
+                <div class="scenario-card featured">
+                    <div class="scenario-header">
+                        <div class="scenario-badge">
                             Сценарий B: 1000 лидов/мес
                         </div>
-                        <div style="margin-top: 10px; color: var(--text-secondary); font-size: 0.95rem;">При масштабировании трафика</div>
+                        <div class="scenario-subtitle">При масштабировании трафика</div>
                     </div>
                     
-                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 30px; margin-bottom: 30px;">
-                        <div style="background: var(--dark-lighter); padding: 24px; border-radius: 16px;">
-                            <h5 style="color: var(--text-primary); margin-bottom: 15px; font-size: 1.1rem;">Расходы/мес</h5>
+                    <div class="scenario-expenses-grid">
+                        <div class="scenario-box">
+                            <h5>Расходы/мес</h5>
                             <div style="color: var(--text-secondary); margin-bottom: 8px;">Диалоги: 1000 × $0.25 = <strong style="color: var(--text-primary);">$250</strong></div>
                             <div style="color: var(--text-secondary); margin-bottom: 8px;">Поддержка: <strong style="color: var(--text-primary);">$60</strong></div>
                             <div style="border-top: 1px solid var(--border-color); margin: 12px 0; padding-top: 12px;">
@@ -914,55 +1096,55 @@
                             </div>
                         </div>
                         
-                        <div style="background: var(--dark-lighter); padding: 24px; border-radius: 16px;">
-                            <h5 style="color: var(--text-primary); margin-bottom: 15px; font-size: 1.1rem;">Что получаем</h5>
+                        <div class="scenario-box">
+                            <h5>Что получаем</h5>
                             <div style="color: var(--text-secondary); margin-bottom: 8px;">Спасаем 2-3% лидов → <strong style="color: var(--text-primary);">+20-30 лидов</strong></div>
                             <div style="color: var(--text-secondary); margin-bottom: 8px;">Встречи (30-40%) → <strong style="color: var(--text-primary);">+6-12 встреч</strong></div>
                         </div>
                     </div>
                     
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05)); border: 1px solid rgba(239, 68, 68, 0.3); padding: 24px; border-radius: 16px; text-align: center;">
+                    <div class="scenario-conversions-grid">
+                        <div class="conversion-card low">
                             <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;">Конверсия встреча → сделка</div>
-                            <div style="font-size: 2rem; font-weight: 900; color: #ef4444; margin-bottom: 15px;">10%</div>
-                            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 12px; margin-bottom: 10px;">
+                            <div class="conversion-rate low">10%</div>
+                            <div class="conversion-metric">
                                 <div style="font-size: 0.85rem; color: var(--text-secondary);">Доп. сделок/мес</div>
                                 <div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">+0.6-1.2</div>
                             </div>
-                            <div style="background: rgba(16, 185, 129, 0.2); padding: 12px; border-radius: 12px;">
+                            <div class="conversion-revenue">
                                 <div style="font-size: 0.85rem; color: var(--text-secondary);">Выручка/мес</div>
                                 <div style="font-size: 1.3rem; font-weight: 700; color: var(--success);">$13k-$26k</div>
                             </div>
                         </div>
                         
-                        <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(249, 115, 22, 0.05)); border: 1px solid rgba(249, 115, 22, 0.3); padding: 24px; border-radius: 16px; text-align: center;">
+                        <div class="conversion-card medium">
                             <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;">Конверсия встреча → сделка</div>
-                            <div style="font-size: 2rem; font-weight: 900; color: #f97316; margin-bottom: 15px;">20%</div>
-                            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 12px; margin-bottom: 10px;">
+                            <div class="conversion-rate medium">20%</div>
+                            <div class="conversion-metric">
                                 <div style="font-size: 0.85rem; color: var(--text-secondary);">Доп. сделок/мес</div>
                                 <div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">+1.2-2.4</div>
                             </div>
-                            <div style="background: rgba(16, 185, 129, 0.2); padding: 12px; border-radius: 12px;">
+                            <div class="conversion-revenue">
                                 <div style="font-size: 0.85rem; color: var(--text-secondary);">Выручка/мес</div>
                                 <div style="font-size: 1.3rem; font-weight: 700; color: var(--success);">$26k-$52k</div>
                             </div>
                         </div>
                         
-                        <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05)); border: 2px solid var(--success); padding: 24px; border-radius: 16px; text-align: center;">
+                        <div class="conversion-card high">
                             <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;">Конверсия встреча → сделка</div>
-                            <div style="font-size: 2rem; font-weight: 900; color: var(--success); margin-bottom: 15px;">34%</div>
-                            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 12px; margin-bottom: 10px;">
+                            <div class="conversion-rate high">34%</div>
+                            <div class="conversion-metric">
                                 <div style="font-size: 0.85rem; color: var(--text-secondary);">Доп. сделок/мес</div>
                                 <div style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">+2.0-4.1</div>
                             </div>
-                            <div style="background: rgba(16, 185, 129, 0.2); padding: 12px; border-radius: 12px;">
+                            <div class="conversion-revenue">
                                 <div style="font-size: 0.85rem; color: var(--text-secondary);">Выручка/мес</div>
                                 <div style="font-size: 1.5rem; font-weight: 900; color: var(--success);">$44k-$90k</div>
                             </div>
                         </div>
                     </div>
                     
-                    <div style="text-align: center; margin-top: 25px; padding: 20px; background: rgba(16, 185, 129, 0.1); border-radius: 12px;">
+                    <div class="payback-box">
                         <strong style="color: var(--success); font-size: 1.1rem;">✓ На объеме 1000 лидов даже низкий вариант (~+1 сделка) делает проект заведомо окупаемым</strong>
                     </div>
                 </div>
