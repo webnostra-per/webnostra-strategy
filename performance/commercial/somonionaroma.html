@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боевой план Google Ads — somonionaroma.com | WEBNOSTRA</title>
+    <style>
+* {margin:0;padding:0;box-sizing:border-box}
+:root {
+    --blue:#3366FF;
+    --dark-blue:#1a4dd3;
+    --yellow:#FFD93D;
+    --yellow-hover:#FFC700;
+    --text:#1F2937;
+    --gray:#6B7280;
+    --bg:#F9FAFB;
+    --border:#E5E7EB;
+    --shadow-sm:0 2px 8px rgba(0,0,0,.04);
+    --shadow-md:0 4px 16px rgba(0,0,0,.08);
+    --shadow-lg:0 8px 32px rgba(0,0,0,.12);
+    --shadow-blue:0 8px 30px rgba(51,102,255,.15);
+    --gradient-blue:linear-gradient(135deg,var(--blue) 0%,var(--dark-blue) 100%);
+    --gradient-yellow:linear-gradient(135deg,var(--yellow) 0%,var(--yellow-hover) 100%);
+}
+
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--text);line-height:1.6;overflow-x:hidden;max-width:100%;position:relative;background:var(--bg)}
+
+/* Header */
+header{position:relative;width:100%;background:rgba(255,255,255,.98);border-bottom:1px solid var(--border);z-index:1000;padding:1rem 0;box-shadow:var(--shadow-sm)}
+.header-container{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:1.5rem;font-weight:800;background:linear-gradient(135deg,var(--blue) 0%,var(--dark-blue) 100%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:flex;align-items:center;gap:.5rem}
+
+/* Hero */
+.hero{background:var(--gradient-blue);color:#fff;padding:4rem 2rem 3rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 20% 50%,rgba(255,255,255,.1) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(255,217,61,.1) 0%,transparent 50%);opacity:.6}
+.hero-container{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.hero h1{font-size:2.5rem;font-weight:900;line-height:1.2;margin-bottom:1rem;text-shadow:0 2px 4px rgba(0,0,0,.3)}
+.hero-subtitle{font-size:1.1rem;opacity:.95;margin-bottom:1.5rem;text-shadow:0 2px 4px rgba(0,0,0,.3)}
+.hero-meta{display:flex;gap:2rem;flex-wrap:wrap;font-size:.95rem;opacity:.9}
+
+/* Main Content */
+.main-content{max-width:1200px;margin:0 auto;padding:3rem 2rem}
+
+.intro-section{background:#fff;padding:2.5rem;border-radius:20px;box-shadow:var(--shadow-lg);margin-bottom:3rem;border:1px solid var(--border)}
+.intro-section h2{font-size:1.875rem;margin-bottom:1.5rem;color:var(--text);font-weight:900;background:var(--gradient-blue);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.intro-section p{font-size:1.05rem;line-height:1.7;color:var(--gray);margin-bottom:1rem}
+.intro-section ul{list-style:none;padding:0;margin:1.5rem 0}
+.intro-section li{padding:.75rem 0;padding-left:2rem;position:relative;font-size:1rem;color:var(--gray)}
+.intro-section li::before{content:'✓';position:absolute;left:0;color:var(--blue);font-weight:900;font-size:1.2rem}
+
+/* Accordion */
+.accordion{background:#fff;border-radius:16px;overflow:hidden;margin-bottom:1.5rem;box-shadow:var(--shadow-md);border:2px solid var(--border);transition:all .3s}
+.accordion:hover{box-shadow:var(--shadow-lg);border-color:var(--blue)}
+
+.accordion-header{padding:1.75rem 2rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:#fff;transition:all .3s;user-select:none;position:relative}
+.accordion-header::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--gradient-blue);opacity:0;transition:opacity .3s}
+.accordion-header:hover{background:var(--bg)}
+.accordion-header:hover::before{opacity:1}
+.accordion.active .accordion-header{background:var(--gradient-blue);color:#fff}
+.accordion.active .accordion-header h3{color:#fff}
+
+.accordion-title{display:flex;align-items:center;gap:1rem;flex:1}
+.accordion-number{width:40px;height:40px;background:var(--gradient-blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;box-shadow:var(--shadow-md);flex-shrink:0}
+.accordion.active .accordion-number{background:#fff;color:var(--blue)}
+
+.accordion-header h3{font-size:1.3rem;font-weight:800;color:var(--text);margin:0;transition:color .3s}
+
+.accordion-icon{width:28px;height:28px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0}
+.accordion.active .accordion-icon{background:rgba(255,255,255,.2);transform:rotate(180deg)}
+.accordion-icon svg{width:16px;height:16px;fill:var(--blue);transition:fill .3s}
+.accordion.active .accordion-icon svg{fill:#fff}
+
+.accordion-content{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+.accordion.active .accordion-content{max-height:5000px}
+
+.accordion-body{padding:2rem;background:var(--bg);border-top:2px solid var(--border)}
+
+.accordion-subsection{margin-bottom:2.5rem}
+.accordion-subsection:last-child{margin-bottom:0}
+.accordion-subsection h4{font-size:1.15rem;font-weight:800;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.accordion-subsection h4::before{content:'';width:8px;height:8px;background:var(--blue);border-radius:50%}
+
+.accordion-subsection p{font-size:1rem;line-height:1.7;color:var(--gray);margin-bottom:1rem}
+
+.accordion-subsection ul{list-style:none;padding:0;margin:1rem 0}
+.accordion-subsection li{padding:.5rem 0;padding-left:1.75rem;position:relative;font-size:.95rem;color:var(--gray);line-height:1.6}
+.accordion-subsection li::before{content:'';position:absolute;left:0;top:.9rem;width:6px;height:6px;background:var(--blue);border-radius:50%}
+
+.segment-card{background:#fff;padding:1.5rem;border-radius:12px;margin-bottom:1rem;border:2px solid var(--border);transition:all .3s}
+.segment-card:hover{border-color:var(--blue);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.segment-card h5{font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:.75rem}
+.segment-card p{font-size:.95rem;color:var(--gray);margin-bottom:.5rem;line-height:1.6}
+.segment-card strong{color:var(--blue)}
+
+.creative-card{background:var(--gradient-blue);color:#fff;padding:1.75rem;border-radius:12px;margin-bottom:1rem;box-shadow:var(--shadow-md)}
+.creative-card h5{font-size:1.1rem;font-weight:800;margin-bottom:.75rem;color:#fff}
+.creative-card p{font-size:.95rem;opacity:.95;line-height:1.6;color:#fff}
+.creative-card strong{color:var(--yellow);font-weight:800}
+
+.table-wrapper{overflow-x:auto;margin:1.5rem 0}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-sm)}
+thead{background:var(--gradient-blue);color:#fff}
+th{padding:1rem;text-align:left;font-weight:700;font-size:.9rem}
+td{padding:1rem;border-bottom:1px solid var(--border);font-size:.9rem;color:var(--gray)}
+tbody tr:hover{background:var(--bg)}
+tbody tr:last-child td{border-bottom:none}
+
+.highlight-box{background:var(--gradient-yellow);padding:1.5rem;border-radius:12px;margin:1.5rem 0;box-shadow:var(--shadow-md)}
+.highlight-box h5{font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:.75rem}
+.highlight-box ul{list-style:none;padding:0;margin:.75rem 0}
+.highlight-box li{padding:.5rem 0;padding-left:1.75rem;position:relative;font-size:.95rem;color:var(--text);font-weight:600}
+.highlight-box li::before{content:'→';position:absolute;left:0;color:var(--text);font-weight:900}
+
+/* Pricing Section */
+.pricing-section{background:#fff;padding:3rem;border-radius:20px;box-shadow:var(--shadow-lg);margin-top:3rem;border:2px solid var(--border)}
+.pricing-section h2{font-size:2rem;margin-bottom:2rem;text-align:center;font-weight:900;background:var(--gradient-blue);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-bottom:3rem}
+
+.pricing-card{background:#fff;border:3px solid var(--border);border-radius:16px;padding:2rem;transition:all .3s;position:relative;overflow:hidden}
+.pricing-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gradient-blue);transform:scaleX(0);transition:transform .3s}
+.pricing-card:hover{border-color:var(--blue);box-shadow:var(--shadow-blue);transform:translateY(-8px)}
+.pricing-card:hover::before{transform:scaleX(1)}
+
+.pricing-card.recommended{border-color:var(--blue);box-shadow:var(--shadow-blue)}
+.pricing-card.recommended::before{transform:scaleX(1)}
+.pricing-badge{background:var(--gradient-yellow);color:var(--text);padding:.5rem 1rem;border-radius:20px;font-size:.85rem;font-weight:800;display:inline-block;margin-bottom:1rem}
+
+.pricing-card h3{font-size:1.5rem;font-weight:900;margin-bottom:.5rem;color:var(--text)}
+.pricing-price{font-size:2.5rem;font-weight:900;color:var(--blue);margin-bottom:1rem}
+.pricing-budget{font-size:.95rem;color:var(--gray);margin-bottom:1.5rem;font-weight:600}
+.pricing-features{list-style:none;padding:0;margin:1.5rem 0}
+.pricing-features li{padding:.75rem 0;padding-left:2rem;position:relative;font-size:.95rem;color:var(--gray);line-height:1.6}
+.pricing-features li::before{content:'✓';position:absolute;left:0;color:var(--blue);font-weight:900;font-size:1.1rem}
+
+/* AI Section */
+.ai-section{background:var(--gradient-blue);padding:3rem;border-radius:20px;box-shadow:var(--shadow-lg);margin-top:3rem;color:#fff;position:relative;overflow:hidden}
+.ai-section::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 20% 50%,rgba(255,255,255,.1) 0%,transparent 50%);opacity:.6}
+.ai-section-content{position:relative;z-index:1}
+.ai-section h2{font-size:2rem;margin-bottom:1.5rem;font-weight:900;text-shadow:0 2px 4px rgba(0,0,0,.3)}
+.ai-section p{font-size:1.05rem;margin-bottom:2rem;opacity:.95;line-height:1.7}
+
+.ai-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
+.ai-card{background:rgba(255,255,255,.1);backdrop-filter:blur(10px);padding:2rem;border-radius:16px;border:1px solid rgba(255,255,255,.2);transition:all .3s}
+.ai-card:hover{background:rgba(255,255,255,.15);transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.ai-card h4{font-size:1.2rem;font-weight:800;margin-bottom:.75rem}
+.ai-card .price{font-size:1.5rem;font-weight:900;color:var(--yellow);margin-bottom:1rem}
+.ai-card ul{list-style:none;padding:0;margin:1rem 0}
+.ai-card li{padding:.5rem 0;padding-left:1.5rem;position:relative;font-size:.9rem;opacity:.95;line-height:1.6}
+.ai-card li::before{content:'•';position:absolute;left:0;font-size:1.5rem}
+
+/* Footer */
+.footer{background:var(--gradient-blue);color:#fff;padding:3rem 2rem;margin-top:4rem}
+.footer-container{max-width:1200px;margin:0 auto;text-align:center}
+.footer h2{font-size:1.875rem;margin-bottom:1rem;font-weight:900}
+.footer p{font-size:1.05rem;margin-bottom:2rem;opacity:.95}
+.footer-cta{display:inline-flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.footer-btn{background:var(--gradient-yellow);color:var(--text);padding:1rem 2rem;border-radius:12px;text-decoration:none;font-weight:800;transition:all .3s;display:inline-block}
+.footer-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,217,61,.4)}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .header-container{padding:0 1.25rem}
+    .logo{font-size:1.25rem}
+    
+    .hero{padding:3rem 1.25rem 2.5rem}
+    .hero h1{font-size:1.75rem}
+    .hero-subtitle{font-size:1rem}
+    .hero-meta{flex-direction:column;gap:1rem;font-size:.9rem}
+    
+    .main-content{padding:2rem 1.25rem}
+    
+    .intro-section{padding:1.75rem}
+    .intro-section h2{font-size:1.5rem}
+    
+    .accordion-header{padding:1.25rem 1.5rem}
+    .accordion-number{width:36px;height:36px;font-size:1rem}
+    .accordion-header h3{font-size:1.1rem}
+    .accordion-body{padding:1.5rem}
+    
+    .pricing-section{padding:2rem 1.5rem}
+    .pricing-grid{grid-template-columns:1fr;gap:1.5rem}
+    
+    .ai-section{padding:2rem 1.5rem}
+    .ai-grid{grid-template-columns:1fr}
+    
+    .table-wrapper{margin:1rem -1.5rem}
+    table{font-size:.85rem}
+    th,td{padding:.75rem .5rem}
+    
+    .footer{padding:2rem 1.25rem}
+    .footer h2{font-size:1.5rem}
+    .footer-cta{flex-direction:column;align-items:stretch}
+}
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="header-container">
+        <div class="logo">
+            <span>WEBNOSTRA</span>
+        </div>
+        <a href="https://webnostra.pro/cases" class="logo" style="font-size:1rem;font-weight:600;-webkit-text-fill-color:var(--text)">📊 Кейсы</a>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-container">
+        <h1>Боевой план Google Ads<br>somonionaroma.com</h1>
+        <p class="hero-subtitle">Комплексная стратегия лидогенерации для премиум-парфюмерии в Dubai</p>
+        <div class="hero-meta">
+            <div>📍 <strong>Гео:</strong> Dubai + премиальные районы</div>
+            <div>🎯 <strong>Ниша:</strong> E-commerce (Perfumes, Diffusers, Oils)</div>
+            <div>⚡ <strong>Запуск:</strong> 7 дней</div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<main class="main-content">
+
+    <!-- Intro -->
+    <div class="intro-section">
+        <h2>О проекте</h2>
+        <p><strong>Сайт:</strong> <a href="https://somonionaroma.com/" target="_blank" style="color:var(--blue);text-decoration:none;font-weight:700">somonionaroma.com</a></p>
+        <p><strong>Цель:</strong> Привлечение целевых заявок на покупку парфюмерии, диффузоров, масел и аромамашин через Google Ads</p>
+        <p><strong>Особенности проекта:</strong></p>
+        <ul>
+            <li>Премиум-сегмент с конкурентным ценообразованием</li>
+            <li>5 основных категорий продуктов для разных сегментов аудитории</li>
+            <li>B2C и B2B направления (SPA, Hotels, Offices)</li>
+            <li>Фокус на quality score и конверсионных связках</li>
+        </ul>
+    </div>
+
+    <!-- Accordion 1: Структура кампаний -->
+    <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">
+                <div class="accordion-number">1</div>
+                <h3>Структура рекламных кампаний</h3>
+            </div>
+            <div class="accordion-icon">
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </div>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-body">
+                
+                <div class="accordion-subsection">
+                    <h4>Поисковые кампании (Search)</h4>
+                    <p>Горячий спрос от тех, кто активно ищет парфюм, диффузоры, масла через Google Search</p>
+                    
+                    <div class="segment-card">
+                        <h5>🎯 Кампания 1: Perfume</h5>
+                        <p><strong>Ключи:</strong> inspired perfume, luxury perfume dubai, niche perfume, buy perfume online</p>
+                        <p><strong>Стратегия:</strong> Target CPA / Maximize conversions</p>
+                        <p><strong>Оффер:</strong> Премиальный запах как у мировых брендов, но доступнее</p>
+                    </div>
+
+                    <div class="segment-card">
+                        <h5>🏠 Кампания 2: Diffusers & Oils</h5>
+                        <p><strong>Ключи:</strong> scent diffuser dubai, 500ml diffuser oil, home fragrance diffuser</p>
+                        <p><strong>Стратегия:</strong> Target CPA / Maximize conversions</p>
+                        <p><strong>Оффер:</strong> Большие объемы масел — экономия до 60%</p>
+                    </div>
+
+                    <div class="segment-card">
+                        <h5>🏢 Кампания 3: B2B (SPA/Hotels/Offices)</h5>
+                        <p><strong>Ключи:</strong> scent marketing dubai, HVAC aroma machine, office scenting</p>
+                        <p><strong>Стратегия:</strong> Target CPA</p>
+                        <p><strong>Оффер:</strong> Аромамашины для бизнеса</p>
+                    </div>
+                </div>
+
+                <div class="accordion-subsection">
+                    <h4>Performance Max (PMax)</h4>
+                    <p>Автоматический поиск покупателей по всему инвентарю Google (YouTube, Shopping, Search, Display, Gmail)</p>
+                    
+                    <ul>
+                        <li><strong>PMax Perfume</strong> — все товарные фиды парфюмов</li>
+                        <li><strong>PMax Diffusers & Oils</strong> — диффузоры + масла 500ml</li>
+                        <li><strong>PMax Automotive</strong> — автомобильные ароматы</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <h5>Настройки PMax:</h5>
+                        <ul>
+                            <li>Asset groups под каждый сегмент (мужчины, женщины, дом, B2B, авто)</li>
+                            <li>Custom segments: URL конкурентов + ключевые слова</li>
+                            <li>Lookalike после 100+ лидов</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-subsection">
+                    <h4>YouTube (прогрев + активация спроса)</h4>
+                    <ul>
+                        <li>Формат: короткие ролики 6–15 сек</li>
+                        <li>Цель: Traffic / Conversions</li>
+                        <li>Стратегия: Target CPA или Maximize conversions</li>
+                        <li>Месседжи: "Аромат как в 5* отеле", "Стойкость 8–12 часов", "Премиум vs дешевые аналоги"</li>
+                    </ul>
+                </div>
+
+                <div class="accordion-subsection">
+                    <h4>Display Remarketing</h4>
+                    <ul>
+                        <li>Аудитории: посетители сайта, добавившие в корзину, открыли форму/чат</li>
+                        <li>Окна: 7, 30, 180 дней</li>
+                        <li>Креативы: напоминание об офферах, дополнительные скидки</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Accordion 2: Сегменты и месседжи -->
+    <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">
+                <div class="accordion-number">2</div>
+                <h3>Целевые сегменты и месседжи</h3>
+            </div>
+            <div class="accordion-icon">
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </div>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-body">
+                
+                <div class="segment-card">
+                    <h5>👨 Сегмент 1: Мужчины 20–45</h5>
+                    <p><strong>Продукт:</strong> Inspired Perfumes</p>
+                    <p><strong>Месседж:</strong> Стойкость, премиум-качество, доступная цена</p>
+                    <p><strong>Форматы:</strong> Search + PMax</p>
+                </div>
+
+                <div class="segment-card">
+                    <h5>👩 Сегмент 2: Женщины 20–45</h5>
+                    <p><strong>Продукт:</strong> Подарки, женские ароматы</p>
+                    <p><strong>Месседж:</strong> Подарок, упаковка, премиальность</p>
+                    <p><strong>Форматы:</strong> PMax + YouTube</p>
+                </div>
+
+                <div class="segment-card">
+                    <h5>🏠 Сегмент 3: Домашние ароматы</h5>
+                    <p><strong>Продукт:</strong> Диффузоры, масла 500ml</p>
+                    <p><strong>Месседж:</strong> Долговечность, премиум-класс, экономия</p>
+                    <p><strong>Форматы:</strong> Search + PMax</p>
+                </div>
+
+                <div class="segment-card">
+                    <h5>🏢 Сегмент 4: B2B (SPA/Office/Hotels/Salons)</h5>
+                    <p><strong>Продукт:</strong> Scent marketing, аромамашины, HVAC</p>
+                    <p><strong>Месседж:</strong> Профессиональные решения для бизнеса</p>
+                    <p><strong>Форматы:</strong> Search + PMax + YouTube</p>
+                </div>
+
+                <div class="segment-card">
+                    <h5>🚗 Сегмент 5: Автолюбители</h5>
+                    <p><strong>Продукт:</strong> Автомобильные ароматы</p>
+                    <p><strong>Месседж:</strong> Стойкость, премиум-аромат для авто</p>
+                    <p><strong>Форматы:</strong> PMax + Remarketing</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Accordion 3: Таргетинг -->
+    <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">
+                <div class="accordion-number">3</div>
+                <h3>Настройки таргетинга</h3>
+            </div>
+            <div class="accordion-icon">
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </div>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-body">
+                
+                <div class="accordion-subsection">
+                    <h4>Геотаргетинг (Dubai + премиальные зоны)</h4>
+                    <p>Фокус на районах с высокой покупательской способностью:</p>
+                    <ul>
+                        <li>Marina</li>
+                        <li>JBR (Jumeirah Beach Residence)</li>
+                        <li>JLT (Jumeirah Lake Towers)</li>
+                        <li>Business Bay</li>
+                        <li>JVC (Jumeirah Village Circle)</li>
+                        <li>Al Barsha</li>
+                        <li>Arjan</li>
+                        <li>Dubai Hills</li>
+                        <li>DIP (Dubai Investment Park)</li>
+                        <li>Sports City</li>
+                        <li>Motor City</li>
+                        <li>Palm Jumeirah</li>
+                    </ul>
+                </div>
+
+                <div class="accordion-subsection">
+                    <h4>Аудитории Google Ads</h4>
+                    
+                    <p><strong>In-market аудитории:</strong></p>
+                    <ul>
+                        <li>Perfumes & Fragrances</li>
+                        <li>Home Decor, Home Fragrances</li>
+                        <li>Auto Accessories</li>
+                        <li>Business Services</li>
+                    </ul>
+                    
+                    <p style="margin-top:1.5rem"><strong>Custom Segments (Keywords):</strong></p>
+                    <ul>
+                        <li>niche perfume, luxury perfume dubai, inspired perfume, Baccarat Rouge 540</li>
+                        <li>scent diffuser dubai, 500ml diffuser oil, scent marketing</li>
+                        <li>car perfume, car diffuser</li>
+                        <li>HVAC aroma machine, office scenting, spa aroma system</li>
+                    </ul>
+                    
+                    <p style="margin-top:1.5rem"><strong>Custom Segments (URLs конкурентов):</strong></p>
+                    <ul>
+                        <li>sephora.ae, faces.com, arabianoud.com, ajmalperfume.com</li>
+                        <li>rituals.com, bathandbodyworks.ae</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Accordion 4: Креативы -->
+    <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">
+                <div class="accordion-number">4</div>
+                <h3>Креативные сюжеты и офферы</h3>
+            </div>
+            <div class="accordion-icon">
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </div>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-body">
+                
+                <div class="accordion-subsection">
+                    <h4>4 креативных сюжета</h4>
+                    
+                    <div class="creative-card">
+                        <h5>1. "Премиум vs Дешевые аналоги"</h5>
+                        <p><strong>Визуал:</strong> Сравнение упаковки/стойкости inspired perfume и обычных</p>
+                        <p><strong>Месседж:</strong> Качество люкс-бренда по доступной цене</p>
+                    </div>
+
+                    <div class="creative-card">
+                        <h5>2. "Домашний аромат за 1 минуту"</h5>
+                        <p><strong>Визуал:</strong> Диффузер + масло 500 ml в интерьере</p>
+                        <p><strong>Месседж:</strong> Простота использования + экономия</p>
+                    </div>
+
+                    <div class="creative-card">
+                        <h5>3. "Аромат как в 5* отеле"</h5>
+                        <p><strong>Визуал:</strong> Аромамашина в отельном лобби</p>
+                        <p><strong>Месседж:</strong> Профессиональные решения для бизнеса</p>
+                    </div>
+
+                    <div class="creative-card">
+                        <h5>4. "Аромат твоей машины"</h5>
+                        <p><strong>Визуал:</strong> Мужчина в авто + мини-диффузер</p>
+                        <p><strong>Месседж:</strong> Премиум-аромат для вашего автомобиля</p>
+                    </div>
+                </div>
+
+                <div class="accordion-subsection">
+                    <h4>5 сильных офферов</h4>
+                    <ul>
+                        <li>Премиальный запах как у мировых брендов, но доступнее</li>
+                        <li>Стойкость 8-12 часов / Premium oils</li>
+                        <li>100+ ароматов: мужские, женские, унисекс</li>
+                        <li>Большие объемы масел — экономия до 60%</li>
+                        <li>Для дома, авто и бизнеса</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Accordion 5: Прогноз и медиаплан -->
+    <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">
+                <div class="accordion-number">5</div>
+                <h3>Прогноз результатов и медиаплан</h3>
+            </div>
+            <div class="accordion-icon">
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </div>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-body">
+                
+                <div class="accordion-subsection">
+                    <h4>Прогноз по бюджетам</h4>
+                    
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Период</th>
+                                    <th>Бюджет</th>
+                                    <th>Лиды</th>
+                                    <th>CPL</th>
+                                    <th>Показы</th>
+                                    <th>Клики</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>30 дней</strong></td>
+                                    <td>$527</td>
+                                    <td>94 лида</td>
+                                    <td>$5.61</td>
+                                    <td>269,925</td>
+                                    <td>3,045</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>60 дней</strong></td>
+                                    <td>$1,054</td>
+                                    <td>122 лида</td>
+                                    <td>$8.64</td>
+                                    <td>326,907</td>
+                                    <td>3,965</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>90 дней</strong></td>
+                                    <td>$1,700</td>
+                                    <td>144 лида</td>
+                                    <td>$11.81</td>
+                                    <td>351,596</td>
+                                    <td>4,661</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h5>Как держим CPL низким:</h5>
+                        <ul>
+                            <li>Работаем через сильный оффер и короткие формы</li>
+                            <li>Оптимизация под конверсионные события и сообщения</li>
+                            <li>Подключаем ретаргетинг + сегментацию по аудиториям</li>
+                            <li>A/B тестирование креативов и посадочных</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-subsection">
+                    <h4>Распределение бюджета</h4>
+                    <ul>
+                        <li><strong>Search кампании:</strong> 60% бюджета (горячий спрос)</li>
+                        <li><strong>Performance Max:</strong> 25% бюджета (масштабирование)</li>
+                        <li><strong>YouTube:</strong> 10% бюджета (прогрев)</li>
+                        <li><strong>Remarketing:</strong> 5% бюджета (возврат)</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Accordion 6: Таймлайн -->
+    <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">
+                <div class="accordion-number">6</div>
+                <h3>Таймлайн запуска (7 дней)</h3>
+            </div>
+            <div class="accordion-icon">
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </div>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-body">
+                
+                <div class="segment-card">
+                    <h5>📅 День 1–2: Подготовка</h5>
+                    <ul>
+                        <li>Сбор семантики (300+ ключей по 5 категориям)</li>
+                        <li>Подключение Google Ads + Analytics 4 + пиксели</li>
+                        <li>Настройка конверсий (Lead, Add to Cart, Purchase)</li>
+                    </ul>
+                </div>
+
+                <div class="segment-card">
+                    <h5>🎨 День 3–4: Креативы и тексты</h5>
+                    <ul>
+                        <li>4 креативных сюжета (статика + видео 6–15 сек)</li>
+                        <li>Объявления под каждый сегмент (15+ вариантов)</li>
+                        <li>Asset groups для PMax (заголовки, описания, изображения)</li>
+                    </ul>
+                </div>
+
+                <div class="segment-card">
+                    <h5>⚙️ День 5–6: Настройка кампаний</h5>
+                    <ul>
+                        <li>3 поисковые кампании (Perfume, Diffusers, B2B)</li>
+                        <li>3 Performance Max (по категориям товаров)</li>
+                        <li>1 YouTube кампания</li>
+                        <li>1 Display Remarketing</li>
+                    </ul>
+                </div>
+
+                <div class="segment-card">
+                    <h5>🚀 День 7: Запуск + мониторинг</h5>
+                    <ul>
+                        <li>Проверка трекинга конверсий</li>
+                        <li>Запуск всех кампаний с бюджетом $30/день</li>
+                        <li>Ежедневный контроль первые 3 дня</li>
+                    </ul>
+                </div>
+
+                <div class="segment-card">
+                    <h5>📊 День 8–14: Оптимизация</h5>
+                    <ul>
+                        <li>Анализ CPL, CTR, CR по кампаниям</li>
+                        <li>Отключение неэффективных ключей/аудиторий</li>
+                        <li>Масштабирование работающих связок</li>
+                        <li>A/B тесты креативов</li>
+                    </ul>
+                </div>
+
+                <div class="segment-card">
+                    <h5>📈 День 15–30: Масштабирование</h5>
+                    <ul>
+                        <li>Lookalike-аудитории (после 100+ лидов)</li>
+                        <li>Запуск дополнительных PMax под сегменты</li>
+                        <li>Углубление ретаргетинга (7/30/180 дней)</li>
+                        <li>Оптимизация на основе реальных данных</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <h2>Тарифы сотрудничества</h2>
+        
+        <div class="pricing-grid">
+            
+            <div class="pricing-card">
+                <h3>СТАРТ</h3>
+                <p class="pricing-price">$450</p>
+                <p class="pricing-budget">Рекламный бюджет: от $500</p>
+                <p style="font-size:.95rem;color:var(--gray);margin-bottom:1.5rem;line-height:1.6">Быстрый запуск рекламы. Тест ниши и первые целевые лиды</p>
+                <ul class="pricing-features">
+                    <li>Анализ ниши и конкурентов</li>
+                    <li>Тексты, креативы, сценарии</li>
+                    <li>Запуск рекламы (Google Ads)</li>
+                    <li>Подключение аналитики и пикселей</li>
+                    <li>Настройка медиаплана</li>
+                    <li>Оптимизация под первые результаты</li>
+                </ul>
+                <p style="font-size:.9rem;color:var(--blue);font-weight:700;margin-top:1rem">Гарантия: возврат денег, если нет заявок</p>
+            </div>
+
+            <div class="pricing-card recommended">
+                <div class="pricing-badge">РЕКОМЕНДУЕМ</div>
+                <h3>БАЗА</h3>
+                <p class="pricing-price">$900</p>
+                <p class="pricing-budget">Рекламный бюджет: от $700</p>
+                <p style="font-size:.95rem;color:var(--gray);margin-bottom:1.5rem;line-height:1.6">Система заявок и контроль качества. Полная воронка продаж</p>
+                <ul class="pricing-features">
+                    <li>Все из тарифа "Старт"</li>
+                    <li>Построение воронки: реклама → квиз → лендинг → CRM</li>
+                    <li>Создание посадочной страницы (до 10 блоков)</li>
+                    <li>AI-квалификатор (фильтрация лидов)</li>
+                    <li>Аудит CRM и автоматизация</li>
+                    <li>Аналитика CPL, CPA, CTR, ROMI</li>
+                    <li>Тестирование гипотез и сценариев</li>
+                </ul>
+                <p style="font-size:.9rem;color:var(--blue);font-weight:700;margin-top:1rem">Гарантия: минимум 25 целевых лидов</p>
+            </div>
+
+            <div class="pricing-card">
+                <h3>ЭКСПЕРТ</h3>
+                <p class="pricing-price">$1,890</p>
+                <p class="pricing-budget">Рекламный бюджет: от $3,000</p>
+                <p style="font-size:.95rem;color:var(--gray);margin-bottom:1.5rem;line-height:1.6">Маркетинг и продажи под ключ. Полный контроль воронки</p>
+                <ul class="pricing-features">
+                    <li>Все из тарифа "База"</li>
+                    <li>AI-РОП (контроль лидов и отдела продаж)</li>
+                    <li>6-часовая стратегия роста с маркетинг-директором</li>
+                    <li>Несколько лендингов под сегменты</li>
+                    <li>Глубокий разбор и улучшение воронки</li>
+                    <li>Тренинг отдела продаж или аудит ОП</li>
+                    <li>Полное тех. сопровождение</li>
+                </ul>
+                <p style="font-size:.9rem;color:var(--blue);font-weight:700;margin-top:1rem">Гарантия: рост продаж за 2 месяца</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- AI Section -->
+    <section class="ai-section">
+        <div class="ai-section-content">
+            <h2>AI-автоматизация вашего бизнеса</h2>
+            <p>Автоматизируйте рутину и масштабируйте отдел продаж без найма новых сотрудников. Внедряем искусственный интеллект, который обучается на ваших данных и работает 24/7.</p>
+            
+            <div class="ai-grid">
+                
+                <div class="ai-card">
+                    <h4>AI-квалификатор</h4>
+                    <p class="price">от $300</p>
+                    <p style="font-size:.9rem;opacity:.9;margin-bottom:1rem">Круглосуточная обработка входящих запросов</p>
+                    <ul>
+                        <li>Мгновенно отвечает на сообщения 24/7</li>
+                        <li>Квалифицирует лиды по критериям</li>
+                        <li>Создает задачи для менеджеров</li>
+                        <li>Заполняет карточки в CRM</li>
+                    </ul>
+                </div>
+
+                <div class="ai-card">
+                    <h4>AI-продавец</h4>
+                    <p class="price">от $500</p>
+                    <p style="font-size:.9rem;opacity:.9;margin-bottom:1rem">Голосовой помощник для звонков</p>
+                    <ul>
+                        <li>Принимает входящие звонки</li>
+                        <li>Совершает исходящие звонки</li>
+                        <li>Записывает на встречи</li>
+                        <li>Обрабатывает возражения</li>
+                    </ul>
+                </div>
+
+                <div class="ai-card">
+                    <h4>Умный контроль</h4>
+                    <p class="price">от $700</p>
+                    <p style="font-size:.9rem;opacity:.9;margin-bottom:1rem">Автоматический аудит разговоров</p>
+                    <ul>
+                        <li>Прослушивает 100% звонков</li>
+                        <li>Анализирует видеовстречи</li>
+                        <li>Выявляет отклонения от скриптов</li>
+                        <li>Формирует отчеты по качеству</li>
+                    </ul>
+                </div>
+
+                <div class="ai-card">
+                    <h4>Индивидуальная AI-автоматизация</h4>
+                    <p class="price">По запросу</p>
+                    <p style="font-size:.9rem;opacity:.9;margin-bottom:1rem">Любые AI решения под ваш бизнес</p>
+                    <ul>
+                        <li>Автоформирование КП</li>
+                        <li>Анализ отзывов клиентов</li>
+                        <li>Предиктивная аналитика</li>
+                        <li>Умные чат-боты</li>
+                    </ul>
+                </div>
+
+            </div>
+            
+            <div style="text-align:center;margin-top:2.5rem">
+                <a href="https://webnostra.pro/ai/" target="_blank" style="display:inline-block;background:#fff;color:var(--blue);padding:1rem 2rem;border-radius:12px;text-decoration:none;font-weight:800;transition:all .3s">
+                    Подробнее о нейросетях →
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <h2>О команде WEBNOSTRA PERFORMANCE</h2>
+        <p>Узкоспециализированная трафик-команда. Делаем реально прибыльный digital-маркетинг за справедливую цену.</p>
+        <p><strong>С нами сотрудничают в среднем 1,5 года</strong><br>Есть клиенты, которые уже более трех лет с нами зарабатывают деньги</p>
+        <div style="margin:2rem 0">
+            <p><strong>Почему выбирают нас:</strong></p>
+            <p style="font-size:.95rem;max-width:600px;margin:1rem auto;line-height:1.7">Фокус на ROI, а не на показах • Прозрачная отчетность и доступ к кабинетам • Быстрый старт: от брифа до первых лидов — 10-14 дней • Опыт работы с e-commerce премиум-сегмента</p>
+        </div>
+        <div class="footer-cta">
+            <a href="https://t.me/magosh_al" target="_blank" class="footer-btn">✈️ Написать в Telegram</a>
+            <a href="https://wa.me/77066671426" target="_blank" class="footer-btn">📱 Написать в WhatsApp</a>
+        </div>
+        <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.2)">
+            <a href="https://webnostra.pro/cases" target="_blank" style="color:#fff;text-decoration:none;opacity:.9">📊 Посмотреть кейсы</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+function toggleAccordion(header) {
+    const accordion = header.parentElement;
+    accordion.classList.toggle('active');
+}
+
+// Анимация появления при скролле
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.accordion, .intro-section, .pricing-section, .ai-section').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+    observer.observe(el);
+});
+</script>
+
+</body>
+</html>
