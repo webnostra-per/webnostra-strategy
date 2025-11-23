@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-трейдер: Арбитражный бот с искусственным интеллектом — Кейс WEBNOSTRA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --dark-bg: #0a0a0f;
+            --dark-card: #141420;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --border-color: #27272a;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .bg-animated, .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .header-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.4;
+            animation: float-glow 20s ease-in-out infinite;
+        }
+
+        .glow-1 {
+            top: -300px;
+            right: -100px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.6) 0%, transparent 70%);
+        }
+
+        .glow-2 {
+            bottom: -200px;
+            left: -100px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.5) 0%, transparent 70%);
+        }
+
+        @keyframes float-glow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, -50px) scale(1.1); }
+        }
+
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .case-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 32px;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-dark {
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            background: var(--dark-card);
+        }
+
+        h2 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+            max-width: 700px;
+        }
+
+        .client-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 48px;
+            border-radius: 24px;
+            color: white;
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .client-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .client-card > p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .client-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .stat-item p {
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .problem-card {
+            background: var(--dark-card);
+            padding: 32px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .problem-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.15);
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            border-radius: 20px 0 0 20px;
+        }
+
+        .problem-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .problem-card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .problem-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .solution-steps {
+            display: grid;
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .step-card {
+            background: var(--dark-card);
+            padding: 40px;
+            border-radius: 24px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 32px;
+            align-items: start;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .step-card:hover {
+            box-shadow: 0 12px 48px rgba(139, 92, 246, 0.15);
+            transform: translateX(8px);
+            border-color: var(--primary);
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .step-content p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .step-content ul {
+            list-style: none;
+            margin-top: 16px;
+        }
+
+        .step-content li {
+            padding: 12px 0;
+            padding-left: 32px;
+            position: relative;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .step-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .result-card {
+            background: var(--dark-card);
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .result-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
+        }
+
+        .result-icon {
+            font-size: 3rem;
+            margin-bottom: 24px;
+        }
+
+        .result-value {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .result-label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 120px 0;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            margin-bottom: 0;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #25D366;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.15rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn:hover {
+            background: #20ba5a;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 48px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 48px 0;
+            text-align: center;
+            background: var(--dark-bg);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        footer .brand {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .hero { padding: 80px 0 60px; min-height: 60vh; }
+            section { padding: 60px 0; }
+            .step-card {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .results-grid, .problem-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="header-bg">
+            <div class="header-glow glow-1"></div>
+            <div class="header-glow glow-2"></div>
+            <div class="grid-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="case-badge">
+                    <span>📊</span> Кейс WEBNOSTRA
+                </div>
+                <h1>AI-трейдер: Арбитражный бот с искусственным интеллектом</h1>
+                <p class="hero-subtitle">Как мы превратили простой арбитражный бот в умного помощника трейдера с помощью LLM и увеличили прибыльность в несколько раз</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="client-card">
+                <h3>О клиенте</h3>
+                <p>Частный трейдер, специализирующийся на криптовалютном арбитраже между биржами</p>
+                <div class="client-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">🔄</div>
+                        <p><strong>Несколько бирж</strong><br>одновременно отслеживал</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">⚡</div>
+                        <p><strong>Telegram-бот</strong><br>для получения сигналов</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">📈</div>
+                        <p><strong>Процент прибыли</strong><br>показывал примерный</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-dark">
+        <div class="container">
+            <h2>Проблемы до внедрения AI</h2>
+            <p class="section-subtitle">Существующий бот работал, но имел серьезные недостатки</p>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <span class="icon">🗑️</span>
+                    <h4>Мусорные сигналы</h4>
+                    <p>Окно уже закрывалось, пока трейдер реагировал — много ложных срабатываний</p>
+                </div>
+                <div class="problem-card">
+                    <span class="icon">💸</span>
+                    <h4>Не учитывал комиссии</h4>
+                    <p>Часть сделок уходила в ноль или минус из-за игнорирования реальных объемов</p>
+                </div>
+                <div class="problem-card">
+                    <span class="icon">⚙️</span>
+                    <h4>Сложные настройки</h4>
+                    <p>Все через сухие формы и параметры — приходилось долго разбираться</p>
+                </div>
+                <div class="problem-card">
+                    <span class="icon">❓</span>
+                    <h4>Нет объяснений</h4>
+                    <p>Клиенту приходилось самому разбираться, почему бот что-то рекомендует</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Что мы сделали</h2>
+            <p class="section-subtitle">Не переписывали с нуля, а усилили существующий бот и добавили живой интеллект</p>
+            
+            <div class="solution-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Пересобрали ядро бота</h3>
+                        <p>Навели порядок в «железе» бота:</p>
+                        <ul>
+                            <li>Ускорили опрос бирж и обновление котировок</li>
+                            <li>Добавили учет комиссий, лимитов и реальной ликвидности</li>
+                            <li>Научили считать чистую прибыль после всех затрат</li>
+                            <li>Ввели приоритеты по парам и биржам</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Встроили LLM-модуль поверх арбитражной логики</h3>
+                        <p>Добавили слой с моделью ИИ. Теперь ИИ делает три вещи:</p>
+                        <ul>
+                            <li><strong>Фильтрует сигналы:</strong> смотрит на длительность окна, историю, волатильность</li>
+                            <li><strong>Оценивает риск:</strong> учитывает частоту проблем, откаты цены, комиссии</li>
+                            <li><strong>Объясняет логику:</strong> пишет комментарий почему ситуация перспективна</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Живое управление ботом через чат</h3>
+                        <p>Бот настраивается обычными фразами:</p>
+                        <ul>
+                            <li>«Показывай только ситуации с профитом от 0.4%»</li>
+                            <li>«Убери сегодня эту биржу из расчетов»</li>
+                            <li>«Сделай режим поосторожнее»</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-dark">
+        <div class="container">
+            <h2>Как теперь выглядит работа</h2>
+            <p class="section-subtitle">В Telegram клиент видит понятные карточки с полной информацией</p>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <span class="icon">💱</span>
+                    <h4>Торговая пара</h4>
+                    <p>Любая пара, которую выбрал трейдер</p>
+                </div>
+                <div class="problem-card">
+                    <span class="icon">⏱️</span>
+                    <h4>Диапазон времени</h4>
+                    <p>Сколько уже живет окно возможностей</p>
+                </div>
+                <div class="problem-card">
+                    <span class="icon">💰</span>
+                    <h4>Цены покупки/продажи</h4>
+                    <p>На разных биржах с учетом спредов</p>
+                </div>
+                <div class="problem-card">
+                    <span class="icon">📊</span>
+                    <h4>Реальная прибыль</h4>
+                    <p>С учетом всех комиссий и затрат</p>
+                </div>
+                <div class="problem-card">
+                    <span class="icon">💬</span>
+                    <h4>Комментарий от бота</h4>
+                    <p>Стоит ли спешить, какой объем, есть ли риск</p>
+                </div>
+                <div class="problem-card">
+                    <span class="icon">🤖</span>
+                    <h4>Цифровой напарник</h4>
+                    <p>Сам решает, стоит ли тревожить трейдера</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Результаты за первый месяц</h2>
+            <p class="section-subtitle">Конкретные метрики улучшения после внедрения AI</p>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-icon">📈</div>
+                    <div class="result-value">×3</div>
+                    <p class="result-label">Рост отрабатываемых ситуаций</p>
+                </div>
+                <div class="result-card">
+                    <div class="result-icon">✅</div>
+                    <div class="result-value">+45%</div>
+                    <p class="result-label">Доля прибыльных сделок</p>
+                </div>
+                <div class="result-card">
+                    <div class="result-icon">⚡</div>
+                    <div class="result-value">-70%</div>
+                    <p class="result-label">Времени на арбитраж</p>
+                </div>
+                <div class="result-card">
+                    <div class="result-icon">🎯</div>
+                    <div class="result-value">100%</div>
+                    <p class="result-label">Решений с объяснением</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-dark">
+        <div class="container">
+            <h2>Другие кейсы</h2>
+            <p class="section-subtitle">Посмотрите, как AI помогает бизнесу в разных нишах</p>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://webnostra.pro/ai/cases/" style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.15rem; transition: all 0.3s ease; box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);">
+                    📊 Смотреть все кейсы
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Готовы автоматизировать ваш бизнес?</h2>
+                <p class="section-subtitle" style="margin: 24px auto 0;">Начните с бесплатной диагностики — мы покажем, где теряются деньги и как AI может помочь</p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 40px;">
+                    <a href="https://wa.me/77066671426" class="whatsapp-btn" target="_blank">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                        </svg>
+                        WhatsApp
+                    </a>
+                    <a href="https://t.me/magosh_al" style="display: inline-flex; align-items: center; gap: 12px; background: rgba(255, 255, 255, 0.2); color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.15rem; transition: all 0.3s ease; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 8px 32px rgba(255, 255, 255, 0.2);" target="_blank">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 24px; height: 24px; fill: white;">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                        </svg>
+                        Telegram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="brand">WEBNOSTRA AI</p>
+            <p>Автоматизация бизнеса через искусственный интеллект</p>
+            <p style="margin-top: 16px; opacity: 0.5; font-size: 0.85rem;">ai.webnostra.kz</p>
+        </div>
+    </footer>
+
+</body>
+</html>
