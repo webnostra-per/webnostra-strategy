@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>КП — Автоматизация криптообменника</title>
+    <title>КП — Комплексная автоматизация криптообменника</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
@@ -27,7 +27,6 @@
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         
-        /* Header */
         header {
             position: relative;
             background: var(--dark-bg);
@@ -54,7 +53,7 @@
             50% { transform: translateX(-50%) scale(1.2); }
         }
         header h1 {
-            font-size: 3.2rem;
+            font-size: 3rem;
             font-weight: 900;
             margin-bottom: 16px;
             background: linear-gradient(135deg, var(--primary-light), var(--accent));
@@ -107,7 +106,6 @@
             box-shadow: 0 12px 48px rgba(139, 92, 246, 0.6);
         }
         
-        /* Section */
         section { padding: 100px 24px; }
         section h2 {
             font-size: 2.8rem;
@@ -126,36 +124,50 @@
             margin-bottom: 60px;
         }
         
-        /* Pain Points */
         .pain-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
             margin-top: 60px;
         }
         .pain-card {
             background: var(--dark-card);
             border: 1px solid var(--border-color);
             border-left: 4px solid #ef4444;
-            padding: 32px;
+            padding: 28px;
             border-radius: 16px;
         }
-        .pain-icon {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-        }
+        .pain-icon { font-size: 2rem; margin-bottom: 12px; }
         .pain-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: #ef4444;
         }
         .pain-card p {
             color: var(--text-secondary);
-            line-height: 1.7;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
         
-        /* Solution Cards */
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-top: 40px;
+        }
+        .goal-item {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            padding: 24px 16px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .goal-item:hover { border-color: var(--success); transform: translateY(-4px); }
+        .goal-icon { font-size: 2rem; margin-bottom: 12px; }
+        .goal-item p { color: var(--text-secondary); font-size: 0.9rem; }
+        
         .solution-card {
             background: var(--dark-card);
             border: 2px solid var(--border-color);
@@ -168,41 +180,40 @@
         .solution-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--accent));
         }
-        .solution-number {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 50px;
-            font-size: 1.5rem;
-            font-weight: 900;
-            margin-bottom: 20px;
-        }
-        .solution-card h3 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-            color: var(--primary-light);
-        }
-        .solution-card .subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
+        .solution-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
             margin-bottom: 30px;
         }
+        .solution-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+        .solution-title h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-light);
+            margin-bottom: 4px;
+        }
+        .solution-title p { color: var(--text-secondary); font-size: 1rem; }
         
-        /* Feature Grid */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+            gap: 20px;
             margin: 30px 0;
         }
         .feature-item {
@@ -211,34 +222,26 @@
             border-radius: 16px;
             border-left: 3px solid var(--primary);
         }
-        .feature-item h4 {
-            color: var(--text-primary);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-        .feature-item p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
+        .feature-item h4 { color: var(--text-primary); margin-bottom: 10px; font-size: 1.05rem; }
+        .feature-item p { color: var(--text-secondary); font-size: 0.95rem; }
         
-        /* Effect Box */
         .effect-box {
             background: rgba(16, 185, 129, 0.1);
             border: 1px solid rgba(16, 185, 129, 0.3);
             border-radius: 20px;
             padding: 40px;
-            margin-top: 40px;
+            margin-top: 30px;
         }
         .effect-box h4 {
             color: var(--success);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 24px;
             text-align: center;
         }
         .effect-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
         }
         .effect-item {
             text-align: center;
@@ -247,47 +250,40 @@
             border-radius: 16px;
         }
         .effect-value {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 900;
             color: var(--success);
             display: block;
             margin-bottom: 8px;
         }
-        .effect-label {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+        .effect-label { color: var(--text-secondary); font-size: 0.9rem; }
+        .effect-total {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
+            border: 2px solid var(--success);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            margin-top: 20px;
         }
+        .effect-total-value { font-size: 2.5rem; font-weight: 900; color: var(--success); }
+        .effect-total-label { color: var(--text-secondary); font-size: 1rem; }
         
-        /* Timing & Price */
         .timing-price-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 24px;
             margin-top: 30px;
         }
         .timing-box, .price-box {
             background: var(--dark-lighter);
-            padding: 30px;
+            padding: 28px;
             border-radius: 20px;
             text-align: center;
         }
-        .timing-box h4, .price-box h4 {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 12px;
-        }
-        .timing-value, .price-value {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--primary-light);
-        }
-        .price-support {
-            margin-top: 10px;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-        }
+        .timing-box h4, .price-box h4 { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 10px; }
+        .timing-value, .price-value { font-size: 2rem; font-weight: 900; color: var(--primary-light); }
+        .price-support { margin-top: 8px; font-size: 0.9rem; color: var(--text-secondary); }
         
-        /* Package Section */
         .package-card {
             background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1));
             border: 2px solid var(--primary);
@@ -295,8 +291,6 @@
             padding: 60px;
             text-align: center;
             margin-top: 60px;
-            position: relative;
-            overflow: hidden;
         }
         .package-badge {
             display: inline-block;
@@ -307,12 +301,7 @@
             font-weight: 700;
             margin-bottom: 30px;
         }
-        .package-card h3 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-        }
+        .package-card h3 { font-size: 2.2rem; font-weight: 900; margin-bottom: 20px; color: var(--text-primary); }
         .package-benefits {
             display: flex;
             justify-content: center;
@@ -320,105 +309,26 @@
             flex-wrap: wrap;
             margin: 30px 0;
         }
-        .package-benefit {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-secondary);
-        }
-        .package-benefit span {
-            color: var(--success);
-            font-size: 1.3rem;
-        }
+        .package-benefit { display: flex; align-items: center; gap: 10px; color: var(--text-secondary); }
+        .package-benefit span { color: var(--success); font-size: 1.3rem; }
         .package-price-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
             margin: 40px 0;
         }
-        .package-price-item {
-            background: var(--dark-card);
-            padding: 30px;
-            border-radius: 20px;
-        }
-        .package-price-item.old {
-            opacity: 0.6;
-        }
-        .package-price-item .label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-        }
-        .package-price-item .amount {
-            font-size: 2rem;
-            font-weight: 900;
-        }
-        .package-price-item.old .amount {
-            text-decoration: line-through;
-            color: #ef4444;
-        }
-        .package-price-item.new .amount {
-            color: var(--success);
-        }
-        .package-price-item.save .amount {
-            color: var(--warning);
-        }
-        .package-support {
-            background: var(--dark-card);
-            padding: 20px 40px;
-            border-radius: 16px;
-            display: inline-block;
-            margin-top: 20px;
-        }
-        .package-support span {
-            color: var(--text-secondary);
-        }
-        .package-support strong {
-            color: var(--primary-light);
-            font-size: 1.3rem;
-        }
+        .package-price-item { background: var(--dark-card); padding: 28px; border-radius: 20px; }
+        .package-price-item.old { opacity: 0.6; }
+        .package-price-item .label { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px; }
+        .package-price-item .amount { font-size: 2rem; font-weight: 900; }
+        .package-price-item.old .amount { text-decoration: line-through; color: #ef4444; }
+        .package-price-item.new .amount { color: var(--success); }
+        .package-price-item.save .amount { color: var(--warning); }
+        .package-support { background: var(--dark-card); padding: 20px 40px; border-radius: 16px; display: inline-block; }
+        .package-support span { color: var(--text-secondary); }
+        .package-support strong { color: var(--primary-light); font-size: 1.3rem; }
         
-        /* Timeline */
-        .timeline-section {
-            background: var(--dark-lighter);
-            border-radius: 24px;
-            padding: 40px;
-            margin-top: 40px;
-        }
-        .timeline-section h3 {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            text-align: center;
-            color: var(--primary-light);
-        }
-        .timeline-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .timeline-item {
-            background: var(--dark-card);
-            padding: 24px;
-            border-radius: 16px;
-            border-left: 4px solid var(--primary);
-        }
-        .timeline-item h4 {
-            color: var(--text-primary);
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-        }
-        .timeline-item p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-        
-        /* Summary Table */
-        .summary-table {
-            background: var(--dark-card);
-            border-radius: 24px;
-            overflow: hidden;
-            margin-top: 60px;
-        }
+        .summary-table { background: var(--dark-card); border-radius: 24px; overflow: hidden; margin-top: 60px; }
         .summary-row {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -427,106 +337,25 @@
             border-bottom: 1px solid var(--border-color);
             align-items: center;
         }
-        .summary-row:last-child {
-            border-bottom: none;
-        }
+        .summary-row:last-child { border-bottom: none; }
         .summary-row.header {
             background: var(--dark-lighter);
             font-weight: 700;
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
-        .summary-row .task-name {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        .summary-row .task-price {
-            color: var(--primary-light);
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-        .summary-row .task-time {
-            color: var(--text-secondary);
-        }
-        .summary-row .task-effect {
-            color: var(--success);
-            font-weight: 600;
-        }
-        .summary-row.total {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1));
-        }
-        .summary-row.total .task-name {
-            font-size: 1.3rem;
-        }
-        .summary-row.total .task-price {
-            font-size: 1.8rem;
-            color: var(--success);
-        }
+        .summary-row .task-name { font-weight: 600; color: var(--text-primary); }
+        .summary-row .task-price { color: var(--primary-light); font-weight: 700; font-size: 1.15rem; }
+        .summary-row .task-time { color: var(--text-secondary); }
+        .summary-row .task-effect { color: var(--success); font-weight: 600; }
+        .summary-row.total { background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1)); }
+        .summary-row.total .task-name { font-size: 1.2rem; }
+        .summary-row.total .task-price { font-size: 1.6rem; color: var(--success); }
         
-        /* CTA */
-        .cta-section {
-            background: var(--dark-bg);
-            text-align: center;
-        }
-        .cta-box {
-            background: var(--dark-card);
-            border: 1px solid var(--border-color);
-            padding: 60px 40px;
-            border-radius: 32px;
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-        .cta-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-        }
-        .cta-box h2 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-        }
-        .cta-box p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-        }
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.15rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
-        }
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 48px rgba(139, 92, 246, 0.6);
-        }
-        
-        /* Cases */
         .cases-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 30px;
             margin-top: 60px;
         }
@@ -552,46 +381,13 @@
             display: inline-block;
             margin-bottom: 16px;
         }
-        .case-card h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-        }
-        .case-card .industry {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-        }
-        .case-metrics {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin: 24px 0;
-        }
-        .metric {
-            background: var(--dark-lighter);
-            padding: 16px;
-            border-radius: 12px;
-            text-align: center;
-        }
-        .metric-value {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--primary-light);
-            display: block;
-        }
-        .metric-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            display: block;
-            margin-top: 4px;
-        }
-        .case-description {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
+        .case-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
+        .case-card .industry { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px; }
+        .case-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+        .metric { background: var(--dark-lighter); padding: 16px; border-radius: 12px; text-align: center; }
+        .metric-value { font-size: 1.7rem; font-weight: 900; color: var(--primary-light); display: block; }
+        .metric-label { font-size: 0.8rem; color: var(--text-secondary); display: block; margin-top: 4px; }
+        .case-description { color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem; margin-bottom: 20px; }
         .case-btn {
             display: inline-block;
             padding: 12px 24px;
@@ -603,61 +399,72 @@
             font-weight: 600;
             transition: all 0.3s ease;
         }
-        .case-btn:hover {
-            background: var(--primary);
+        .case-btn:hover { background: var(--primary); color: white; }
+        
+        .cta-section { background: var(--dark-bg); text-align: center; }
+        .cta-box {
+            background: var(--dark-card);
+            border: 1px solid var(--border-color);
+            padding: 60px 40px;
+            border-radius: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        .cta-box h2 { font-size: 2.8rem; margin-bottom: 20px; }
+        .cta-box p { font-size: 1.3rem; color: var(--text-secondary); margin-bottom: 40px; }
+        .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
         }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 48px rgba(139, 92, 246, 0.6); }
         
-        /* Responsive */
         @media (max-width: 968px) {
-            header h1 { font-size: 2.5rem; }
+            header h1 { font-size: 2.3rem; }
             section h2 { font-size: 2rem; }
-            .pain-grid, .feature-grid, .effect-grid, .timing-price-grid, .package-price-grid, .timeline-grid, .cases-grid {
-                grid-template-columns: 1fr;
-            }
-            .case-metrics {
-                grid-template-columns: 1fr;
-            }
-            .summary-row {
-                grid-template-columns: 1fr;
-                gap: 10px;
-                text-align: center;
-            }
-            .summary-row.header {
-                display: none;
-            }
+            .pain-grid, .feature-grid, .effect-grid, .timing-price-grid, .package-price-grid, .goals-grid, .cases-grid { grid-template-columns: 1fr; }
+            .summary-row { grid-template-columns: 1fr; gap: 10px; text-align: center; }
+            .summary-row.header { display: none; }
+            .case-metrics { grid-template-columns: 1fr; }
         }
-        
         @media (max-width: 640px) {
-            header h1 { font-size: 2rem; }
-            header .subtitle { font-size: 1.1rem; }
+            header h1 { font-size: 1.9rem; }
             section { padding: 60px 24px; }
-            section h2 { font-size: 1.8rem; }
             .solution-card { padding: 30px 20px; }
+            .solution-header { flex-direction: column; text-align: center; }
             .package-card { padding: 40px 20px; }
-            .cta-box {
-                padding: 40px 20px;
-            }
-            .cta-box h2 {
-                font-size: 2rem;
-            }
-            .cta-buttons {
-                flex-direction: column;
-            }
-            .cta-btn {
-                width: 100%;
-                justify-content: center;
-            }
+            .cta-box { padding: 40px 20px; }
+            .cta-box h2 { font-size: 1.8rem; }
+            .cta-buttons { flex-direction: column; }
+            .cta-btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="header-glow"></div>
         <div class="container">
-            <h1>Автоматизация криптообменника</h1>
-            <div class="subtitle">Telegram → amoCRM + автоматический расчет курса и выбор партнера</div>
+            <h1>Комплексная автоматизация криптообменника</h1>
+            <div class="subtitle">Три решения для полной автоматизации процессов</div>
             <div class="header-cities">
                 <span class="city-badge">🇦🇪 Дубай</span>
                 <span class="city-badge">🇷🇺 Москва</span>
@@ -667,348 +474,231 @@
         </div>
     </header>
 
-    <!-- Pain Points -->
     <section>
         <div class="container">
             <h2>Что сейчас болит</h2>
-            <p class="section-subtitle">По итогам нашего созвона выявили три главные проблемы</p>
+            <p class="section-subtitle">По итогам обсуждения выявили ключевые проблемы</p>
             
             <div class="pain-grid">
                 <div class="pain-card">
-                    <div class="pain-icon">⏰</div>
-                    <h3>Время на рутину</h3>
-                    <p>Менеджеры вручную копируют заявки из 15 Telegram-чатов в amoCRM. На каждую уходит 3 минуты — в месяц это 65+ часов потерянного времени.</p>
+                    <div class="pain-icon">💬</div>
+                    <h3>15 Telegram-чатов</h3>
+                    <p>Менеджеры вручную отправляют заявки в закрытые чаты</p>
                 </div>
-                
                 <div class="pain-card">
-                    <div class="pain-icon">💸</div>
-                    <h3>Ошибки стоят денег</h3>
-                    <p>Забыли завести сделку, неверно посчитали курс, выбрали не того партнёра — каждая ошибка режет прибыль и портит отношения с клиентом.</p>
+                    <div class="pain-icon">📋</div>
+                    <h3>Ручной перенос в CRM</h3>
+                    <p>Каждую заявку нужно копировать в amoCRM вручную</p>
                 </div>
-                
+                <div class="pain-card">
+                    <div class="pain-icon">👤</div>
+                    <h3>Квалификация на менеджерах</h3>
+                    <p>Первичная обработка лидов полностью лежит на людях</p>
+                </div>
                 <div class="pain-card">
                     <div class="pain-icon">🧮</div>
-                    <h3>Курс считают вручную</h3>
-                    <p>Открыть биржу, свериться с Excel, посмотреть ставки партнёров, посчитать на калькуляторе — 2 минуты на каждую заявку, и это ещё 43 часа в месяц.</p>
+                    <h3>Курс через Excel</h3>
+                    <p>Ставки партнёров считают вручную через калькулятор</p>
                 </div>
+                <div class="pain-card">
+                    <div class="pain-icon">💸</div>
+                    <h3>Потеря прибыли</h3>
+                    <p>Заявки теряются, ответы запаздывают, ошибки режут маржу</p>
+                </div>
+            </div>
+            
+            <div class="goals-grid" style="margin-top: 60px;">
+                <div class="goal-item"><div class="goal-icon">🎯</div><p>Снять рутину с менеджеров</p></div>
+                <div class="goal-item"><div class="goal-icon">🛡️</div><p>Исключить человеческий фактор</p></div>
+                <div class="goal-item"><div class="goal-icon">⚡</div><p>Ускорить обработку</p></div>
+                <div class="goal-item"><div class="goal-icon">📈</div><p>Повысить конверсию</p></div>
+                <div class="goal-item"><div class="goal-icon">💰</div><p>Увеличить прибыль</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Solutions -->
     <section id="solutions" style="background: var(--dark-card); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
         <div class="container">
-            <h2>Два решения под ваши задачи</h2>
+            <h2>Три решения под ваши задачи</h2>
             <p class="section-subtitle">Можно внедрить по отдельности или вместе с хорошей скидкой</p>
             
-            <!-- Solution 1 -->
             <div class="solution-card">
-                <div class="solution-number">1</div>
-                <h3>Telegram → amoCRM на автомате</h3>
-                <div class="subtitle">Всё, что менеджер копирует руками, система будет делать сама</div>
-                
-                <div class="feature-grid">
-                    <div class="feature-item">
-                        <h4>🤖 Бот-наблюдатель</h4>
-                        <p>Добавляем бота в ваши 15 рабочих чатов. Он ничего не пишет — только читает сообщения с заявками.</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h4>📋 Умный парсер</h4>
-                        <p>Распознает ваш шаблон: дата, город, выдача/прием, сумма, валюта, ФИО, контакт, кошелёк. Даже если написано от руки.</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h4>⚡ Автосоздание сделок</h4>
-                        <p>Сделка в amoCRM создается моментально: все поля заполнены, менеджер назначен по вашей логике.</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h4>📊 Журнал заявок</h4>
-                        <p>Веб-интерфейс со списком сообщений, созданных сделок, временем и ответственными — полный контроль и история.</p>
+                <div class="solution-header">
+                    <div class="solution-number">1</div>
+                    <div class="solution-title">
+                        <h3>Telegram → amoCRM на автомате</h3>
+                        <p>Заявки создаются автоматически, без ручного копирования</p>
                     </div>
                 </div>
-                
+                <div class="feature-grid">
+                    <div class="feature-item"><h4>🤖 Бот-наблюдатель</h4><p>Добавляем бота в рабочие чаты. Он ничего не пишет — только читает и распознаёт заявки.</p></div>
+                    <div class="feature-item"><h4>📋 Умный парсер</h4><p>Извлекает: дата, чат, операция, сумма, валюта, ФИО, контакт, кошелёк, время. Даже если написано вручную.</p></div>
+                    <div class="feature-item"><h4>⚡ Автосоздание сделок</h4><p>Сделка создаётся автоматически, поля заполняются, менеджер назначается по вашей логике.</p></div>
+                    <div class="feature-item"><h4>📊 Журнал заявок</h4><p>Веб-интерфейс: какие сообщения пришли, какие сделки созданы, время, ответственный.</p></div>
+                </div>
                 <div class="effect-box">
                     <h4>💰 Эффект в цифрах</h4>
                     <div class="effect-grid">
-                        <div class="effect-item">
-                            <span class="effect-value">1 300</span>
-                            <span class="effect-label">заявок в месяц (60/день)</span>
-                        </div>
-                        <div class="effect-item">
-                            <span class="effect-value">65 ч</span>
-                            <span class="effect-label">экономия времени</span>
-                        </div>
-                        <div class="effect-item">
-                            <span class="effect-value">39 000 ₽</span>
-                            <span class="effect-label">экономия в месяц</span>
-                        </div>
+                        <div class="effect-item"><span class="effect-value">60</span><span class="effect-label">заявок в день</span></div>
+                        <div class="effect-item"><span class="effect-value">65 ч</span><span class="effect-label">экономия времени/мес</span></div>
+                        <div class="effect-item"><span class="effect-value">39 000 ₽</span><span class="effect-label">экономия на рутине</span></div>
+                        <div class="effect-item"><span class="effect-value">60 000 ₽</span><span class="effect-label">спасённые заявки</span></div>
                     </div>
+                    <div class="effect-total"><div class="effect-total-value">≈ 100 000 ₽/мес</div><div class="effect-total-label">совокупный эффект решения 1</div></div>
                 </div>
-                
                 <div class="timing-price-grid">
-                    <div class="timing-box">
-                        <h4>⏱️ Сроки</h4>
-                        <div class="timing-value">7–10 дней</div>
-                    </div>
-                    <div class="price-box">
-                        <h4>💵 Стоимость</h4>
-                        <div class="price-value">$800</div>
-                        <div class="price-support">Поддержка: $50/мес</div>
-                    </div>
+                    <div class="timing-box"><h4>⏱️ Сроки</h4><div class="timing-value">7–10 дней</div></div>
+                    <div class="price-box"><h4>💵 Стоимость</h4><div class="price-value">$800</div><div class="price-support">Поддержка: $50/мес</div></div>
                 </div>
             </div>
             
-            <!-- Solution 2 -->
             <div class="solution-card">
-                <div class="solution-number">2</div>
-                <h3>Автоматический расчёт курса</h3>
-                <div class="subtitle">Система сама считает курс и выбирает лучшего партнёра</div>
-                
-                <div class="feature-grid">
-                    <div class="feature-item">
-                        <h4>📊 Нормализация таблицы</h4>
-                        <p>Берём вашу Excel-таблицу (города, партнёры, ставки) и приводим в единый формат, понятный системе.</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h4>🧮 Модуль расчёта</h4>
-                        <p>Формализуем логику: базовый курс биржи + ставка партнёра + ваша маржа = готовый курс для клиента.</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h4>🏆 Выбор лучшего партнёра</h4>
-                        <p>Для каждой заявки анализируем всех партнёров города, исключаем неактивных, выбираем самого выгодного. Можно ТОП-3.</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h4>🔗 Два способа работы</h4>
-                        <p>Кнопка в amoCRM, которая записывает результат в сделку. Или отдельная веб-панель: город → операция → сумма → лучший курс.</p>
+                <div class="solution-header">
+                    <div class="solution-number">2</div>
+                    <div class="solution-title">
+                        <h3>AI-квалификатор входящих лидов</h3>
+                        <p>Автоматический «первый менеджер», который работает 24/7</p>
                     </div>
                 </div>
-                
+                <div class="feature-grid">
+                    <div class="feature-item"><h4>💬 Сам начинает диалог</h4><p>AI первым связывается с клиентом и ведёт естественную беседу.</p></div>
+                    <div class="feature-item"><h4>📝 Собирает все данные</h4><p>Город, сумма, валюта, операция, кошелёк, ФИО, контакт — всё автоматически.</p></div>
+                    <div class="feature-item"><h4>✅ Проверяет корректность</h4><p>Валидирует данные и уточняет, если что-то не так.</p></div>
+                    <div class="feature-item"><h4>🔗 Создаёт сделку в CRM</h4><p>Автоматически создаёт сделку в amoCRM и назначает менеджера.</p></div>
+                </div>
                 <div class="effect-box">
                     <h4>💰 Эффект в цифрах</h4>
                     <div class="effect-grid">
-                        <div class="effect-item">
-                            <span class="effect-value">43 ч</span>
-                            <span class="effect-label">экономия времени</span>
-                        </div>
-                        <div class="effect-item">
-                            <span class="effect-value">26 000 ₽</span>
-                            <span class="effect-label">экономия времени/мес</span>
-                        </div>
-                        <div class="effect-item">
-                            <span class="effect-value">30 000+ ₽</span>
-                            <span class="effect-label">рост маржи/мес</span>
-                        </div>
+                        <div class="effect-item"><span class="effect-value">40</span><span class="effect-label">лидов в день</span></div>
+                        <div class="effect-item"><span class="effect-value">60 ч</span><span class="effect-label">экономия времени/мес</span></div>
+                        <div class="effect-item"><span class="effect-value">36 000 ₽</span><span class="effect-label">экономия на квалификации</span></div>
+                        <div class="effect-item"><span class="effect-value">+5%</span><span class="effect-label">рост конверсии</span></div>
                     </div>
-                    <p style="text-align: center; margin-top: 20px; color: var(--text-secondary);">
-                        При обороте 30 млн ₽ даже 0.1% оптимизации маржи = 30 000 ₽. При большем обороте — пропорционально больше.
-                    </p>
+                    <div class="effect-total"><div class="effect-total-value">≈ 120 000 ₽/мес</div><div class="effect-total-label">совокупный эффект решения 2</div></div>
                 </div>
-                
                 <div class="timing-price-grid">
-                    <div class="timing-box">
-                        <h4>⏱️ Сроки</h4>
-                        <div class="timing-value">10–14 дней</div>
+                    <div class="timing-box"><h4>⏱️ Сроки</h4><div class="timing-value">7–12 дней</div></div>
+                    <div class="price-box"><h4>💵 Стоимость</h4><div class="price-value">$1 000</div><div class="price-support">Поддержка: $100/мес</div></div>
+                </div>
+            </div>
+            
+            <div class="solution-card">
+                <div class="solution-header">
+                    <div class="solution-number">3</div>
+                    <div class="solution-title">
+                        <h3>Автоматический расчёт курса</h3>
+                        <p>Система сама считает курс и выбирает лучшего партнёра</p>
                     </div>
-                    <div class="price-box">
-                        <h4>💵 Стоимость</h4>
-                        <div class="price-value">$1 200</div>
-                        <div class="price-support">Поддержка: $50/мес</div>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-item"><h4>📊 Разбирает таблицу ставок</h4><p>Автоматически парсит вашу Excel-таблицу с партнёрами и их ставками.</p></div>
+                    <div class="feature-item"><h4>🧮 Считает курс</h4><p>Формула: биржа + ставка партнёра + ваша маржа = готовый курс для клиента.</p></div>
+                    <div class="feature-item"><h4>🏆 Выбирает лучшего партнёра</h4><p>По городу и направлению автоматически находит оптимальный вариант.</p></div>
+                    <div class="feature-item"><h4>🔗 Два способа работы</h4><p>Кнопка в amoCRM или отдельная веб-панель. Менеджеру остаётся подтвердить.</p></div>
+                </div>
+                <div class="effect-box">
+                    <h4>💰 Эффект в цифрах</h4>
+                    <div class="effect-grid">
+                        <div class="effect-item"><span class="effect-value">1 300</span><span class="effect-label">заявок в месяц</span></div>
+                        <div class="effect-item"><span class="effect-value">43 ч</span><span class="effect-label">экономия времени/мес</span></div>
+                        <div class="effect-item"><span class="effect-value">26 000 ₽</span><span class="effect-label">экономия на расчётах</span></div>
+                        <div class="effect-item"><span class="effect-value">+0.1%</span><span class="effect-label">оптимизация маржи</span></div>
                     </div>
+                    <div class="effect-total"><div class="effect-total-value">≈ 50–70 000 ₽/мес</div><div class="effect-total-label">совокупный эффект решения 3</div></div>
+                </div>
+                <div class="timing-price-grid">
+                    <div class="timing-box"><h4>⏱️ Сроки</h4><div class="timing-value">10–14 дней</div></div>
+                    <div class="price-box"><h4>💵 Стоимость</h4><div class="price-value">$1 000</div><div class="price-support">Поддержка: $50/мес</div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Package -->
     <section>
         <div class="container">
             <h2>Выгоднее вместе</h2>
-            
             <div class="package-card">
                 <div class="package-badge">🎁 Пакетное предложение</div>
-                <h3>Обе задачи под ключ</h3>
-                
+                <h3>Все три решения под ключ</h3>
                 <div class="package-benefits">
-                    <div class="package-benefit">
-                        <span>✓</span> Часть инфраструктуры используется повторно
-                    </div>
-                    <div class="package-benefit">
-                        <span>✓</span> Работы ведутся параллельно
-                    </div>
-                    <div class="package-benefit">
-                        <span>✓</span> Единая точка контроля
-                    </div>
+                    <div class="package-benefit"><span>✓</span> Инфраструктура используется повторно</div>
+                    <div class="package-benefit"><span>✓</span> Сроки сокращаются</div>
+                    <div class="package-benefit"><span>✓</span> Единая точка контроля</div>
                 </div>
-                
                 <div class="package-price-grid">
-                    <div class="package-price-item old">
-                        <div class="label">Отдельно</div>
-                        <div class="amount">$2 000</div>
-                    </div>
-                    <div class="package-price-item new">
-                        <div class="label">Пакетом</div>
-                        <div class="amount">$1 500</div>
-                    </div>
-                    <div class="package-price-item save">
-                        <div class="label">Экономия</div>
-                        <div class="amount">$500</div>
-                    </div>
+                    <div class="package-price-item old"><div class="label">Отдельно</div><div class="amount">$2 800</div></div>
+                    <div class="package-price-item new"><div class="label">Пакетом</div><div class="amount">$2 500</div></div>
+                    <div class="package-price-item save"><div class="label">Экономия</div><div class="amount">$300</div></div>
                 </div>
-                
-                <div class="package-support">
-                    <span>Поддержка обоих решений:</span> <strong>$50/мес</strong> <span>(вместо $100)</span>
-                </div>
-                
-                <div class="timeline-section" style="margin-top: 40px;">
-                    <h3>Сроки: до 3 недель</h3>
-                    <div class="timeline-grid">
-                        <div class="timeline-item">
-                            <h4>Неделя 1</h4>
-                            <p>Подключение бота, согласование шаблонов, аналитика формул</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h4>Неделя 2</h4>
-                            <p>Разработка парсера, интеграции, модуля расчёта курса</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h4>Неделя 3</h4>
-                            <p>Тестирование, правки, запуск в работу</p>
-                        </div>
-                    </div>
-                </div>
+                <div class="package-support"><span>Поддержка всех решений:</span> <strong>$100/мес</strong> <span>(вместо $200)</span></div>
             </div>
         </div>
     </section>
 
-    <!-- Cases -->
+    <section style="background: var(--dark-card); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <h2>Итого: что получаете</h2>
+            <div class="summary-table">
+                <div class="summary-row header"><div>Решение</div><div>Стоимость</div><div>Сроки</div><div>Эффект/мес</div></div>
+                <div class="summary-row"><div class="task-name">1. Telegram → amoCRM</div><div class="task-price">$800</div><div class="task-time">7–10 дней</div><div class="task-effect">≈ 100 000 ₽</div></div>
+                <div class="summary-row"><div class="task-name">2. AI-квалификатор лидов</div><div class="task-price">$1 000</div><div class="task-time">7–12 дней</div><div class="task-effect">≈ 120 000 ₽</div></div>
+                <div class="summary-row"><div class="task-name">3. Расчёт курса и партнёра</div><div class="task-price">$1 000</div><div class="task-time">10–14 дней</div><div class="task-effect">≈ 50–70 000 ₽</div></div>
+                <div class="summary-row total"><div class="task-name">🎁 Пакетом</div><div class="task-price">$2 500</div><div class="task-time">3–4 недели</div><div class="task-effect">≈ 270–290 000 ₽</div></div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; color: var(--success); font-size: 1.2rem; font-weight: 600;">✓ Окупаемость пакета: меньше 1 месяца</p>
+        </div>
+    </section>
+
     <section>
         <div class="container">
             <h2>Наши кейсы</h2>
             <p class="section-subtitle">Посмотрите, как AI помогает бизнесу в разных нишах</p>
-            
             <div class="cases-grid">
                 <div class="case-card">
                     <div class="case-badge">Крипто</div>
                     <h3>AI-трейдер для арбитража</h3>
                     <p class="industry">Автоматизация поиска арбитражных окон</p>
                     <div class="case-metrics">
-                        <div class="metric">
-                            <span class="metric-value">×3</span>
-                            <span class="metric-label">рост отработанных ситуаций</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">+45%</span>
-                            <span class="metric-label">доля прибыльных сделок</span>
-                        </div>
+                        <div class="metric"><span class="metric-value">×3</span><span class="metric-label">рост отработанных ситуаций</span></div>
+                        <div class="metric"><span class="metric-value">+45%</span><span class="metric-label">доля прибыльных сделок</span></div>
                     </div>
                     <p class="case-description">AI-бот анализирует биржи 24/7, считает реальную прибыль с учетом комиссий и управляется через обычный чат в Telegram.</p>
-                    <a href="https://webnostra.pro/ai/cases/crypto-bot" class="case-btn" target="_blank">
-                        Смотреть кейс →
-                    </a>
+                    <a href="https://webnostra.pro/ai/cases/crypto-bot" class="case-btn" target="_blank">Смотреть кейс →</a>
                 </div>
-
                 <div class="case-card">
                     <div class="case-badge">Образование</div>
                     <h3>AI-администратор для школы вокала</h3>
                     <p class="industry">Автоматизация записи на занятия</p>
                     <div class="case-metrics">
-                        <div class="metric">
-                            <span class="metric-value">85%</span>
-                            <span class="metric-label">диалогов закрывает бот</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">+40%</span>
-                            <span class="metric-label">пробных уроков</span>
-                        </div>
+                        <div class="metric"><span class="metric-value">85%</span><span class="metric-label">диалогов закрывает бот</span></div>
+                        <div class="metric"><span class="metric-value">+40%</span><span class="metric-label">пробных уроков</span></div>
                     </div>
                     <p class="case-description">Автоматизация обработки обращений в мессенджерах. Бот записывает на занятия и напоминает без участия администраторов.</p>
-                    <a href="https://webnostra.pro/ai/cases/ai-admin" class="case-btn" target="_blank">
-                        Смотреть кейс →
-                    </a>
+                    <a href="https://webnostra.pro/ai/cases/ai-admin" class="case-btn" target="_blank">Смотреть кейс →</a>
                 </div>
-
                 <div class="case-card">
                     <div class="case-badge">Медицина</div>
                     <h3>AI-квалификатор для медцентра</h3>
                     <p class="industry">Возврат конверсии в запись</p>
                     <div class="case-metrics">
-                        <div class="metric">
-                            <span class="metric-value">58-62%</span>
-                            <span class="metric-label">конверсия (было 30%)</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">×2</span>
-                            <span class="metric-label">рост конверсии</span>
-                        </div>
+                        <div class="metric"><span class="metric-value">58-62%</span><span class="metric-label">конверсия (было 30%)</span></div>
+                        <div class="metric"><span class="metric-value">×2</span><span class="metric-label">рост конверсии</span></div>
                     </div>
                     <p class="case-description">Возврат конверсии с помощью AI-квалификатора с интеграцией в Bitrix24 и Roistat. Полная автоматизация обработки лидов.</p>
-                    <a href="https://webnostra.pro/ai/cases/ai-medic" class="case-btn" target="_blank">
-                        Смотреть кейс →
-                    </a>
+                    <a href="https://webnostra.pro/ai/cases/ai-medic" class="case-btn" target="_blank">Смотреть кейс →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Summary -->
-    <section style="background: var(--dark-card); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
-        <div class="container">
-            <h2>Итого: что получаете</h2>
-            
-            <div class="summary-table">
-                <div class="summary-row header">
-                    <div>Решение</div>
-                    <div>Стоимость</div>
-                    <div>Сроки</div>
-                    <div>Эффект/мес</div>
-                </div>
-                
-                <div class="summary-row">
-                    <div class="task-name">Telegram → amoCRM</div>
-                    <div class="task-price">$800</div>
-                    <div class="task-time">7–10 дней</div>
-                    <div class="task-effect">≈ 39 000 ₽</div>
-                </div>
-                
-                <div class="summary-row">
-                    <div class="task-name">Автоматический расчёт курса</div>
-                    <div class="task-price">$1 200</div>
-                    <div class="task-time">10–14 дней</div>
-                    <div class="task-effect">≈ 50–70 000 ₽</div>
-                </div>
-                
-                <div class="summary-row total">
-                    <div class="task-name">🎁 Пакетом</div>
-                    <div class="task-price">$1 500</div>
-                    <div class="task-time">до 3 недель</div>
-                    <div class="task-effect">≈ 90–110 000 ₽</div>
-                </div>
-            </div>
-            
-            <p style="text-align: center; margin-top: 30px; color: var(--success); font-size: 1.2rem; font-weight: 600;">
-                ✓ Окупаемость пакета: 1–2 месяца при текущей нагрузке
-            </p>
-        </div>
-    </section>
-
-    <!-- CTA -->
     <section class="cta-section">
         <div class="container">
             <div class="cta-box">
                 <h2>Готовы обсудить детали?</h2>
                 <p>Ответим на вопросы и начнём внедрение</p>
                 <div class="cta-buttons">
-                    <a href="https://t.me/magosh_al" class="cta-btn" target="_blank">
-                        ✈️ Написать в Telegram
-                    </a>
-                    <a href="https://wa.me/77066671426" class="cta-btn" target="_blank">
-                        📱 Написать в WhatsApp
-                    </a>
+                    <a href="https://t.me/magosh_al" class="cta-btn" target="_blank">✈️ Написать в Telegram</a>
+                    <a href="https://wa.me/77066671426" class="cta-btn" target="_blank">📱 Написать в WhatsApp</a>
                 </div>
             </div>
         </div>
