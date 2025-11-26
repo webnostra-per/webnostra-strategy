@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боевой План Яндекс Директ | CarExpress - Авто из Грузии и США</title>
+    <style>
+* {margin:0;padding:0;box-sizing:border-box}
+:root {
+    --red:#FF3333;
+    --dark-red:#CC0000;
+    --yellow:#FFDB4D;
+    --yellow-hover:#FFC700;
+    --text:#1F2937;
+    --gray:#6B7280;
+    --bg:#F9FAFB;
+    --border:#E5E7EB;
+    --shadow-sm:0 2px 8px rgba(0,0,0,.04);
+    --shadow-md:0 4px 16px rgba(0,0,0,.08);
+    --shadow-lg:0 8px 32px rgba(0,0,0,.12);
+    --shadow-red:0 8px 30px rgba(255,51,51,.15);
+    --gradient-red:linear-gradient(135deg,var(--red) 0%,var(--dark-red) 100%);
+    --gradient-yellow:linear-gradient(135deg,var(--yellow) 0%,var(--yellow-hover) 100%);
+}
+
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--text);line-height:1.6;overflow-x:hidden;max-width:100%;position:relative}
+
+.header{
+    position:sticky;
+    top:0;
+    background:rgba(255,255,255,.98);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    padding:1rem 0;
+    z-index:1000;
+    box-shadow:var(--shadow-sm);
+}
+.header-container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 2rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:1rem;
+}
+.logo{
+    font-size:1.5rem;
+    font-weight:800;
+    background:var(--gradient-red);
+    background-clip:text;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+.header-actions{
+    display:flex;
+    gap:1rem;
+    align-items:center;
+    flex-wrap:wrap;
+}
+.btn{
+    padding:.875rem 1.75rem;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:700;
+    transition:all .3s;
+    display:inline-block;
+    border:none;
+    cursor:pointer;
+    font-size:.95rem;
+    text-align:center;
+}
+.btn-primary{
+    background:var(--gradient-yellow);
+    color:var(--text);
+    box-shadow:0 4px 12px rgba(255,219,77,.3);
+}
+.btn-primary:hover{
+    background:var(--yellow-hover);
+    transform:translateY(-2px);
+    box-shadow:0 6px 16px rgba(255,219,77,.4);
+}
+.btn-secondary{
+    background:var(--gradient-red);
+    color:#fff;
+    box-shadow:0 4px 12px rgba(255,51,51,.3);
+}
+.btn-secondary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 16px rgba(255,51,51,.4);
+}
+
+.hero{padding:3rem 2rem 2rem !important;
+    background:var(--gradient-red);
+    color:#fff;
+    padding:4rem 2rem 3rem;
+    position:relative;
+    overflow:hidden;
+}
+.hero::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;bottom:0;
+    background:radial-gradient(circle at 20% 50%,rgba(255,255,255,.1) 0%,transparent 50%),
+               radial-gradient(circle at 80% 80%,rgba(255,219,77,.1) 0%,transparent 50%);
+    opacity:.6;
+}
+.hero-container{
+    max-width:1200px;
+    margin:0 auto;
+    position:relative;
+    z-index:1;
+}
+.hero h1{
+    font-size:3rem;
+    font-weight:800;
+    line-height:1.2;
+    margin-bottom:1rem;
+    text-shadow:0 2px 4px rgba(0,0,0,.2);
+}
+.hero-subtitle{
+    font-size:1.15rem;
+    opacity:.95;
+    margin-bottom:2rem;
+    max-width:800px;
+}
+.hero-info{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:1.5rem;
+    margin-top:2rem;
+}
+.info-item{
+    background:rgba(255,255,255,.1);
+    backdrop-filter:blur(10px);
+    padding:1.25rem;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.2);
+}
+.info-label{
+    font-size:.85rem;
+    opacity:.85;
+    margin-bottom:.25rem;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+.info-value{
+    font-size:1.3rem;
+    font-weight:800;
+}
+
+section{padding:1.5rem 2rem;margin:0}
+.container{
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.collapsible-section{
+    background:#fff;
+    border:2px solid var(--border);
+    border-radius:16px;
+    margin-bottom:.5rem;
+    overflow:hidden;
+    transition:all .3s;
+}
+.collapsible-section:hover{
+    border-color:var(--red);
+    box-shadow:var(--shadow-sm);
+}
+.collapsible-section.active{
+    border-color:var(--red);
+    box-shadow:var(--shadow-md);
+}
+.collapsible-header{
+    padding:1.5rem 2rem;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--bg);
+    transition:background .3s;
+    user-select:none;
+}
+.collapsible-header:hover{
+    background:rgba(255,51,51,.05);
+}
+.collapsible-header h3{
+    font-size:1.5rem;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    gap:.75rem;
+}
+.section-icon{
+    font-size:1.75rem;
+}
+.toggle-icon{
+    font-size:1.2rem;
+    transition:transform .3s;
+    color:var(--red);
+}
+.collapsible-section.active .toggle-icon{
+    transform:rotate(180deg);
+}
+.collapsible-content{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .5s ease-out;
+}
+.collapsible-section.active .collapsible-content{
+    max-height:10000px;
+    transition:max-height .8s ease-in;
+}
+.collapsible-inner{
+    padding:2rem;
+}
+
+.cards-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem;
+    margin:2rem 0;
+}
+.card{
+    background:#fff;
+    border:2px solid var(--border);
+    border-radius:12px;
+    padding:1.5rem;
+    transition:all .3s;
+}
+.card:hover{
+    border-color:var(--red);
+    box-shadow:var(--shadow-md);
+    transform:translateY(-4px);
+}
+.card h4{
+    font-size:1.2rem;
+    font-weight:800;
+    margin-bottom:.75rem;
+    color:var(--text);
+}
+.card p{
+    color:var(--gray);
+    line-height:1.7;
+}
+
+.feature-list{
+    list-style:none;
+    padding:0;
+}
+.feature-list li{
+    padding:1rem 0;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:flex-start;
+    gap:1rem;
+}
+.feature-list li:last-child{
+    border-bottom:none;
+}
+.feature-icon{
+    font-size:1.5rem;
+    min-width:2rem;
+}
+.feature-content h5{
+    font-size:1.1rem;
+    font-weight:700;
+    margin-bottom:.5rem;
+}
+.feature-content p{
+    color:var(--gray);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:2rem 0;
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:var(--shadow-sm);
+}
+th{
+    background:var(--gradient-red);
+    color:#fff;
+    padding:1rem;
+    text-align:left;
+    font-weight:700;
+    font-size:.95rem;
+}
+td{
+    padding:1rem;
+    border-bottom:1px solid var(--border);
+}
+tr:last-child td{
+    border-bottom:none;
+}
+tr:hover{
+    background:var(--bg);
+}
+
+.highlight-box{
+    background:rgba(255,51,51,.05);
+    padding:2rem;
+    border-radius:12px;
+    margin:2rem 0;
+    border-left:4px solid var(--red);
+}
+.highlight-box h4{
+    font-size:1.2rem;
+    font-weight:800;
+    margin-bottom:1rem;
+    color:var(--red);
+}
+
+.timeline{
+    position:relative;
+    padding-left:2rem;
+    margin:2rem 0;
+}
+.timeline::before{
+    content:'';
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:3px;
+    background:var(--gradient-red);
+}
+.timeline-item{
+    position:relative;
+    padding-bottom:2rem;
+}
+.timeline-item::before{
+    content:'';
+    position:absolute;
+    left:-2.5rem;
+    top:.5rem;
+    width:1.5rem;
+    height:1.5rem;
+    border-radius:50%;
+    background:var(--red);
+    border:4px solid #fff;
+    box-shadow:0 0 0 3px rgba(255,51,51,.2);
+}
+.timeline-day{
+    font-size:.85rem;
+    font-weight:700;
+    color:var(--red);
+    text-transform:uppercase;
+    margin-bottom:.5rem;
+}
+.timeline-content h4{
+    font-size:1.1rem;
+    font-weight:700;
+    margin-bottom:.5rem;
+}
+.timeline-content p{
+    color:var(--gray);
+}
+
+.pricing-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:2rem;
+    margin:2rem 0;
+}
+.pricing-card{
+    background:#fff;
+    border:2px solid var(--border);
+    border-radius:16px;
+    padding:2rem;
+    text-align:center;
+    transition:all .3s;
+    position:relative;
+    overflow:hidden;
+}
+.pricing-card::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:4px;
+    background:var(--gradient-red);
+}
+.pricing-card:hover{
+    border-color:var(--red);
+    box-shadow:var(--shadow-lg);
+    transform:translateY(-8px);
+}
+.pricing-name{
+    font-size:1.5rem;
+    font-weight:800;
+    margin-bottom:.5rem;
+}
+.pricing-price{
+    font-size:2.5rem;
+    font-weight:900;
+    color:var(--red);
+    margin-bottom:1.5rem;
+}
+.pricing-features{
+    list-style:none;
+    padding:0;
+    margin:2rem 0;
+    text-align:left;
+}
+.pricing-features li{
+    padding:.75rem 0;
+    padding-left:1.5rem;
+    position:relative;
+    color:var(--gray);
+}
+.pricing-features li::before{
+    content:'✓';
+    position:absolute;
+    left:0;
+    color:var(--red);
+    font-weight:700;
+}
+
+.ai-section{
+    background:linear-gradient(135deg,rgba(255,51,51,.05) 0%,rgba(255,219,77,.05) 100%);
+    padding:3rem 2rem;
+    margin:2rem 0;
+    border-radius:16px;
+}
+.ai-header{
+    text-align:center;
+    margin-bottom:3rem;
+}
+.ai-header h3{
+    font-size:2.5rem;
+    font-weight:900;
+    margin-bottom:1rem;
+    background:var(--gradient-red);
+    background-clip:text;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+.ai-services{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem;
+}
+.ai-service-card{
+    background:#fff;
+    border:2px solid var(--border);
+    border-radius:12px;
+    padding:1.5rem;
+    transition:all .3s;
+}
+.ai-service-card:hover{
+    border-color:var(--red);
+    box-shadow:var(--shadow-md);
+    transform:translateY(-4px);
+}
+.ai-service-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:1rem;
+    gap:1rem;
+}
+.ai-service-title{
+    font-size:1.1rem;
+    font-weight:800;
+    color:var(--text);
+}
+.ai-service-price{
+    font-size:.9rem;
+    font-weight:700;
+    color:var(--red);
+    background:rgba(255,51,51,.1);
+    padding:.5rem 1rem;
+    border-radius:8px;
+    white-space:nowrap;
+}
+.ai-service-desc{
+    color:var(--gray);
+    margin-bottom:1.5rem;
+    line-height:1.6;
+}
+
+.contact-section{
+    background:var(--gradient-red);
+    color:#fff;
+    padding:4rem 2rem;
+    text-align:center;
+    margin-top:2rem;
+}
+.contact-section h2{
+    font-size:2.5rem;
+    font-weight:900;
+    margin-bottom:1rem;
+}
+.contact-section p{
+    font-size:1.2rem;
+    opacity:.9;
+    margin-bottom:2rem;
+}
+.contact-buttons{
+    display:flex;
+    gap:1rem;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+.contact-btn{
+    background:rgba(255,255,255,.2);
+    backdrop-filter:blur(10px);
+    color:#fff;
+    padding:1rem 2rem;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:700;
+    border:2px solid rgba(255,255,255,.3);
+    transition:all .3s;
+}
+.contact-btn:hover{
+    background:rgba(255,255,255,.3);
+    border-color:rgba(255,255,255,.5);
+    transform:translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .hero h1{font-size:2rem}
+    .section-title{font-size:1.75rem}
+    .cards-grid{grid-template-columns:1fr}
+    .pricing-grid{grid-template-columns:1fr}
+    .hero-info{grid-template-columns:1fr}
+    .collapsible-header h3{font-size:1.2rem}
+    .collapsible-inner{padding:1.5rem}
+}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">🚗 CarExpress Яндекс Директ</div>
+            <div class="header-actions">
+                <a href="https://webnostra.pro/cases" class="btn btn-secondary" target="_blank">📊 Кейсы</a>
+                <a href="#contact" class="btn btn-primary">Связаться</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="hero-container">
+            <h1>Боевой План Яндекс Директ<br>CarExpress.ge</h1>
+            <p class="hero-subtitle">Лидогенерация на подбор и доставку автомобилей из Грузии и США в РФ</p>
+            <div class="hero-info">
+                <div class="info-item">
+                    <div class="info-label">Цель</div>
+                    <div class="info-value">Лиды в WhatsApp</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Бюджет</div>
+                    <div class="info-value">$5000 / 400к ₽</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Целевая аудитория</div>
+                    <div class="info-value">Перекупы, Автосалоны, Частники</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Каналы</div>
+                    <div class="info-value">Поиск + РСЯ</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="container">
+            <p style="text-align:center;margin-bottom:2rem">
+                <a href="https://webnostra.pro/cases" style="color:var(--red);font-weight:700;font-size:1.1rem;text-decoration:none">📊 Посмотреть кейсы</a>
+            </p>
+
+            <div class="collapsible-section active">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">🎯</span> ОБЩАЯ СТРАТЕГИЯ</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <div class="highlight-box">
+                            <h4>Проект: CarExpress.ge</h4>
+                            <p style="color:var(--gray);line-height:1.8">
+                                <strong>Цель:</strong> лиды в WhatsApp / форму заявки на подбор и доставку авто из Грузии и США<br>
+                                <strong>Бюджет:</strong> $5000 (примерно 400 тыс. руб.)<br>
+                                <strong>Платформа:</strong> Яндекс Директ (Поиск + РСЯ)<br>
+                                <strong>ЦА:</strong> перекупы, автосалоны, частные покупатели из РФ<br>
+                                <strong>Сайт:</strong> <a href="https://www.carexpress.ge/" target="_blank" style="color:var(--red)">www.carexpress.ge</a>
+                            </p>
+                        </div>
+
+                        <h4 style="font-size:1.5rem;font-weight:800;margin:2rem 0 1rem">Трафиковая модель</h4>
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h4>🔍 Поиск (горячие)</h4>
+                                <p>Основной канал лидов. Горячие намерения, точные ключи, быстрая конверсия</p>
+                            </div>
+                            <div class="card">
+                                <h4>📱 РСЯ (широкие)</h4>
+                                <p>Массовый охват + тест креативов. Прогрев аудитории под ретаргетинг</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">🧪</span> СЕГМЕНТАЦИЯ ТЕСТОВ</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <h4 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem">Тест офферов (5 вариантов)</h4>
+                        <ul class="feature-list">
+                            <li>
+                                <span class="feature-icon">1️⃣</span>
+                                <div class="feature-content">
+                                    <h5>Авто из Грузии под ключ за 12-20 дней</h5>
+                                    <p>Акцент на скорость и полный сервис</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">2️⃣</span>
+                                <div class="feature-content">
+                                    <h5>Авто из США с проверкой, VIN, полным видео-осмотром</h5>
+                                    <p>Акцент на прозрачность и безопасность сделки</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">3️⃣</span>
+                                <div class="feature-content">
+                                    <h5>Экономия до 30% от цен РФ + прозрачная сделка</h5>
+                                    <p>Прямой расчет выгоды для клиента</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">4️⃣</span>
+                                <div class="feature-content">
+                                    <h5>Для перекупов и автосалонов — поставки авто оптом</h5>
+                                    <p>Отдельное УТП для B2B сегмента</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">5️⃣</span>
+                                <div class="feature-content">
+                                    <h5>Проверим авто, покажем видео, оформим, доставим</h5>
+                                    <p>Подчеркивание полного цикла услуг</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <h4 style="font-size:1.5rem;font-weight:800;margin:2rem 0 1rem">Тест форматов</h4>
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h4>🔍 Поиск</h4>
+                                <p>Горячие намерения, точные ключевые фразы, быстрая конверсия в заявку</p>
+                            </div>
+                            <div class="card">
+                                <h4>📱 РСЯ</h4>
+                                <p>Массовый охват + тест креативов (статика, анимация, короткие объявления)</p>
+                            </div>
+                        </div>
+
+                        <h4 style="font-size:1.5rem;font-weight:800;margin:2rem 0 1rem">5 сильных месседжей</h4>
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h4>💎 Ценность</h4>
+                                <p>Проверка, VIN-отчет, видео-осмотр, прозрачность на каждом этапе</p>
+                            </div>
+                            <div class="card">
+                                <h4>🛡️ Отстройка</h4>
+                                <p>Не дешевые посредники, а официальный сервис</p>
+                            </div>
+                            <div class="card">
+                                <h4>⚡ Экономия времени/денег</h4>
+                                <p>Делаем все за клиента — полный цикл под ключ</p>
+                            </div>
+                            <div class="card">
+                                <h4>📊 Измеримость</h4>
+                                <p>Финальная стоимость известна заранее, без скрытых платежей</p>
+                            </div>
+                            <div class="card">
+                                <h4>📱 Понятная ступень</h4>
+                                <p>WhatsApp → расчет за 5 минут → подбор → доставка</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">🔍</span> СТРУКТУРА ТРАФИКА: ПОИСК</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <h4 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem">Поиск — основной канал лидов</h4>
+                        
+                        <div class="highlight-box">
+                            <h4>Горячие ключи</h4>
+                            <ul style="list-style:none;padding:0;margin-top:1rem">
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">▪</span>
+                                    авто из грузии
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">▪</span>
+                                    авто из сша
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">▪</span>
+                                    привезти авто из грузии
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">▪</span>
+                                    доставка авто в россию
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">▪</span>
+                                    купить авто грузия россия
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">▪</span>
+                                    подбор авто грузия
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">▪</span>
+                                    купить автомобиль америка россия
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">▪</span>
+                                    авто аукционы сша доставка
+                                </li>
+                            </ul>
+                        </div>
+
+                        <h4 style="font-size:1.5rem;font-weight:800;margin:2rem 0 1rem">Типы групп</h4>
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h4>🎯 Точные горячие</h4>
+                                <p>Точное вхождение ключевых фраз. Максимальная релевантность запросу</p>
+                            </div>
+                            <div class="card">
+                                <h4>📝 Фразовые горячие</h4>
+                                <p>Фразовое соответствие. Расширенный охват горячей аудитории</p>
+                            </div>
+                            <div class="card">
+                                <h4>🏷️ Брендовые</h4>
+                                <p>Если есть брендовый спрос на CarExpress или конкурентов</p>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box" style="margin-top:2rem">
+                            <h4>Минус-слова</h4>
+                            <p style="color:var(--gray);margin-top:1rem">
+                                вакансия, работа, бесплатно, дешево, фото, форум, отзывы, тюнинг, разбор, доставка еды, аренда, штрафы
+                            </p>
+                        </div>
+
+                        <div class="highlight-box">
+                            <h4>Цель конверсии</h4>
+                            <p style="color:var(--gray);margin-top:1rem">
+                                <strong>Основное:</strong> начало чата WhatsApp<br>
+                                <strong>Дополнительное:</strong> лид-форма на сайте
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">📱</span> СТРУКТУРА ТРАФИКА: РСЯ</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <h4 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem">РСЯ — охват + тест креативов</h4>
+                        
+                        <p style="color:var(--gray);margin-bottom:2rem;font-size:1.05rem">
+                            Запускаем 2-3 кампании с разными сюжетами для теста восприятия аудиторией
+                        </p>
+
+                        <h4 style="font-size:1.3rem;font-weight:800;margin-bottom:1rem">Креативные сюжеты</h4>
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h4>💰 Экономия</h4>
+                                <p>«До 30% от РФ» — прямое сравнение цен, калькулятор выгоды</p>
+                            </div>
+                            <div class="card">
+                                <h4>🚚 Процесс доставки</h4>
+                                <p>Визуализация этапов: подбор → проверка → доставка</p>
+                            </div>
+                            <div class="card">
+                                <h4>📹 VIN, видео-осмотр</h4>
+                                <p>Прозрачность сделки, реальные отчеты, видео авто</p>
+                            </div>
+                            <div class="card">
+                                <h4>🔑 Подбор под ключ</h4>
+                                <p>Полный цикл услуг, делаем все за клиента</p>
+                            </div>
+                        </div>
+
+                        <h4 style="font-size:1.3rem;font-weight:800;margin:2rem 0 1rem">Таргетинги РСЯ</h4>
+                        <ul class="feature-list">
+                            <li>
+                                <span class="feature-icon">🎯</span>
+                                <div class="feature-content">
+                                    <h5>Интересы: Авто</h5>
+                                    <p>Авто, покупка авто, автомобили из-за границы</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">🎯</span>
+                                <div class="feature-content">
+                                    <h5>Интерес к аукционам</h5>
+                                    <p>Copart, IAAI — американские автоаукционы</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">🎯</span>
+                                <div class="feature-content">
+                                    <h5>Географический интерес</h5>
+                                    <p>Интерес к Грузии / США, международные покупки</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">🎯</span>
+                                <div class="feature-content">
+                                    <h5>B2B аудитория</h5>
+                                    <p>Перекупы, авто-салоны (поведенческие сигналы)</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="highlight-box" style="margin-top:2rem">
+                            <h4>Форматы РСЯ</h4>
+                            <ul style="list-style:none;padding:0;margin-top:1rem">
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">▪</span>
+                                    Статика 1080×607 / 240×400
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">▪</span>
+                                    Анимация (GIF, видео)
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">▪</span>
+                                    Короткие текстовые объявления
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">🔄</span> РЕТАРГЕТИНГ</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <h4 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem">Аудитории для ретаргетинга</h4>
+                        
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h4>🔥 Посетители 7 дней</h4>
+                                <p>Самая горячая аудитория. Были на сайте за последнюю неделю</p>
+                            </div>
+                            <div class="card">
+                                <h4>⚡ Посетители 14 дней</h4>
+                                <p>Теплая аудитория. Знают продукт, нужен догрев</p>
+                            </div>
+                            <div class="card">
+                                <h4>💭 Посетители 30 дней</h4>
+                                <p>Холодная аудитория. Нужны новые аргументы</p>
+                            </div>
+                            <div class="card">
+                                <h4>📱 Открыли WhatsApp</h4>
+                                <p>Начали диалог, но не завершили. Максимальный приоритет</p>
+                            </div>
+                            <div class="card">
+                                <h4>📝 Начали форму заявки</h4>
+                                <p>Начали заполнять форму, но не отправили. Горячие</p>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box" style="margin-top:2rem">
+                            <h4>Сообщения для ретаргетинга</h4>
+                            <ul style="list-style:none;padding:0;margin-top:1rem">
+                                <li style="padding:.7rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">1.</span>
+                                    «Успели проверить авто? Можем сделать видео-осмотр в течение 2 часов»
+                                </li>
+                                <li style="padding:.7rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">2.</span>
+                                    «Остались вопросы? Менеджер вышлет VIN-отчет»
+                                </li>
+                                <li style="padding:.7rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">3.</span>
+                                    «Сравним цену в РФ и Грузии на примере 3 авто»
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">📊</span> БЕНЧМАРК CPL И ПРОГНОЗ</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <div class="highlight-box">
+                            <h4>Средние ориентиры по нише</h4>
+                            <p style="color:var(--gray);line-height:1.8;margin-top:1rem">
+                                <strong>Поиск:</strong> CPL $10-$20<br>
+                                <strong>РСЯ:</strong> CPL $12-$25<br>
+                                <strong>Ожидаемая общая стоимость заявки:</strong> $7-$15 (при сильном оффере и WhatsApp входе)
+                            </p>
+                        </div>
+
+                        <p style="color:var(--gray);margin:2rem 0 1rem;font-size:1.05rem">
+                            Расчет CPL основан на нишах «авто из-за границы» в РФ с WhatsApp как точкой входа
+                        </p>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Бюджет</th>
+                                    <th>Ожидаемый CPL</th>
+                                    <th>Прогноз лидов</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>$500</strong></td>
+                                    <td>$7-$15</td>
+                                    <td>33-71 (среднее ~52)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>$1000</strong></td>
+                                    <td>$7-$15</td>
+                                    <td>66-142 (среднее ~104)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>$5000</strong></td>
+                                    <td>$7-$15</td>
+                                    <td>333-714 (среднее ~523)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4 style="font-size:1.5rem;font-weight:800;margin:2rem 0 1rem">Как держим и снижаем CPL</h4>
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h4>🎯 Оффер</h4>
+                                <p>Отдельные связки под частников, перекупов, автосалоны. Точное попадание в потребность</p>
+                            </div>
+                            <div class="card">
+                                <h4>📱 Мессенджеры</h4>
+                                <p>WhatsApp в 1 клик, минимум шагов, быстрый ответ менеджера</p>
+                            </div>
+                            <div class="card">
+                                <h4>🔄 Ретаргет</h4>
+                                <p>Исключения + регулярная чистка площадок + тест LAL на основе посетителей</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">📅</span> ТАЙМЛАЙН ЗАПУСКА</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <h4 style="font-size:1.5rem;font-weight:800;margin-bottom:2rem">Подготовка и запуск за 7 дней</h4>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-day">День 1</div>
+                                <div class="timeline-content">
+                                    <h4>Бриф и аудит</h4>
+                                    <p>Финальный бриф с клиентом, аудит сайта, проверка Метрики, настройка целей, доступы к кабинету</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-day">День 2</div>
+                                <div class="timeline-content">
+                                    <h4>Стратегия и семантика</h4>
+                                    <p>Финализация стратегии, сбор семантического ядра, кластеризация ключей</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-day">День 3-4</div>
+                                <div class="timeline-content">
+                                    <h4>Создание объявлений</h4>
+                                    <p>Написание текстов для Поиска, создание креативов для РСЯ (статика, анимация)</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-day">День 5</div>
+                                <div class="timeline-content">
+                                    <h4>Настройка кампаний</h4>
+                                    <p>Создание всех кампаний в Яндекс Директ, настройка ставок, аудиторий, финальная проверка</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-day">День 6</div>
+                                <div class="timeline-content">
+                                    <h4>Согласование и отправка на модерацию</h4>
+                                    <p>Показываем структуру клиенту, вносим правки, отправляем все на модерацию Яндекса</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-day">День 7</div>
+                                <div class="timeline-content">
+                                    <h4>🚀 ЗАПУСК</h4>
+                                    <p>Проверка прохождения модерации, активация кампаний, настройка мониторинга, первые отчеты в конце дня</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box" style="margin-top:2rem">
+                            <h4>Оптимизация после запуска</h4>
+                            <ul style="list-style:none;padding:0;margin-top:1rem">
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">▪</span>
+                                    <strong>Дни 8-10:</strong> Мониторинг каждые 6 часов, первые отключения слабых связок
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">▪</span>
+                                    <strong>Дни 11-14:</strong> Анализ CPL по сегментам, масштабирование лучших, запуск ретаргета
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red)">▪</span>
+                                    <strong>Неделя 3+:</strong> Полноценная оптимизация, новые креативы для РСЯ, расширение семантики
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">💰</span> ТАРИФЫ СОТРУДНИЧЕСТВА</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <div class="pricing-grid">
+                            <div class="pricing-card">
+                                <div class="pricing-name">СТАРТ</div>
+                                <div class="pricing-price">$450</div>
+                                <p style="color:var(--gray);margin-bottom:.5rem;font-size:.9rem">Быстрый запуск рекламы</p>
+                                <p style="color:var(--gray);margin-bottom:2rem;font-size:.85rem">Рекламный бюджет: от $500</p>
+                                <p style="font-size:.95rem;font-weight:700;margin-bottom:1rem">Цель: Тест ниши и быстрые заявки</p>
+                                <ul class="pricing-features">
+                                    <li>Анализ ниши и конкурентов</li>
+                                    <li>Тексты, креативы, сценарии</li>
+                                    <li>Запуск рекламы (Meta, Яндекс, Google, ВК, TG ads)</li>
+                                    <li>Подключение аналитики и пикселей</li>
+                                    <li>Настройка медиаплана</li>
+                                    <li>Оптимизация под первые результаты</li>
+                                </ul>
+                                <p style="margin-top:1.5rem;padding-top:1.5rem;border-top:2px solid var(--border);font-weight:700;color:var(--text)">Результат:</p>
+                                <p style="color:var(--gray);margin-top:.5rem">Первые целевые лиды, прогноз CPL</p>
+                                <p style="margin-top:1rem;padding:.75rem;background:rgba(220,38,38,.1);border-radius:8px;font-size:.9rem;font-weight:600;color:var(--red)">
+                                    ✓ Гарантия: Возврат денег, если нет заявок
+                                </p>
+                            </div>
+
+                            <div class="pricing-card" style="border:3px solid var(--red);position:relative">
+                                <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gradient-red);color:#fff;padding:.5rem 1.5rem;border-radius:20px;font-size:.85rem;font-weight:700">РЕКОМЕНДУЕМ</div>
+                                <div class="pricing-name">БАЗА</div>
+                                <div class="pricing-price">$900</div>
+                                <p style="color:var(--gray);margin-bottom:.5rem;font-size:.9rem">Система заявок и контроль качества</p>
+                                <p style="color:var(--gray);margin-bottom:2rem;font-size:.85rem">Рекламный бюджет: от $700</p>
+                                <p style="font-size:.95rem;font-weight:700;margin-bottom:1rem">Цель: Стабильный поток клиентов и прозрачная аналитика</p>
+                                <ul class="pricing-features">
+                                    <li>Все из тарифа «Старт»</li>
+                                    <li>Построение воронки: реклама → квиз → лендинг → CRM</li>
+                                    <li>Создание посадочной страницы (до 10 блоков)</li>
+                                    <li>Подключение AI-квалификатора тариф Small (фильтрация лидов)</li>
+                                    <li>Аудит CRM и автоматизация</li>
+                                    <li>Аналитика CPL, CPA, CTR, ROMI</li>
+                                    <li>Тестирование гипотез и сценариев рекламы</li>
+                                </ul>
+                                <p style="margin-top:1.5rem;padding-top:1.5rem;border-top:2px solid var(--border);font-weight:700;color:var(--text)">Результат:</p>
+                                <p style="color:var(--gray);margin-top:.5rem">+25-40% к конверсии<br>≥ 25 целевых заявок в месяц<br>Рост эффективности рекламы</p>
+                                <p style="margin-top:1rem;padding:.75rem;background:rgba(220,38,38,.1);border-radius:8px;font-size:.9rem;font-weight:600;color:var(--red)">
+                                    ✓ Гарантия: Минимум 25 целевых лидов — или доработка за наш счет
+                                </p>
+                            </div>
+
+                            <div class="pricing-card">
+                                <div class="pricing-name">ЭКСПЕРТ</div>
+                                <div class="pricing-price">$1 890</div>
+                                <p style="color:var(--gray);margin-bottom:.5rem;font-size:.9rem">Маркетинг и продажи под ключ</p>
+                                <p style="color:var(--gray);margin-bottom:2rem;font-size:.85rem">Рекламный бюджет: от $3000</p>
+                                <p style="font-size:.95rem;font-weight:700;margin-bottom:1rem">Цель: Рост продаж и выстроенная воронка</p>
+                                <ul class="pricing-features">
+                                    <li>Все из тарифа «База»</li>
+                                    <li>Подключение AI-РОП (контроль лидов и отдела продаж)</li>
+                                    <li>6-часовая стратегия роста с маркетинг-директором</li>
+                                    <li>Несколько лендингов под сегменты</li>
+                                    <li>Глубокий разбор и улучшение воронки</li>
+                                    <li>Тренинг отдела продаж или аудит ОП</li>
+                                    <li>Полное тех. сопровождение (CRM, интеграции, аналитика)</li>
+                                </ul>
+                                <p style="margin-top:1.5rem;padding-top:1.5rem;border-top:2px solid var(--border);font-weight:700;color:var(--text)">Результат:</p>
+                                <p style="color:var(--gray);margin-top:.5rem">Рост продаж за 2 месяца<br>Контроль и предсказуемость воронки</p>
+                                <p style="margin-top:1rem;padding:.75rem;background:rgba(220,38,38,.1);border-radius:8px;font-size:.9rem;font-weight:600;color:var(--red)">
+                                    ✓ Гарантия: Рост продаж за 2 месяца — или возврат средств
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box" style="margin-top:3rem">
+                            <h4>Сравнение тарифов</h4>
+                            <table style="margin:1.5rem 0">
+                                <thead>
+                                    <tr>
+                                        <th>Тариф</th>
+                                        <th>Включено услуг</th>
+                                        <th>Цена тарифа</th>
+                                        <th>Экономия</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>СТАРТ</strong></td>
+                                        <td>4</td>
+                                        <td><strong>$450</strong></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>БАЗА</strong></td>
+                                        <td>7</td>
+                                        <td><strong>$900</strong></td>
+                                        <td>до $1 900</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>ЭКСПЕРТ</strong></td>
+                                        <td>12</td>
+                                        <td><strong>$1 890</strong></td>
+                                        <td>до $2 500</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="color:var(--gray);font-size:.95rem;margin-top:1rem">
+                                Если собирать все вручную — выходит $2 800+, без стратегии и гарантий
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">➕</span> ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <p style="color:var(--gray);font-size:1.1rem;margin-bottom:2rem;line-height:1.8">
+                            Расширьте возможности своей рекламной кампании дополнительными услугами. Каждая услуга может быть добавлена к любому тарифу или заказана отдельно.
+                        </p>
+
+                        <table style="margin:2rem 0">
+                            <thead>
+                                <tr>
+                                    <th style="width:50%">Услуга</th>
+                                    <th style="width:15%">Стоимость</th>
+                                    <th style="text-align:center;width:11%">СТАРТ</th>
+                                    <th style="text-align:center;width:11%">БАЗА</th>
+                                    <th style="text-align:center;width:13%">ЭКСПЕРТ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Посадочная страница</strong><br><span style="font-size:.9rem;color:var(--gray)">до 10 блоков, дизайн + тексты</span></td>
+                                    <td><strong>$500</strong></td>
+                                    <td style="text-align:center">❌</td>
+                                    <td style="text-align:center">✅</td>
+                                    <td style="text-align:center">✅</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>AI-квалификатор</strong><br><span style="font-size:.9rem;color:var(--gray)">фильтрация лидов</span></td>
+                                    <td><strong>$600/мес</strong></td>
+                                    <td style="text-align:center">❌</td>
+                                    <td style="text-align:center">✅</td>
+                                    <td style="text-align:center">✅</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>AI-РОП</strong><br><span style="font-size:.9rem;color:var(--gray)">контроль лидов и работы отдела продаж</span></td>
+                                    <td><strong>$600/мес</strong></td>
+                                    <td style="text-align:center">❌</td>
+                                    <td style="text-align:center">❌</td>
+                                    <td style="text-align:center">✅</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Стратегическая сессия</strong><br><span style="font-size:.9rem;color:var(--gray)">с маркетинг-директором (2×3 ч)</span></td>
+                                    <td><strong>$500</strong></td>
+                                    <td style="text-align:center">❌</td>
+                                    <td style="text-align:center">❌</td>
+                                    <td style="text-align:center">✅</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Несколько лендингов</strong><br><span style="font-size:.9rem;color:var(--gray)">под сегменты</span></td>
+                                    <td><strong>$400+</strong></td>
+                                    <td style="text-align:center">❌</td>
+                                    <td style="text-align:center">❌</td>
+                                    <td style="text-align:center">✅</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Глубокий разбор воронки</strong><br><span style="font-size:.9rem;color:var(--gray)">и улучшение воронки</span></td>
+                                    <td><strong>$400</strong></td>
+                                    <td style="text-align:center">❌</td>
+                                    <td style="text-align:center">❌</td>
+                                    <td style="text-align:center">✅</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Тренинг или аудит ОП</strong><br><span style="font-size:.9rem;color:var(--gray)">отдела продаж</span></td>
+                                    <td><strong>$300</strong></td>
+                                    <td style="text-align:center">❌</td>
+                                    <td style="text-align:center">❌</td>
+                                    <td style="text-align:center">✅</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Техническое сопровождение</strong><br><span style="font-size:.9rem;color:var(--gray)">CRM, аналитика, интеграции</span></td>
+                                    <td><strong>$250/мес</strong></td>
+                                    <td style="text-align:center">❌</td>
+                                    <td style="text-align:center">❌</td>
+                                    <td style="text-align:center">✅</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Запуск рекламы</strong><br><span style="font-size:.9rem;color:var(--gray)">Meta, Яндекс, Google, VK, TG ads</span></td>
+                                    <td><strong>Входит</strong></td>
+                                    <td style="text-align:center">✅</td>
+                                    <td style="text-align:center">✅</td>
+                                    <td style="text-align:center">✅</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Настройка медиаплана</strong><br><span style="font-size:.9rem;color:var(--gray)">и аналитики</span></td>
+                                    <td><strong>Входит</strong></td>
+                                    <td style="text-align:center">✅</td>
+                                    <td style="text-align:center">✅</td>
+                                    <td style="text-align:center">✅</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Аналитика</strong><br><span style="font-size:.9rem;color:var(--gray)">CPL, CPA, CTR, ROMI</span></td>
+                                    <td><strong>$250</strong></td>
+                                    <td style="text-align:center">✅</td>
+                                    <td style="text-align:center">✅</td>
+                                    <td style="text-align:center">✅</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CRM</strong><br><span style="font-size:.9rem;color:var(--gray)">подключение, настройка, отчеты</span></td>
+                                    <td><strong>$250</strong></td>
+                                    <td style="text-align:center">❌</td>
+                                    <td style="text-align:center">✅</td>
+                                    <td style="text-align:center">✅</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="highlight-box" style="margin-top:2rem">
+                            <h4>💡 Почему выгодно брать тарифы?</h4>
+                            <p style="color:var(--gray);line-height:1.8;margin-top:1rem">
+                                Общая стоимость всех услуг по отдельности составляет более <strong>$2 800</strong>, при этом вы не получаете ни стратегии, ни гарантий результата. 
+                                Наши тарифы объединяют все необходимые услуги в готовые пакеты с гарантированным результатом и значительной экономией.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">🤖</span> AI-АВТОМАТИЗАЦИЯ БИЗНЕСА</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <div class="ai-section">
+                            <div class="ai-header">
+                                <h3>Улучшение процесса квалификации, продаж и других бизнес-процессов</h3>
+                                <p style="color:var(--gray);font-size:1.1rem;max-width:800px;margin:0 auto">
+                                    Автоматизируйте рутину и масштабируйте отдел продаж без найма новых сотрудников. Внедряем искусственный интеллект, который обучается на ваших данных и работает 24/7
+                                </p>
+                            </div>
+
+                            <div class="ai-services">
+                                <div class="ai-service-card">
+                                    <div class="ai-service-header">
+                                        <h4 class="ai-service-title">ТАРИФ 1: AI-квалификатор</h4>
+                                        <span class="ai-service-price">От $300</span>
+                                    </div>
+                                    <p class="ai-service-desc">Круглосуточная обработка входящих запросов</p>
+                                    <ul style="list-style:none;padding:0;color:var(--gray);font-size:.9rem">
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Мгновенно отвечает на входящие сообщения в любое время суток
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Квалифицирует лиды по вашим критериям
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Автоматически создает задачи для менеджеров
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Заполняет карточки клиентов в CRM
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Определяет качество трафика и приоритетность обращений
+                                        </li>
+                                    </ul>
+                                    <p style="margin-top:1rem;font-size:.9rem;color:var(--red);font-weight:600">
+                                        Результат: ни один лид не теряется, менеджеры работают только с теплыми клиентами
+                                    </p>
+                                </div>
+
+                                <div class="ai-service-card">
+                                    <div class="ai-service-header">
+                                        <h4 class="ai-service-title">ТАРИФ 2: AI-продавец</h4>
+                                        <span class="ai-service-price">От $500</span>
+                                    </div>
+                                    <p class="ai-service-desc">Голосовой помощник для входящих и исходящих звонков</p>
+                                    <ul style="list-style:none;padding:0;color:var(--gray);font-size:.9rem">
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Принимает входящие звонки и консультирует клиентов
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Совершает исходящие звонки для напоминаний о встречах, оплатах, акциях
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Квалифицирует клиентов по телефону
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Записывает на встречи и консультации
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Обрабатывает типовые возражения по скрипту
+                                        </li>
+                                    </ul>
+                                    <p style="margin-top:1rem;font-size:.9rem;color:var(--red);font-weight:600">
+                                        Результат: ваши менеджеры освобождены от рутинных звонков и фокусируются на сложных сделках
+                                    </p>
+                                </div>
+
+                                <div class="ai-service-card">
+                                    <div class="ai-service-header">
+                                        <h4 class="ai-service-title">ТАРИФ 3: Умный контроль качества</h4>
+                                        <span class="ai-service-price">От $700</span>
+                                    </div>
+                                    <p class="ai-service-desc">Автоматический аудит всех разговоров с клиентами</p>
+                                    <ul style="list-style:none;padding:0;color:var(--gray);font-size:.9rem">
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Прослушивает 100% телефонных звонков
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Анализирует видеовстречи в Zoom/Google Meet
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Выявляет отклонения от скриптов продаж
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Фиксирует критические ошибки менеджеров
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Отправляет уведомления руководителю в реальном времени
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Формирует отчеты по качеству работы каждого сотрудника
+                                        </li>
+                                    </ul>
+                                    <p style="margin-top:1rem;font-size:.9rem;color:var(--red);font-weight:600">
+                                        Результат: вы видите все проблемы в отделе продаж без прослушивания сотен часов записей
+                                    </p>
+                                </div>
+
+                                <div class="ai-service-card">
+                                    <div class="ai-service-header">
+                                        <h4 class="ai-service-title">ТАРИФ 4: Индивидуальная AI-автоматизация</h4>
+                                        <span class="ai-service-price">По запросу</span>
+                                    </div>
+                                    <p class="ai-service-desc">Любые AI и алгоритмические решения под ваш бизнес</p>
+                                    <p style="color:var(--gray);font-size:.9rem;margin-bottom:1rem">Примеры задач:</p>
+                                    <ul style="list-style:none;padding:0;color:var(--gray);font-size:.9rem">
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Автоматическое формирование коммерческих предложений
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Анализ обратной связи и отзывов клиентов
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Предиктивная аналитика продаж и прогнозирование
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Умные чат-боты для техподдержки
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Автоматизация документооборота
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--red)">✓</span>
+                                            Персонализация маркетинговых коммуникаций
+                                        </li>
+                                    </ul>
+                                    <p style="margin-top:1rem;font-size:.9rem;color:var(--red);font-weight:600">
+                                        Результат: решаем уникальные задачи вашего бизнеса с помощью AI и алгоритмов
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div style="text-align:center;margin-top:3rem">
+                                <a href="https://webnostra.pro/ai/" class="btn btn-primary" target="_blank">
+                                    Подробнее о нейросетях
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">👥</span> О КОМАНДЕ</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <h4 style="font-size:1.5rem;font-weight:800;margin-bottom:1rem">WEBNOSTRA PERFORMANCE — узкоспециализированная трафик-команда</h4>
+                        <p style="font-size:1.1rem;color:var(--gray);margin-bottom:2rem;line-height:1.8">
+                            За счет отсутствия громоздкой структуры обычных маркетинговых агентств и правильного выбора проектов, с которыми мы работаем, наша команда делает реально прибыльный digital-маркетинг для своих клиентов за справедливую цену.
+                        </p>
+                        
+                        <div style="background:rgba(255,51,51,.05);padding:2rem;border-radius:12px;margin-bottom:2rem;border-left:4px solid var(--red)">
+                            <h4 style="font-size:1.2rem;font-weight:800;margin-bottom:1rem">Наш показатель LifeTime клиентов:</h4>
+                            <ul style="list-style:none;padding:0">
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red);font-weight:700">✓</span>
+                                    С нами сотрудничают в среднем 1,5 года
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--red);font-weight:700">✓</span>
+                                    Есть клиенты, которые уже более трех лет с нами зарабатывают деньги
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <h4 style="font-size:1.2rem;font-weight:800;margin-bottom:1rem">Почему выбирают нас:</h4>
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h4>📈 Фокус на ROI</h4>
+                                <p>Работаем на результат, а не на показах</p>
+                            </div>
+                            <div class="card">
+                                <h4>🔍 Прозрачность</h4>
+                                <p>Прозрачная отчетность и доступ к кабинетам</p>
+                            </div>
+                            <div class="card">
+                                <h4>⚡ Быстрый старт</h4>
+                                <p>От брифа до первых лидов — 10-14 дней</p>
+                            </div>
+                            <div class="card">
+                                <h4>🚗 Опыт в автоиндустрии</h4>
+                                <p>Опыт работы с автомобильными проектами и международными сделками</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2>📞 ГОТОВЫ НАЧАТЬ?</h2>
+            <p>Свяжитесь с нами для обсуждения вашего проекта</p>
+            <div class="contact-buttons">
+                <a href="https://t.me/magosh_al" class="contact-btn" target="_blank">✈️ Написать в Telegram</a>
+                <a href="https://wa.me/77066671426" class="contact-btn" target="_blank">📱 Написать в WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.parentElement;
+            section.classList.toggle('active');
+        }
+
+        // Открываем первую секцию по умолчанию
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.collapsible-section');
+            if (firstSection) {
+                firstSection.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

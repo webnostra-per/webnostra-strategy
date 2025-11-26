@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Боевой План Meta Ads | The Bar Bowls - Здоровое питание в Таиланде</title>
+    <style>
+* {margin:0;padding:0;box-sizing:border-box}
+:root {
+    --green:#10B981;
+    --dark-green:#059669;
+    --lime:#84CC16;
+    --lime-hover:#65A30D;
+    --text:#1F2937;
+    --gray:#6B7280;
+    --bg:#F9FAFB;
+    --border:#E5E7EB;
+    --shadow-sm:0 2px 8px rgba(0,0,0,.04);
+    --shadow-md:0 4px 16px rgba(0,0,0,.08);
+    --shadow-lg:0 8px 32px rgba(0,0,0,.12);
+    --gradient-green:linear-gradient(135deg,var(--green) 0%,var(--dark-green) 100%);
+    --gradient-lime:linear-gradient(135deg,var(--lime) 0%,var(--lime-hover) 100%);
+}
+
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--text);line-height:1.6;overflow-x:hidden;max-width:100%;position:relative}
+
+.header{
+    position:sticky;
+    top:0;
+    background:rgba(255,255,255,.98);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    padding:1rem 0;
+    z-index:1000;
+    box-shadow:var(--shadow-sm);
+}
+.header-container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 2rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:1rem;
+}
+.logo{
+    font-size:1.5rem;
+    font-weight:800;
+    background:var(--gradient-green);
+    background-clip:text;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+.header-actions{
+    display:flex;
+    gap:1rem;
+    align-items:center;
+    flex-wrap:wrap;
+}
+.btn{
+    padding:.875rem 1.75rem;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:700;
+    transition:all .3s;
+    display:inline-block;
+    border:none;
+    cursor:pointer;
+    font-size:.95rem;
+    text-align:center;
+}
+.btn-primary{
+    background:var(--gradient-lime);
+    color:#fff;
+    box-shadow:0 4px 12px rgba(132,204,22,.3);
+}
+.btn-primary:hover{
+    background:var(--lime-hover);
+    transform:translateY(-2px);
+    box-shadow:0 6px 16px rgba(132,204,22,.4);
+}
+.btn-secondary{
+    background:var(--gradient-green);
+    color:#fff;
+    box-shadow:0 4px 12px rgba(16,185,129,.3);
+}
+.btn-secondary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 16px rgba(16,185,129,.4);
+}
+
+.hero{
+    background:var(--gradient-green);
+    color:#fff;
+    padding:4rem 2rem 3rem;
+    position:relative;
+    overflow:hidden;
+}
+.hero::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;bottom:0;
+    background:radial-gradient(circle at 20% 50%,rgba(255,255,255,.1) 0%,transparent 50%),
+               radial-gradient(circle at 80% 80%,rgba(132,204,22,.15) 0%,transparent 50%);
+    opacity:.6;
+}
+.hero-container{
+    max-width:1200px;
+    margin:0 auto;
+    position:relative;
+    z-index:1;
+}
+.hero h1{
+    font-size:3rem;
+    font-weight:800;
+    line-height:1.2;
+    margin-bottom:1rem;
+    text-shadow:0 2px 4px rgba(0,0,0,.2);
+}
+.hero-subtitle{
+    font-size:1.15rem;
+    opacity:.95;
+    margin-bottom:2rem;
+    max-width:800px;
+}
+.hero-info{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:1.5rem;
+    margin-top:2rem;
+}
+.info-item{
+    background:rgba(255,255,255,.1);
+    backdrop-filter:blur(10px);
+    padding:1.25rem;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.2);
+}
+.info-label{
+    font-size:.85rem;
+    opacity:.85;
+    margin-bottom:.25rem;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+.info-value{
+    font-size:1.3rem;
+    font-weight:800;
+}
+
+section{padding:1.5rem 2rem;margin:0}
+.container{
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.collapsible-section{
+    background:#fff;
+    border:2px solid var(--border);
+    border-radius:16px;
+    margin-bottom:.5rem;
+    overflow:hidden;
+    transition:all .3s;
+}
+.collapsible-section:hover{
+    border-color:var(--green);
+    box-shadow:var(--shadow-sm);
+}
+.collapsible-section.active{
+    border-color:var(--green);
+    box-shadow:var(--shadow-md);
+}
+.collapsible-header{
+    padding:1.5rem 2rem;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--bg);
+    transition:background .3s;
+    user-select:none;
+}
+.collapsible-header:hover{
+    background:rgba(16,185,129,.05);
+}
+.collapsible-header h3{
+    font-size:1.5rem;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    gap:.75rem;
+}
+.section-icon{
+    font-size:1.75rem;
+}
+.toggle-icon{
+    font-size:1.2rem;
+    transition:transform .3s;
+    color:var(--green);
+}
+.collapsible-section.active .toggle-icon{
+    transform:rotate(180deg);
+}
+.collapsible-content{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .5s ease-out;
+}
+.collapsible-section.active .collapsible-content{
+    max-height:10000px;
+    transition:max-height .8s ease-in;
+}
+.collapsible-inner{
+    padding:2rem;
+}
+
+.cards-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem;
+    margin:2rem 0;
+}
+.card{
+    background:#fff;
+    border:2px solid var(--border);
+    border-radius:12px;
+    padding:1.5rem;
+    transition:all .3s;
+}
+.card:hover{
+    border-color:var(--green);
+    box-shadow:var(--shadow-md);
+    transform:translateY(-4px);
+}
+.card h4{
+    font-size:1.2rem;
+    font-weight:800;
+    margin-bottom:.75rem;
+    color:var(--text);
+}
+.card p{
+    color:var(--gray);
+    line-height:1.7;
+}
+
+.feature-list{
+    list-style:none;
+    padding:0;
+}
+.feature-list li{
+    padding:1rem 0;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:flex-start;
+    gap:1rem;
+}
+.feature-list li:last-child{
+    border-bottom:none;
+}
+.feature-icon{
+    font-size:1.5rem;
+    min-width:2rem;
+}
+.feature-content h5{
+    font-size:1.1rem;
+    font-weight:700;
+    margin-bottom:.5rem;
+}
+.feature-content p{
+    color:var(--gray);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:2rem 0;
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:var(--shadow-sm);
+}
+th{
+    background:var(--gradient-green);
+    color:#fff;
+    padding:1rem;
+    text-align:left;
+    font-weight:700;
+    font-size:.95rem;
+}
+td{
+    padding:1rem;
+    border-bottom:1px solid var(--border);
+}
+tr:last-child td{
+    border-bottom:none;
+}
+tr:hover{
+    background:var(--bg);
+}
+
+.highlight-box{
+    background:rgba(16,185,129,.05);
+    padding:2rem;
+    border-radius:12px;
+    margin:2rem 0;
+    border-left:4px solid var(--green);
+}
+.highlight-box h4{
+    font-size:1.2rem;
+    font-weight:800;
+    margin-bottom:1rem;
+    color:var(--green);
+}
+
+.timeline{
+    position:relative;
+    padding-left:2rem;
+    margin:2rem 0;
+}
+.timeline::before{
+    content:'';
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:3px;
+    background:var(--gradient-green);
+}
+.timeline-item{
+    position:relative;
+    padding-bottom:2rem;
+}
+.timeline-item::before{
+    content:'';
+    position:absolute;
+    left:-2.5rem;
+    top:.5rem;
+    width:1.5rem;
+    height:1.5rem;
+    border-radius:50%;
+    background:var(--green);
+    border:4px solid #fff;
+    box-shadow:0 0 0 3px rgba(16,185,129,.2);
+}
+.timeline-day{
+    font-size:.85rem;
+    font-weight:700;
+    color:var(--green);
+    text-transform:uppercase;
+    margin-bottom:.5rem;
+}
+.timeline-content h4{
+    font-size:1.1rem;
+    font-weight:700;
+    margin-bottom:.5rem;
+}
+.timeline-content p{
+    color:var(--gray);
+}
+
+.pricing-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:2rem;
+    margin:2rem 0;
+}
+.pricing-card{
+    background:#fff;
+    border:2px solid var(--border);
+    border-radius:16px;
+    padding:2rem;
+    text-align:center;
+    transition:all .3s;
+    position:relative;
+    overflow:hidden;
+}
+.pricing-card::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:4px;
+    background:var(--gradient-green);
+}
+.pricing-card:hover{
+    border-color:var(--green);
+    box-shadow:var(--shadow-lg);
+    transform:translateY(-8px);
+}
+.pricing-name{
+    font-size:1.5rem;
+    font-weight:800;
+    margin-bottom:.5rem;
+}
+.pricing-price{
+    font-size:2.5rem;
+    font-weight:900;
+    color:var(--green);
+    margin-bottom:1.5rem;
+}
+.pricing-features{
+    list-style:none;
+    padding:0;
+    margin:2rem 0;
+    text-align:left;
+}
+.pricing-features li{
+    padding:.75rem 0;
+    padding-left:1.5rem;
+    position:relative;
+    color:var(--gray);
+}
+.pricing-features li::before{
+    content:'✓';
+    position:absolute;
+    left:0;
+    color:var(--green);
+    font-weight:700;
+}
+
+.ai-section{
+    background:linear-gradient(135deg,rgba(16,185,129,.05) 0%,rgba(132,204,22,.05) 100%);
+    padding:3rem 2rem;
+    margin:2rem 0;
+    border-radius:16px;
+}
+.ai-header{
+    text-align:center;
+    margin-bottom:3rem;
+}
+.ai-header h3{
+    font-size:2.5rem;
+    font-weight:900;
+    margin-bottom:1rem;
+    background:var(--gradient-green);
+    background-clip:text;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+.ai-services{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem;
+}
+.ai-service-card{
+    background:#fff;
+    border:2px solid var(--border);
+    border-radius:12px;
+    padding:1.5rem;
+    transition:all .3s;
+}
+.ai-service-card:hover{
+    border-color:var(--green);
+    box-shadow:var(--shadow-md);
+    transform:translateY(-4px);
+}
+.ai-service-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:1rem;
+    gap:1rem;
+}
+.ai-service-title{
+    font-size:1.1rem;
+    font-weight:800;
+    color:var(--text);
+}
+.ai-service-price{
+    font-size:.9rem;
+    font-weight:700;
+    color:var(--green);
+    background:rgba(16,185,129,.1);
+    padding:.5rem 1rem;
+    border-radius:8px;
+    white-space:nowrap;
+}
+.ai-service-desc{
+    color:var(--gray);
+    margin-bottom:1.5rem;
+    line-height:1.6;
+}
+
+.contact-section{
+    background:var(--gradient-green);
+    color:#fff;
+    padding:4rem 2rem;
+    text-align:center;
+    margin-top:2rem;
+}
+.contact-section h2{
+    font-size:2.5rem;
+    font-weight:900;
+    margin-bottom:1rem;
+}
+.contact-section p{
+    font-size:1.2rem;
+    opacity:.9;
+    margin-bottom:2rem;
+}
+.contact-buttons{
+    display:flex;
+    gap:1rem;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+.contact-btn{
+    background:rgba(255,255,255,.2);
+    backdrop-filter:blur(10px);
+    color:#fff;
+    padding:1rem 2rem;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:700;
+    border:2px solid rgba(255,255,255,.3);
+    transition:all .3s;
+}
+.contact-btn:hover{
+    background:rgba(255,255,255,.3);
+    border-color:rgba(255,255,255,.5);
+    transform:translateY(-2px);
+}
+
+.location-badge{
+    display:inline-block;
+    padding:.5rem 1rem;
+    background:rgba(16,185,129,.1);
+    border:1px solid var(--green);
+    border-radius:20px;
+    font-size:.9rem;
+    font-weight:600;
+    color:var(--green);
+    margin:.25rem;
+}
+
+@media (max-width: 768px) {
+    .hero h1{font-size:2rem}
+    .cards-grid{grid-template-columns:1fr}
+    .pricing-grid{grid-template-columns:1fr}
+    .hero-info{grid-template-columns:1fr}
+    .collapsible-header h3{font-size:1.2rem}
+    .collapsible-inner{padding:1.5rem}
+}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">🥗 The Bar Bowls Meta Plan</div>
+            <div class="header-actions">
+                <a href="https://webnostra.pro/cases" class="btn btn-secondary" target="_blank">📊 Кейсы</a>
+                <a href="#contact" class="btn btn-primary">Связаться</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="hero-container">
+            <h1>Боевой План Meta Ads<br>The Bar Bowls</h1>
+            <p class="hero-subtitle">Лидогенерация для сети ресторанов здорового питания в Таиланде (Бангкок, Пхукет, Самуи)</p>
+            <div class="hero-info">
+                <div class="info-item">
+                    <div class="info-label">Цель</div>
+                    <div class="info-value">320+ продаж/мес</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Бюджет</div>
+                    <div class="info-value">$3900/мес</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">CPS</div>
+                    <div class="info-value">< $12</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Точки</div>
+                    <div class="info-value">8 → 17</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="container">
+            <p style="text-align:center;margin-bottom:2rem">
+                <a href="https://webnostra.pro/cases" style="color:var(--green);font-weight:700;font-size:1.1rem;text-decoration:none">📊 Посмотреть кейсы</a>
+            </p>
+
+            <div class="collapsible-section active">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">🎯</span> ОБЩАЯ СТРАТЕГИЯ META ADS</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <div class="highlight-box">
+                            <h4>Проект: The Bar Bowls</h4>
+                            <p style="color:var(--gray);line-height:1.8">
+                                <strong>Продукт:</strong> Сеть ресторанов здорового питания с системой предоплаты<br>
+                                <strong>Офферы:</strong> 6,000฿ → 10,000฿ на баланс / 14,000฿ → 28,000฿ на баланс<br>
+                                <strong>Бюджет:</strong> $3900/месяц ($128/день)<br>
+                                <strong>Цель:</strong> 320+ продаж в месяц при CPS < $12<br>
+                                <strong>Instagram:</strong> <a href="https://www.instagram.com/thebarbowls" target="_blank" style="color:var(--green)">@thebarbowls</a><br>
+                                <strong>Facebook:</strong> <a href="https://www.facebook.com/share/14PEXQGVr35/" target="_blank" style="color:var(--green)">The Bar Bowls</a>
+                            </p>
+                        </div>
+
+                        <h4 style="font-size:1.5rem;font-weight:800;margin:2rem 0 1rem">География и точки (8 локаций)</h4>
+                        <div style="margin-bottom:2rem">
+                            <p style="color:var(--gray);margin-bottom:1rem"><strong>Текущие локации:</strong></p>
+                            <div style="display:flex;flex-wrap:wrap;gap:.5rem">
+                                <span class="location-badge">📍 Бангкок (несколько точек)</span>
+                                <span class="location-badge">🏝️ Пхукет</span>
+                                <span class="location-badge">🌴 Самуи</span>
+                            </div>
+                            <p style="color:var(--gray);margin-top:1.5rem;font-size:.95rem">
+                                <strong>Радиус таргетинга:</strong> 4-5 км от каждой точки<br>
+                                <strong>Планы:</strong> К апрелю расширение до 17 точек
+                            </p>
+                        </div>
+
+                        <h4 style="font-size:1.5rem;font-weight:800;margin:2rem 0 1rem">Целевая аудитория</h4>
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h4>👥 Демография</h4>
+                                <p>Мужчины и женщины 25-50 лет. Экспаты и туристы, проживающие или находящиеся в радиусе 4-5 км от точек</p>
+                            </div>
+                            <div class="card">
+                                <h4>🌍 Языковые сегменты</h4>
+                                <p>Две отдельные кампании: русскоязычная аудитория + англоязычная аудитория</p>
+                            </div>
+                            <div class="card">
+                                <h4>🚫 Исключения</h4>
+                                <p>Тайцы, бирманцы, местное население. Фокус только на экспатов и туристов</p>
+                            </div>
+                            <div class="card">
+                                <h4>💚 Интересы</h4>
+                                <p>Здоровое питание, фитнес, ЗОЖ, веганство, правильное питание, органические продукты</p>
+                            </div>
+                        </div>
+
+                        <h4 style="font-size:1.5rem;font-weight:800;margin:2rem 0 1rem">Трафиковая модель</h4>
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h4>📱 Конверсии</h4>
+                                <p>Оформление через приложение + поддержка в FB Messenger</p>
+                            </div>
+                            <div class="card">
+                                <h4>🎯 Геотаргетинг</h4>
+                                <p>Радиус 4-5 км от каждой из 8 точек. Отдельный бюджет $16/день на точку</p>
+                            </div>
+                            <div class="card">
+                                <h4>📊 CRM</h4>
+                                <p>Встроена в приложение. Менеджеры обрабатывают лиды самостоятельно</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">🧪</span> СЕГМЕНТАЦИЯ И ОФФЕРЫ</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <h4 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem">2 основных оффера</h4>
+                        
+                        <div class="cards-grid">
+                            <div class="card" style="border:3px solid var(--green)">
+                                <h4>💰 Оффер 1: +67% бонус</h4>
+                                <p style="font-size:1.5rem;font-weight:800;color:var(--green);margin:1rem 0">6,000฿ → 10,000฿</p>
+                                <p>Заплати 6,000 бат — получи 10,000 бат на баланс. Экономия 4,000 бат при покупке здорового питания</p>
+                            </div>
+                            <div class="card" style="border:3px solid var(--green)">
+                                <h4>💎 Оффер 2: +100% бонус</h4>
+                                <p style="font-size:1.5rem;font-weight:800;color:var(--green);margin:1rem 0">14,000฿ → 28,000฿</p>
+                                <p>Заплати 14,000 бат — получи 28,000 бат на баланс. Удвоение суммы для постоянных клиентов</p>
+                            </div>
+                        </div>
+
+                        <h4 style="font-size:1.5rem;font-weight:800;margin:3rem 0 1rem">Тест месседжей (6 вариантов)</h4>
+                        <ul class="feature-list">
+                            <li>
+                                <span class="feature-icon">1️⃣</span>
+                                <div class="feature-content">
+                                    <h5>Экономия и бонусы</h5>
+                                    <p>«Заплати 6К — получи 10К на баланс. +67% к каждой покупке здорового питания»</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">2️⃣</span>
+                                <div class="feature-content">
+                                    <h5>Удобство экспата</h5>
+                                    <p>«Здоровое питание для экспатов в Таиланде. Предоплата — ешь когда хочешь, экономь время»</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">3️⃣</span>
+                                <div class="feature-content">
+                                    <h5>Близость и доступность</h5>
+                                    <p>«8 точек в Бангкоке, Пхукете, Самуи. Всегда рядом с тобой»</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">4️⃣</span>
+                                <div class="feature-content">
+                                    <h5>Качество продукта</h5>
+                                    <p>«Свежие боулы, смузи, салаты. Без сахара и консервантов. Доставка или самовывоз»</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">5️⃣</span>
+                                <div class="feature-content">
+                                    <h5>Социальное доказательство</h5>
+                                    <p>«Более 5000 экспатов уже выбрали The Bar Bowls. Присоединяйся к сообществу ЗОЖ»</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">6️⃣</span>
+                                <div class="feature-content">
+                                    <h5>Срочность</h5>
+                                    <p>«Удвоение бонуса только до конца месяца. 14К → 28К на балансе»</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <h4 style="font-size:1.5rem;font-weight:800;margin:3rem 0 1rem">Сегментация аудитории</h4>
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h4>🇷🇺 Русскоязычные</h4>
+                                <p><strong>Язык:</strong> Русский<br>
+                                <strong>Креативы:</strong> На русском<br>
+                                <strong>Боль:</strong> Дорого питаться правильно, нет времени готовить<br>
+                                <strong>Решение:</strong> Предоплата с бонусом + всегда рядом</p>
+                            </div>
+                            <div class="card">
+                                <h4>🇬🇧 Англоязычные</h4>
+                                <p><strong>Язык:</strong> Английский<br>
+                                <strong>Креативы:</strong> На английском<br>
+                                <strong>Боль:</strong> Найти качественное здоровое питание<br>
+                                <strong>Решение:</strong> Organic bowls, fresh ingredients, expat-friendly</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">🎬</span> КРЕАТИВНЫЕ СЮЖЕТЫ</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <h4 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem">10 креативных концепций</h4>
+                        
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h4>📹 Видео 1: Процесс приготовления</h4>
+                                <p>15-30 сек таймлапс: свежие ингредиенты → нарезка → сборка боула → красивая подача. Музыка динамичная</p>
+                            </div>
+                            <div class="card">
+                                <h4>📹 Видео 2: До/После бонуса</h4>
+                                <p>Анимация калькулятора: 6,000฿ → нажатие → 10,000฿. Показать экономию в батах</p>
+                            </div>
+                            <div class="card">
+                                <h4>📹 Видео 3: Отзыв экспата</h4>
+                                <p>Видео-отзыв довольного клиента (русский или англоязычный): «Каждый день беру боул, сэкономил уже 5000 бат»</p>
+                            </div>
+                            <div class="card">
+                                <h4>🖼️ Карусель 1: 8 точек</h4>
+                                <p>8 слайдов с фото каждой локации + карта. «Мы всегда рядом с тобой»</p>
+                            </div>
+                            <div class="card">
+                                <h4>🖼️ Карусель 2: Меню</h4>
+                                <p>5-7 слайдов с фото лучших блюд: боулы, смузи, салаты. Калорийность + цена</p>
+                            </div>
+                            <div class="card">
+                                <h4>🖼️ Статика 1: Оффер с цифрами</h4>
+                                <p>Яркий дизайн: «6000฿ = 10000฿» или «14000฿ = 28000฿». Крупный шрифт, зеленые акценты</p>
+                            </div>
+                            <div class="card">
+                                <h4>🖼️ Статика 2: Здоровье</h4>
+                                <p>«Без сахара. Без консервантов. Только свежее». Фото красивого боула</p>
+                            </div>
+                            <div class="card">
+                                <h4>🖼️ Статика 3: Для экспатов</h4>
+                                <p>«Healthy Food for Expats in Thailand». Фото счастливых европейцев с боулами</p>
+                            </div>
+                            <div class="card">
+                                <h4>📹 Видео 4: Один день с The Bar</h4>
+                                <p>30-60 сек история: утро → заказ в приложении → получение → довольный клиент</p>
+                            </div>
+                            <div class="card">
+                                <h4>🖼️ Статика 4: Карта точек</h4>
+                                <p>Интерактивная карта Бангкока/Пхукета/Самуи с пинами The Bar Bowls</p>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box" style="margin-top:2rem">
+                            <h4>Форматы креативов</h4>
+                            <ul style="list-style:none;padding:0;margin-top:1rem">
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative">
+                                    <span style="position:absolute;left:0;color:var(--green)">▪</span>
+                                    Видео: 1080x1920 (Stories), 1080x1080 (Feed), 1200x628 (FB Feed)
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative">
+                                    <span style="position:absolute;left:0;color:var(--green)">▪</span>
+                                    Статика: 1080x1080, 1200x628
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative">
+                                    <span style="position:absolute;left:0;color:var(--green)">▪</span>
+                                    Карусель: 1080x1080 каждый слайд
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative">
+                                    <span style="position:absolute;left:0;color:var(--green)">▪</span>
+                                    Язык: Русский + Английский (две версии каждого креатива)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">🎯</span> СТРУКТУРА КАМПАНИЙ</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <h4 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem">16 кампаний (по 2 на каждую точку)</h4>
+                        
+                        <div class="highlight-box">
+                            <h4>Логика структуры</h4>
+                            <p style="color:var(--gray);line-height:1.8">
+                                Для каждой из 8 точек создаем по 2 кампании:<br>
+                                1️⃣ Кампания на русскоязычную аудиторию<br>
+                                2️⃣ Кампания на англоязычную аудиторию<br><br>
+                                <strong>Итого:</strong> 8 точек × 2 языка = 16 кампаний<br>
+                                <strong>Бюджет на точку:</strong> $16/день ($8/день русские + $8/день англоязычные)
+                            </p>
+                        </div>
+
+                        <h4 style="font-size:1.3rem;font-weight:800;margin:2rem 0 1rem">Настройки кампаний</h4>
+                        
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Параметр</th>
+                                    <th>Настройка</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Цель</strong></td>
+                                    <td>Conversions (Покупка через приложение)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Пиксель</strong></td>
+                                    <td>Purchase + AddToCart</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Геотаргетинг</strong></td>
+                                    <td>Радиус 4-5 км от каждой точки</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Возраст</strong></td>
+                                    <td>25-50 лет</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Языки</strong></td>
+                                    <td>Русский / English (по кампаниям)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Исключения</strong></td>
+                                    <td>Thai, Burmese, местные языки</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Интересы</strong></td>
+                                    <td>Healthy eating, Fitness, Veganism, Organic food, Wellness</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Плейсменты</strong></td>
+                                    <td>Facebook Feed, Instagram Feed, Instagram Stories</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4 style="font-size:1.5rem;font-weight:800;margin:3rem 0 1rem">Пример структуры для одной точки (Бангкок, центр)</h4>
+                        
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h4>🇷🇺 Кампания RU - Бангкок</h4>
+                                <p><strong>Бюджет:</strong> $8/день<br>
+                                <strong>Язык:</strong> Русский<br>
+                                <strong>Креативы:</strong> 5-7 вариантов на русском<br>
+                                <strong>Радиус:</strong> 4 км от точки<br>
+                                <strong>Тексты:</strong> «Заплати 6К — получи 10К»</p>
+                            </div>
+                            <div class="card">
+                                <h4>🇬🇧 Кампания EN - Bangkok</h4>
+                                <p><strong>Budget:</strong> $8/day<br>
+                                <strong>Language:</strong> English<br>
+                                <strong>Creatives:</strong> 5-7 English versions<br>
+                                <strong>Radius:</strong> 4 km from location<br>
+                                <strong>Copy:</strong> «Pay 6K — Get 10K Balance»</p>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box" style="margin-top:2rem">
+                            <h4>⚠️ Важно: Масштабирование к апрелю</h4>
+                            <p style="color:var(--gray);line-height:1.8">
+                                При расширении до 17 точек структура увеличится до <strong>34 кампаний</strong> (17 × 2 языка).<br>
+                                Бюджет вырастет пропорционально: $16/день × 17 точек = <strong>$272/день = $8160/месяц</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">🔄</span> РЕТАРГЕТИНГ</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <h4 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem">Аудитории для догрева</h4>
+                        
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h4>🔥 Посетители сайта 3 дня</h4>
+                                <p>Самые горячие. Были на сайте/в приложении, но не купили. Оффер: «Последний день удвоения бонуса»</p>
+                            </div>
+                            <div class="card">
+                                <h4>⚡ Посетители 7 дней</h4>
+                                <p>Теплые. Смотрели меню, но не решились. Оффер: «Попробуй первый боул бесплатно при покупке 6K»</p>
+                            </div>
+                            <div class="card">
+                                <h4>💬 AddToCart</h4>
+                                <p>Начали оформление в приложении. Очень теплые. Оффер: «Завершите заказ — получите +1000฿ экстра»</p>
+                            </div>
+                            <div class="card">
+                                <h4>📹 Видео 50%+</h4>
+                                <p>Просмотрели видео больше половины. Показываем другой оффер с отзывами клиентов</p>
+                            </div>
+                            <div class="card">
+                                <h4>👍 Engagement</h4>
+                                <p>Лайкали, комментили, сохраняли посты. Показываем карусель с меню</p>
+                            </div>
+                            <div class="card">
+                                <h4>📱 Messenger начали чат</h4>
+                                <p>Писали в поддержку. Догрев: FAQ, бонусы для первого заказа</p>
+                            </div>
+                        </div>
+
+                        <h4 style="font-size:1.5rem;font-weight:800;margin:2rem 0 1rem">Сообщения для ретаргета</h4>
+                        <ul class="feature-list">
+                            <li>
+                                <span class="feature-icon">1️⃣</span>
+                                <div class="feature-content">
+                                    <p>«Вернись и получи +1000฿ экстра к балансу. Только сегодня»</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">2️⃣</span>
+                                <div class="feature-content">
+                                    <p>«5000+ экспатов уже пополнили баланс. Присоединяйся»</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="feature-icon">3️⃣</span>
+                                <div class="feature-content">
+                                    <p>«Забыли оформить? Ваша скидка 67% все еще активна»</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="highlight-box" style="margin-top:2rem">
+                            <h4>Бюджет на ретаргетинг</h4>
+                            <p style="color:var(--gray)">
+                                10-15% от общего бюджета = <strong>$400-600/месяц</strong><br>
+                                Запускается после накопления базы минимум 1000 посетителей (примерно через 2 недели)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">📊</span> KPI И ПРОГНОЗ</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <h4 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem">Целевые показатели</h4>
+                        
+                        <div class="highlight-box">
+                            <h4>Основные KPI</h4>
+                            <table style="margin:1rem 0">
+                                <thead>
+                                    <tr>
+                                        <th>Метрика</th>
+                                        <th>Целевое значение</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Бюджет/месяц</strong></td>
+                                        <td>$3900</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Бюджет/день</strong></td>
+                                        <td>$128 ($16 на точку)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Заявок/день</strong></td>
+                                        <td>37-40</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Заявок/месяц</strong></td>
+                                        <td>1100</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Конверсия заявка→продажа</strong></td>
+                                        <td>30%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Продаж/месяц (цель)</strong></td>
+                                        <td>320+</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>CPS (Cost Per Sale)</strong></td>
+                                        <td>< $12</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>CPL (Cost Per Lead)</strong></td>
+                                        <td>~$3.50</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 style="font-size:1.5rem;font-weight:800;margin:2rem 0 1rem">Прогноз по этапам</h4>
+                        
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Период</th>
+                                    <th>Бюджет</th>
+                                    <th>Лиды</th>
+                                    <th>Продажи</th>
+                                    <th>CPS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Неделя 1-2 (тест)</strong></td>
+                                    <td>$1800</td>
+                                    <td>400-500</td>
+                                    <td>100-120</td>
+                                    <td>$15-18</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Неделя 3-4 (оптимизация)</strong></td>
+                                    <td>$2100</td>
+                                    <td>550-650</td>
+                                    <td>165-195</td>
+                                    <td>$11-13</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Месяц 2+ (масштаб)</strong></td>
+                                    <td>$3900</td>
+                                    <td>1100+</td>
+                                    <td>320+</td>
+                                    <td>< $12</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h4 style="font-size:1.5rem;font-weight:800;margin:3rem 0 1rem">Расчет воронки</h4>
+                        
+                        <div style="background:#fff;border:2px solid var(--green);border-radius:12px;padding:2rem;margin:2rem 0">
+                            <div style="display:flex;flex-direction:column;gap:1.5rem">
+                                <div style="display:flex;align-items:center;gap:1rem">
+                                    <div style="min-width:150px;font-weight:700">Показы</div>
+                                    <div style="flex:1;height:40px;background:rgba(16,185,129,.1);border-radius:8px;display:flex;align-items:center;padding:0 1rem">~500,000/мес</div>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:1rem">
+                                    <div style="min-width:150px;font-weight:700">Клики (CTR 1.5%)</div>
+                                    <div style="flex:1;height:40px;background:rgba(16,185,129,.2);border-radius:8px;display:flex;align-items:center;padding:0 1rem">7,500</div>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:1rem">
+                                    <div style="min-width:150px;font-weight:700">Лиды (CR 15%)</div>
+                                    <div style="flex:1;height:40px;background:rgba(16,185,129,.4);border-radius:8px;display:flex;align-items:center;padding:0 1rem;color:#fff;font-weight:700">1,100</div>
+                                </div>
+                                <div style="display:flex;align-items:center;gap:1rem">
+                                    <div style="min-width:150px;font-weight:700">Продажи (30%)</div>
+                                    <div style="flex:1;height:40px;background:var(--green);border-radius:8px;display:flex;align-items:center;padding:0 1rem;color:#fff;font-weight:700;font-size:1.2rem">320+</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <h4>Как держим CPS < $12</h4>
+                            <ul style="list-style:none;padding:0;margin-top:1rem">
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                    Геотаргетинг 4-5 км — только релевантная аудитория рядом с точками
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                    Исключение местного населения — фокус на платежеспособных экспатов
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                    Сильный оффер +67% и +100% — высокая мотивация к покупке
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                    Быстрая обработка лидов менеджерами через CRM в приложении
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                    Ретаргетинг на теплую аудиторию для повышения конверсии
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">📅</span> ТАЙМЛАЙН ЗАПУСКА</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <h4 style="font-size:1.5rem;font-weight:800;margin-bottom:2rem">Подготовка и запуск за 7 дней</h4>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-day">День 1</div>
+                                <div class="timeline-content">
+                                    <h4>Бриф и аудит</h4>
+                                    <p>Детальный бриф, изучение Instagram/Facebook, сбор контента, проверка пикселя, доступы к кабинету и приложению</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-day">День 2</div>
+                                <div class="timeline-content">
+                                    <h4>Стратегия и структура</h4>
+                                    <p>Финализация стратегии, создание структуры 16 кампаний (8 точек × 2 языка), подготовка ТЗ на креативы</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-day">День 3-4</div>
+                                <div class="timeline-content">
+                                    <h4>Производство креативов</h4>
+                                    <p>Создание 10 креативов × 2 языка = 20 вариантов (видео, статика, карусели), написание текстов на русском и английском</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-day">День 5</div>
+                                <div class="timeline-content">
+                                    <h4>Настройка кампаний</h4>
+                                    <p>Создание 16 кампаний в Meta Ads Manager, настройка геотаргетинга по 8 точкам, установка бюджетов, настройка пикселя</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-day">День 6</div>
+                                <div class="timeline-content">
+                                    <h4>Согласование и модерация</h4>
+                                    <p>Показываем структуру клиенту, вносим правки, отправляем на модерацию Meta, подготовка инструкций для менеджеров</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-day">День 7</div>
+                                <div class="timeline-content">
+                                    <h4>🚀 ЗАПУСК</h4>
+                                    <p>Активация всех 16 кампаний, настройка мониторинга, синхронизация с CRM, первый отчет в конце дня</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box" style="margin-top:2rem">
+                            <h4>Оптимизация после запуска</h4>
+                            <ul style="list-style:none;padding:0;margin-top:1rem">
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--green)">▪</span>
+                                    <strong>Дни 8-10:</strong> Мониторинг каждые 6 часов, первые отключения слабых креативов, анализ по точкам
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--green)">▪</span>
+                                    <strong>Дни 11-14:</strong> Анализ CPS по локациям и языкам, масштабирование лучших, запуск ретаргетинга
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--green)">▪</span>
+                                    <strong>Неделя 3+:</strong> Полноценная оптимизация, новые креативы, расширение интересов, подготовка к масштабированию на 17 точек
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="highlight-box">
+                            <h4>📈 План масштабирования до 17 точек</h4>
+                            <p style="color:var(--gray);line-height:1.8;margin-top:1rem">
+                                <strong>Срок:</strong> К апрелю<br>
+                                <strong>Новая структура:</strong> 17 точек × 2 языка = 34 кампании<br>
+                                <strong>Новый бюджет:</strong> $272/день = $8160/месяц<br>
+                                <strong>Прогноз продаж:</strong> 680+ продаж/месяц при CPS < $12
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">💰</span> ТАРИФЫ СОТРУДНИЧЕСТВА</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <div class="pricing-grid">
+                            <div class="pricing-card">
+                                <div class="pricing-name">СТАРТ</div>
+                                <div class="pricing-price">$450</div>
+                                <p style="color:var(--gray);margin-bottom:.5rem;font-size:.9rem">Быстрый запуск рекламы</p>
+                                <p style="color:var(--gray);margin-bottom:2rem;font-size:.85rem">Рекламный бюджет: от $500</p>
+                                <p style="font-size:.95rem;font-weight:700;margin-bottom:1rem">Цель: Тест ниши и быстрые заявки</p>
+                                <ul class="pricing-features">
+                                    <li>Анализ ниши и конкурентов</li>
+                                    <li>Тексты, креативы, сценарии</li>
+                                    <li>Запуск рекламы (Meta, Яндекс, Google, ВК, TG ads)</li>
+                                    <li>Подключение аналитики и пикселей</li>
+                                    <li>Настройка медиаплана</li>
+                                    <li>Оптимизация под первые результаты</li>
+                                </ul>
+                                <p style="margin-top:1.5rem;padding-top:1.5rem;border-top:2px solid var(--border);font-weight:700;color:var(--text)">Результат:</p>
+                                <p style="color:var(--gray);margin-top:.5rem">Первые целевые лиды, прогноз CPL</p>
+                                <p style="margin-top:1rem;padding:.75rem;background:rgba(16,185,129,.1);border-radius:8px;font-size:.9rem;font-weight:600;color:var(--green)">
+                                    ✓ Гарантия: Возврат денег, если нет заявок
+                                </p>
+                            </div>
+
+                            <div class="pricing-card" style="border:3px solid var(--green);position:relative">
+                                <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gradient-green);color:#fff;padding:.5rem 1.5rem;border-radius:20px;font-size:.85rem;font-weight:700">РЕКОМЕНДУЕМ</div>
+                                <div class="pricing-name">БАЗА</div>
+                                <div class="pricing-price">$900</div>
+                                <p style="color:var(--gray);margin-bottom:.5rem;font-size:.9rem">Система заявок и контроль качества</p>
+                                <p style="color:var(--gray);margin-bottom:2rem;font-size:.85rem">Рекламный бюджет: от $700</p>
+                                <p style="font-size:.95rem;font-weight:700;margin-bottom:1rem">Цель: Стабильный поток клиентов</p>
+                                <ul class="pricing-features">
+                                    <li>Все из тарифа «Старт»</li>
+                                    <li>Построение воронки: реклама → квиз → лендинг → CRM</li>
+                                    <li>Создание посадочной страницы (до 10 блоков)</li>
+                                    <li>Подключение AI-квалификатора тариф Small</li>
+                                    <li>Аудит CRM и автоматизация</li>
+                                    <li>Аналитика CPL, CPA, CTR, ROMI</li>
+                                    <li>Тестирование гипотез</li>
+                                </ul>
+                                <p style="margin-top:1.5rem;padding-top:1.5rem;border-top:2px solid var(--border);font-weight:700;color:var(--text)">Результат:</p>
+                                <p style="color:var(--gray);margin-top:.5rem">+25-40% к конверсии<br>≥ 25 целевых заявок в месяц</p>
+                                <p style="margin-top:1rem;padding:.75rem;background:rgba(16,185,129,.1);border-radius:8px;font-size:.9rem;font-weight:600;color:var(--green)">
+                                    ✓ Гарантия: Минимум 25 лидов или доработка за наш счет
+                                </p>
+                            </div>
+
+                            <div class="pricing-card">
+                                <div class="pricing-name">ЭКСПЕРТ</div>
+                                <div class="pricing-price">$1 890</div>
+                                <p style="color:var(--gray);margin-bottom:.5rem;font-size:.9rem">Маркетинг и продажи под ключ</p>
+                                <p style="color:var(--gray);margin-bottom:2rem;font-size:.85rem">Рекламный бюджет: от $3000</p>
+                                <p style="font-size:.95rem;font-weight:700;margin-bottom:1rem">Цель: Рост продаж и масштабирование</p>
+                                <ul class="pricing-features">
+                                    <li>Все из тарифа «База»</li>
+                                    <li>Подключение AI-РОП (контроль лидов и ОП)</li>
+                                    <li>6-часовая стратегия роста с маркетинг-директором</li>
+                                    <li>Несколько лендингов под сегменты</li>
+                                    <li>Глубокий разбор и улучшение воронки</li>
+                                    <li>Тренинг отдела продаж или аудит ОП</li>
+                                    <li>Полное тех. сопровождение</li>
+                                </ul>
+                                <p style="margin-top:1.5rem;padding-top:1.5rem;border-top:2px solid var(--border);font-weight:700;color:var(--text)">Результат:</p>
+                                <p style="color:var(--gray);margin-top:.5rem">Рост продаж за 2 месяца<br>Контроль и предсказуемость воронки</p>
+                                <p style="margin-top:1rem;padding:.75rem;background:rgba(16,185,129,.1);border-radius:8px;font-size:.9rem;font-weight:600;color:var(--green)">
+                                    ✓ Гарантия: Рост продаж за 2 месяца или возврат
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box" style="margin-top:3rem">
+                            <h4>Рекомендация для The Bar Bowls</h4>
+                            <p style="color:var(--gray);line-height:1.8;margin-top:1rem">
+                                С учетом бюджета <strong>$3900/месяц</strong> и необходимости управления <strong>16 кампаниями</strong> по 8 точкам, 
+                                оптимальным решением будет тариф <strong>ЭКСПЕРТ</strong>. Он включает полное сопровождение, 
+                                работу с CRM в приложении, контроль качества лидов и масштабирование до 17 точек к апрелю.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">🤖</span> AI-АВТОМАТИЗАЦИЯ БИЗНЕСА</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <div class="ai-section">
+                            <div class="ai-header">
+                                <h3>Улучшение процесса обработки лидов и работы с клиентами</h3>
+                                <p style="color:var(--gray);font-size:1.1rem;max-width:800px;margin:0 auto">
+                                    Автоматизируйте обработку 1100+ лидов в месяц и масштабируйте продажи без найма новых менеджеров. 
+                                    Внедряем AI, который работает 24/7 и интегрируется с вашим приложением.
+                                </p>
+                            </div>
+
+                            <div class="ai-services">
+                                <div class="ai-service-card">
+                                    <div class="ai-service-header">
+                                        <h4 class="ai-service-title">ТАРИФ 1: AI-квалификатор</h4>
+                                        <span class="ai-service-price">От $300</span>
+                                    </div>
+                                    <p class="ai-service-desc">Круглосуточная обработка входящих запросов из FB Messenger</p>
+                                    <ul style="list-style:none;padding:0;color:var(--gray);font-size:.9rem">
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Мгновенно отвечает в Messenger 24/7
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Квалифицирует лиды (готовность купить, локация, бюджет)
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Создает задачи для менеджеров в CRM
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Направляет в приложение для оформления
+                                        </li>
+                                    </ul>
+                                    <p style="margin-top:1rem;font-size:.9rem;color:var(--green);font-weight:600">
+                                        Результат: Обработка 1100+ лидов без потерь, менеджеры работают с готовыми к покупке клиентами
+                                    </p>
+                                </div>
+
+                                <div class="ai-service-card">
+                                    <div class="ai-service-header">
+                                        <h4 class="ai-service-title">ТАРИФ 2: AI-продавец</h4>
+                                        <span class="ai-service-price">От $500</span>
+                                    </div>
+                                    <p class="ai-service-desc">Голосовой помощник для входящих звонков</p>
+                                    <ul style="list-style:none;padding:0;color:var(--gray);font-size:.9rem">
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Принимает звонки и консультирует на русском/английском
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Отвечает на вопросы о меню, ценах, локациях
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Направляет в приложение для оформления
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Напоминает о незавершенных покупках
+                                        </li>
+                                    </ul>
+                                    <p style="margin-top:1rem;font-size:.9rem;color:var(--green);font-weight:600">
+                                        Результат: Менеджеры освобождены от рутинных звонков, фокус на сложных клиентах
+                                    </p>
+                                </div>
+
+                                <div class="ai-service-card">
+                                    <div class="ai-service-header">
+                                        <h4 class="ai-service-title">ТАРИФ 3: Умный контроль качества</h4>
+                                        <span class="ai-service-price">От $700</span>
+                                    </div>
+                                    <p class="ai-service-desc">Автоматический аудит работы менеджеров</p>
+                                    <ul style="list-style:none;padding:0;color:var(--gray);font-size:.9rem">
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Анализирует все диалоги в Messenger
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Прослушивает звонки менеджеров
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Выявляет потерянные лиды и ошибки
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Формирует отчеты по конверсии каждого менеджера
+                                        </li>
+                                    </ul>
+                                    <p style="margin-top:1rem;font-size:.9rem;color:var(--green);font-weight:600">
+                                        Результат: Контроль качества всех 320+ продаж без ручной проверки
+                                    </p>
+                                </div>
+
+                                <div class="ai-service-card">
+                                    <div class="ai-service-header">
+                                        <h4 class="ai-service-title">ТАРИФ 4: Индивидуальная AI-автоматизация</h4>
+                                        <span class="ai-service-price">По запросу</span>
+                                    </div>
+                                    <p class="ai-service-desc">Любые AI решения под ваш бизнес</p>
+                                    <p style="color:var(--gray);font-size:.9rem;margin-bottom:1rem">Примеры для The Bar Bowls:</p>
+                                    <ul style="list-style:none;padding:0;color:var(--gray);font-size:.9rem">
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Предиктивная аналитика заказов по точкам
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Автоматические уведомления об акциях в приложении
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Анализ отзывов и обратной связи клиентов
+                                        </li>
+                                        <li style="padding:.3rem 0;padding-left:1.2rem;position:relative">
+                                            <span style="position:absolute;left:0;color:var(--green)">✓</span>
+                                            Персонализация предложений по истории покупок
+                                        </li>
+                                    </ul>
+                                    <p style="margin-top:1rem;font-size:.9rem;color:var(--green);font-weight:600">
+                                        Результат: Уникальные решения для масштабирования до 17 точек
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div style="text-align:center;margin-top:3rem">
+                                <a href="https://webnostra.pro/ai/" class="btn btn-primary" target="_blank">
+                                    Подробнее о нейросетях
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleSection(this)">
+                    <h3><span class="section-icon">👥</span> О КОМАНДЕ</h3>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <h4 style="font-size:1.5rem;font-weight:800;margin-bottom:1rem">WEBNOSTRA PERFORMANCE — узкоспециализированная трафик-команда</h4>
+                        <p style="font-size:1.1rem;color:var(--gray);margin-bottom:2rem;line-height:1.8">
+                            За счет отсутствия громоздкой структуры обычных маркетинговых агентств и правильного выбора проектов, с которыми мы работаем, 
+                            наша команда делает реально прибыльный digital-маркетинг для своих клиентов за справедливую цену.
+                        </p>
+                        
+                        <div style="background:rgba(16,185,129,.05);padding:2rem;border-radius:12px;margin-bottom:2rem;border-left:4px solid var(--green)">
+                            <h4 style="font-size:1.2rem;font-weight:800;margin-bottom:1rem">Наш показатель LifeTime клиентов:</h4>
+                            <ul style="list-style:none;padding:0">
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--green);font-weight:700">✓</span>
+                                    С нами сотрудничают в среднем 1,5 года
+                                </li>
+                                <li style="padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--gray)">
+                                    <span style="position:absolute;left:0;color:var(--green);font-weight:700">✓</span>
+                                    Есть клиенты, которые уже более трех лет с нами зарабатывают деньги
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <h4 style="font-size:1.2rem;font-weight:800;margin-bottom:1rem">Почему выбирают нас:</h4>
+                        <div class="cards-grid">
+                            <div class="card">
+                                <h4>📈 Фокус на ROI</h4>
+                                <p>Работаем на результат: 320+ продаж при CPS < $12</p>
+                            </div>
+                            <div class="card">
+                                <h4>🔍 Прозрачность</h4>
+                                <p>Полный доступ к кабинетам Meta Ads и детальная отчетность</p>
+                            </div>
+                            <div class="card">
+                                <h4>⚡ Быстрый старт</h4>
+                                <p>От брифа до первых лидов — 7 дней</p>
+                            </div>
+                            <div class="card">
+                                <h4>🌏 Опыт с гео</h4>
+                                <p>Опыт работы с ресторанами и многоточечными проектами в Азии</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2>🥗 ГОТОВЫ НАЧАТЬ?</h2>
+            <p>Свяжитесь с нами для обсуждения проекта The Bar Bowls</p>
+            <div class="contact-buttons">
+                <a href="https://t.me/magosh_al" class="contact-btn" target="_blank">✈️ Написать в Telegram</a>
+                <a href="https://wa.me/77066671426" class="contact-btn" target="_blank">📱 Написать в WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.parentElement;
+            section.classList.toggle('active');
+        }
+
+        // Открываем первую секцию по умолчанию
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.collapsible-section');
+            if (firstSection) {
+                firstSection.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
