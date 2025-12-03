@@ -355,6 +355,13 @@
             font-weight: 600;
         }
         
+        /* Result Comparison */
+        .result-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        
         /* Pricing */
         .pricing-grid {
             display: grid;
@@ -544,6 +551,7 @@
             .pricing-card.featured { transform: none; }
             .case-metrics { grid-template-columns: 1fr; }
             .economics-card > div[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+            .result-comparison { grid-template-columns: 1fr; gap: 20px; }
         }
         @media (max-width: 640px) {
             header { padding: 80px 24px 60px; }
@@ -552,7 +560,11 @@
             section { padding: 60px 24px; }
             section h2 { font-size: 1.5rem; }
             .economics-params, .pricing-grid { grid-template-columns: 1fr; }
-            .bot-card, .economics-card { padding: 24px 20px; }
+            .bot-card, .economics-card { padding: 24px 16px; }
+            .bot-features > div { padding: 16px 12px; }
+            .result-box { padding: 20px 16px; }
+            .result-value { font-size: 1.6rem; }
+            .payback-note { padding: 12px; margin-top: 16px; }
             .cta-box { padding: 36px 20px; }
             .cta-box h2 { font-size: 1.6rem; }
             .cta-buttons { flex-direction: column; }
@@ -874,36 +886,54 @@
                 <div style="margin-top: 40px;">
                     <h4 style="text-align: center; color: var(--text-primary); margin-bottom: 24px; font-size: 1.3rem;">Чистый финансовый результат</h4>
                     
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
-                        <div style="background: var(--dark-lighter); padding: 24px; border-radius: 16px;">
-                            <h5 style="color: var(--success); margin-bottom: 16px; font-size: 1.1rem;">✅ Вне сезона</h5>
-                            <div style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;">
-                                <div>Экономия менеджеров: +4 000 $/мес</div>
-                                <div>Suvvi: -450 $/мес</div>
-                                <div>Поддержка: -100 $/мес</div>
+                    <div class="result-comparison">
+                        <div style="background: var(--dark-lighter); padding: 28px 24px; border-radius: 20px; border: 2px solid var(--success);">
+                            <h5 style="color: var(--success); margin-bottom: 20px; font-size: 1.1rem; text-align: center;">✅ Вне сезона</h5>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 2; margin-bottom: 20px;">
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
+                                    <span>Экономия менеджеров:</span>
+                                    <span style="color: var(--success); font-weight: 700;">+$4 000</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
+                                    <span>Suvvi:</span>
+                                    <span style="color: #ef4444; font-weight: 700;">-$450</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                                    <span>Поддержка:</span>
+                                    <span style="color: #ef4444; font-weight: 700;">-$100</span>
+                                </div>
                             </div>
-                            <div class="result-box" style="margin-top: 16px;">
+                            <div class="result-box">
                                 <div class="result-value">+$3 450/мес</div>
                                 <div class="result-label">чистой экономии</div>
                             </div>
                             <div class="payback-note">
-                                <p>Окупаемость: ~10-11 дней</p>
+                                <p>Окупаемость: 10-11 дней</p>
                             </div>
                         </div>
                         
-                        <div style="background: var(--dark-lighter); padding: 24px; border-radius: 16px;">
-                            <h5 style="color: var(--success); margin-bottom: 16px; font-size: 1.1rem;">✅ В сезон</h5>
-                            <div style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;">
-                                <div>Экономия менеджеров: +40 000 $/мес</div>
-                                <div>Suvvi: -4 500 $/мес</div>
-                                <div>Поддержка: -100 $/мес</div>
+                        <div style="background: var(--dark-lighter); padding: 28px 24px; border-radius: 20px; border: 2px solid var(--accent);">
+                            <h5 style="color: var(--accent); margin-bottom: 20px; font-size: 1.1rem; text-align: center;">✅ В сезон</h5>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem; line-height: 2; margin-bottom: 20px;">
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
+                                    <span>Экономия менеджеров:</span>
+                                    <span style="color: var(--success); font-weight: 700;">+$40 000</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
+                                    <span>Suvvi:</span>
+                                    <span style="color: #ef4444; font-weight: 700;">-$4 500</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                                    <span>Поддержка:</span>
+                                    <span style="color: #ef4444; font-weight: 700;">-$100</span>
+                                </div>
                             </div>
-                            <div class="result-box" style="margin-top: 16px;">
+                            <div class="result-box">
                                 <div class="result-value">+$35 400/мес</div>
                                 <div class="result-label">чистой экономии</div>
                             </div>
                             <div class="payback-note">
-                                <p>Окупаемость: ~1 день сезона</p>
+                                <p>Окупаемость: 1 день сезона</p>
                             </div>
                         </div>
                     </div>
