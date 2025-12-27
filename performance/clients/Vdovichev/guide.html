@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бесплатный Гайд - Как Правильно Торговать По Сигналам</title>
+    
+    <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1399100830794020');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+    
+    <!-- TGTrack Script -->
+    <script src="https://api.tgtrack.ru/API/landing_script/v1/?linkID=53a13cab689d9b&type=fb&fbpxid=1399100830794020" type="text/javascript" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-black: #0a0a0f;
+            --dark-blue: #0f1729;
+            --mid-blue: #1a2332;
+            --electric-blue: #2563eb;
+            --bright-blue: #3b82f6;
+            --cyan: #06b6d4;
+            --light-cyan: #22d3ee;
+            --white: #ffffff;
+            --light-gray: #e5e7eb;
+            --success-green: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--deep-black) 0%, var(--dark-blue) 50%, var(--mid-blue) 100%);
+            min-height: 100vh;
+            color: var(--white);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Chart decorations */
+        .chart-decoration {
+            position: absolute;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .chart-left {
+            left: -100px;
+            top: 20%;
+            width: 300px;
+            height: 300px;
+        }
+
+        .chart-right {
+            right: -100px;
+            top: 60%;
+            width: 350px;
+            height: 350px;
+        }
+
+        @media (max-width: 1024px) {
+            .chart-decoration {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 20px 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--electric-blue) 0%, var(--cyan) 100%);
+            color: var(--white);
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 40px rgba(37, 99, 235, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 15px 50px rgba(37, 99, 235, 0.6); }
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.2rem, 7vw, 4rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.35rem);
+            color: var(--light-gray);
+            margin-bottom: 20px;
+            font-weight: 400;
+            line-height: 1.7;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .description {
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            color: rgba(229, 231, 235, 0.8);
+            margin-bottom: 30px;
+            font-weight: 300;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 50px 20px;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--white) 0%, var(--bright-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .benefits-list {
+            max-width: 900px;
+            margin: 0 auto 50px;
+            display: grid;
+            gap: 20px;
+        }
+
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 25px 30px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateX(10px);
+            border-color: var(--electric-blue);
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.3);
+        }
+
+        .benefit-item:hover::before {
+            opacity: 1;
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .benefit-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--white);
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Info Block */
+        .info-block {
+            max-width: 900px;
+            margin: 0 auto 50px;
+            background: rgba(37, 99, 235, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(37, 99, 235, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-block::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .info-block-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .info-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--light-gray);
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .warning-text {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: var(--white);
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--bright-blue) 0%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Inside Guide Section */
+        .inside-guide {
+            padding: 50px 20px;
+            position: relative;
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .guide-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 18px;
+            padding: 35px 28px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guide-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--bright-blue);
+            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.3);
+        }
+
+        .guide-card:hover::before {
+            opacity: 1;
+        }
+
+        .guide-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .guide-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--white);
+            position: relative;
+            z-index: 1;
+            line-height: 1.4;
+        }
+
+        .guide-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(229, 231, 235, 0.85);
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 70px 20px 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 20px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, var(--electric-blue) 0%, var(--bright-blue) 50%, var(--cyan) 100%);
+            color: var(--white);
+            padding: 22px 50px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 50px rgba(37, 99, 235, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 70px rgba(37, 99, 235, 0.7);
+        }
+
+        .telegram-icon {
+            font-size: 1.8rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px 40px;
+            }
+
+            .hero-badge {
+                font-size: 0.85rem;
+                padding: 8px 22px;
+            }
+
+            .benefits-list {
+                gap: 15px;
+            }
+
+            .benefit-item {
+                padding: 20px 22px;
+                text-align: left;
+            }
+
+            .benefit-text {
+                font-size: 1rem;
+            }
+
+            .info-block {
+                padding: 30px 25px;
+            }
+
+            .info-text {
+                font-size: 1.05rem;
+            }
+
+            .warning-text {
+                font-size: 1.1rem;
+            }
+
+            .guide-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .guide-card {
+                padding: 30px 25px;
+                text-align: center;
+            }
+
+            .guide-icon {
+                text-align: center;
+            }
+
+            .guide-title {
+                text-align: center;
+            }
+
+            .guide-description {
+                text-align: center;
+            }
+
+            .cta-button {
+                padding: 18px 40px;
+                font-size: 1.1rem;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            h1 {
+                margin-bottom: 20px;
+            }
+
+            .subtitle {
+                font-size: 1.05rem;
+            }
+
+            .benefit-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 12px;
+            }
+
+            .benefit-icon {
+                font-size: 1.8rem;
+            }
+
+            .guide-icon {
+                font-size: 2.2rem;
+            }
+
+            .guide-title {
+                font-size: 1.15rem;
+            }
+
+            .cta-button {
+                padding: 16px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Chart Decorations -->
+    <svg class="chart-decoration chart-left" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="chartGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#2563eb;stop-opacity:0.6" />
+                <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.3" />
+            </linearGradient>
+        </defs>
+        <!-- Candlestick chart -->
+        <rect x="20" y="80" width="15" height="120" fill="url(#chartGradient1)" opacity="0.7"/>
+        <line x1="27.5" y1="50" x2="27.5" y2="200" stroke="#3b82f6" stroke-width="2"/>
+        
+        <rect x="60" y="100" width="15" height="80" fill="url(#chartGradient1)" opacity="0.7"/>
+        <line x1="67.5" y1="70" x2="67.5" y2="180" stroke="#3b82f6" stroke-width="2"/>
+        
+        <rect x="100" y="60" width="15" height="100" fill="url(#chartGradient1)" opacity="0.7"/>
+        <line x1="107.5" y1="40" x2="107.5" y2="160" stroke="#3b82f6" stroke-width="2"/>
+        
+        <rect x="140" y="90" width="15" height="90" fill="url(#chartGradient1)" opacity="0.7"/>
+        <line x1="147.5" y1="60" x2="147.5" y2="180" stroke="#3b82f6" stroke-width="2"/>
+        
+        <rect x="180" y="70" width="15" height="70" fill="url(#chartGradient1)" opacity="0.7"/>
+        <line x1="187.5" y1="50" x2="187.5" y2="140" stroke="#3b82f6" stroke-width="2"/>
+        
+        <rect x="220" y="50" width="15" height="110" fill="url(#chartGradient1)" opacity="0.7"/>
+        <line x1="227.5" y1="30" x2="227.5" y2="160" stroke="#3b82f6" stroke-width="2"/>
+        
+        <rect x="260" y="40" width="15" height="90" fill="url(#chartGradient1)" opacity="0.7"/>
+        <line x1="267.5" y1="20" x2="267.5" y2="130" stroke="#3b82f6" stroke-width="2"/>
+        
+        <!-- Grid lines -->
+        <line x1="0" y1="50" x2="300" y2="50" stroke="#3b82f6" stroke-width="1" opacity="0.2"/>
+        <line x1="0" y1="100" x2="300" y2="100" stroke="#3b82f6" stroke-width="1" opacity="0.2"/>
+        <line x1="0" y1="150" x2="300" y2="150" stroke="#3b82f6" stroke-width="1" opacity="0.2"/>
+        <line x1="0" y1="200" x2="300" y2="200" stroke="#3b82f6" stroke-width="1" opacity="0.2"/>
+    </svg>
+
+    <svg class="chart-decoration chart-right" viewBox="0 0 350 350" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="chartGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.6" />
+                <stop offset="100%" style="stop-color:#2563eb;stop-opacity:0.3" />
+            </linearGradient>
+        </defs>
+        <!-- Line chart with area -->
+        <path d="M 20 250 Q 50 200, 80 220 T 140 180 T 200 150 T 260 120 T 320 80" 
+              stroke="#3b82f6" stroke-width="3" fill="none" opacity="0.8"/>
+        <path d="M 20 250 Q 50 200, 80 220 T 140 180 T 200 150 T 260 120 T 320 80 L 320 300 L 20 300 Z" 
+              fill="url(#chartGradient2)" opacity="0.4"/>
+        
+        <!-- Data points -->
+        <circle cx="20" cy="250" r="4" fill="#22d3ee"/>
+        <circle cx="80" cy="220" r="4" fill="#22d3ee"/>
+        <circle cx="140" cy="180" r="4" fill="#22d3ee"/>
+        <circle cx="200" cy="150" r="4" fill="#22d3ee"/>
+        <circle cx="260" cy="120" r="4" fill="#22d3ee"/>
+        <circle cx="320" cy="80" r="5" fill="#22d3ee"/>
+        
+        <!-- Grid -->
+        <line x1="0" y1="80" x2="350" y2="80" stroke="#3b82f6" stroke-width="1" opacity="0.2"/>
+        <line x1="0" y1="150" x2="350" y2="150" stroke="#3b82f6" stroke-width="1" opacity="0.2"/>
+        <line x1="0" y1="220" x2="350" y2="220" stroke="#3b82f6" stroke-width="1" opacity="0.2"/>
+        <line x1="0" y1="290" x2="350" y2="290" stroke="#3b82f6" stroke-width="1" opacity="0.2"/>
+    </svg>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">Бесплатный гайд</div>
+            <h1>Как правильно торговать по сигналам</h1>
+            <p class="subtitle">
+                Избегайте типичных ошибок и защитите свой депозит
+            </p>
+            <p class="description">
+                Простые правила, которые работают
+            </p>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits">
+            <h2 class="section-title">Получите бесплатное руководство и узнайте:</h2>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <span class="benefit-icon">✅</span>
+                    <p class="benefit-text">Как рассчитать правильный размер позиции</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">✅</span>
+                    <p class="benefit-text">Почему стоп-лосс - ваш главный защитник</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">✅</span>
+                    <p class="benefit-text">Когда можно войти в сделку, а когда уже поздно</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">✅</span>
+                    <p class="benefit-text">Как управлять рисками и избежать эмоциональных решений</p>
+                </div>
+            </div>
+
+            <!-- Info Block -->
+            <div class="info-block">
+                <div class="info-block-content">
+                    <p class="info-text">
+                        Это не теория. Это проверенная методология, которая помогает подписчикам канала защищать депозит и работать по системе.
+                    </p>
+                    <p class="warning-text">
+                        Одна ошибка в управлении рисками может стоить вам недель работы. Этот гайд поможет их избежать.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Button Before Inside Guide -->
+        <section class="cta-section" style="padding: 20px 20px 40px;">
+            <div class="cta-content">
+                <a href="https://t.me/+0L0ozUMyqrQzMWQ6" class="cta-button" target="_blank">
+                    <span class="telegram-icon">✈️</span>
+                    <span>Перейти в канал и получить гайд</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Inside Guide Section -->
+        <section class="inside-guide">
+            <h2 class="section-title">Что внутри гайда:</h2>
+            <div class="guide-grid">
+                <div class="guide-card">
+                    <span class="guide-icon">📋</span>
+                    <h3 class="guide-title">4 обязательных правила</h3>
+                    <p class="guide-description">Работы с сигналами</p>
+                </div>
+                <div class="guide-card">
+                    <span class="guide-icon">📊</span>
+                    <h3 class="guide-title">Расчет размера позиции</h3>
+                    <p class="guide-description">Под ваш депозит</p>
+                </div>
+                <div class="guide-card">
+                    <span class="guide-icon">🛡️</span>
+                    <h3 class="guide-title">Правильная установка</h3>
+                    <p class="guide-description">Стоп-лоссов</p>
+                </div>
+                <div class="guide-card">
+                    <span class="guide-icon">⏰</span>
+                    <h3 class="guide-title">Определение момента</h3>
+                    <p class="guide-description">Не поздно ли входить</p>
+                </div>
+                <div class="guide-card">
+                    <span class="guide-icon">💰</span>
+                    <h3 class="guide-title">Управление рисками</h3>
+                    <p class="guide-description">Без эмоций</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2 class="cta-title">Готовы начинать?</h2>
+                <p class="cta-text">
+                    Заберите гайд в Telegram-канале
+                </p>
+                <a href="https://t.me/+0L0ozUMyqrQzMWQ6" class="cta-button" target="_blank">
+                    <span class="telegram-icon">✈️</span>
+                    <span>Перейти в канал и получить гайд</span>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe cards
+        document.querySelectorAll('.benefit-item, .guide-card, .info-block').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
