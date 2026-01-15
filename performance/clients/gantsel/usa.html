@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструкция по адаптации питания в США</title>
+    
+    <!-- TGTrack Meta script -->
+    <script src="https://api.tgtrack.ru/API/landing_script/v1/?linkID=f20ab4380991dc&chat=gantselslimcode&type=fb&fbpxid=1399100830794020" type="text/javascript" defer></script>
+    
+    <!-- Yandex Metrika -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
+        ym(96858541, 'init', {webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/96858541" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        
+        /* Animated background blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.6;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .blob-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #86efac 0%, #22c55e 100%);
+            top: -100px;
+            right: -80px;
+            animation-delay: 0s;
+        }
+        
+        .blob-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #bbf7d0 0%, #4ade80 100%);
+            bottom: 15%;
+            left: -60px;
+            animation-delay: -4s;
+        }
+        
+        .blob-3 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #dcfce7 0%, #86efac 100%);
+            top: 40%;
+            right: -40px;
+            animation-delay: -2s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(10px, -15px) scale(1.05); }
+            66% { transform: translate(-8px, 10px) scale(0.95); }
+        }
+        
+        /* Wave pattern */
+        .wave-pattern {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23f0fdf4' fill-opacity='0.8' d='M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,165.3C672,171,768,213,864,213.3C960,213,1056,171,1152,149.3C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
+            background-size: cover;
+            pointer-events: none;
+        }
+        
+        .screen {
+            min-height: 100svh;
+            padding: 32px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .screen-1 {
+            background: linear-gradient(180deg, #ffffff 0%, #fafffe 100%);
+            overflow: hidden;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Fade in animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .fade-in-1 { animation-delay: 0.1s; }
+        .fade-in-2 { animation-delay: 0.2s; }
+        .fade-in-3 { animation-delay: 0.3s; }
+        .fade-in-4 { animation-delay: 0.4s; }
+        .fade-in-5 { animation-delay: 0.5s; }
+        .fade-in-6 { animation-delay: 0.6s; }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .author {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #16a34a;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding: 8px 14px;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 20px;
+            width: fit-content;
+        }
+        
+        .author-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        
+        .headline {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 16px;
+            color: #0f172a;
+        }
+        
+        .highlight {
+            color: #16a34a;
+            position: relative;
+        }
+        
+        .highlight::after {
+            content: "";
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: rgba(34, 197, 94, 0.2);
+            border-radius: 4px;
+            z-index: -1;
+        }
+        
+        .subheadline {
+            font-size: 17px;
+            color: #64748b;
+            margin-bottom: 24px;
+            line-height: 1.55;
+        }
+        
+        /* Glassmorphism card */
+        .key-point {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 28px;
+            font-size: 16px;
+            color: #1e293b;
+            line-height: 1.55;
+            box-shadow: 
+                0 4px 24px rgba(34, 197, 94, 0.1),
+                inset 0 1px 1px rgba(255, 255, 255, 0.8);
+        }
+        
+        .key-point-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+        
+        /* Free badge */
+        .free-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%);
+            color: #a16207;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Animated gradient button */
+        .cta-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 50%, #15803d 100%);
+            background-size: 200% 200%;
+            color: #ffffff;
+            text-align: center;
+            padding: 18px 24px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 600;
+            box-shadow: 
+                0 4px 20px rgba(34, 197, 94, 0.4),
+                0 0 0 0 rgba(34, 197, 94, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+        
+        .tg-icon {
+            width: 22px;
+            height: 22px;
+        }
+        
+        .micro-text {
+            text-align: center;
+            font-size: 13px;
+            color: #94a3b8;
+            margin-top: 14px;
+        }
+        
+        .more-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 32px;
+            color: #22c55e;
+            font-size: 15px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .more-link-arrow {
+            display: flex;
+            animation: bounce 2s ease infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(4px); }
+        }
+        
+        /* Screen 2 */
+        .screen-2 {
+            min-height: auto;
+            padding: 48px 20px 140px;
+            background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+        
+        /* Benefit cards */
+        .benefits-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .benefit-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 
+                0 2px 12px rgba(0, 0, 0, 0.04),
+                0 1px 3px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(34, 197, 94, 0.1);
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .benefit-card:active {
+            transform: scale(0.99);
+        }
+        
+        .benefit-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .benefit-text {
+            font-size: 15px;
+            color: #334155;
+            line-height: 1.5;
+        }
+        
+        .benefit-text strong {
+            color: #0f172a;
+            font-weight: 600;
+        }
+        
+        /* Trust badge */
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding: 10px 16px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 13px;
+            color: #64748b;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+        
+        .trust-avatars {
+            display: flex;
+        }
+        
+        .trust-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            margin-left: -8px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+        
+        .trust-avatar:first-child {
+            margin-left: 0;
+        }
+        
+        .trust-count {
+            font-weight: 600;
+            color: #22c55e;
+        }
+        
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .sticky-cta.visible {
+            transform: translateY(0);
+        }
+        
+        .sticky-cta .cta-button {
+            padding: 16px 20px;
+            font-size: 16px;
+        }
+        
+        /* Desktop styles */
+        @media (min-width: 768px) {
+            .screen {
+                padding: 48px 40px;
+            }
+            
+            .screen-1 .content {
+                max-width: 580px;
+                margin: 0 auto;
+            }
+            
+            .blob-1 {
+                width: 400px;
+                height: 400px;
+                right: 10%;
+            }
+            
+            .blob-2 {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .headline {
+                font-size: 38px;
+            }
+            
+            .subheadline {
+                font-size: 19px;
+            }
+            
+            .key-point {
+                font-size: 17px;
+                padding: 24px;
+            }
+            
+            .cta-button {
+                max-width: 420px;
+                margin: 0 auto;
+                font-size: 18px;
+                padding: 20px 32px;
+            }
+            
+            .cta-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 
+                    0 8px 30px rgba(34, 197, 94, 0.45),
+                    0 0 0 4px rgba(34, 197, 94, 0.15);
+            }
+            
+            .benefit-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 
+                    0 8px 24px rgba(0, 0, 0, 0.08),
+                    0 2px 6px rgba(0, 0, 0, 0.04);
+            }
+            
+            .screen-2 {
+                padding: 64px 40px 100px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .benefits-grid {
+                max-width: 520px;
+                margin: 0 auto 40px;
+            }
+            
+            .benefit-text {
+                font-size: 16px;
+            }
+            
+            .sticky-cta {
+                display: none;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .screen-1 .content {
+                max-width: 640px;
+            }
+            
+            .headline {
+                font-size: 44px;
+            }
+            
+            .subheadline {
+                font-size: 20px;
+            }
+            
+            .blob-1 {
+                width: 500px;
+                height: 500px;
+                top: -150px;
+                right: 15%;
+            }
+            
+            .blob-2 {
+                width: 350px;
+                height: 350px;
+                left: 5%;
+            }
+            
+            .blob-3 {
+                width: 250px;
+                height: 250px;
+            }
+        }
+        
+        /* Small mobile adjustments */
+        @media (max-width: 374px) {
+            .screen {
+                padding: 24px 16px;
+            }
+            
+            .headline {
+                font-size: 24px;
+            }
+            
+            .subheadline {
+                font-size: 15px;
+            }
+            
+            .key-point {
+                font-size: 14px;
+                padding: 16px;
+            }
+            
+            .cta-button {
+                font-size: 15px;
+                padding: 16px 18px;
+            }
+            
+            .benefit-card {
+                padding: 16px;
+            }
+            
+            .benefit-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 20px;
+            }
+            
+            .benefit-text {
+                font-size: 14px;
+            }
+            
+            .screen-2 {
+                padding-bottom: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Screen 1: Hero -->
+    <section class="screen screen-1">
+        <!-- Animated blobs -->
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="wave-pattern"></div>
+        
+        <div class="content">
+            <div class="author fade-in fade-in-1">
+                <span class="author-dot"></span>
+                Евгений Ганцель, нутрициолог
+            </div>
+            
+            <h1 class="headline fade-in fade-in-2">
+                Переехала в США и начала <span class="highlight">набирать вес</span>?
+            </h1>
+            
+            <p class="subheadline fade-in fade-in-3">
+                Питаешься нормально, двигаешься, но тело все равно меняется не в ту сторону
+            </p>
+            
+            <div class="key-point fade-in fade-in-4">
+                <div class="key-point-icon">💡</div>
+                <div>Дело не в силе воли, а в <strong>новой пищевой среде</strong> и адаптационном стрессе, который влияет на гормоны и метаболизм</div>
+            </div>
+            
+            <div class="fade-in fade-in-5">
+                <div class="free-badge">Бесплатно</div>
+                <a href="https://t.me/gantselslimcode/367" target="_blank" rel="noopener" class="cta-button">
+                    <svg class="tg-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.67-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.25.38-.51 1.07-.78 4.19-1.82 6.99-3.03 8.4-3.61 4-.17 4.83-.17 5.37-.17.12 0 .37.03.54.18.14.12.18.28.2.45-.02.07-.02.27-.04.43z"/>
+                    </svg>
+                    Забрать инструкцию в Telegram
+                </a>
+                <p class="micro-text">Без регистрации, откроется сразу</p>
+            </div>
+            
+            <a href="#details" class="more-link fade-in fade-in-6">
+                Подробнее 
+                <span class="more-link-arrow">↓</span>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Screen 2: Details -->
+    <section class="screen screen-2" id="details">
+        <h2 class="section-title">Что внутри инструкции</h2>
+        
+        <div class="trust-badge">
+            <div class="trust-avatars">
+                <div class="trust-avatar">👩</div>
+                <div class="trust-avatar">👩‍🦰</div>
+                <div class="trust-avatar">👱‍♀️</div>
+            </div>
+            <span><span class="trust-count">2,400+</span> уже забрали</span>
+        </div>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🍎</div>
+                <p class="benefit-text">
+                    <strong>Почему американская еда</strong> по-другому влияет на организм, даже если она кажется обычной
+                </p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">⚖️</div>
+                <p class="benefit-text">
+                    <strong>Как стресс от переезда</strong> меняет гормональный фон и провоцирует накопление жира
+                </p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">💚</div>
+                <p class="benefit-text">
+                    <strong>Простые шаги</strong> для адаптации без жестких диет и изнурительных тренировок
+                </p>
+            </div>
+        </div>
+        
+        <a href="https://t.me/gantselslimcode/367" target="_blank" rel="noopener" class="cta-button">
+            <svg class="tg-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.67-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.25.38-.51 1.07-.78 4.19-1.82 6.99-3.03 8.4-3.61 4-.17 4.83-.17 5.37-.17.12 0 .37.03.54.18.14.12.18.28.2.45-.02.07-.02.27-.04.43z"/>
+            </svg>
+            Забрать инструкцию в Telegram
+        </a>
+    </section>
+    
+    <!-- Sticky CTA for mobile -->
+    <div class="sticky-cta" id="stickyCta">
+        <a href="https://t.me/gantselslimcode/367" target="_blank" rel="noopener" class="cta-button">
+            <svg class="tg-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.67-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.25.38-.51 1.07-.78 4.19-1.82 6.99-3.03 8.4-3.61 4-.17 4.83-.17 5.37-.17.12 0 .37.03.54.18.14.12.18.28.2.45-.02.07-.02.27-.04.43z"/>
+            </svg>
+            Забрать инструкцию
+        </a>
+    </div>
+    
+    <script>
+        // Smooth scroll for "Подробнее" link
+        document.querySelector('.more-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#details').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Sticky CTA visibility
+        const stickyCta = document.getElementById('stickyCta');
+        const heroSection = document.querySelector('.screen-1');
+        
+        function checkScroll() {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < window.innerHeight * 0.5) {
+                stickyCta.classList.add('visible');
+            } else {
+                stickyCta.classList.remove('visible');
+            }
+        }
+        
+        window.addEventListener('scroll', checkScroll, { passive: true });
+        checkScroll();
+    </script>
+</body>
+</html>
+
+<!--
+============================================
+CHECKLIST ПРОВЕРОК
+============================================
+
+✓ Mobile 360px:
+  - Заголовок читаемый (24px)
+  - Кнопки не перекрывают текст
+  - Отступы корректные (16px по бокам)
+  - Карточки помещаются
+  - Sticky CTA не перекрывает контент
+  - Блобы не мешают чтению
+
+✓ Mobile 390px:
+  - Оптимальный размер для iPhone
+  - Все элементы пропорциональны
+  - CTA кнопка хорошо нажимается
+  - Анимации плавные
+
+✓ Mobile 430px:
+  - Дополнительное пространство используется
+  - Карточки выглядят сбалансированно
+  - Текст не растянут
+
+✓ Tablet 768px:
+  - Контент центрирован
+  - Максимальная ширина ограничена
+  - Увеличенные шрифты
+  - Hover эффекты работают
+  - Sticky CTA скрыт
+
+✓ Desktop 1200px:
+  - Контент в центре (max-width 640px)
+  - Блобы красиво расположены по краям
+  - Крупные шрифты (44px заголовок)
+  - Hover эффекты на кнопках и карточках
+
+✓ Общие проверки:
+  - Нет буквы ё
+  - Нет длинных/средних тире
+  - Нет точек в конце предложений
+  - Все ссылки ведут на https://t.me/gantselslimcode/367
+  - target="_blank" и rel="noopener" на всех ссылках
+  - TGTrack скрипт в head
+  - Яндекс Метрика в head
+  - Белый фон, зеленые акценты
+  - Glassmorphism карточки
+  - Анимированные блобы
+  - Fade-in анимации при загрузке
+  - Animated gradient на кнопке
+  - Sticky CTA появляется при скролле
+  - Trust badge с счетчиком
+  - Иконки в карточках
+  - Smooth scroll работает
+
+============================================
+-->
