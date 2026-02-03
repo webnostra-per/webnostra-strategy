@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Крипто-арбитраж | Начни зарабатывать с $10</title>
+    
+    <!-- TGTrack Script -->
+    <script src="https://api.tgtrack.ru/API/landing_script/v1/?linkID=6999c1f9308c12&type=fb&fbpxid=1399100830794020" type="text/javascript" defer></script>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1399100830794020');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --accent-green: #00ff88;
+            --accent-green-dim: rgba(0, 255, 136, 0.15);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --gradient-green: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+            --gradient-dark: linear-gradient(180deg, #0a0a0f 0%, #12121a 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .bg-pattern::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 255, 136, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 200, 100, 0.05) 0%, transparent 40%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-2%, 2%) rotate(1deg); }
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-green-dim);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 100px;
+            padding: 8px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent-green);
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-green);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 520px;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%);
+            color: #fff;
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(42, 171, 238, 0.35);
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(42, 171, 238, 0.5);
+            background: linear-gradient(135deg, #3BB5F5 0%, #2AABEE 100%);
+        }
+
+        .cta-button svg {
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover svg {
+            transform: translateX(4px);
+        }
+
+        .tg-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .crypto-card {
+            position: absolute;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(20px);
+        }
+
+        .crypto-card-main {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            animation: floatCard 6s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translate(-50%, -50%); }
+            50% { transform: translate(-50%, calc(-50% - 15px)); }
+        }
+
+        .crypto-card-main .balance {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .crypto-card-main .balance span {
+            color: var(--accent-green);
+        }
+
+        .crypto-card-main .label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .profit-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 255, 136, 0.1);
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+
+        .crypto-icon {
+            position: absolute;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .icon-btc {
+            top: 15%;
+            left: 10%;
+            background: linear-gradient(135deg, #f7931a 0%, #ffb74d 100%);
+            color: #fff;
+            animation: floatIcon 4s ease-in-out infinite;
+        }
+
+        .icon-eth {
+            top: 25%;
+            right: 5%;
+            background: linear-gradient(135deg, #627eea 0%, #9f7aea 100%);
+            color: #fff;
+            animation: floatIcon 5s ease-in-out infinite 1s;
+        }
+
+        .icon-usdt {
+            bottom: 25%;
+            left: 5%;
+            background: linear-gradient(135deg, #26a17b 0%, #4ade80 100%);
+            color: #fff;
+            animation: floatIcon 4.5s ease-in-out infinite 0.5s;
+        }
+
+        .icon-bnb {
+            bottom: 15%;
+            right: 15%;
+            background: linear-gradient(135deg, #f0b90b 0%, #fcd34d 100%);
+            color: #fff;
+            animation: floatIcon 5.5s ease-in-out infinite 1.5s;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            padding: 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-green);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 255, 136, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--accent-green-dim);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--accent-green);
+        }
+
+        .feature-card h3 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Safety Banner */
+        .safety-banner {
+            margin-top: 60px;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.08) 0%, rgba(0, 200, 100, 0.03) 100%);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            border-radius: 24px;
+            padding: 40px 48px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .safety-icon {
+            width: 72px;
+            height: 72px;
+            background: var(--accent-green-dim);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .safety-icon svg {
+            width: 36px;
+            height: 36px;
+            stroke: var(--accent-green);
+        }
+
+        .safety-content h3 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .safety-content p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Reviews Section */
+        .reviews {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        .reviews-slider {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .reviews-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .review-card {
+            min-width: 340px;
+            max-width: 340px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            padding: 28px;
+            scroll-snap-align: start;
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            border-color: rgba(0, 255, 136, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .review-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .review-info h4 {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+
+        .review-info span {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .review-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .review-stats {
+            background: rgba(0, 255, 136, 0.08);
+            border-radius: 12px;
+            padding: 16px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .value {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 2px;
+        }
+
+        .stat-item .label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .scroll-hint {
+            text-align: center;
+            margin-top: 24px;
+            color: var(--text-muted);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .scroll-hint svg {
+            animation: scrollHint 1.5s ease-in-out infinite;
+        }
+
+        @keyframes scrollHint {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(8px); }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0 120px;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 255, 136, 0.05) 100%);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            border-radius: 32px;
+            padding: 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.05) 0%, transparent 50%);
+            animation: rotateBg 30s linear infinite;
+        }
+
+        @keyframes rotateBg {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-box > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-box h2 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-box p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button-large {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%);
+            color: #fff;
+            font-family: 'Manrope', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 22px 44px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 30px rgba(42, 171, 238, 0.4);
+        }
+
+        .cta-button-large:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 45px rgba(42, 171, 238, 0.55);
+            background: linear-gradient(135deg, #3BB5F5 0%, #2AABEE 100%);
+        }
+
+        .cta-button-large svg {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button-large:hover svg {
+            transform: translateX(6px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-visual {
+                height: 400px;
+                margin-top: 40px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .safety-banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-box {
+                padding: 48px 24px;
+            }
+
+            .hero-visual {
+                height: 350px;
+            }
+
+            .crypto-card-main {
+                width: 240px;
+            }
+
+            .crypto-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">Начни зарабатывать сегодня</div>
+                    <h1>Зарабатывай на крипто-арбитраже с вложениями <span>от $10</span></h1>
+                    <p class="hero-description">Предоставляем уникальную возможность освоить крипто-арбитраж с минимальными вложениями и максимальной поддержкой. Обучение проходит бесплатно.</p>
+                    <a href="https://t.me/startbtc_bot?start=6981ef2817bce682f00a2248" class="cta-button" target="_blank">
+                        <svg class="tg-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                        </svg>
+                        Перейти на канал
+                    </a>
+                </div>
+                <div class="hero-visual">
+                    <div class="crypto-card crypto-card-main">
+                        <div class="balance">+$<span>1,247</span>.80</div>
+                        <div class="label">Прибыль за неделю</div>
+                        <div class="profit-indicator">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                <polyline points="17 6 23 6 23 12"></polyline>
+                            </svg>
+                            +34.5% за 7 дней
+                        </div>
+                    </div>
+                    <div class="crypto-icon icon-btc">₿</div>
+                    <div class="crypto-icon icon-eth">Ξ</div>
+                    <div class="crypto-icon icon-usdt">$</div>
+                    <div class="crypto-icon icon-bnb">B</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h3>Прозрачность</h3>
+                    <p>Работа только на официальных биржах, без обменников и сторонних кошельков</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                        </svg>
+                    </div>
+                    <h3>Обучение</h3>
+                    <p>Бесплатное двухдневное обучение, адаптированное для новичков</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3>Кураторство</h3>
+                    <p>Личный наставник, сопровождающий вас на всех этапах</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/>
+                            <path d="M12 18V6"/>
+                        </svg>
+                    </div>
+                    <h3>Минимальный порог</h3>
+                    <p>Возможность начать всего с $10 — доступно каждому</p>
+                </div>
+            </div>
+
+            <div class="safety-banner">
+                <div class="safety-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                </div>
+                <div class="safety-content">
+                    <h3>Без рисков и подводных камней</h3>
+                    <p>Ваши деньги хранятся исключительно у вас. Мы не просим переводить куда-то ваши средства или переходить по странным ссылкам.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2>Отзывы участников</h2>
+                <p>Реальные истории людей, которые уже зарабатывают</p>
+            </div>
+
+            <div class="reviews-slider">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">Q</div>
+                        <div class="review-info">
+                            <h4>qoctrung</h4>
+                            <span>был в сети недавно</span>
+                        </div>
+                    </div>
+                    <p class="review-text">Сначала решил попробовать на маленьком депозите, но быстро понял, что это работает. Увеличил сумму до 350 000 рублей. За время работы связки удалось заработать 320 000 рублей. Это лучшее решение за последние годы!</p>
+                    <div class="review-stats">
+                        <div class="stat-item">
+                            <div class="value">350K ₽</div>
+                            <div class="label">Депозит</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="value">+320K ₽</div>
+                            <div class="label">Прибыль</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">A</div>
+                        <div class="review-info">
+                            <h4>avkreuz</h4>
+                            <span>был в сети недавно</span>
+                        </div>
+                    </div>
+                    <p class="review-text">Сначала сомневалась, но решила попробовать, и это было одним из лучших решений. Сумма стартового депозита составила 250 000 рублей. За первые 3 дня я заработала 48 000 рублей чистой прибыли. Рекомендую!</p>
+                    <div class="review-stats">
+                        <div class="stat-item">
+                            <div class="value">250K ₽</div>
+                            <div class="label">Депозит</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="value">+48K ₽</div>
+                            <div class="label">За 3 дня</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">A</div>
+                        <div class="review-info">
+                            <h4>artem_1899</h4>
+                            <span>был в сети недавно</span>
+                        </div>
+                    </div>
+                    <p class="review-text">Я давно искал надежный способ заработка. Работаю сейчас с бюджетом 500 000 рублей и получаю стабильный доход — около 16 000 рублей за один круг. Делаю 3 круга за 4 дня и прибавляю 192 000 рублей к основному капиталу.</p>
+                    <div class="review-stats">
+                        <div class="stat-item">
+                            <div class="value">500K ₽</div>
+                            <div class="label">Бюджет</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="value">+192K ₽</div>
+                            <div class="label">За 4 дня</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">К</div>
+                        <div class="review-info">
+                            <h4>Косметолог Анастасия</h4>
+                            <span>была в сети недавно</span>
+                        </div>
+                    </div>
+                    <p class="review-text">Я долго думала, стоит ли начинать, но после первой недели поняла, что это точно моё! Вложила 200 000 рублей, за неделю получила 58 800 рублей чистой прибыли. Всё чётко, просто и прозрачно. Благодарю за поддержку!</p>
+                    <div class="review-stats">
+                        <div class="stat-item">
+                            <div class="value">200K ₽</div>
+                            <div class="label">Вложения</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="value">+58.8K ₽</div>
+                            <div class="label">За неделю</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-hint">
+                <span>Листайте</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Готовы начать зарабатывать?</h2>
+                <p>Присоединяйтесь к нашему каналу и начните свой путь в крипто-арбитраже уже сегодня</p>
+                <a href="https://t.me/startbtc_bot?start=6981ef2817bce682f00a2248" class="cta-button-large" target="_blank">
+                    <svg class="tg-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                    Перейти на канал
+                </a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
