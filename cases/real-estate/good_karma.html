@@ -395,6 +395,44 @@
             gap: 0.75rem;
         }
 
+        .lang-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .lang-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .lang-card-flag {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .lang-card-name {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .lang-card-approach {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .lang-card-detail {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
         .results-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -661,6 +699,10 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .lang-cards {
+                grid-template-columns: 1fr;
+            }
+
             .problems-grid {
                 grid-template-columns: 1fr;
             }
@@ -823,32 +865,26 @@
                     </div>
                 </div>
                 <div class="solution-content">
-                    <table class="language-table">
-                        <thead>
-                            <tr>
-                                <th>Язык</th>
-                                <th>Подход</th>
-                                <th>Особенность</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><span class="lang-flag">🇬🇧 Английский</span></td>
-                                <td>Инвестиционный оффер</td>
-                                <td>Фокус на ROI и lifestyle</td>
-                            </tr>
-                            <tr>
-                                <td><span class="lang-flag">🇷🇺 Русский</span></td>
-                                <td>Адаптация под менталитет</td>
-                                <td>Акцент на надёжность и доход</td>
-                            </tr>
-                            <tr>
-                                <td><span class="lang-flag">🇵🇱 Польский</span></td>
-                                <td>Локализация офферов</td>
-                                <td>Растущий рынок покупателей</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="lang-cards">
+                        <div class="lang-card">
+                            <div class="lang-card-flag">🇬🇧</div>
+                            <div class="lang-card-name">Английский</div>
+                            <div class="lang-card-approach">Инвестиционный оффер</div>
+                            <div class="lang-card-detail">Фокус на ROI и lifestyle</div>
+                        </div>
+                        <div class="lang-card">
+                            <div class="lang-card-flag">🇷🇺</div>
+                            <div class="lang-card-name">Русский</div>
+                            <div class="lang-card-approach">Адаптация под менталитет</div>
+                            <div class="lang-card-detail">Акцент на надёжность и доход</div>
+                        </div>
+                        <div class="lang-card">
+                            <div class="lang-card-flag">🇵🇱</div>
+                            <div class="lang-card-name">Польский</div>
+                            <div class="lang-card-approach">Локализация офферов</div>
+                            <div class="lang-card-detail">Растущий рынок покупателей</div>
+                        </div>
+                    </div>
                     <div class="solution-items" style="margin-top: 1.5rem;">
                         <div class="solution-item">
                             <div class="solution-item-dot"></div>
