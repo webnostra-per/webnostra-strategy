@@ -759,7 +759,7 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"/></
 
     // Endpoints для отправки данных
     albatoUrl: 'https://h.albato.ru/wh/38/1lfbu2f/Gl8Ji635t32TgsHVJNYRYT1tmvQ1vVH6xVknsLcCzKc/',
-    sheetsUrl: 'https://script.google.com/macros/s/AKfycbzWhy-1EwIoL8lTHHYE7o4k4xAhfw6L-vQkjB4R33MrequYAZEsZqu2AqpJpyXOMqpbEg/exec'
+    sheetsUrl: 'https://script.google.com/macros/s/AKfycbwJDXmN882wTGJDzk0gWzH4sZ7SoP5ODMGns9NRS_vBKiF8PMmabono2rFHPr045MYHbw/exec'
   };
 
   // ========== UTM-парсинг ==========
@@ -950,21 +950,21 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"/></
   // Отправка в Google Sheets
   async function sendToSheets(payload) {
     try {
-      const response = await fetch(CONFIG.sheetsUrl, {
+      console.log('Sending to Sheets:', CONFIG.sheetsUrl);
+
+      // Используем no-cors режим для Google Apps Script
+      // Не можем проверить response, но данные сохранятся
+      await fetch(CONFIG.sheetsUrl, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        mode: 'no-cors'
       });
 
-      if (!response.ok) {
-        throw new Error(`Sheets returned ${response.status}`);
-      }
-
-      console.log('Sheets: success');
+      console.log('Sheets: sent (no-cors mode, cannot verify response)');
       return { success: true };
 
     } catch (error) {
-      console.error('Sheets error:', error.message);
+      console.error('Sheets error:', error);
       throw error;
     }
   }

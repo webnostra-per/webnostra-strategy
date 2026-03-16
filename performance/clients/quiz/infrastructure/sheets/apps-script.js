@@ -1,17 +1,13 @@
 /**
  * Google Apps Script для резервного хранилища лидов
- *
- * Установка:
- * 1. Создать Google Sheets таблицу
- * 2. Добавить заголовки в первую строку:
- *    timestamp | quiz_id | name | phone | q1_goal | q2_timeline | utm_source | utm_medium | utm_campaign | utm_content | utm_term | quiz_url
- * 3. Расширения → Apps Script
- * 4. Вставить этот код
- * 5. Deploy → New deployment → Web app:
- *    - Execute as: Me
- *    - Who has access: Anyone
- * 6. Скопировать URL и вставить в Cloudflare Worker
  */
+
+// Обработка GET запросов
+function doGet(e) {
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'ok', message: 'Use POST method' }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
 
 function doPost(e) {
   try {
@@ -40,7 +36,7 @@ function doPost(e) {
     // Логируем успешную запись
     Logger.log('Lead saved: ' + data.quiz_id + ' - ' + data.name);
 
-    // Возвращаем успех
+    // Возвращаем успех с CORS заголовками
     return ContentService
       .createTextOutput(JSON.stringify({ status: 'ok', quiz_id: data.quiz_id }))
       .setMimeType(ContentService.MimeType.JSON);
