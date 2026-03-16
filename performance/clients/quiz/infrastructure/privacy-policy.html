@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Политика конфиденциальности — IP DOBZHANSKII DMITRII VIKTOROVICH</title>
+<meta name="description" content="Политика конфиденциальности и обработки персональных данных">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --dark: #0b1a30;
+    --dark-surface: #0f2140;
+    --dark-card: #132847;
+    --accent: #3a9ae8;
+    --accent-light: #5cb3f5;
+    --accent-dark: #2678c2;
+    --accent-glow: rgba(58, 154, 232, 0.12);
+    --green: #44c78a;
+    --green-glow: rgba(68, 199, 138, 0.12);
+    --text: #e4eaf3;
+    --text-muted: #7e97b8;
+    --font-display: 'Gilroy-Bold', 'Gilroy Bold', 'Gilroy', sans-serif;
+    --font-body: 'Onest', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--dark);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 800px 600px at 30% 20%, rgba(58,154,232,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 600px 500px at 80% 80%, rgba(68,199,138,0.05) 0%, transparent 70%),
+      linear-gradient(180deg, #0b1a30 0%, #091425 100%);
+  }
+
+  .noise {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.025;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* Back link */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 32px;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--accent-light); }
+  .back-link svg { width: 16px; height: 16px; }
+
+  /* Card */
+  .policy-card {
+    background: linear-gradient(165deg, rgba(19,40,71,0.95) 0%, rgba(15,33,64,0.97) 100%);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(58,154,232,0.1);
+    border-radius: 24px;
+    padding: 44px 36px 40px;
+    box-shadow:
+      0 4px 60px rgba(0,0,0,0.4),
+      0 0 0 1px rgba(255,255,255,0.02) inset;
+    animation: cardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Header */
+  .policy-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(58,154,232,0.2);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent-light);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .policy-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .policy-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .policy-date {
+    font-size: 13px;
+    color: var(--text-muted);
+    opacity: 0.7;
+    margin-bottom: 32px;
+  }
+
+  .divider {
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+    margin: 28px 0;
+  }
+
+  /* Operator block */
+  .operator-block {
+    padding: 18px 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    margin-bottom: 32px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+  .operator-block strong { color: var(--text); font-weight: 500; }
+
+  /* Sections */
+  .section { margin-bottom: 28px; }
+
+  .section-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(58,154,232,0.1);
+    border: 1px solid rgba(58,154,232,0.2);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-light);
+    margin-bottom: 10px;
+  }
+
+  .section h2 {
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 14px;
+    line-height: 1.35;
+  }
+
+  .section p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: rgba(228,234,243,0.85);
+    margin-bottom: 12px;
+  }
+
+  .section ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 12px;
+  }
+
+  .section ul li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: rgba(228,234,243,0.85);
+    margin-bottom: 6px;
+  }
+
+  .section ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.6;
+  }
+
+  /* Contact block */
+  .contact-block {
+    padding: 20px 22px;
+    background: rgba(58,154,232,0.04);
+    border: 1px solid rgba(58,154,232,0.12);
+    border-radius: 14px;
+    margin-top: 12px;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  .contact-row:last-child { margin-bottom: 0; }
+
+  .contact-row svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    opacity: 0.5;
+  }
+
+  .contact-row a {
+    color: var(--accent-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-row a:hover { color: #fff; }
+
+  /* Footer */
+  .policy-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    font-size: 12px;
+    color: var(--text-muted);
+    opacity: 0.6;
+  }
+
+  @media (max-width: 560px) {
+    .policy-card { padding: 28px 18px 24px; border-radius: 20px; }
+    .policy-title { font-size: 23px; }
+    .section h2 { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero-bg"></div>
+<div class="noise"></div>
+
+<div class="container">
+
+  <a href="javascript:history.back()" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Назад
+  </a>
+
+  <div class="policy-card">
+
+    <div class="policy-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Документ
+    </div>
+
+    <h1 class="policy-title">Политика конфиденциальности</h1>
+    <p class="policy-subtitle">Политика обработки и защиты персональных данных пользователей</p>
+    <div class="policy-date">Дата публикации: 16 марта 2026 г.</div>
+
+    <div class="operator-block">
+      <strong>IP DOBZHANSKII DMITRII VIKTOROVICH</strong><br>
+      ИИН: 050726551955<br>
+      Адрес: Ulitsa L. Bedy, 42, Apt./office 133, Kostanay, Kazakhstan<br><br>
+      далее именуемый «Оператор», публикует настоящую Политику конфиденциальности (далее&nbsp;— «Политика»).
+    </div>
+
+    <!-- 1 -->
+    <div class="section">
+      <div class="section-number">1</div>
+      <h2>Общие положения</h2>
+      <p>1.1. Настоящая Политика регулирует порядок обработки и защиты персональных данных Пользователей веб-сайтов, квиз-страниц и иных онлайн-ресурсов, управляемых Оператором.</p>
+      <p>1.2. Политика распространяется на все персональные данные, которые Оператор может получить от Пользователя в процессе использования сайтов, заполнения форм, участия в опросах и квизах, а также при обмене сообщениями через мессенджеры.</p>
+      <p>1.3. Заполняя формы и/или предоставляя свои персональные данные, Пользователь выражает согласие с настоящей Политикой. В случае несогласия Пользователь должен прекратить использование ресурсов Оператора.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 2 -->
+    <div class="section">
+      <div class="section-number">2</div>
+      <h2>Состав персональных данных</h2>
+      <p>2.1. Оператор может собирать следующие данные:</p>
+      <ul>
+        <li>Фамилия, имя, отчество</li>
+        <li>Номер телефона (в том числе WhatsApp, Telegram)</li>
+        <li>Адрес электронной почты (e-mail)</li>
+        <li>IP-адрес, данные cookies, данные браузера (User-Agent)</li>
+        <li>Ответы на вопросы квизов и форм</li>
+        <li>UTM-метки и параметры рекламных кампаний</li>
+        <li>Иные данные, добровольно предоставляемые Пользователем при заполнении форм</li>
+      </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 3 -->
+    <div class="section">
+      <div class="section-number">3</div>
+      <h2>Цели обработки данных</h2>
+      <p>3.1. Оператор обрабатывает персональные данные в следующих целях:</p>
+      <ul>
+        <li>Выполнение обязательств перед Пользователем (консультации, подбор объектов, отправка материалов)</li>
+        <li>Направление уведомлений, в том числе через WhatsApp, Telegram, SMS, e-mail</li>
+        <li>Информирование о новых продуктах, услугах, специальных предложениях</li>
+        <li>Анализ и улучшение качества сервиса</li>
+        <li>Проведение рекламных кампаний и оценка их эффективности (передача обезличенных данных в рекламные системы)</li>
+      </ul>
+      <p>3.2. Пользователь может отказаться от получения информационных сообщений, направив письмо на адрес <a href="mailto:alshanskiym@gmail.com" style="color:var(--accent-light); text-decoration:none;">alshanskiym@gmail.com</a> с пометкой «Отказ от уведомлений».</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 4 -->
+    <div class="section">
+      <div class="section-number">4</div>
+      <h2>Условия обработки данных</h2>
+      <p>4.1. Обработка персональных данных осуществляется с согласия Пользователя, выраженного путём заполнения формы, прохождения квиза или иного активного действия на сайте.</p>
+      <p>4.2. Оператор вправе передавать персональные данные третьим лицам исключительно в целях исполнения обязательств перед Пользователем. К таким лицам могут относиться:</p>
+      <ul>
+        <li>Сервисы автоматизации и CRM-системы (для обработки заявок)</li>
+        <li>Рекламные платформы (Meta Ads, Яндекс.Метрика и другие — в обезличенном или хешированном виде)</li>
+        <li>Сервисы рассылок и мессенджеров</li>
+        <li>Платёжные системы (при проведении оплат)</li>
+      </ul>
+      <p>4.3. Оператор не продаёт и не передаёт персональные данные третьим лицам для целей, не связанных с деятельностью Оператора.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 5 -->
+    <div class="section">
+      <div class="section-number">5</div>
+      <h2>Использование cookies и аналитики</h2>
+      <p>5.1. Сайты Оператора используют файлы cookies и коды аналитических систем (Meta Pixel, Яндекс.Метрика и иные) для сбора обезличенной статистики, оптимизации рекламных кампаний и улучшения пользовательского опыта.</p>
+      <p>5.2. Cookies могут содержать идентификаторы сессий, рекламные идентификаторы (_fbp, _fbc), данные о поведении на сайте.</p>
+      <p>5.3. Пользователь может отключить cookies в настройках браузера. При этом некоторые функции сайта могут работать некорректно.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 6 -->
+    <div class="section">
+      <div class="section-number">6</div>
+      <h2>Сроки хранения данных</h2>
+      <p>6.1. Персональные данные хранятся в течение срока, необходимого для достижения целей обработки, но не менее 3 (трёх) лет с момента их получения.</p>
+      <p>6.2. По истечении срока хранения данные удаляются или обезличиваются.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 7 -->
+    <div class="section">
+      <div class="section-number">7</div>
+      <h2>Права Пользователя</h2>
+      <p>7.1. Пользователь имеет право:</p>
+      <ul>
+        <li>Получать информацию о составе и целях обработки своих персональных данных</li>
+        <li>Требовать уточнения, обновления или удаления своих персональных данных</li>
+        <li>Отозвать согласие на обработку персональных данных, направив запрос на <a href="mailto:alshanskiym@gmail.com" style="color:var(--accent-light); text-decoration:none;">alshanskiym@gmail.com</a></li>
+        <li>Отказаться от получения рекламных и информационных сообщений</li>
+      </ul>
+      <p>7.2. Оператор обязуется рассмотреть запрос Пользователя в течение 10 рабочих дней.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 8 -->
+    <div class="section">
+      <div class="section-number">8</div>
+      <h2>Защита данных</h2>
+      <p>8.1. Оператор принимает необходимые организационные и технические меры для защиты персональных данных от несанкционированного доступа, изменения, раскрытия или уничтожения.</p>
+      <p>8.2. Передача данных осуществляется по защищённым каналам связи (HTTPS/TLS). Чувствительные данные (номера телефонов и иные) при передаче в рекламные системы подвергаются хешированию (SHA-256).</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 9 -->
+    <div class="section">
+      <div class="section-number">9</div>
+      <h2>Изменение Политики</h2>
+      <p>9.1. Оператор вправе вносить изменения в настоящую Политику. Актуальная версия размещается на данной странице с указанием даты последнего обновления.</p>
+      <p>9.2. Продолжение использования ресурсов Оператора после внесения изменений означает согласие Пользователя с обновлённой Политикой.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 10 -->
+    <div class="section">
+      <div class="section-number">10</div>
+      <h2>Контактная информация</h2>
+
+      <div class="contact-block">
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <div><strong style="color:var(--text); font-weight:500;">IP DOBZHANSKII DMITRII VIKTOROVICH</strong></div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>Ulitsa L. Bedy, 42, Apt./office 133, Kostanay, Kazakhstan</div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <div><a href="mailto:alshanskiym@gmail.com">alshanskiym@gmail.com</a></div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M13.8 12H3"/></svg>
+          <div>ИИН: 050726551955</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="policy-footer">
+      © 2026 IP DOBZHANSKII DMITRII VIKTOROVICH. Все права защищены.
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
