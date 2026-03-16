@@ -782,6 +782,9 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"/></
   if (typeof fbq !== 'undefined') {
     fbq('init', CONFIG.pixelId);
     fbq('track', 'PageView');
+    console.log('Meta Pixel initialized:', CONFIG.pixelId);
+  } else {
+    console.warn('Meta Pixel not loaded (blocked by AdBlock?)');
   }
 
   // Яндекс.Метрика
@@ -792,6 +795,9 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"/></
       accurateTrackBounce: true,
       webvisor: true
     });
+    console.log('Yandex.Metrika initialized:', CONFIG.metrikaId);
+  } else {
+    console.warn('Yandex.Metrika not loaded (blocked by AdBlock?)');
   }
 
   // ========== Состояние квиза ==========
@@ -865,18 +871,33 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"/></
     // Генерация event_id для дедупликации Meta Pixel + CAPI
     const eventId = crypto.randomUUID();
 
-    // Отправка события Lead в Meta Pixel (browser-side)
+    // Отправка событий в Meta Pixel (browser-side)
     if (typeof fbq !== 'undefined') {
+      // Событие Contact
+      fbq('track', 'Contact', {
+        content_name: CONFIG.quizId,
+        value: 0,
+        currency: 'USD'
+      }, { eventID: eventId + '-contact' });
+      console.log('Meta Pixel: Contact event sent');
+
+      // Событие Lead
       fbq('track', 'Lead', {
         content_name: CONFIG.quizId,
         value: 0,
         currency: 'USD'
       }, { eventID: eventId });
+      console.log('Meta Pixel: Lead event sent');
+    } else {
+      console.warn('Meta Pixel not available, events not sent');
     }
 
     // Отправка цели в Яндекс.Метрику
     if (typeof ym !== 'undefined') {
       ym(CONFIG.metrikaId, 'reachGoal', CONFIG.metrikaGoal);
+      console.log('Yandex.Metrika goal sent:', CONFIG.metrikaGoal);
+    } else {
+      console.warn('Yandex.Metrika not available, goal not sent');
     }
 
     // Формирование полного payload согласно ТЗ
