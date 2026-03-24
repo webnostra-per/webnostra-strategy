@@ -92,6 +92,38 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '781364704628709');
 fbq('track', 'PageView');
+fbq('track', 'ViewContent');
+</script>
+<script>
+// Track WhatsApp button clicks
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all WhatsApp links
+    var waLinks = document.querySelectorAll('a[href*="wa.me"]');
+    
+    waLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            // Track Lead event
+            fbq('track', 'Lead', {
+                content_name: 'WhatsApp Contact',
+                content_category: 'Contact Button'
+            });
+            
+            // Track Contact event
+            fbq('track', 'Contact');
+        });
+    });
+    
+    // Track boat card WhatsApp clicks
+    var boatCards = document.querySelectorAll('.boat-wa');
+    boatCards.forEach(function(card) {
+        card.addEventListener('click', function() {
+            fbq('track', 'Lead', {
+                content_name: 'Boat Inquiry',
+                content_category: 'Boat Card'
+            });
+        });
+    });
+});
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=781364704628709&ev=PageView&noscript=1"
