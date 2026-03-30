@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WEBNOSTRA — База знаний отдела продаж</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFAF8;
+  --surface: #FFFFFF;
+  --surface-alt: #F5F4F0;
+  --border: #E8E6E1;
+  --border-hover: #D4D1CA;
+  --text: #1A1A18;
+  --text-secondary: #6B6960;
+  --text-muted: #9C9889;
+  --accent: #2D2D2D;
+  --accent-warm: #C4956A;
+  --accent-warm-light: #F0E6DA;
+  --accent-green: #4A7C59;
+  --accent-green-light: #E8F0EB;
+  --accent-blue: #4A6FA5;
+  --accent-blue-light: #E8EEF5;
+  --accent-red: #B5544D;
+  --accent-red-light: #F5EAEA;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-header {
+  padding: 28px 24px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.logo {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.logo-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+.sidebar-search {
+  padding: 16px 20px;
+  flex-shrink: 0;
+}
+
+.sidebar-search input {
+  width: 100%;
+  padding: 10px 14px 10px 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 13px;
+  background: var(--surface-alt);
+  color: var(--text);
+  outline: none;
+  transition: all 0.2s;
+}
+
+.sidebar-search input:focus {
+  border-color: var(--accent-warm);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-warm-light);
+}
+
+.sidebar-search {
+  position: relative;
+}
+
+.sidebar-search::before {
+  content: '⌕';
+  position: absolute;
+  left: 34px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.sidebar-nav {
+  padding: 12px 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.nav-section-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  padding: 16px 24px 8px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+
+.nav-item:hover {
+  background: var(--surface-alt);
+  color: var(--text);
+}
+
+.nav-item.active {
+  background: var(--accent-warm-light);
+  color: var(--accent);
+  border-left-color: var(--accent-warm);
+  font-weight: 500;
+}
+
+.nav-icon {
+  width: 20px;
+  text-align: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* ── MOBILE TOGGLE ── */
+.mobile-toggle {
+  display: none;
+  position: fixed;
+  top: 16px; left: 16px;
+  z-index: 200;
+  width: 44px; height: 44px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: var(--shadow-md);
+}
+
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 90;
+}
+
+/* ── MAIN CONTENT ── */
+.main {
+  margin-left: 280px;
+  min-height: 100vh;
+}
+
+.content {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 48px 40px 80px;
+}
+
+/* ── HERO SECTION ── */
+.hero {
+  margin-bottom: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.hero p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  max-width: 560px;
+}
+
+.stats-row {
+  display: flex;
+  gap: 32px;
+  margin-top: 28px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--accent-warm);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ── SECTION ── */
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+  margin-bottom: 32px;
+}
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.section-header p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-header {
+  padding: 20px 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.card-header h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-header .badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.badge-green { background: var(--accent-green-light); color: var(--accent-green); }
+.badge-blue { background: var(--accent-blue-light); color: var(--accent-blue); }
+.badge-warm { background: var(--accent-warm-light); color: #8B6914; }
+.badge-red { background: var(--accent-red-light); color: var(--accent-red); }
+
+.card-toggle {
+  width: 28px; height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface-alt);
+  font-size: 12px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.card.open .card-toggle {
+  transform: rotate(180deg);
+}
+
+.card-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.card.open .card-body {
+  max-height: 5000px;
+}
+
+.card-content {
+  padding: 0 24px 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.card-content p {
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.card-content strong {
+  color: var(--accent);
+}
+
+/* ── SCRIPT BLOCK (для скриптов/примеров) ── */
+.script-block {
+  background: var(--surface-alt);
+  border-left: 3px solid var(--accent-warm);
+  padding: 16px 20px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.script-block .label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-warm);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* ── HIGHLIGHT BOX ── */
+.highlight-box {
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+.highlight-box.green { background: var(--accent-green-light); border-left: 3px solid var(--accent-green); }
+.highlight-box.blue { background: var(--accent-blue-light); border-left: 3px solid var(--accent-blue); }
+.highlight-box.warm { background: var(--accent-warm-light); border-left: 3px solid var(--accent-warm); }
+.highlight-box.red { background: var(--accent-red-light); border-left: 3px solid var(--accent-red); }
+
+.highlight-box .hl-title {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+/* ── STEP LIST ── */
+.step-list {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+}
+
+.step-list li {
+  counter-increment: step;
+  padding: 14px 0 14px 52px;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+}
+
+.step-list li:last-child { border-bottom: none; }
+
+.step-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0; top: 14px;
+  width: 32px; height: 32px;
+  background: var(--accent-warm-light);
+  color: var(--accent-warm);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.step-list li strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--accent);
+}
+
+/* ── CHECKLIST ── */
+.checklist {
+  list-style: none;
+  padding: 0;
+}
+
+.checklist li {
+  padding: 8px 0 8px 28px;
+  position: relative;
+  font-size: 14px;
+}
+
+.checklist li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent-green);
+  font-weight: 700;
+}
+
+/* ── BANNED LIST ── */
+.banned-list {
+  list-style: none;
+  padding: 0;
+}
+
+.banned-list li {
+  padding: 8px 0 8px 28px;
+  position: relative;
+  font-size: 14px;
+}
+
+.banned-list li::before {
+  content: '✕';
+  position: absolute;
+  left: 2px;
+  color: var(--accent-red);
+  font-weight: 700;
+}
+
+/* ── TIMELINE ── */
+.timeline {
+  position: relative;
+  padding-left: 28px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -24px; top: 6px;
+  width: 12px; height: 12px;
+  background: var(--accent-warm);
+  border-radius: 50%;
+  border: 3px solid var(--surface);
+}
+
+.timeline-day {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--accent-warm);
+  margin-bottom: 4px;
+}
+
+/* ── TRIGGER CARD ── */
+.trigger-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.trigger-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  transition: all 0.2s;
+}
+
+.trigger-card:hover {
+  border-color: var(--accent-warm);
+  box-shadow: var(--shadow-sm);
+}
+
+.trigger-num {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--accent-warm);
+  margin-bottom: 4px;
+}
+
+.trigger-name {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.trigger-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.trigger-example {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ── FUNNEL ── */
+.funnel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 24px 0;
+}
+
+.funnel-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 20px;
+  background: var(--accent-warm-light);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.funnel-step:hover {
+  background: var(--accent-warm);
+  color: white;
+}
+
+.funnel-arrow {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* ── KPI TABLE ── */
+.kpi-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+.kpi-table th {
+  text-align: left;
+  padding: 12px 16px;
+  background: var(--surface-alt);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  border-bottom: 2px solid var(--border);
+}
+
+.kpi-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.kpi-table tr:hover td {
+  background: var(--surface-alt);
+}
+
+/* ── FOOTER ── */
+.footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* ── SEARCH HIGHLIGHT ── */
+.search-highlight {
+  background: #FEF3C7;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 280px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .mobile-overlay.show {
+    display: block;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+
+  .content {
+    padding: 80px 20px 60px;
+  }
+
+  .hero h1 { font-size: 24px; }
+  .stats-row { gap: 20px; flex-wrap: wrap; }
+  .trigger-grid { grid-template-columns: 1fr; }
+  .funnel-step { width: 100% !important; }
+}
+
+@media (max-width: 480px) {
+  .content { padding: 72px 16px 48px; }
+  .stats-row { flex-direction: column; gap: 12px; }
+}
+
+/* ── PRINT ── */
+@media print {
+  .sidebar, .mobile-toggle { display: none; }
+  .main { margin-left: 0; }
+  .card-body { max-height: none !important; }
+  .section { display: block !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- Mobile toggle -->
+<button class="mobile-toggle" onclick="toggleSidebar()" aria-label="Меню">☰</button>
+<div class="mobile-overlay" onclick="toggleSidebar()"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">WEBNOSTRA</div>
+    <div class="logo-sub">База знаний · Отдел продаж</div>
+  </div>
+
+  <div class="sidebar-search">
+    <input type="text" id="searchInput" placeholder="Поиск по базе..." oninput="handleSearch(this.value)">
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Основы</div>
+    <a class="nav-item active" onclick="showSection('home', this)" href="javascript:void(0)">
+      <span class="nav-icon">🏠</span> Главная
+    </a>
+    <a class="nav-item" onclick="showSection('book', this)" href="javascript:void(0)">
+      <span class="nav-icon">📖</span> Книга продаж
+    </a>
+
+    <div class="nav-section-label">Техника</div>
+    <a class="nav-item" onclick="showSection('straight-line', this)" href="javascript:void(0)">
+      <span class="nav-icon">🎯</span> Прямая линия
+    </a>
+    <a class="nav-item" onclick="showSection('closing', this)" href="javascript:void(0)">
+      <span class="nav-icon">🤝</span> Сценарии закрытия
+    </a>
+    <a class="nav-item" onclick="showSection('triggers', this)" href="javascript:void(0)">
+      <span class="nav-icon">🧠</span> Триггеры
+    </a>
+
+    <div class="nav-section-label">Процессы</div>
+    <a class="nav-item" onclick="showSection('reglament', this)" href="javascript:void(0)">
+      <span class="nav-icon">📋</span> Регламент
+    </a>
+    <a class="nav-item" onclick="showSection('funnel', this)" href="javascript:void(0)">
+      <span class="nav-icon">📊</span> Воронка и KPI
+    </a>
+  </nav>
+</aside>
+
+<!-- Main content -->
+<main class="main">
+  <div class="content">
+
+    <!-- ═══ HOME ═══ -->
+    <div class="section active" id="section-home">
+      <div class="hero">
+        <h1>База знаний отдела продаж</h1>
+        <p>Полная система продаж инвестиционной недвижимости: от первого касания до закрытия сделки. Разработано WEBNOSTRA.</p>
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-value">5</span>
+            <span class="stat-label">Разделов</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">10</span>
+            <span class="stat-label">Триггеров</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">10</span>
+            <span class="stat-label">Шагов закрытия</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h2>Быстрый обзор</h2>
+        <p>Навигация по ключевым блокам системы продаж</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>📖 Книга продаж <span class="badge badge-blue">Основа</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Полный справочник менеджера: рынок Пхукета, типы недвижимости, юридические формы, портрет клиента, работа с возражениями, скрипты и шаблоны.</p>
+          <div class="highlight-box green">
+            <div class="hl-title">Для чего</div>
+            Даёт менеджеру полную картину продукта и рынка. Без этих знаний невозможно вести экспертную консультацию.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>🎯 Техника «Прямая линия» <span class="badge badge-warm">Техника</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Адаптация метода Джордана Белфорта под недвижимость: структура звонка, квалификация, усиление доверия, перевод на Zoom.</p>
+          <div class="highlight-box warm">
+            <div class="hl-title">Ключевой принцип</div>
+            Не продажа квартиры — продажа следующего шага.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>🤝 Сценарии закрытия <span class="badge badge-green">Скрипты</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>10 последовательных шагов закрытия инвестора на бронь — от подтверждения интереса до финального вопроса. Каждый шаг с готовым скриптом.</p>
+          <div class="highlight-box blue">
+            <div class="hl-title">Принцип</div>
+            Бронь продаётся не через давление, а через логику решения.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>🧠 Психологические триггеры <span class="badge badge-warm">10 триггеров</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Механики ускорения решения о покупке: дефицит, рост цены, ранний вход, социальное доказательство, авторитет, безопасность и другие.</p>
+          <div class="highlight-box warm">
+            <div class="hl-title">Формула</div>
+            Рост цены + Дефицит + Социальное доказательство + Доверие к эксперту = ускорение решения в несколько раз.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>📋 Регламент отдела продаж <span class="badge badge-red">Обязательно</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Жёсткие правила работы: скорость реакции, алгоритм касаний, CRM-дисциплина, KPI, запреты. Нарушение = потеря конверсии.</p>
+          <div class="highlight-box red">
+            <div class="hl-title">Золотое правило</div>
+            Ответ на лид — не позднее 15 минут. Нарушение снижает конверсию на 30–50%.
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- ═══ КНИГА ПРОДАЖ ═══ -->
+    <div class="section" id="section-book">
+      <div class="section-header">
+        <h2>Книга продаж</h2>
+        <p>Полный справочник знаний менеджера по продажам недвижимости</p>
+      </div>
+
+      <!-- О компании -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>🏢 О компании <span class="badge badge-blue">Доверие</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Этот блок формирует первое доверие. Менеджер должен уверенно говорить о компании и её опыте.</p>
+          <p><strong>Что должно быть описано:</strong></p>
+          <ul class="checklist">
+            <li>История компании</li>
+            <li>Сколько лет работаете на рынке</li>
+            <li>Сколько сделок проведено</li>
+            <li>Какая команда работает с клиентами</li>
+            <li>С какими девелоперами сотрудничаете</li>
+          </ul>
+          <div class="script-block">
+            <div class="label">Пример для клиента</div>
+            «Компания работает на рынке недвижимости Пхукета с 2018 года. За это время проведено более 150 сделок с инвесторами из Европы, СНГ и Ближнего Востока. Основная специализация — инвестиционные проекты и виллы у моря.»
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Рынок -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>📈 Рынок недвижимости Пхукета <span class="badge badge-green">Рынок</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Менеджер продаёт не только объект, но и рынок. Что важно раскрыть:</p>
+          <ul class="checklist">
+            <li>Рост туризма (10+ млн туристов в год)</li>
+            <li>Ограниченность земли на острове</li>
+            <li>Стабильный рост цен на недвижимость</li>
+            <li>Интерес международных инвесторов</li>
+          </ul>
+          <div class="script-block">
+            <div class="label">Пример объяснения</div>
+            «Пхукет — крупнейший туристический остров Таиланда. Каждый год сюда приезжает более 10 миллионов туристов. Из-за ограниченного количества земли и высокого спроса цены на недвижимость стабильно растут.»
+          </div>
+        </div></div>
+      </div>
+
+      <!-- География -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>🗺️ География острова <span class="badge badge-blue">Районы</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Клиент часто не знает районов. Менеджер выступает как гид.</p>
+          <table class="kpi-table">
+            <thead><tr><th>Район</th><th>Характеристика</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Банг Тао</strong></td><td>Элитный район, виллы и премиальные комплексы</td></tr>
+              <tr><td><strong>Лаян</strong></td><td>Спокойная зона, высокий уровень аренды</td></tr>
+              <tr><td><strong>Сурин</strong></td><td>Дорогой район рядом с пляжем</td></tr>
+              <tr><td><strong>Камала</strong></td><td>Подходит для инвестиций</td></tr>
+              <tr><td><strong>Патонг</strong></td><td>Туристический центр</td></tr>
+              <tr><td><strong>Най Янг</strong></td><td>Район рядом с аэропортом</td></tr>
+              <tr><td><strong>Раваи</strong></td><td>Популярен у экспатов</td></tr>
+              <tr><td><strong>Чалонг</strong></td><td>Жилая зона</td></tr>
+            </tbody>
+          </table>
+        </div></div>
+      </div>
+
+      <!-- Типы недвижимости -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>🏗️ Типы недвижимости <span class="badge badge-warm">Продукт</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <table class="kpi-table">
+            <thead><tr><th>Тип</th><th>Особенности</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Апартаменты</strong></td><td>Подходят для инвестиций, ROI 6–10%</td></tr>
+              <tr><td><strong>Виллы</strong></td><td>Дорогой сегмент, рост стоимости</td></tr>
+              <tr><td><strong>Кондо-отель</strong></td><td>Управляется УК</td></tr>
+              <tr><td><strong>Брендированные резиденции</strong></td><td>Высокий уровень сервиса</td></tr>
+            </tbody>
+          </table>
+          <div class="highlight-box warm">
+            <div class="hl-title">Вывод</div>
+            Менеджер должен понимать, какой тип подходит конкретному клиенту.
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Юридические формы -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>⚖️ Юридические формы владения <span class="badge badge-red">Частый вопрос</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Один из самых частых вопросов иностранцев:</p>
+          <table class="kpi-table">
+            <thead><tr><th>Форма</th><th>Описание</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Freehold</strong></td><td>Полная собственность, можно продать и передать по наследству</td></tr>
+              <tr><td><strong>Leasehold</strong></td><td>Долгосрочная аренда на 30 лет, можно продлевать</td></tr>
+              <tr><td><strong>Компания</strong></td><td>Оформление через тайскую компанию</td></tr>
+            </tbody>
+          </table>
+          <div class="script-block">
+            <div class="label">Пример объяснения</div>
+            «Для иностранцев наиболее распространённая форма покупки апартаментов — Freehold. Это полноценная собственность.»
+          </div>
+          <div class="highlight-box green">
+            <div class="hl-title">Вывод</div>
+            Чёткое объяснение юридической структуры снижает страх клиента.
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Инвестиционная модель -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>💰 Инвестиционная модель <span class="badge badge-green">ROI</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Инвесторы покупают цифры. Основные факторы роста:</p>
+          <ul class="checklist">
+            <li>Рост туризма</li>
+            <li>Ограниченное предложение земли</li>
+            <li>Интерес иностранных инвесторов</li>
+          </ul>
+          <div class="highlight-box warm">
+            <div class="hl-title">Пример ROI</div>
+            Стоимость апартамента: $250,000 · Арендная доходность: 8% · Годовой доход: $16,000
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Портрет клиента -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>👤 Портрет клиента <span class="badge badge-blue">Сегменты</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Разным клиентам продают разные преимущества:</p>
+          <table class="kpi-table">
+            <thead><tr><th>Сегмент</th><th>Что важно</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Инвестор</strong></td><td>Доходность, ROI, рост стоимости</td></tr>
+              <tr><td><strong>Покупка для отдыха</strong></td><td>Локация, пляж, инфраструктура</td></tr>
+              <tr><td><strong>Релокация</strong></td><td>Инфраструктура, школы, безопасность</td></tr>
+              <tr><td><strong>Второй дом</strong></td><td>Комфорт, управление, сервис</td></tr>
+            </tbody>
+          </table>
+        </div></div>
+      </div>
+
+      <!-- Страхи клиентов -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>😰 Основные страхи клиентов <span class="badge badge-red">Возражения</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Менеджер должен заранее закрывать страхи:</p>
+          <table class="kpi-table">
+            <thead><tr><th>Страх</th><th>Как снимать</th></tr></thead>
+            <tbody>
+              <tr><td>Недострой</td><td>Показывать реализованные проекты девелопера</td></tr>
+              <tr><td>Падение рынка</td><td>Показывать динамику роста цен</td></tr>
+              <tr><td>Сложности управления</td><td>Объяснять сервис управляющей компании</td></tr>
+            </tbody>
+          </table>
+        </div></div>
+      </div>
+
+      <!-- Работа с возражениями -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>💬 Работа с возражениями <span class="badge badge-warm">Скрипты</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <div class="highlight-box green">
+            <div class="hl-title">Принцип</div>
+            Возражение — это интерес. Если клиент спорит — он думает о покупке.
+          </div>
+          <div class="script-block">
+            <div class="label">Возражение: «Дорого»</div>
+            «Цена сейчас ниже, чем будет после завершения строительства. Многие инвесторы входят именно на этом этапе, чтобы зафиксировать рост.»
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Скрипты -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>📝 Скрипт первого звонка <span class="badge badge-green">Готовый скрипт</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Цель звонка — назначить Zoom.</p>
+          <div class="script-block">
+            <div class="label">Скрипт</div>
+            «Здравствуйте, [Имя]. Вы оставляли заявку по недвижимости на Пхукете. Удобно пару минут? Я задам несколько вопросов, чтобы понять, какой объект подойдёт.»
+          </div>
+          <p><strong>Обязательные вопросы квалификации:</strong></p>
+          <ul class="checklist">
+            <li>Цель покупки</li>
+            <li>Бюджет</li>
+            <li>Срок покупки</li>
+            <li>Локация</li>
+          </ul>
+          <div class="highlight-box red">
+            <div class="hl-title">Важно</div>
+            Без квалификации запрещено отправлять КП.
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- ═══ ПРЯМАЯ ЛИНИЯ ═══ -->
+    <div class="section" id="section-straight-line">
+      <div class="section-header">
+        <h2>Техника «Прямая линия»</h2>
+        <p>Адаптация метода под продажу инвестиционной недвижимости</p>
+      </div>
+
+      <!-- Линия разговора -->
+      <div class="card open">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>🎯 Линия разговора <span class="badge badge-warm">Структура</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Любой звонок по недвижимости движется по структуре:</p>
+          <div class="funnel">
+            <div class="funnel-step" style="width:50%">Контакт</div>
+            <div class="funnel-arrow">↓</div>
+            <div class="funnel-step" style="width:55%">Контроль</div>
+            <div class="funnel-arrow">↓</div>
+            <div class="funnel-step" style="width:60%">Квалификация</div>
+            <div class="funnel-arrow">↓</div>
+            <div class="funnel-step" style="width:65%">Усиление ценности</div>
+            <div class="funnel-arrow">↓</div>
+            <div class="funnel-step" style="width:70%">Закрытие на следующий шаг</div>
+          </div>
+          <div class="highlight-box warm">
+            <div class="hl-title">Ключевой принцип</div>
+            Не продажа квартиры. Продажа следующего шага (Zoom / показ / бронь).
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Первые 30 секунд -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>⏱️ Первые 30 секунд <span class="badge badge-red">Критично</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p><strong>Задача:</strong> захватить контроль и задать рамку.</p>
+          <div class="script-block">
+            <div class="label">Скрипт</div>
+            «Иван, добрый день, вы оставляли заявку по вилле на Пхукете. Удобно 3–4 минуты, задам пару вопросов, чтобы понять, что вам подходит, и предложу конкретные варианты?»
+          </div>
+          <p>Что мы делаем:</p>
+          <ul class="checklist">
+            <li>Обозначили цель разговора</li>
+            <li>Обозначили время (3–4 минуты)</li>
+            <li>Получили микро-согласие</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <!-- Квалификация -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>🔍 Квалификация <span class="badge badge-blue">4 параметра</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Квалификация — не допрос, а управление. 4 ключевых параметра:</p>
+          <ol class="step-list">
+            <li><strong>Цель</strong> Инвестиция или для жизни?</li>
+            <li><strong>Бюджет</strong> Какой диапазон рассматриваете?</li>
+            <li><strong>Срок</strong> Когда планируете покупку?</li>
+            <li><strong>Регион</strong> Конкретный район или рассматриваете варианты?</li>
+          </ol>
+          <div class="highlight-box red">
+            <div class="hl-title">Правило</div>
+            Не отправлять КП до понимания всех четырёх параметров.
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 3 фактора доверия -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>🛡️ Три фактора доверия <span class="badge badge-green">Обязательно</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Если нет доверия хотя бы по одному пункту — сделка не состоится.</p>
+          <div class="script-block">
+            <div class="label">1. Доверие к объекту</div>
+            «Этот проект уже дал +30% на этапе строительства»
+          </div>
+          <div class="script-block">
+            <div class="label">2. Доверие к компании</div>
+            «Мы в топ-6 по продажам / 50+ сделок в этом году»
+          </div>
+          <div class="script-block">
+            <div class="label">3. Доверие к менеджеру</div>
+            «Я лично веду сделки от выбора до регистрации»
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Молчуны -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>🔇 Работа с «молчунами» <span class="badge badge-warm">Возврат</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Если клиент пропадает — не просто «пишем ещё раз». Используем повышение интереса:</p>
+          <div class="script-block">
+            <div class="label">Скрипт</div>
+            «Иван, хотел уточнить, вы пока рассматриваете покупку или отложили решение? Просто на этой неделе по этому проекту заканчиваются условия рассрочки.»
+          </div>
+          <div class="highlight-box blue">
+            <div class="hl-title">Принцип</div>
+            Мы не давим. Мы возвращаем его на линию решения.
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Закрытие на Zoom -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>💻 Закрытие на Zoom <span class="badge badge-green">Ключевой этап</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>В недвижимости закрывают не в чате. Цель первого звонка — перевести на Zoom.</p>
+          <div class="script-block">
+            <div class="label">Скрипт</div>
+            «Иван, чтобы не гадать и не пересылать десятки объектов, предлагаю 20 минут Zoom — покажу 3 варианта под ваш бюджет и рассчитаю доходность.»
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Ошибки и тон -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>⚠️ Типичные ошибки и тон <span class="badge badge-red">Запрещено</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p><strong>Что запрещено:</strong></p>
+          <ul class="banned-list">
+            <li>Отправлять КП без квалификации</li>
+            <li>Не задавать вопросы о бюджете</li>
+            <li>Не усиливать экспертность</li>
+            <li>Закрывать после 3 касаний</li>
+            <li>Не выводить на Zoom</li>
+          </ul>
+          <div class="highlight-box blue">
+            <div class="hl-title">Управление тоном</div>
+            В недвижимости продают: уверенность, стабильность, экспертность, спокойствие. Нельзя звучать суетливо или оправдываться.
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Формула -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>🧮 Формула конверсии <span class="badge badge-green">×2–3</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <div class="funnel">
+            <div class="funnel-step" style="width:80%">Управление разговором</div>
+            <div class="funnel-arrow">+</div>
+            <div class="funnel-step" style="width:80%">Глубокая квалификация</div>
+            <div class="funnel-arrow">+</div>
+            <div class="funnel-step" style="width:80%">Усиление доверия</div>
+            <div class="funnel-arrow">+</div>
+            <div class="funnel-step" style="width:80%">Перевод на Zoom</div>
+            <div class="funnel-arrow">=</div>
+            <div class="funnel-step" style="width:80%; background: var(--accent-green-light); font-weight: 700;">Рост конверсии в 2–3 раза</div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- ═══ СЦЕНАРИИ ЗАКРЫТИЯ ═══ -->
+    <div class="section" id="section-closing">
+      <div class="section-header">
+        <h2>Сценарии закрытия на бронь</h2>
+        <p>Пошаговый сценарий закрытия инвестора — через логику решения, не через давление</p>
+      </div>
+
+      <div class="highlight-box warm" style="margin-bottom: 24px;">
+        <div class="hl-title">Главный принцип</div>
+        Инвестор принимает решение, когда: понимает доходность, доверяет проекту, доверяет менеджеру и видит риск упустить возможность.
+      </div>
+
+      <div class="card open">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>10 шагов закрытия</h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <ol class="step-list">
+            <li>
+              <strong>Подтверждение интереса</strong>
+              Убедиться, что объект подходит.<br>
+              <em style="color:var(--text-secondary)">«Иван, правильно понимаю, что из всех вариантов этот проект вам больше всего откликнулся?»</em>
+            </li>
+            <li>
+              <strong>Повтор ключевых преимуществ</strong>
+              Кратко напомнить, почему объект выгоден: локация, рост цены, доходность аренды.
+            </li>
+            <li>
+              <strong>Уточнение сомнений</strong>
+              Снять последние возражения перед бронью.<br>
+              <em style="color:var(--text-secondary)">«Есть ли моменты, которые вас сейчас останавливают?»</em>
+            </li>
+            <li>
+              <strong>Логическое подведение к решению</strong>
+              Подвести к мысли о фиксации цены.<br>
+              <em style="color:var(--text-secondary)">«Сейчас цена ниже, чем будет после следующего повышения. Инвесторы обычно фиксируют объект на ранней стадии.»</em>
+            </li>
+            <li>
+              <strong>Объяснение механики брони</strong>
+              Объяснить максимально просто.<br>
+              <em style="color:var(--text-secondary)">«Бронь — это резерв конкретного юнита за вами. Объект снимается с продажи и фиксируется текущая цена.»</em>
+            </li>
+            <li>
+              <strong>Снижение риска</strong>
+              Инвестор должен понимать, что бронь безопасна.<br>
+              <em style="color:var(--text-secondary)">«Если вы передумаете, бронь можно вернуть или перенести на другой объект.»</em>
+            </li>
+            <li>
+              <strong>Предложение брони</strong>
+              Прямое предложение после логической подготовки.<br>
+              <em style="color:var(--text-secondary)">«Если объект вам подходит, мы можем зафиксировать его бронью.»</em>
+            </li>
+            <li>
+              <strong>Ограничение предложения</strong>
+              Показать, что объект может быть куплен другим.<br>
+              <em style="color:var(--text-secondary)">«Сейчас свободно только два юнита такой планировки.»</em>
+            </li>
+            <li>
+              <strong>Упрощение решения</strong>
+              Сделать процесс максимально лёгким.<br>
+              <em style="color:var(--text-secondary)">«Бронь занимает буквально несколько минут. Я отправлю форму и реквизиты.»</em>
+            </li>
+            <li>
+              <strong>Финальное закрытие</strong>
+              Мягкий вопрос.<br>
+              <em style="color:var(--text-secondary)">«Давайте зафиксируем этот юнит за вами?»</em>
+            </li>
+          </ol>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- ═══ ТРИГГЕРЫ ═══ -->
+    <div class="section" id="section-triggers">
+      <div class="section-header">
+        <h2>Психологические триггеры</h2>
+        <p>10 механик, которые ускоряют принятие решения о покупке недвижимости</p>
+      </div>
+
+      <div class="highlight-box warm" style="margin-bottom: 24px;">
+        <div class="hl-title">Самая сильная комбинация</div>
+        Рост цены + Дефицит + Социальное доказательство + Доверие к эксперту = ускорение решения в несколько раз.
+      </div>
+
+      <div class="trigger-grid">
+        <div class="trigger-card">
+          <div class="trigger-num">01</div>
+          <div class="trigger-name">Дефицит</div>
+          <div class="trigger-desc">Когда предложение ограничено, решение принимается быстрее. Мозг воспринимает дефицит как ценность.</div>
+          <div class="trigger-example">«В этом проекте осталось всего 5 юнитов по текущей цене.»</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">02</div>
+          <div class="trigger-name">Рост цены</div>
+          <div class="trigger-desc">Инвесторы боятся упустить рост стоимости. Показывайте динамику цен по стадиям строительства.</div>
+          <div class="trigger-example">«На старте — $160K, сейчас — $195K, после сдачи — $230K.»</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">03</div>
+          <div class="trigger-name">Ранний вход</div>
+          <div class="trigger-desc">На ранней стадии максимальный рост стоимости. Объясняйте стадии: pre-sale → construction → completion.</div>
+          <div class="trigger-example">Инвестор должен понимать, где максимальная прибыль.</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">04</div>
+          <div class="trigger-name">Социальное доказательство</div>
+          <div class="trigger-desc">Люди чувствуют себя безопаснее, видя что другие уже инвестировали. Показывайте реальные сделки и кейсы.</div>
+          <div class="trigger-example">«Уже более 70% проекта продано инвесторам из Европы.»</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">05</div>
+          <div class="trigger-name">Авторитет</div>
+          <div class="trigger-desc">Клиент быстрее решается, если доверяет эксперту. Менеджер говорит как консультант, а не продавец.</div>
+          <div class="trigger-example">Экспертность, опыт компании, партнёрство с девелоперами.</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">06</div>
+          <div class="trigger-name">Безопасность</div>
+          <div class="trigger-desc">Инвестор должен чувствовать, что риски минимальны: репутация девелопера, юридическая структура, гарантии.</div>
+          <div class="trigger-example">Снижает страх потери денег.</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">07</div>
+          <div class="trigger-name">Простота</div>
+          <div class="trigger-desc">Если сделка кажется сложной — решение откладывается. Объясните процесс, покажите поддержку на всех этапах.</div>
+          <div class="trigger-example">Простой процесс покупки + управление недвижимостью.</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">08</div>
+          <div class="trigger-name">Пассивный доход</div>
+          <div class="trigger-desc">Инвесторы реагируют на понятный доход. Конкретные цифры: арендная доходность, срок окупаемости.</div>
+          <div class="trigger-example">«Прогнозируемая доходность аренды 8–10% в год.»</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">09</div>
+          <div class="trigger-name">Сравнение</div>
+          <div class="trigger-desc">Инвестор всегда сравнивает. Помогайте ему: депозит vs. недвижимость, разные рынки.</div>
+          <div class="trigger-example">«Депозит — 4%. Аренда недвижимости — 9%.»</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">10</div>
+          <div class="trigger-name">Упущенная возможность</div>
+          <div class="trigger-desc">Очень сильный триггер. Инвесторы жалеют о некупленных объектах. Показывайте рост цен на прошлых проектах.</div>
+          <div class="trigger-example">«В прошлом проекте цена выросла на 35% за 2 года.»</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ РЕГЛАМЕНТ ═══ -->
+    <div class="section" id="section-reglament">
+      <div class="section-header">
+        <h2>Регламент работы отдела продаж</h2>
+        <p>Сегмент: недвижимость (премиум / инвестиции)</p>
+      </div>
+
+      <!-- Скорость -->
+      <div class="card open">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>⚡ Скорость реакции <span class="badge badge-red">15 минут</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <ul class="checklist">
+            <li>Ответ на входящий лид — не позднее 15 минут в рабочее время</li>
+            <li>Лид вне рабочего времени — ответ в течение 15 минут с начала рабочего дня</li>
+            <li>Каждый недозвон = обязательное сообщение в WhatsApp</li>
+          </ul>
+          <div class="highlight-box red">
+            <div class="hl-title">Внимание</div>
+            Нарушение скорости реакции снижает конверсию на 30–50%.
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Алгоритм касаний -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>📞 Алгоритм касаний <span class="badge badge-warm">7+ касаний</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-day">День 1</div>
+              Звонок → Сообщение в WhatsApp → Фиксация в CRM
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">День 2</div>
+              Звонок → Сообщение
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">День 3</div>
+              Звонок → Сообщение
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">День 7</div>
+              Звонок → Сообщение
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">День 14</div>
+              Звонок → Сообщение
+            </div>
+          </div>
+          <div class="highlight-box red">
+            <div class="hl-title">Правило</div>
+            Минимум 7 касаний перед закрытием. Запрещено закрывать клиента после 2–3 попыток.
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Квалификация -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>🔍 Квалификация <span class="badge badge-blue">Обязательно</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Менеджер обязан выяснить перед отправкой КП:</p>
+          <ol class="step-list">
+            <li><strong>Цель</strong> Инвестиция или для жизни</li>
+            <li><strong>Бюджет</strong> Диапазон</li>
+            <li><strong>Срок покупки</strong> Когда планирует</li>
+            <li><strong>География</strong> Район интереса</li>
+            <li><strong>Источник средств</strong> Откуда деньги</li>
+          </ol>
+          <div class="highlight-box red">
+            <div class="hl-title">Запрещено</div>
+            Без этих данных запрещено отправлять КП.
+          </div>
+        </div></div>
+      </div>
+
+      <!-- CRM -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>💾 Работа в CRM <span class="badge badge-blue">Дисциплина</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <ul class="checklist">
+            <li>Каждое касание фиксируется в CRM</li>
+            <li>Обязательная задача на следующее касание</li>
+            <li>Просроченные задачи — недопустимы</li>
+            <li>Карточка клиента заполняется полностью: бюджет, цель, срок, регион, статус</li>
+          </ul>
+          <div class="highlight-box blue">
+            <div class="hl-title">Принцип</div>
+            CRM — это инструмент управления, а не формальность.
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Zoom -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>💻 Перевод на Zoom <span class="badge badge-green">×2–3 конверсия</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Цель первого контакта — вывести на Zoom. Структура Zoom:</p>
+          <ol class="step-list">
+            <li><strong>Выявление задачи</strong> клиента</li>
+            <li><strong>Презентация</strong> 2–3 релевантных объектов</li>
+            <li><strong>Финансовая модель</strong> ROI, доходность</li>
+            <li><strong>Ответы</strong> на возражения</li>
+            <li><strong>Закрытие</strong> на бронь / резерв</li>
+          </ol>
+          <div class="highlight-box green">
+            <div class="hl-title">Факт</div>
+            Без Zoom конверсия падает в 2–3 раза.
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Запрещено -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>🚫 Запрещено <span class="badge badge-red">Строго</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <ul class="banned-list">
+            <li>Отправлять КП без квалификации</li>
+            <li>Закрывать клиента после 2–3 касаний</li>
+            <li>Оставлять задачи просроченными</li>
+            <li>Работать вне CRM</li>
+            <li>Отвечать спустя часы</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <!-- ОС маркетингу -->
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>📊 Обратная связь маркетингу <span class="badge badge-blue">Ежедневно</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Менеджер обязан ежедневно фиксировать:</p>
+          <ul class="checklist">
+            <li>Квал / не квал</li>
+            <li>Причина отказа</li>
+            <li>Страна клиента</li>
+            <li>Бюджет</li>
+          </ul>
+          <div class="highlight-box warm">
+            <div class="hl-title">Почему</div>
+            Без обратной связи маркетинг не может оптимизировать рекламу.
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- ═══ ВОРОНКА И KPI ═══ -->
+    <div class="section" id="section-funnel">
+      <div class="section-header">
+        <h2>Воронка продаж и KPI</h2>
+        <p>Путь клиента и контрольные показатели отдела</p>
+      </div>
+
+      <div class="card open">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>📊 Воронка продаж <span class="badge badge-warm">8 этапов</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <div class="funnel">
+            <div class="funnel-step" style="width:100%">Входящий лид</div>
+            <div class="funnel-arrow">↓</div>
+            <div class="funnel-step" style="width:92%">Первый контакт (≤15 мин)</div>
+            <div class="funnel-arrow">↓</div>
+            <div class="funnel-step" style="width:84%">Квалификация</div>
+            <div class="funnel-arrow">↓</div>
+            <div class="funnel-step" style="width:72%">Zoom-консультация</div>
+            <div class="funnel-arrow">↓</div>
+            <div class="funnel-step" style="width:60%">Подбор объектов (макс. 3)</div>
+            <div class="funnel-arrow">↓</div>
+            <div class="funnel-step" style="width:48%">Показ / Онлайн-тур</div>
+            <div class="funnel-arrow">↓</div>
+            <div class="funnel-step" style="width:36%">Бронь</div>
+            <div class="funnel-arrow">↓</div>
+            <div class="funnel-step" style="width:28%; background: var(--accent-green-light); font-weight: 700;">Сделка</div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>📈 KPI отдела продаж <span class="badge badge-green">Метрики</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <table class="kpi-table">
+            <thead><tr><th>Показатель</th><th>Норма</th></tr></thead>
+            <tbody>
+              <tr><td>Скорость ответа</td><td><strong>≤ 15 минут</strong></td></tr>
+              <tr><td>Лиды с задачами</td><td><strong>100%</strong></td></tr>
+              <tr><td>Просроченные задачи</td><td><strong>0</strong></td></tr>
+              <tr><td>Целевые → Zoom</td><td><strong>80%</strong></td></tr>
+              <tr><td>Zoom → Бронь</td><td><strong>Отслеживается</strong></td></tr>
+            </tbody>
+          </table>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>👁️ Контроль директора <span class="badge badge-blue">Чеклист</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p><strong>Ежедневно:</strong></p>
+          <ul class="checklist">
+            <li>Проверка просроченных задач</li>
+            <li>Проверка заполнения карточек</li>
+            <li>Прослушивание 2–3 звонков</li>
+            <li>Контроль вывода на Zoom</li>
+          </ul>
+          <p style="margin-top:16px"><strong>Еженедельно:</strong></p>
+          <ul class="checklist">
+            <li>Анализ конверсии</li>
+            <li>Разбор отказов</li>
+            <li>Корректировка скриптов</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>🔑 Стратегический принцип <span class="badge badge-warm">Итог</span></h3>
+          <span class="card-toggle">▼</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <div class="highlight-box green">
+            <div class="hl-title">Формула</div>
+            Маркетинг приводит лид. Отдел продаж превращает его в деньги.<br><br>
+            Если скорость реакции + дисциплина + Zoom + CRM работают системно — конверсия растёт в 1,5–2 раза без увеличения бюджета.
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      WEBNOSTRA · База знаний отдела продаж · Все права защищены
+    </div>
+
+  </div>
+</main>
+
+<script>
+// Section navigation
+function showSection(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('section-' + id).classList.add('active');
+  if (el) el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Close mobile sidebar
+  if (window.innerWidth <= 768) toggleSidebar();
+}
+
+// Card toggle
+function toggleCard(header) {
+  header.closest('.card').classList.toggle('open');
+}
+
+// Mobile sidebar
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.querySelector('.mobile-overlay').classList.toggle('show');
+}
+
+// Search
+function handleSearch(query) {
+  query = query.toLowerCase().trim();
+  if (!query) {
+    // Show current section
+    return;
+  }
+
+  // Show all sections temporarily to search
+  const allCards = document.querySelectorAll('.card');
+  let found = 0;
+  allCards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    if (text.includes(query)) {
+      card.style.display = '';
+      card.classList.add('open');
+      found++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  // Show all sections
+  document.querySelectorAll('.section').forEach(s => {
+    if (query) {
+      s.classList.add('active');
+      s.querySelector('.section-header')?.style && (s.querySelector('.section-header').style.display = 'none');
+    } else {
+      s.classList.remove('active');
+    }
+  });
+
+  if (!query) {
+    allCards.forEach(card => {
+      card.style.display = '';
+      card.classList.remove('open');
+    });
+    document.querySelectorAll('.section-header').forEach(h => h.style.display = '');
+    showSection('home', document.querySelector('.nav-item'));
+  }
+}
+
+// Reset search on clear
+document.getElementById('searchInput')?.addEventListener('input', function() {
+  if (!this.value) {
+    document.querySelectorAll('.card').forEach(card => {
+      card.style.display = '';
+    });
+    document.querySelectorAll('.section-header').forEach(h => h.style.display = '');
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById('section-home').classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.querySelector('.nav-item').classList.add('active');
+  }
+});
+</script>
+
+</body>
+</html>
