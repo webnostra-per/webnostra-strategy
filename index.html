@@ -111,24 +111,44 @@ body::before{
 .nav-cta:hover{background:var(--gold);color:var(--bg);transform:translateY(-1px)}
 
 /* Mobile menu */
-.mobile-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.menu-checkbox{display:none}
+.mobile-toggle{display:none;cursor:pointer;padding:8px}
 .mobile-toggle span{display:block;width:22px;height:2px;background:var(--text);margin:5px 0;transition:all .3s}
 
-@media(max-width:768px){
+@media(max-width:900px){
+  .mobile-toggle{display:block;z-index:100}
+  .nav-inner{flex-wrap:wrap}
   .nav-links{
-    position:fixed;left:0;right:0;top:0;bottom:0;
-    background:#0a0a0f;
-    flex-direction:column;align-items:center;justify-content:center;gap:32px;
-    z-index:9998;
-    padding-top:80px;
-    opacity:0;visibility:hidden;pointer-events:none;
-    transition:opacity .3s,visibility .3s;
+    display:none;
+    width:100%;
+    flex-direction:column;
+    padding:20px 0;
+    gap:0;
+    order:3;
+  }
+  .menu-checkbox:checked ~ .nav-links{
     display:flex;
   }
-  .nav-links.open{opacity:1;visibility:visible;pointer-events:auto}
-  .nav-links a{font-size:1.2rem;color:var(--text)}
-  .nav-links .nav-cta{font-size:1rem;padding:14px 32px}
-  .mobile-toggle{display:block;z-index:9999;position:relative}
+  .nav-links a{
+    display:block;width:100%;
+    padding:16px 0;
+    font-size:.95rem;color:var(--text);
+    text-align:center;
+    border-top:1px solid var(--border);
+  }
+  .nav-links a:first-child{border-top:none}
+  .nav-links .nav-cta{
+    margin-top:8px;
+    display:block;width:100%;
+    text-align:center;
+    border:1.5px solid var(--gold);
+    border-radius:8px;
+    padding:14px 0;
+    font-size:.95rem;
+  }
+  .menu-checkbox:checked ~ .mobile-toggle span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+  .menu-checkbox:checked ~ .mobile-toggle span:nth-child(2){opacity:0}
+  .menu-checkbox:checked ~ .mobile-toggle span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 }
 
 /* ── Hero ── */
@@ -883,6 +903,10 @@ body::before{
       <div class="logo-mark">W</div>
       <div class="logo-text">WEBNOSTRA<span>PERFORMANCE</span></div>
     </a>
+    <input type="checkbox" id="menuToggle" class="menu-checkbox">
+    <label for="menuToggle" class="mobile-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </label>
     <div class="nav-links" id="navLinks">
       <a href="#problems">Проблемы</a>
       <a href="#cases">Кейсы</a>
@@ -890,9 +914,6 @@ body::before{
       <a href="#team">Команда</a>
       <a href="#cta" class="nav-cta">Обсудить проект</a>
     </div>
-    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </nav>
 
@@ -1637,15 +1658,11 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// Mobile menu
-document.getElementById('mobileToggle').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
-});
-
-// Close mobile menu on link click
+// Mobile menu - close on link click (uncheck checkbox)
+const menuCheckbox = document.getElementById('menuToggle');
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => {
-    document.getElementById('navLinks').classList.remove('open');
+    if(menuCheckbox) menuCheckbox.checked = false;
   });
 });
 
