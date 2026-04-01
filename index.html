@@ -837,15 +837,20 @@ body::before{
 @media(max-width:640px){
   :root{--section-gap:80px}
   .hero{padding:120px 0 60px}
-  .hero-stats{grid-template-columns:1fr;gap:0}
-  .hero-stat{border-right:none!important;padding:14px 0!important}
+  .hero-visual{display:none}
+  .hero-stats{grid-template-columns:repeat(3,1fr);gap:0}
+  .hero-stat{padding:14px 0!important}
+  .hero-stat:not(:last-child){border-right:1px solid var(--border)!important;padding-right:12px!important}
+  .hero-stat:not(:first-child){padding-left:12px!important}
+  .hero-stat-value{font-size:1.4rem}
+  .hero-stat-label{font-size:.65rem}
   .problems-grid,.advantages-grid{grid-template-columns:1fr}
-  .geo-grid{grid-template-columns:1fr}
+  .geo-grid{grid-template-columns:repeat(2,1fr)}
   .team-grid-v2{grid-template-columns:1fr}
   .team-card-v2{flex-direction:column;align-items:center;text-align:center}
   .team-tags{justify-content:center}
   .team-founder{flex-direction:column;align-items:center;text-align:center}
-  .team-founder-header{justify-content:center}
+  .team-founder-header{justify-content:center;flex-direction:column;align-items:center}
   .team-founder-stats{grid-template-columns:repeat(2,1fr)}
   .team-founder-links{justify-content:center}
   .footer-inner{flex-direction:column}
@@ -853,11 +858,14 @@ body::before{
   .footer-bottom{flex-direction:column;gap:8px}
   .cta-section{padding:48px 24px}
   .case-metrics{grid-template-columns:repeat(2,1fr)!important}
-  .cases-compact{grid-template-columns:1fr}
-  .case-compact-stats{flex-wrap:wrap}
+  .cases-grid-more{grid-template-columns:1fr}
   .case-featured-metrics{grid-template-columns:repeat(2,1fr)}
   .case-featured-highlights{flex-direction:column}
   .dash-metrics{grid-template-columns:1fr}
+  .section-title{font-size:1.8rem}
+  .lang-strip{gap:8px}
+  .lang-pill{padding:8px 14px;font-size:.78rem}
+  .comp-col{padding:24px}
 }
 </style>
 </head>
@@ -1410,7 +1418,7 @@ body::before{
           </div>
           <div class="team-founder-links">
             <a href="https://instagram.com/webnostra" target="_blank" class="team-social">Instagram</a>
-            <a href="https://t.me/magosh_traffic" target="_blank" class="team-social">Telegram</a>
+            <a href="https://t.me/+cQStUxBTjMk5OTAy" target="_blank" class="team-social">Telegram</a>
           </div>
         </div>
         <div class="team-founder-bio">8+ лет в performance-маркетинге. Прошёл путь от медиабайера до управляющего директора агентства. Управлял бюджетами $2.8M+ в 200+ проектах — e-commerce, недвижимость, инфобизнес, B2B. Выстроил направление платного трафика с нуля для нескольких крупных компаний. Сейчас живёт на Пхукете и фокусируется исключительно на real estate.</div>
@@ -1606,7 +1614,7 @@ body::before{
           <h4>Контакты</h4>
           <a href="https://t.me/magosh_al" target="_blank">Telegram</a>
           <a href="https://instagram.com/webnostra" target="_blank">Instagram</a>
-          <a href="https://t.me/magosh_traffic" target="_blank">Telegram-канал</a>
+          <a href="https://t.me/+cQStUxBTjMk5OTAy" target="_blank">Telegram-канал</a>
         </div>
       </div>
     </div>
