@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WEBNOSTRA — Sales Department Knowledge Base</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFAF8;
+  --surface: #FFFFFF;
+  --surface-alt: #F5F4F0;
+  --border: #E8E6E1;
+  --border-hover: #D4D1CA;
+  --text: #1A1A18;
+  --text-secondary: #6B6960;
+  --text-muted: #9C9889;
+  --accent: #2D2D2D;
+  --accent-warm: #C4956A;
+  --accent-warm-light: #F0E6DA;
+  --accent-green: #4A7C59;
+  --accent-green-light: #E8F0EB;
+  --accent-blue: #4A6FA5;
+  --accent-blue-light: #E8EEF5;
+  --accent-red: #B5544D;
+  --accent-red-light: #F5EAEA;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-header {
+  padding: 28px 24px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.logo {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.logo-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+.sidebar-search {
+  padding: 16px 20px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.sidebar-search input {
+  width: 100%;
+  padding: 10px 14px 10px 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 13px;
+  background: var(--surface-alt);
+  color: var(--text);
+  outline: none;
+  transition: all 0.2s;
+}
+
+.sidebar-search input:focus {
+  border-color: var(--accent-warm);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-warm-light);
+}
+
+.sidebar-search::before {
+  content: '\2315';
+  position: absolute;
+  left: 34px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.sidebar-nav {
+  padding: 12px 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.nav-section-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  padding: 16px 24px 8px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+
+.nav-item:hover {
+  background: var(--surface-alt);
+  color: var(--text);
+}
+
+.nav-item.active {
+  background: var(--accent-warm-light);
+  color: var(--accent);
+  border-left-color: var(--accent-warm);
+  font-weight: 500;
+}
+
+.nav-icon {
+  width: 20px;
+  text-align: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.mobile-toggle {
+  display: none;
+  position: fixed;
+  top: 16px; left: 16px;
+  z-index: 200;
+  width: 44px; height: 44px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: var(--shadow-md);
+}
+
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 90;
+}
+
+.main {
+  margin-left: 280px;
+  min-height: 100vh;
+}
+
+.content {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 48px 40px 80px;
+}
+
+.hero {
+  margin-bottom: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.hero p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  max-width: 560px;
+}
+
+.stats-row {
+  display: flex;
+  gap: 32px;
+  margin-top: 28px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--accent-warm);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+  margin-bottom: 32px;
+}
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.section-header p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-header {
+  padding: 20px 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.card-header h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-header .badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.badge-green { background: var(--accent-green-light); color: var(--accent-green); }
+.badge-blue { background: var(--accent-blue-light); color: var(--accent-blue); }
+.badge-warm { background: var(--accent-warm-light); color: #8B6914; }
+.badge-red { background: var(--accent-red-light); color: var(--accent-red); }
+
+.card-toggle {
+  width: 28px; height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface-alt);
+  font-size: 12px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.card.open .card-toggle {
+  transform: rotate(180deg);
+}
+
+.card-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.card.open .card-body {
+  max-height: 5000px;
+}
+
+.card-content {
+  padding: 0 24px 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.card-content p {
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.card-content strong {
+  color: var(--accent);
+}
+
+.script-block {
+  background: var(--surface-alt);
+  border-left: 3px solid var(--accent-warm);
+  padding: 16px 20px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.script-block .label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-warm);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.highlight-box {
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+.highlight-box.green { background: var(--accent-green-light); border-left: 3px solid var(--accent-green); }
+.highlight-box.blue { background: var(--accent-blue-light); border-left: 3px solid var(--accent-blue); }
+.highlight-box.warm { background: var(--accent-warm-light); border-left: 3px solid var(--accent-warm); }
+.highlight-box.red { background: var(--accent-red-light); border-left: 3px solid var(--accent-red); }
+
+.highlight-box .hl-title {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.step-list {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+}
+
+.step-list li {
+  counter-increment: step;
+  padding: 14px 0 14px 52px;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+}
+
+.step-list li:last-child { border-bottom: none; }
+
+.step-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0; top: 14px;
+  width: 32px; height: 32px;
+  background: var(--accent-warm-light);
+  color: var(--accent-warm);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.step-list li strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--accent);
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+}
+
+.checklist li {
+  padding: 8px 0 8px 28px;
+  position: relative;
+  font-size: 14px;
+}
+
+.checklist li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: var(--accent-green);
+  font-weight: 700;
+}
+
+.banned-list {
+  list-style: none;
+  padding: 0;
+}
+
+.banned-list li {
+  padding: 8px 0 8px 28px;
+  position: relative;
+  font-size: 14px;
+}
+
+.banned-list li::before {
+  content: '\2715';
+  position: absolute;
+  left: 2px;
+  color: var(--accent-red);
+  font-weight: 700;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 28px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -24px; top: 6px;
+  width: 12px; height: 12px;
+  background: var(--accent-warm);
+  border-radius: 50%;
+  border: 3px solid var(--surface);
+}
+
+.timeline-day {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--accent-warm);
+  margin-bottom: 4px;
+}
+
+.trigger-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.trigger-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  transition: all 0.2s;
+}
+
+.trigger-card:hover {
+  border-color: var(--accent-warm);
+  box-shadow: var(--shadow-sm);
+}
+
+.trigger-num {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--accent-warm);
+  margin-bottom: 4px;
+}
+
+.trigger-name {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.trigger-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.trigger-example {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.funnel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 24px 0;
+}
+
+.funnel-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 20px;
+  background: var(--accent-warm-light);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.funnel-step:hover {
+  background: var(--accent-warm);
+  color: white;
+}
+
+.funnel-arrow {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.kpi-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+.kpi-table th {
+  text-align: left;
+  padding: 12px 16px;
+  background: var(--surface-alt);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  border-bottom: 2px solid var(--border);
+}
+
+.kpi-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.kpi-table tr:hover td {
+  background: var(--surface-alt);
+}
+
+.footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.search-highlight {
+  background: #FEF3C7;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 280px;
+    box-shadow: var(--shadow-lg);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .mobile-toggle { display: flex; }
+  .mobile-overlay.show { display: block; }
+  .main { margin-left: 0; }
+  .content { padding: 80px 20px 60px; }
+  .hero h1 { font-size: 24px; }
+  .stats-row { gap: 20px; flex-wrap: wrap; }
+  .trigger-grid { grid-template-columns: 1fr; }
+  .funnel-step { width: 100% !important; }
+}
+
+@media (max-width: 480px) {
+  .content { padding: 72px 16px 48px; }
+  .stats-row { flex-direction: column; gap: 12px; }
+}
+
+@media print {
+  .sidebar, .mobile-toggle { display: none; }
+  .main { margin-left: 0; }
+  .card-body { max-height: none !important; }
+  .section { display: block !important; }
+}
+</style>
+</head>
+<body>
+
+<button class="mobile-toggle" onclick="toggleSidebar()" aria-label="Menu">&#9776;</button>
+<div class="mobile-overlay" onclick="toggleSidebar()"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">WEBNOSTRA</div>
+    <div class="logo-sub">Knowledge Base &middot; Sales Department</div>
+  </div>
+
+  <div class="sidebar-search">
+    <input type="text" id="searchInput" placeholder="Search..." oninput="handleSearch(this.value)">
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Essentials</div>
+    <a class="nav-item active" onclick="showSection('home', this)" href="javascript:void(0)">
+      <span class="nav-icon">&#127968;</span> Home
+    </a>
+    <a class="nav-item" onclick="showSection('book', this)" href="javascript:void(0)">
+      <span class="nav-icon">&#128214;</span> Sales Playbook
+    </a>
+
+    <div class="nav-section-label">Technique</div>
+    <a class="nav-item" onclick="showSection('straight-line', this)" href="javascript:void(0)">
+      <span class="nav-icon">&#127919;</span> Straight Line
+    </a>
+    <a class="nav-item" onclick="showSection('closing', this)" href="javascript:void(0)">
+      <span class="nav-icon">&#129309;</span> Closing Scripts
+    </a>
+    <a class="nav-item" onclick="showSection('triggers', this)" href="javascript:void(0)">
+      <span class="nav-icon">&#129504;</span> Triggers
+    </a>
+
+    <div class="nav-section-label">Processes</div>
+    <a class="nav-item" onclick="showSection('reglament', this)" href="javascript:void(0)">
+      <span class="nav-icon">&#128203;</span> SOPs
+    </a>
+    <a class="nav-item" onclick="showSection('funnel', this)" href="javascript:void(0)">
+      <span class="nav-icon">&#128202;</span> Funnel &amp; KPIs
+    </a>
+  </nav>
+</aside>
+
+<main class="main">
+  <div class="content">
+
+    <!-- ═══ HOME ═══ -->
+    <div class="section active" id="section-home">
+      <div class="hero">
+        <h1>Sales Department Knowledge Base</h1>
+        <p>A complete system for selling investment real estate: from first contact to closing the deal. Developed by WEBNOSTRA.</p>
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-value">5</span>
+            <span class="stat-label">Sections</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">10</span>
+            <span class="stat-label">Triggers</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">10</span>
+            <span class="stat-label">Closing Steps</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h2>Quick Overview</h2>
+        <p>Navigate the key building blocks of the sales system</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128214; Sales Playbook <span class="badge badge-blue">Foundation</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>The complete sales manager's reference: the Phuket market, property types, legal ownership structures, buyer profiles, objection handling, scripts and templates.</p>
+          <div class="highlight-box green">
+            <div class="hl-title">Purpose</div>
+            Gives the sales manager a full picture of the product and the market. Without this knowledge, it is impossible to deliver an expert-level consultation.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#127919; Straight Line Technique <span class="badge badge-warm">Technique</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>An adaptation of Jordan Belfort's method for real estate: call structure, qualification, building trust, transitioning to a Zoom call.</p>
+          <div class="highlight-box warm">
+            <div class="hl-title">Core Principle</div>
+            You are not selling a property &mdash; you are selling the next step.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#129309; Closing Scripts <span class="badge badge-green">Scripts</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>10 sequential steps to close an investor on a reservation &mdash; from confirming interest to the final ask. Each step includes a ready-to-use script.</p>
+          <div class="highlight-box blue">
+            <div class="hl-title">Principle</div>
+            Reservations are closed through the logic of the decision, not through pressure.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#129504; Psychological Triggers <span class="badge badge-warm">10 Triggers</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Techniques for accelerating the buying decision: scarcity, price escalation, early entry, social proof, authority, safety, and more.</p>
+          <div class="highlight-box warm">
+            <div class="hl-title">Formula</div>
+            Price Escalation + Scarcity + Social Proof + Expert Trust = decision speed multiplied several times over.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128203; Sales Department SOPs <span class="badge badge-red">Mandatory</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Non-negotiable rules: response time, follow-up cadence, CRM discipline, KPIs, prohibited actions. Any violation leads to lost conversions.</p>
+          <div class="highlight-box red">
+            <div class="hl-title">Golden Rule</div>
+            Respond to every new lead within 15 minutes. Failing to do so cuts conversion rates by 30&ndash;50%.
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- ═══ SALES PLAYBOOK ═══ -->
+    <div class="section" id="section-book">
+      <div class="section-header">
+        <h2>Sales Playbook</h2>
+        <p>The complete reference for real estate sales managers</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#127970; About the Company <span class="badge badge-blue">Trust</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>This section builds initial trust. The manager must speak confidently about the company and its track record.</p>
+          <p><strong>Key points to cover:</strong></p>
+          <ul class="checklist">
+            <li>Company history</li>
+            <li>Years of experience in the market</li>
+            <li>Number of completed transactions</li>
+            <li>The team that works with clients</li>
+            <li>Developer partnerships</li>
+          </ul>
+          <div class="script-block">
+            <div class="label">Example for Client</div>
+            &ldquo;Our company has been operating in the Phuket real estate market since 2018. Over that time, we have completed more than 150 transactions with investors from Europe, the CIS, and the Middle East. Our core focus is investment projects and beachfront villas.&rdquo;
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128200; Phuket Real Estate Market <span class="badge badge-green">Market</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>The manager sells not just the property &mdash; they sell the market. Key points to communicate:</p>
+          <ul class="checklist">
+            <li>Tourism growth (10+ million visitors per year)</li>
+            <li>Limited land supply on the island</li>
+            <li>Consistent property price appreciation</li>
+            <li>Strong international investor interest</li>
+          </ul>
+          <div class="script-block">
+            <div class="label">Example Explanation</div>
+            &ldquo;Phuket is Thailand's largest tourist island. Every year, over 10 million visitors come here. Because land is limited and demand stays high, property prices have been consistently rising.&rdquo;
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128506; Island Geography <span class="badge badge-blue">Areas</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Buyers often don't know the different areas. The manager acts as a guide.</p>
+          <table class="kpi-table">
+            <thead><tr><th>Area</th><th>Profile</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Bang Tao</strong></td><td>Upscale area, villas and premium developments</td></tr>
+              <tr><td><strong>Layan</strong></td><td>Quiet zone, strong rental yields</td></tr>
+              <tr><td><strong>Surin</strong></td><td>High-end beachfront area</td></tr>
+              <tr><td><strong>Kamala</strong></td><td>Well-suited for investment</td></tr>
+              <tr><td><strong>Patong</strong></td><td>Tourist hub</td></tr>
+              <tr><td><strong>Nai Yang</strong></td><td>Near the airport</td></tr>
+              <tr><td><strong>Rawai</strong></td><td>Popular with expats</td></tr>
+              <tr><td><strong>Chalong</strong></td><td>Residential area</td></tr>
+            </tbody>
+          </table>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#127959; Property Types <span class="badge badge-warm">Product</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <table class="kpi-table">
+            <thead><tr><th>Type</th><th>Key Features</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Apartments</strong></td><td>Ideal for investment, 6&ndash;10% ROI</td></tr>
+              <tr><td><strong>Villas</strong></td><td>Premium segment, strong capital appreciation</td></tr>
+              <tr><td><strong>Condo-Hotel</strong></td><td>Managed by a property management company</td></tr>
+              <tr><td><strong>Branded Residences</strong></td><td>Premium service and amenities</td></tr>
+            </tbody>
+          </table>
+          <div class="highlight-box warm">
+            <div class="hl-title">Takeaway</div>
+            The manager must understand which type suits each specific buyer.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#9878; Legal Ownership Structures <span class="badge badge-red">Common Question</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>One of the most frequently asked questions by foreign buyers:</p>
+          <table class="kpi-table">
+            <thead><tr><th>Structure</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Freehold</strong></td><td>Full ownership &mdash; can be sold and inherited</td></tr>
+              <tr><td><strong>Leasehold</strong></td><td>Long-term lease for 30 years, renewable</td></tr>
+              <tr><td><strong>Thai Company</strong></td><td>Purchase via a Thai-registered company</td></tr>
+            </tbody>
+          </table>
+          <div class="script-block">
+            <div class="label">Example Explanation</div>
+            &ldquo;For foreign buyers, the most common way to purchase an apartment is Freehold. This is outright ownership &mdash; you can sell it, pass it on to your heirs, and hold it indefinitely.&rdquo;
+          </div>
+          <div class="highlight-box green">
+            <div class="hl-title">Takeaway</div>
+            A clear explanation of the legal framework reduces buyer anxiety significantly.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128176; Investment Model <span class="badge badge-green">ROI</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Investors buy numbers. Key growth drivers:</p>
+          <ul class="checklist">
+            <li>Tourism growth</li>
+            <li>Limited land supply</li>
+            <li>Strong international investor demand</li>
+          </ul>
+          <div class="highlight-box warm">
+            <div class="hl-title">ROI Example</div>
+            Apartment price: $250,000 &middot; Rental yield: 8% &middot; Annual income: $16,000
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128100; Buyer Profile <span class="badge badge-blue">Segments</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Different buyers care about different things:</p>
+          <table class="kpi-table">
+            <thead><tr><th>Segment</th><th>Key Priorities</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Investor</strong></td><td>Yield, ROI, capital appreciation</td></tr>
+              <tr><td><strong>Vacation Buyer</strong></td><td>Location, beach, local amenities</td></tr>
+              <tr><td><strong>Relocator</strong></td><td>Infrastructure, schools, safety</td></tr>
+              <tr><td><strong>Second Home</strong></td><td>Comfort, property management, service</td></tr>
+            </tbody>
+          </table>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128552; Common Buyer Concerns <span class="badge badge-red">Objections</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>The manager should proactively address these fears:</p>
+          <table class="kpi-table">
+            <thead><tr><th>Concern</th><th>How to Address It</th></tr></thead>
+            <tbody>
+              <tr><td>Construction not completed</td><td>Show the developer's track record of finished projects</td></tr>
+              <tr><td>Market downturn</td><td>Present historical price growth data</td></tr>
+              <tr><td>Difficulty managing the property</td><td>Explain the property management company's services</td></tr>
+            </tbody>
+          </table>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128172; Objection Handling <span class="badge badge-warm">Scripts</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <div class="highlight-box green">
+            <div class="hl-title">Principle</div>
+            An objection is a sign of interest. If the buyer is pushing back, they are thinking about buying.
+          </div>
+          <div class="script-block">
+            <div class="label">Objection: &ldquo;It's too expensive&rdquo;</div>
+            &ldquo;The current price is lower than it will be after construction is completed. Many investors enter at exactly this stage to lock in the growth.&rdquo;
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128221; First Call Script <span class="badge badge-green">Ready-to-Use Script</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>The goal of the call is to book a Zoom meeting.</p>
+          <div class="script-block">
+            <div class="label">Script</div>
+            &ldquo;Hello, [Name]. You submitted an inquiry about property in Phuket. Do you have a couple of minutes? I'd like to ask a few questions so I can match you with the right options.&rdquo;
+          </div>
+          <p><strong>Required qualification questions:</strong></p>
+          <ul class="checklist">
+            <li>Purpose of the purchase</li>
+            <li>Budget</li>
+            <li>Purchase timeline</li>
+            <li>Preferred location</li>
+          </ul>
+          <div class="highlight-box red">
+            <div class="hl-title">Important</div>
+            Sending a proposal without qualifying the lead first is strictly prohibited.
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- ═══ STRAIGHT LINE ═══ -->
+    <div class="section" id="section-straight-line">
+      <div class="section-header">
+        <h2>Straight Line Technique</h2>
+        <p>An adaptation of the method for selling investment real estate</p>
+      </div>
+
+      <div class="card open">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#127919; Conversation Structure <span class="badge badge-warm">Framework</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Every real estate call follows this structure:</p>
+          <div class="funnel">
+            <div class="funnel-step" style="width:50%">Contact</div>
+            <div class="funnel-arrow">&darr;</div>
+            <div class="funnel-step" style="width:55%">Control</div>
+            <div class="funnel-arrow">&darr;</div>
+            <div class="funnel-step" style="width:60%">Qualification</div>
+            <div class="funnel-arrow">&darr;</div>
+            <div class="funnel-step" style="width:65%">Value Building</div>
+            <div class="funnel-arrow">&darr;</div>
+            <div class="funnel-step" style="width:70%">Close on the Next Step</div>
+          </div>
+          <div class="highlight-box warm">
+            <div class="hl-title">Core Principle</div>
+            You are not selling the property. You are selling the next step (Zoom / viewing / reservation).
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#9201; The First 30 Seconds <span class="badge badge-red">Critical</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p><strong>Objective:</strong> take control and set the frame.</p>
+          <div class="script-block">
+            <div class="label">Script</div>
+            &ldquo;Hi John, you submitted an inquiry about a villa in Phuket. Do you have 3&ndash;4 minutes? I'll ask a couple of quick questions to understand what you're looking for, and then I can suggest some specific options.&rdquo;
+          </div>
+          <p>What we accomplish here:</p>
+          <ul class="checklist">
+            <li>Stated the purpose of the call</li>
+            <li>Set a time frame (3&ndash;4 minutes)</li>
+            <li>Got a micro-commitment</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128269; Qualification <span class="badge badge-blue">4 Parameters</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Qualification is not an interrogation &mdash; it is steering the conversation. 4 key parameters:</p>
+          <ol class="step-list">
+            <li><strong>Purpose</strong> Investment or personal use?</li>
+            <li><strong>Budget</strong> What price range are you considering?</li>
+            <li><strong>Timeline</strong> When are you planning to buy?</li>
+            <li><strong>Location</strong> Do you have a specific area in mind, or are you open to options?</li>
+          </ol>
+          <div class="highlight-box red">
+            <div class="hl-title">Rule</div>
+            Never send a proposal until all four parameters are understood.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128737; Three Trust Factors <span class="badge badge-green">Mandatory</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>If any one of these is missing, the deal will not close.</p>
+          <div class="script-block">
+            <div class="label">1. Trust in the Property</div>
+            &ldquo;This project has already gained +30% in value during the construction phase.&rdquo;
+          </div>
+          <div class="script-block">
+            <div class="label">2. Trust in the Company</div>
+            &ldquo;We are a top-6 agency by sales volume &mdash; over 50 deals closed this year.&rdquo;
+          </div>
+          <div class="script-block">
+            <div class="label">3. Trust in the Manager</div>
+            &ldquo;I personally handle every deal from selection through to registration.&rdquo;
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128263; Re-engaging Ghost Leads <span class="badge badge-warm">Win-Back</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>When a lead goes silent, don't just &ldquo;follow up again.&rdquo; Use an interest hook to re-engage:</p>
+          <div class="script-block">
+            <div class="label">Script</div>
+            &ldquo;Hi John, just wanted to check &mdash; are you still considering a purchase, or have you put things on hold for now? I ask because the installment plan for this project ends this week.&rdquo;
+          </div>
+          <div class="highlight-box blue">
+            <div class="hl-title">Principle</div>
+            We don't pressure. We bring them back onto the decision line.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128187; Closing for a Zoom Call <span class="badge badge-green">Key Stage</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>In real estate, you don't close deals in a chat. The goal of the first call is to get them onto Zoom.</p>
+          <div class="script-block">
+            <div class="label">Script</div>
+            &ldquo;John, rather than guessing and sending you dozens of listings, let me suggest a 20-minute Zoom call &mdash; I'll show you 3 options that match your budget and walk you through the projected returns.&rdquo;
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#9888; Common Mistakes &amp; Tone <span class="badge badge-red">Prohibited</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p><strong>Strictly prohibited:</strong></p>
+          <ul class="banned-list">
+            <li>Sending a proposal without qualifying the lead</li>
+            <li>Failing to ask about budget</li>
+            <li>Not establishing your expertise</li>
+            <li>Giving up after 3 follow-ups</li>
+            <li>Not pushing for a Zoom call</li>
+          </ul>
+          <div class="highlight-box blue">
+            <div class="hl-title">Tone Management</div>
+            In real estate, what you are selling is: confidence, stability, expertise, and composure. Never sound rushed or apologetic.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#129518; Conversion Formula <span class="badge badge-green">&times;2&ndash;3</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <div class="funnel">
+            <div class="funnel-step" style="width:80%">Conversation Control</div>
+            <div class="funnel-arrow">+</div>
+            <div class="funnel-step" style="width:80%">Deep Qualification</div>
+            <div class="funnel-arrow">+</div>
+            <div class="funnel-step" style="width:80%">Trust Building</div>
+            <div class="funnel-arrow">+</div>
+            <div class="funnel-step" style="width:80%">Transition to Zoom</div>
+            <div class="funnel-arrow">=</div>
+            <div class="funnel-step" style="width:80%; background: var(--accent-green-light); font-weight: 700;">2&ndash;3x Conversion Increase</div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- ═══ CLOSING SCRIPTS ═══ -->
+    <div class="section" id="section-closing">
+      <div class="section-header">
+        <h2>Closing Scripts for Reservation</h2>
+        <p>A step-by-step closing sequence for investors &mdash; through decision logic, not pressure</p>
+      </div>
+
+      <div class="highlight-box warm" style="margin-bottom: 24px;">
+        <div class="hl-title">Core Principle</div>
+        An investor makes a decision when they: understand the returns, trust the project, trust the manager, and sense the risk of missing out.
+      </div>
+
+      <div class="card open">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>10 Steps to Close</h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <ol class="step-list">
+            <li>
+              <strong>Confirm Interest</strong>
+              Make sure the property is the right fit.<br>
+              <em style="color:var(--text-secondary)">&ldquo;John, am I right that out of all the options, this project resonated with you the most?&rdquo;</em>
+            </li>
+            <li>
+              <strong>Recap Key Benefits</strong>
+              Briefly remind them why this property makes sense: location, price trajectory, rental yield.
+            </li>
+            <li>
+              <strong>Surface Remaining Doubts</strong>
+              Clear any last objections before the reservation.<br>
+              <em style="color:var(--text-secondary)">&ldquo;Is there anything that's giving you pause at this point?&rdquo;</em>
+            </li>
+            <li>
+              <strong>Build a Logical Case for Commitment</strong>
+              Guide them toward the idea of locking in the price.<br>
+              <em style="color:var(--text-secondary)">&ldquo;The current price is lower than it will be after the next increase. Investors typically lock in their unit at the earliest stage possible.&rdquo;</em>
+            </li>
+            <li>
+              <strong>Explain the Reservation Process</strong>
+              Keep the explanation as simple as possible.<br>
+              <em style="color:var(--text-secondary)">&ldquo;A reservation holds a specific unit for you. The property is taken off the market and the current price is locked in.&rdquo;</em>
+            </li>
+            <li>
+              <strong>Reduce Perceived Risk</strong>
+              The investor needs to know the reservation is safe.<br>
+              <em style="color:var(--text-secondary)">&ldquo;If you change your mind, the reservation deposit can be refunded or transferred to a different unit.&rdquo;</em>
+            </li>
+            <li>
+              <strong>Make the Reservation Offer</strong>
+              A direct offer after logical groundwork.<br>
+              <em style="color:var(--text-secondary)">&ldquo;If this property is the right fit, we can lock it in with a reservation.&rdquo;</em>
+            </li>
+            <li>
+              <strong>Create Urgency</strong>
+              Show that the unit could be taken by someone else.<br>
+              <em style="color:var(--text-secondary)">&ldquo;There are only two units with this layout still available.&rdquo;</em>
+            </li>
+            <li>
+              <strong>Simplify the Decision</strong>
+              Make the process feel effortless.<br>
+              <em style="color:var(--text-secondary)">&ldquo;The reservation takes just a few minutes. I'll send you the form and the payment details.&rdquo;</em>
+            </li>
+            <li>
+              <strong>Final Close</strong>
+              A soft closing question.<br>
+              <em style="color:var(--text-secondary)">&ldquo;Shall we lock in this unit for you?&rdquo;</em>
+            </li>
+          </ol>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- ═══ TRIGGERS ═══ -->
+    <div class="section" id="section-triggers">
+      <div class="section-header">
+        <h2>Psychological Triggers</h2>
+        <p>10 techniques that accelerate the buying decision in real estate</p>
+      </div>
+
+      <div class="highlight-box warm" style="margin-bottom: 24px;">
+        <div class="hl-title">Most Powerful Combination</div>
+        Price Escalation + Scarcity + Social Proof + Expert Trust = decision speed multiplied several times over.
+      </div>
+
+      <div class="trigger-grid">
+        <div class="trigger-card">
+          <div class="trigger-num">01</div>
+          <div class="trigger-name">Scarcity</div>
+          <div class="trigger-desc">When supply is limited, decisions happen faster. The brain interprets scarcity as value.</div>
+          <div class="trigger-example">&ldquo;There are only 5 units left at the current price in this project.&rdquo;</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">02</div>
+          <div class="trigger-name">Price Escalation</div>
+          <div class="trigger-desc">Investors fear missing out on growth. Show the price trajectory across construction stages.</div>
+          <div class="trigger-example">&ldquo;At launch &mdash; $160K. Now &mdash; $195K. After completion &mdash; $230K.&rdquo;</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">03</div>
+          <div class="trigger-name">Early Entry</div>
+          <div class="trigger-desc">The earliest stage offers the greatest upside. Walk them through the stages: pre-sale &rarr; construction &rarr; completion.</div>
+          <div class="trigger-example">The investor needs to understand where maximum profit lies.</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">04</div>
+          <div class="trigger-name">Social Proof</div>
+          <div class="trigger-desc">People feel safer when they see others have already invested. Share real transactions and case studies.</div>
+          <div class="trigger-example">&ldquo;Over 70% of this project has already been sold to European investors.&rdquo;</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">05</div>
+          <div class="trigger-name">Authority</div>
+          <div class="trigger-desc">Buyers decide faster when they trust the expert. The manager speaks as a consultant, not a salesperson.</div>
+          <div class="trigger-example">Expertise, company track record, developer partnerships.</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">06</div>
+          <div class="trigger-name">Safety</div>
+          <div class="trigger-desc">The investor must feel that risks are minimized: developer reputation, legal structure, guarantees.</div>
+          <div class="trigger-example">Reduces the fear of losing money.</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">07</div>
+          <div class="trigger-name">Simplicity</div>
+          <div class="trigger-desc">If the deal looks complicated, the decision gets delayed. Explain the process and show support at every stage.</div>
+          <div class="trigger-example">A straightforward buying process + property management included.</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">08</div>
+          <div class="trigger-name">Passive Income</div>
+          <div class="trigger-desc">Investors respond to clear, quantified income. Provide specific numbers: rental yield, payback period.</div>
+          <div class="trigger-example">&ldquo;Projected rental yield of 8&ndash;10% per year.&rdquo;</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">09</div>
+          <div class="trigger-name">Comparison</div>
+          <div class="trigger-desc">Investors always compare. Help them: bank deposit vs. real estate, different markets side by side.</div>
+          <div class="trigger-example">&ldquo;A bank deposit gives you 4%. Rental income on this property &mdash; 9%.&rdquo;</div>
+        </div>
+        <div class="trigger-card">
+          <div class="trigger-num">10</div>
+          <div class="trigger-name">Fear of Missing Out</div>
+          <div class="trigger-desc">An extremely powerful trigger. Investors regret properties they didn't buy. Show price growth from past projects.</div>
+          <div class="trigger-example">&ldquo;In the previous project, prices went up 35% in 2 years.&rdquo;</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SOPs ═══ -->
+    <div class="section" id="section-reglament">
+      <div class="section-header">
+        <h2>Sales Department Standard Operating Procedures</h2>
+        <p>Segment: Real Estate (Premium / Investment)</p>
+      </div>
+
+      <div class="card open">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#9889; Response Time <span class="badge badge-red">15 Minutes</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <ul class="checklist">
+            <li>Respond to every inbound lead within 15 minutes during business hours</li>
+            <li>For leads received after hours &mdash; respond within 15 minutes of the start of the next business day</li>
+            <li>Every missed call = a mandatory follow-up message via WhatsApp</li>
+          </ul>
+          <div class="highlight-box red">
+            <div class="hl-title">Warning</div>
+            Slow response times reduce conversion rates by 30&ndash;50%.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128222; Follow-Up Cadence <span class="badge badge-warm">7+ Touchpoints</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-day">Day 1</div>
+              Call &rarr; WhatsApp message &rarr; Log in CRM
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Day 2</div>
+              Call &rarr; Message
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Day 3</div>
+              Call &rarr; Message
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Day 7</div>
+              Call &rarr; Message
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-day">Day 14</div>
+              Call &rarr; Message
+            </div>
+          </div>
+          <div class="highlight-box red">
+            <div class="hl-title">Rule</div>
+            A minimum of 7 touchpoints before closing a lead. Giving up after 2&ndash;3 attempts is strictly prohibited.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128269; Qualification <span class="badge badge-blue">Mandatory</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>The manager must gather this information before sending any proposal:</p>
+          <ol class="step-list">
+            <li><strong>Purpose</strong> Investment or personal use</li>
+            <li><strong>Budget</strong> Price range</li>
+            <li><strong>Timeline</strong> When they plan to buy</li>
+            <li><strong>Location</strong> Area of interest</li>
+            <li><strong>Source of Funds</strong> Where the money is coming from</li>
+          </ol>
+          <div class="highlight-box red">
+            <div class="hl-title">Prohibited</div>
+            Sending a proposal without this information is strictly prohibited.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128190; CRM Discipline <span class="badge badge-blue">Discipline</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <ul class="checklist">
+            <li>Every touchpoint is logged in the CRM</li>
+            <li>A follow-up task must be created after every interaction</li>
+            <li>Overdue tasks are unacceptable</li>
+            <li>Lead records must be fully completed: budget, purpose, timeline, location, status</li>
+          </ul>
+          <div class="highlight-box blue">
+            <div class="hl-title">Principle</div>
+            The CRM is a management tool, not a formality.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128187; Transition to Zoom <span class="badge badge-green">&times;2&ndash;3 Conversion</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>The goal of the first contact is to get the lead onto Zoom. Zoom call structure:</p>
+          <ol class="step-list">
+            <li><strong>Identify the buyer's objective</strong></li>
+            <li><strong>Present</strong> 2&ndash;3 relevant properties</li>
+            <li><strong>Financial model</strong> ROI, projected returns</li>
+            <li><strong>Handle</strong> objections</li>
+            <li><strong>Close</strong> on a reservation / hold</li>
+          </ol>
+          <div class="highlight-box green">
+            <div class="hl-title">Fact</div>
+            Without a Zoom call, conversion drops by 2&ndash;3x.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128683; Prohibited Actions <span class="badge badge-red">Strict</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <ul class="banned-list">
+            <li>Sending a proposal without qualification</li>
+            <li>Closing a lead after only 2&ndash;3 follow-ups</li>
+            <li>Leaving tasks overdue</li>
+            <li>Working outside the CRM</li>
+            <li>Responding hours later</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128202; Feedback to Marketing <span class="badge badge-blue">Daily</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p>Every manager is required to log the following daily:</p>
+          <ul class="checklist">
+            <li>Qualified / not qualified</li>
+            <li>Reason for disqualification</li>
+            <li>Buyer's country</li>
+            <li>Budget</li>
+          </ul>
+          <div class="highlight-box warm">
+            <div class="hl-title">Why</div>
+            Without this feedback, marketing cannot optimize the ad campaigns.
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- ═══ FUNNEL & KPIs ═══ -->
+    <div class="section" id="section-funnel">
+      <div class="section-header">
+        <h2>Sales Funnel &amp; KPIs</h2>
+        <p>The buyer's journey and department performance benchmarks</p>
+      </div>
+
+      <div class="card open">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128202; Sales Funnel <span class="badge badge-warm">8 Stages</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <div class="funnel">
+            <div class="funnel-step" style="width:100%">Inbound Lead</div>
+            <div class="funnel-arrow">&darr;</div>
+            <div class="funnel-step" style="width:92%">First Contact (&le;15 min)</div>
+            <div class="funnel-arrow">&darr;</div>
+            <div class="funnel-step" style="width:84%">Qualification</div>
+            <div class="funnel-arrow">&darr;</div>
+            <div class="funnel-step" style="width:72%">Zoom Consultation</div>
+            <div class="funnel-arrow">&darr;</div>
+            <div class="funnel-step" style="width:60%">Property Shortlist (max 3)</div>
+            <div class="funnel-arrow">&darr;</div>
+            <div class="funnel-step" style="width:48%">Viewing / Virtual Tour</div>
+            <div class="funnel-arrow">&darr;</div>
+            <div class="funnel-step" style="width:36%">Reservation</div>
+            <div class="funnel-arrow">&darr;</div>
+            <div class="funnel-step" style="width:28%; background: var(--accent-green-light); font-weight: 700;">Deal Closed</div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128200; Sales Department KPIs <span class="badge badge-green">Metrics</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <table class="kpi-table">
+            <thead><tr><th>Metric</th><th>Benchmark</th></tr></thead>
+            <tbody>
+              <tr><td>Response time</td><td><strong>&le; 15 minutes</strong></td></tr>
+              <tr><td>Leads with follow-up tasks</td><td><strong>100%</strong></td></tr>
+              <tr><td>Overdue tasks</td><td><strong>0</strong></td></tr>
+              <tr><td>Qualified leads &rarr; Zoom</td><td><strong>80%</strong></td></tr>
+              <tr><td>Zoom &rarr; Reservation</td><td><strong>Tracked</strong></td></tr>
+            </tbody>
+          </table>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128065; Director's Checklist <span class="badge badge-blue">Checklist</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <p><strong>Daily:</strong></p>
+          <ul class="checklist">
+            <li>Check for overdue tasks</li>
+            <li>Review lead record completeness</li>
+            <li>Listen to 2&ndash;3 recorded calls</li>
+            <li>Monitor Zoom transition rate</li>
+          </ul>
+          <p style="margin-top:16px"><strong>Weekly:</strong></p>
+          <ul class="checklist">
+            <li>Analyze conversion rates</li>
+            <li>Review lost deals and disqualification reasons</li>
+            <li>Update and refine scripts</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this)">
+          <h3>&#128273; Strategic Principle <span class="badge badge-warm">Bottom Line</span></h3>
+          <span class="card-toggle">&#9660;</span>
+        </div>
+        <div class="card-body"><div class="card-content">
+          <div class="highlight-box green">
+            <div class="hl-title">The Formula</div>
+            Marketing generates the lead. Sales turns it into revenue.<br><br>
+            When response speed + discipline + Zoom + CRM work as a system, conversion increases 1.5&ndash;2x without raising the ad budget.
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      WEBNOSTRA &middot; Sales Department Knowledge Base &middot; All Rights Reserved
+    </div>
+
+  </div>
+</main>
+
+<script>
+function showSection(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('section-' + id).classList.add('active');
+  if (el) el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (window.innerWidth <= 768) toggleSidebar();
+}
+
+function toggleCard(header) {
+  header.closest('.card').classList.toggle('open');
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.querySelector('.mobile-overlay').classList.toggle('show');
+}
+
+function handleSearch(query) {
+  query = query.toLowerCase().trim();
+  if (!query) return;
+
+  const allCards = document.querySelectorAll('.card');
+  let found = 0;
+  allCards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    if (text.includes(query)) {
+      card.style.display = '';
+      card.classList.add('open');
+      found++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  document.querySelectorAll('.section').forEach(s => {
+    if (query) {
+      s.classList.add('active');
+      s.querySelector('.section-header')?.style && (s.querySelector('.section-header').style.display = 'none');
+    } else {
+      s.classList.remove('active');
+    }
+  });
+
+  if (!query) {
+    allCards.forEach(card => {
+      card.style.display = '';
+      card.classList.remove('open');
+    });
+    document.querySelectorAll('.section-header').forEach(h => h.style.display = '');
+    showSection('home', document.querySelector('.nav-item'));
+  }
+}
+
+document.getElementById('searchInput')?.addEventListener('input', function() {
+  if (!this.value) {
+    document.querySelectorAll('.card').forEach(card => {
+      card.style.display = '';
+    });
+    document.querySelectorAll('.section-header').forEach(h => h.style.display = '');
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById('section-home').classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.querySelector('.nav-item').classList.add('active');
+  }
+});
+</script>
+
+</body>
+</html>
