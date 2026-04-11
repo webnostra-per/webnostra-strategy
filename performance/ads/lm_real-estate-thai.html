@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гид по продажам недвижимости в Таиланде — WEBNOSTRA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C4A265;
+  --gold-light: #D4B87A;
+  --gold-dark: #A68845;
+  --ink: #1A1A1A;
+  --ink-soft: #2D2D2D;
+  --paper: #FAF8F5;
+  --paper-warm: #F5F0E8;
+  --text: #3A3A3A;
+  --text-soft: #6B6B6B;
+  --accent-teal: #2A6B5E;
+  --accent-teal-light: rgba(42,107,94,0.08);
+  --border: rgba(196,162,101,0.2);
+  --shadow: 0 4px 40px rgba(0,0,0,0.06);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background: var(--paper);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+/* ——— HERO ——— */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+  color: #fff;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(196,162,101,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(42,107,94,0.12) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.4) 100%);
+}
+
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.5) 60px, rgba(255,255,255,0.5) 61px),
+    repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.5) 60px, rgba(255,255,255,0.5) 61px);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px 24px;
+  max-width: 800px;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  border: 1px solid rgba(196,162,101,0.3);
+  padding: 8px 24px;
+  margin-bottom: 48px;
+  font-weight: 600;
+  animation: fadeDown 1s ease-out;
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+  animation: fadeUp 1s ease-out 0.2s both;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.hero-sub {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 48px;
+  font-weight: 400;
+  font-style: italic;
+  animation: fadeUp 1s ease-out 0.4s both;
+}
+
+.hero-line {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto 48px;
+  animation: fadeUp 1s ease-out 0.5s both;
+}
+
+.hero-intro {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.7);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.8;
+  animation: fadeUp 1s ease-out 0.6s both;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.3);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: fadeUp 1s ease-out 0.8s both;
+}
+
+.scroll-hint .arrow {
+  width: 1px;
+  height: 30px;
+  background: linear-gradient(to bottom, rgba(196,162,101,0.5), transparent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ——— MAIN CONTENT ——— */
+.content-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ——— SECTION BLOCKS ——— */
+.section {
+  padding: 100px 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-number {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 5rem;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.15;
+  line-height: 1;
+  margin-bottom: -20px;
+  position: relative;
+  z-index: 0;
+}
+
+.section h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.section-rule {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent-teal);
+  background: var(--accent-teal-light);
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 4px;
+  margin-bottom: 28px;
+  border-left: 3px solid var(--accent-teal);
+}
+
+.section p {
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+/* ——— HIGHLIGHT CARDS ——— */
+.highlight-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px;
+  margin: 28px 0;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.highlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--accent-teal));
+  border-radius: 8px 8px 0 0;
+}
+
+.highlight-card h4 {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.highlight-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.highlight-card li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.highlight-card li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ——— FACT CALLOUT ——— */
+.fact-callout {
+  background: var(--ink);
+  color: #fff;
+  padding: 28px 32px;
+  border-radius: 8px;
+  margin: 32px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.fact-callout::before {
+  content: '!';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 6rem;
+  font-weight: 700;
+  color: rgba(196,162,101,0.08);
+  line-height: 1;
+}
+
+.fact-callout p {
+  color: rgba(255,255,255,0.9);
+  font-size: 1rem;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.fact-callout strong {
+  color: var(--gold-light);
+}
+
+/* ——— SCRIPT BOX ——— */
+.script-box {
+  background: var(--paper-warm);
+  border-left: 3px solid var(--gold);
+  padding: 28px 32px;
+  border-radius: 0 8px 8px 0;
+  margin: 28px 0;
+  font-style: italic;
+}
+
+.script-box .label {
+  font-style: normal;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.script-box .speaker {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ——— ZOOM STRUCTURE ——— */
+.timeline {
+  margin: 28px 0;
+  padding-left: 0;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  align-items: flex-start;
+}
+
+.timeline-time {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--gold);
+  min-width: 70px;
+  text-align: right;
+  padding-top: 2px;
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: var(--paper);
+  margin-top: 6px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.timeline-text {
+  font-size: 1rem;
+  padding-top: 2px;
+}
+
+/* ——— DIVIDER ——— */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 0;
+}
+
+.divider span {
+  width: 60px;
+  height: 1px;
+  background: var(--border);
+}
+
+.divider .diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+/* ——— CHECKLIST ——— */
+.checklist-section {
+  background: #fff;
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  padding: 48px 40px;
+  margin: 40px 0;
+  box-shadow: 0 8px 60px rgba(196,162,101,0.1);
+}
+
+.checklist-section h2 {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.checklist-note {
+  text-align: center;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  margin-bottom: 36px;
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.checklist li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  font-size: 1.05rem;
+}
+
+.checklist li:last-child { border-bottom: none; }
+
+.check-box {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--gold);
+  border-radius: 4px;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.check-box.checked {
+  background: var(--accent-teal);
+  border-color: var(--accent-teal);
+}
+
+.check-box.checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.checklist-result {
+  text-align: center;
+  margin-top: 32px;
+  padding: 20px;
+  background: var(--accent-teal-light);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--accent-teal);
+  font-weight: 500;
+}
+
+/* ——— CTA ——— */
+.cta-section {
+  background: var(--ink);
+  color: #fff;
+  padding: 100px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(196,162,101,0.1) 0%, transparent 60%);
+}
+
+.cta-content {
+  max-width: 640px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.cta-section p {
+  color: rgba(255,255,255,0.65);
+  font-size: 1.05rem;
+  margin-bottom: 16px;
+  line-height: 1.8;
+}
+
+.cta-list {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 40px;
+  text-align: left;
+  display: inline-block;
+}
+
+.cta-list li {
+  padding: 8px 0;
+  color: rgba(255,255,255,0.8);
+  font-size: 1.05rem;
+  position: relative;
+  padding-left: 28px;
+}
+
+.cta-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--gold-light);
+  font-size: 0.8rem;
+  top: 10px;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-family: 'Manrope', sans-serif;
+}
+
+.cta-btn.primary {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.cta-btn.primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(196,162,101,0.3);
+}
+
+.cta-btn.secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.cta-btn.secondary:hover {
+  border-color: rgba(255,255,255,0.5);
+  transform: translateY(-2px);
+}
+
+.cta-note {
+  margin-top: 32px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.35);
+  font-style: italic;
+}
+
+/* ——— FOOTER ——— */
+.footer {
+  padding: 40px 24px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  border-top: 1px solid var(--border);
+}
+
+.footer-brand {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--gold-dark);
+  margin-bottom: 8px;
+}
+
+/* ——— ANIMATIONS ——— */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* ——— PROGRESS BAR ——— */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--accent-teal));
+  z-index: 1000;
+  transition: width 0.1s linear;
+  width: 0%;
+}
+
+/* ——— RESPONSIVE ——— */
+@media (max-width: 640px) {
+  .section { padding: 70px 0; }
+  .section-number { font-size: 3.5rem; }
+  .highlight-card { padding: 24px 20px; }
+  .checklist-section { padding: 32px 20px; }
+  .timeline-time { min-width: 50px; font-size: 1.1rem; }
+  .cta-section { padding: 70px 24px; }
+  .script-box { padding: 24px 20px; }
+}
+
+/* ——— TOC NAV ——— */
+.toc {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toc a {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(196,162,101,0.2);
+  border: 1px solid transparent;
+  display: block;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.toc a.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: scale(1.3);
+}
+
+.toc a:hover {
+  background: var(--gold-light);
+  transform: scale(1.3);
+}
+
+.toc a .tooltip {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.toc a:hover .tooltip { opacity: 1; }
+
+@media (max-width: 900px) {
+  .toc { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- TOC dots -->
+<nav class="toc" id="toc">
+  <a href="#s1"><span class="tooltip">Скорость реакции</span></a>
+  <a href="#s2"><span class="tooltip">Квалификация</span></a>
+  <a href="#s3"><span class="tooltip">7 касаний</span></a>
+  <a href="#s4"><span class="tooltip">Перевод на Zoom</span></a>
+  <a href="#s5"><span class="tooltip">Работа с «подумаю»</span></a>
+  <a href="#checklist"><span class="tooltip">Чек-лист</span></a>
+</nav>
+
+<!-- ——— HERO ——— -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Бесплатный материал для агентств</div>
+    <h1>Краткий гид по продажам недвижимости <em>в&nbsp;Таиланде</em></h1>
+    <p class="hero-sub">5 ключевых точек, которые влияют на конверсию</p>
+    <div class="hero-line"></div>
+    <p class="hero-intro">Лиды приходят — сделок мало. В большинстве случаев проблема не в трафике, а в системе продаж. Мы собрали 5 ключевых точек, на которые стоит обратить внимание. Кратко, без воды, только суть.</p>
+  </div>
+  <div class="scroll-hint">
+    <span>Читать</span>
+    <span class="arrow"></span>
+  </div>
+</section>
+
+<!-- ——— SECTION 1 ——— -->
+<div class="content-wrap">
+  <section class="section" id="s1">
+    <div class="section-number">01</div>
+    <h2>Скорость реакции</h2>
+    <div class="section-rule">Первый ответ — не позднее 15 минут</div>
+
+    <p>Клиент оставил заявку — он в моменте интереса. Через час интерес остывает. Через два — он уже общается с конкурентом.</p>
+
+    <div class="highlight-card">
+      <h4>Что делать</h4>
+      <ul>
+        <li>Ответ на заявку в рабочее время — до 15 минут</li>
+        <li>Каждый недозвон — сообщение в WhatsApp</li>
+        <li>Заявка пришла ночью — ответ в первые 15 минут рабочего дня</li>
+      </ul>
+    </div>
+
+    <div class="fact-callout">
+      <p>Нарушение скорости реакции снижает конверсию на <strong>30–50%</strong></p>
+    </div>
+  </section>
+
+  <div class="divider"><span></span><div class="diamond"></div><span></span></div>
+
+  <!-- ——— SECTION 2 ——— -->
+  <section class="section" id="s2">
+    <div class="section-number">02</div>
+    <h2>Квалификация до отправки объектов</h2>
+    <div class="section-rule">Не отправлять презентации без понимания клиента</div>
+
+    <p>Менеджер, который шлет 10 объектов всем подряд, тратит время впустую. Клиент теряется в вариантах и уходит «думать».</p>
+
+    <div class="highlight-card">
+      <h4>4 вопроса перед отправкой</h4>
+      <ul>
+        <li><strong>Цель</strong> — инвестиция или для жизни?</li>
+        <li><strong>Бюджет</strong> — какой диапазон?</li>
+        <li><strong>Срок</strong> — когда планирует купить?</li>
+        <li><strong>Регион</strong> — конкретный или рассматривает варианты?</li>
+      </ul>
+    </div>
+
+    <div class="fact-callout">
+      <p>После квалификации отправляем максимум <strong>3 релевантных объекта</strong>. Не больше.</p>
+    </div>
+  </section>
+
+  <div class="divider"><span></span><div class="diamond"></div><span></span></div>
+
+  <!-- ——— SECTION 3 ——— -->
+  <section class="section" id="s3">
+    <div class="section-number">03</div>
+    <h2>Минимум 7 касаний</h2>
+    <div class="section-rule">Не закрывать клиента после 2–3 попыток</div>
+
+    <p>Большинство сделок происходит после 5–7 контактов. Менеджеры, которые сдаются после третьего звонка, теряют 30–40% потенциальных клиентов.</p>
+
+    <div class="highlight-card">
+      <h4>Алгоритм касаний</h4>
+      <ul>
+        <li><strong>День 1</strong> — звонок + сообщение</li>
+        <li><strong>День 2</strong> — звонок + сообщение</li>
+        <li><strong>День 3</strong> — звонок + сообщение</li>
+        <li><strong>День 7</strong> — звонок + сообщение</li>
+        <li><strong>День 14</strong> — звонок + сообщение</li>
+      </ul>
+    </div>
+
+    <div class="fact-callout">
+      <p>Каждое касание фиксируется в <strong>CRM</strong> с задачей на следующий контакт</p>
+    </div>
+  </section>
+
+  <div class="divider"><span></span><div class="diamond"></div><span></span></div>
+
+  <!-- ——— SECTION 4 ——— -->
+  <section class="section" id="s4">
+    <div class="section-number">04</div>
+    <h2>Перевод на Zoom</h2>
+    <div class="section-rule">Цель первого контакта — вывести на Zoom, а не продать объект</div>
+
+    <p>В переписке и по телефону конверсия в 2–3 раза ниже, чем после видеоконсультации. На Zoom менеджер показывает экспертность, демонстрирует объекты, считает доходность.</p>
+
+    <div class="script-box">
+      <div class="label">Скрипт приглашения</div>
+      «Чтобы не пересылать десятки вариантов, предлагаю 20 минут в Zoom — покажу 3 объекта под ваш бюджет и посчитаем доходность.»
+    </div>
+
+    <div class="highlight-card">
+      <h4>Структура Zoom-презентации</h4>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">5 мин</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-text">Уточнение задачи клиента</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10 мин</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-text">Презентация 2–3 объектов</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">5 мин</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-text">Расчет доходности</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">5 мин</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-text">Ответы на вопросы</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">5 мин</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-text">Предложение брони</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span></span><div class="diamond"></div><span></span></div>
+
+  <!-- ——— SECTION 5 ——— -->
+  <section class="section" id="s5">
+    <div class="section-number">05</div>
+    <h2>Работа с «подумаю»</h2>
+    <div class="section-rule">«Подумаю» — это не отказ, а просьба помочь с решением</div>
+
+    <p>Если отпустить клиента на этой фразе — он пропадет. Задача — вытащить настоящую причину сомнений.</p>
+
+    <div class="script-box">
+      <div class="label">Сценарий работы с возражением</div>
+      <p><span class="speaker">Клиент:</span> «Хороший вариант, подумаю»</p>
+      <br>
+      <p><span class="speaker">Агент:</span> «Отлично, что нравится. Уточню — что именно хотите обдумать? Обычно это или цена, или район, или нужно с кем-то посоветоваться. У вас что?»</p>
+    </div>
+
+    <p>В большинстве случаев клиент называет реальную причину. Дальше работаем с конкретным возражением.</p>
+  </section>
+
+  <div class="divider"><span></span><div class="diamond"></div><span></span></div>
+
+  <!-- ——— CHECKLIST ——— -->
+  <section class="section" id="checklist">
+    <div class="checklist-section">
+      <h2 class="serif">Чек-лист</h2>
+      <p class="checklist-note">Что проверить в своем отделе продаж</p>
+
+      <ul class="checklist" id="checklistItems">
+        <li><div class="check-box" onclick="toggleCheck(this)"></div>Отвечаем на заявки до 15 минут?</li>
+        <li><div class="check-box" onclick="toggleCheck(this)"></div>Квалифицируем до отправки объектов?</li>
+        <li><div class="check-box" onclick="toggleCheck(this)"></div>Делаем минимум 7 касаний?</li>
+        <li><div class="check-box" onclick="toggleCheck(this)"></div>Выводим на Zoom?</li>
+        <li><div class="check-box" onclick="toggleCheck(this)"></div>Фиксируем все в CRM?</li>
+        <li><div class="check-box" onclick="toggleCheck(this)"></div>Работаем с возражениями по сценарию?</li>
+      </ul>
+
+      <div class="checklist-result" id="checklistResult">
+        Отметьте пункты, чтобы увидеть результат
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ——— CTA ——— -->
+<section class="cta-section">
+  <div class="cta-content section" id="ctaSection">
+    <h2 class="serif">Хотите разобрать вашу ситуацию?</h2>
+    <p>Это базовые точки. Каждую из них можно углубить: скрипты, триггеры продаж, регламенты, система контроля. Но даже внедрение этих 5 принципов дает рост конверсии.</p>
+
+    <p style="margin-top: 24px; color: rgba(255,255,255,0.8);">Мы помогаем агентствам недвижимости в Таиланде с двумя задачами:</p>
+
+    <ul class="cta-list">
+      <li><strong>Трафик</strong> — целевые заявки от клиентов с бюджетом и сроком покупки</li>
+      <li><strong>Отдел продаж</strong> — система, которая превращает заявки в сделки</li>
+    </ul>
+
+    <p>Предлагаем бесплатный созвон на 20–30 минут:</p>
+    <ul class="cta-list">
+      <li>Посмотрим на вашу воронку</li>
+      <li>Найдем точки потери клиентов</li>
+      <li>Дадим конкретные рекомендации</li>
+    </ul>
+    <p style="font-size: 0.9rem; color: rgba(255,255,255,0.45); font-style: italic;">Без продаж и давления. Вы получите пользу в любом случае.</p>
+
+    <div class="cta-buttons">
+      <a href="https://wa.me/77066671426" class="cta-btn primary" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.674-1.228A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.319 0-4.476-.672-6.32-1.828l-.358-.222-2.833.745.765-2.79-.243-.386A9.96 9.96 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+        WhatsApp
+      </a>
+      <a href="https://t.me/magosh_al" class="cta-btn secondary" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        Telegram
+      </a>
+    </div>
+
+    <p class="cta-note">Материал подготовлен на основе опыта работы с агентствами недвижимости в Таиланде</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-brand">WEBNOSTRA PERFORMANCE</div>
+  <p>Агентство перфоманс-маркетинга</p>
+</footer>
+
+<script>
+// Progress bar
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+});
+
+// Scroll reveal
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+sections.forEach(s => observer.observe(s));
+
+// TOC active state
+const tocLinks = document.querySelectorAll('.toc a');
+const tocTargets = ['s1','s2','s3','s4','s5','checklist'];
+
+const tocObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = tocTargets.indexOf(e.target.id);
+      tocLinks.forEach(l => l.classList.remove('active'));
+      if (idx >= 0) tocLinks[idx].classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+
+tocTargets.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) tocObserver.observe(el);
+});
+
+// Checklist
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  updateChecklist();
+}
+
+function updateChecklist() {
+  const boxes = document.querySelectorAll('.check-box');
+  const checked = document.querySelectorAll('.check-box.checked').length;
+  const total = boxes.length;
+  const result = document.getElementById('checklistResult');
+
+  if (checked === 0) {
+    result.textContent = 'Отметьте пункты, чтобы увидеть результат';
+    result.style.background = 'var(--accent-teal-light)';
+    result.style.color = 'var(--accent-teal)';
+  } else if (checked === total) {
+    result.textContent = 'Отлично! Все процессы на месте. Но всегда есть что улучшить — напишите нам.';
+    result.style.background = 'var(--accent-teal)';
+    result.style.color = '#fff';
+  } else if (checked >= total - 2) {
+    result.textContent = 'Почти идеально! ' + (total - checked) + ' точк' + ((total-checked)===1?'а':'и') + ' роста — серьезный потенциал.';
+    result.style.background = 'var(--accent-teal-light)';
+    result.style.color = 'var(--accent-teal)';
+  } else {
+    result.textContent = 'Есть точки роста: ' + (total - checked) + ' из ' + total + ' пунктов требуют внимания. Давайте разберем?';
+    result.style.background = '#FFF3E0';
+    result.style.color = '#E65100';
+  }
+}
+</script>
+
+</body>
+</html>
