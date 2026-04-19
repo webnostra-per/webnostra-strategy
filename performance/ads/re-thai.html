@@ -60,7 +60,12 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+    max-width: 100%;
+  }
 
   body {
     background: var(--bg);
@@ -72,7 +77,13 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+    position: relative;
   }
+
+  /* Защита: никакой контент не должен вылезать за viewport */
+  img, video, iframe { max-width: 100%; }
 
   body::before {
     content: '';
@@ -223,17 +234,20 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
     padding: 32px 0 48px;
     position: relative;
     border-bottom: 1px solid var(--line);
+    overflow: hidden;
   }
   .hero::before {
     content: '';
     position: absolute;
     top: 0;
-    right: -10%;
-    width: 60%;
+    right: 0;
+    width: 50%;
     height: 100%;
-    background: radial-gradient(ellipse at center, rgba(196,255,61,0.08), transparent 70%);
+    background: radial-gradient(ellipse at right center, rgba(196,255,61,0.08), transparent 70%);
     pointer-events: none;
+    z-index: 0;
   }
+  .hero .wrap { position: relative; z-index: 1; }
   .hero-grid {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
@@ -267,12 +281,24 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
   h1.hero-title {
     font-family: 'Unbounded', sans-serif;
     font-weight: 600;
-    font-size: clamp(32px, 5vw, 64px);
-    line-height: 1.0;
+    font-size: clamp(30px, 3.6vw, 52px);
+    line-height: 1.05;
     letter-spacing: -0.03em;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
   h1.hero-title .accent { color: var(--accent); font-weight: 700; }
+
+  .hero-title-sub {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 500;
+    font-size: clamp(18px, 1.8vw, 22px);
+    color: var(--muted);
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .hero-title-sub .accent { color: var(--accent); font-weight: 600; }
 
   .hero-sub {
     font-size: 16px;
@@ -442,14 +468,6 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
     margin-left: 4px;
   }
 
-  /* Accent-dim (secondary highlight) */
-  h1.hero-title .accent-dim {
-    color: var(--muted);
-    font-weight: 400;
-    font-size: 0.65em;
-    letter-spacing: -0.02em;
-  }
-
   /* ===== LIVE COUNTER ===== */
   .live-counter {
     display: inline-flex;
@@ -526,20 +544,22 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
       flex-direction: column;
     }
     .hero-text { display: contents; }
-    /* На мобиле: метка → заголовок → форма → остальное */
+    /* На мобиле: метка → заголовок → подзаголовок → форма → остальное */
     .hero-label { order: 1; margin-bottom: 12px; }
-    h1.hero-title { order: 2; margin-bottom: 20px; }
-    .hero-form { order: 3; }
-    .hero-sub { order: 4; margin-bottom: 0; }
-    .hero-stats { order: 5; margin-bottom: 0; }
-    .live-counter { order: 6; margin-top: 0; margin-bottom: 0; }
-    .clients-row { order: 7; margin-top: 4px; }
+    h1.hero-title { order: 2; margin-bottom: 8px; }
+    .hero-title-sub { order: 3; margin-bottom: 16px; }
+    .hero-form { order: 4; }
+    .hero-sub { order: 5; margin-bottom: 0; }
+    .hero-stats { order: 6; margin-bottom: 0; }
+    .live-counter { order: 7; margin-top: 0; margin-bottom: 0; }
+    .clients-row { order: 8; margin-top: 4px; }
 
     .hero { padding: 24px 0 40px; }
   }
   @media (max-width: 520px) {
     .wrap { padding: 0 16px; }
-    h1.hero-title { font-size: 32px; line-height: 1.04; }
+    h1.hero-title { font-size: 28px; line-height: 1.08; }
+    .hero-title-sub { font-size: 16px; }
     .hero-stat-n { font-size: 20px; }
     .form-card { padding: 20px; }
     .hero-sub { font-size: 15px; }
@@ -833,18 +853,19 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      margin: 0 -16px;
-      padding: 0 16px 8px;
+      padding: 0 0 8px 0;
       gap: 12px;
+      margin: 0;
     }
     .cases-scroll::-webkit-scrollbar { display: none; }
     .case {
-      min-width: 300px;
-      max-width: 320px;
+      min-width: 280px;
+      max-width: 300px;
       scroll-snap-align: start;
       flex-shrink: 0;
       padding: 20px;
     }
+    .case:last-child { margin-right: 16px; }
     .case-title { font-size: 16px; }
     .case-metric-v { font-size: 20px; }
   }
@@ -1185,11 +1206,9 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
         <div class="hero-label">ДЛЯ АГЕНТСТВ НЕДВИЖИМОСТИ ТАИЛАНДА</div>
 
         <h1 class="hero-title">
-          Первые квал. лиды<br>
-          на недвижимость Пхукета<br>
-          и Паттайи — <span class="accent">через 7 дней.</span><br>
-          <span class="accent-dim">По цене от $30.</span>
+          Первые квал. лиды на недвижимость Пхукета и&nbsp;Паттайи — <span class="accent">через 7 дней.</span>
         </h1>
+        <div class="hero-title-sub">По цене <span class="accent">от $30</span></div>
 
         <p class="hero-sub">
           Мы <strong>не льём трафик на лидформы и не делаем отчёты ради отчётов</strong>. Приводим людей, которые осознанно оставили заявку и готовы говорить о покупке. Конверсия в квал — <strong>40%</strong>, а не 3–5%, как на рынке.
