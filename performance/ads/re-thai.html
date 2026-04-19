@@ -26,6 +26,25 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(96858541, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true,
+        ecommerce:"dataLayer"
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/96858541" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 <style>
   :root {
     --bg: #0a0a0a;
@@ -176,6 +195,26 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
     text-decoration: none;
     border-radius: 8px;
     min-height: 48px;
+    position: relative;
+  }
+  .sticky-cta-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--bg);
+    border-radius: 50%;
+    animation: stickyPulse 1.5s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes stickyPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+  .sticky-cta-meta {
+    font-size: 11px;
+    font-weight: 500;
+    opacity: 0.7;
+    margin-left: auto;
+    letter-spacing: 0.02em;
   }
   @media (max-width: 720px) { .sticky-cta { display: block; } }
 
@@ -394,16 +433,125 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
     line-height: 1.45;
   }
 
+  /* Optional label marker */
+  .form-optional {
+    color: var(--dim);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: 4px;
+  }
+
+  /* Accent-dim (secondary highlight) */
+  h1.hero-title .accent-dim {
+    color: var(--muted);
+    font-weight: 400;
+    font-size: 0.65em;
+    letter-spacing: -0.02em;
+  }
+
+  /* ===== LIVE COUNTER ===== */
+  .live-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(196,255,61,0.06);
+    border: 1px solid rgba(196,255,61,0.2);
+    border-radius: 100px;
+    margin-top: 24px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.03em;
+  }
+  .live-counter strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .live-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(196,255,61,0.6);
+    animation: liveBlink 1.8s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes liveBlink {
+    0% { box-shadow: 0 0 0 0 rgba(196,255,61,0.6); opacity: 1; }
+    70% { box-shadow: 0 0 0 10px rgba(196,255,61,0); opacity: 0.6; }
+    100% { box-shadow: 0 0 0 0 rgba(196,255,61,0); opacity: 1; }
+  }
+
+  /* ===== CLIENTS ROW ===== */
+  .clients-row {
+    margin-top: 8px;
+  }
+  .clients-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .clients-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .client-chip {
+    padding: 6px 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    font-size: 12px;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .client-chip.client-more {
+    color: var(--accent);
+    border-color: rgba(196,255,61,0.3);
+    background: rgba(196,255,61,0.08);
+    font-weight: 600;
+  }
+
   @media (max-width: 960px) {
-    .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-text { display: contents; }
+    /* На мобиле: метка → заголовок → форма → остальное */
+    .hero-label { order: 1; margin-bottom: 12px; }
+    h1.hero-title { order: 2; margin-bottom: 20px; }
+    .hero-form { order: 3; }
+    .hero-sub { order: 4; margin-bottom: 0; }
+    .hero-stats { order: 5; margin-bottom: 0; }
+    .live-counter { order: 6; margin-top: 0; margin-bottom: 0; }
+    .clients-row { order: 7; margin-top: 4px; }
+
     .hero { padding: 24px 0 40px; }
   }
   @media (max-width: 520px) {
     .wrap { padding: 0 16px; }
-    h1.hero-title { font-size: 34px; line-height: 1.02; }
+    h1.hero-title { font-size: 32px; line-height: 1.04; }
     .hero-stat-n { font-size: 20px; }
     .form-card { padding: 20px; }
     .hero-sub { font-size: 15px; }
+    .live-counter {
+      width: 100%;
+      justify-content: flex-start;
+      font-size: 11px;
+    }
+    .live-counter .live-text {
+      white-space: normal;
+      line-height: 1.4;
+    }
   }
 
   /* ===== SECTIONS ===== */
@@ -506,9 +654,53 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
     font-weight: 700;
     flex-shrink: 0;
   }
+  .pain.pain-wide { grid-column: span 2; }
+
+  /* Pains toggle (свёрнутые боли) */
+  .pains-more { margin-top: 16px; }
+  .pains-toggle {
+    width: 100%;
+    background: transparent;
+    border: 1px dashed var(--line-2);
+    color: var(--muted);
+    padding: 16px 20px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s;
+    min-height: 52px;
+  }
+  .pains-toggle:hover, .pains-toggle:active {
+    border-color: var(--accent);
+    color: var(--text);
+    background: rgba(196,255,61,0.03);
+  }
+  .pains-toggle-icon {
+    transition: transform 0.3s;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .pains-more.open .pains-toggle-icon { transform: rotate(180deg); }
+  .pains-hidden {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, margin-top 0.3s ease;
+    margin-top: 0;
+  }
+  .pains-more.open .pains-hidden {
+    max-height: 2000px;
+    margin-top: 16px;
+  }
+
   @media (max-width: 720px) {
     .pains-grid { grid-template-columns: 1fr; gap: 12px; }
-    .pain.wide { grid-column: span 1; }
+    .pain.pain-wide, .pain.wide { grid-column: span 1; }
     .pain { padding: 20px; }
     .pain-title { font-size: 18px; }
   }
@@ -665,7 +857,24 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
     margin-top: 16px;
     letter-spacing: 0.08em;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(196,255,61,0.05);
+    border: 1px solid rgba(196,255,61,0.15);
+    border-radius: 100px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cases-hint .arrow-anim {
+    color: var(--accent);
+    animation: arrowSlide 1.2s ease-in-out infinite;
+    display: inline-block;
+  }
+  @keyframes arrowSlide {
+    0%, 100% { transform: translateX(0); opacity: 1; }
+    50% { transform: translateX(4px); opacity: 0.5; }
   }
   @media (max-width: 960px) { .cases-hint { display: flex; } }
 
@@ -714,11 +923,27 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
     border: 1px solid var(--line);
     border-radius: 12px;
     overflow: hidden;
+    position: relative;
+  }
+  /* Connector-линия прогресса через все шаги */
+  .approach-grid::before {
+    content: '';
+    position: absolute;
+    top: 58px;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 100%);
+    opacity: 0.25;
+    z-index: 0;
+    pointer-events: none;
   }
   .step {
     padding: 28px 22px;
     border-right: 1px solid var(--line);
     background: var(--bg-2);
+    position: relative;
+    z-index: 1;
   }
   .step:last-child { border-right: none; }
   .step-n {
@@ -730,7 +955,17 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
     margin-bottom: 18px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    position: relative;
+  }
+  .step-n::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--bg-2);
+    flex-shrink: 0;
   }
   .step-n::after {
     content: '';
@@ -752,6 +987,7 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
   }
   @media (max-width: 900px) {
     .approach-grid { grid-template-columns: repeat(2, 1fr); }
+    .approach-grid::before { display: none; }
     .step:nth-child(1), .step:nth-child(2) { border-bottom: 1px solid var(--line); }
     .step:nth-child(2), .step:nth-child(4) { border-right: none; }
   }
@@ -945,14 +1181,14 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
 <section class="hero">
   <div class="wrap">
     <div class="hero-grid">
-      <div>
+      <div class="hero-text">
         <div class="hero-label">ДЛЯ АГЕНТСТВ НЕДВИЖИМОСТИ ТАИЛАНДА</div>
 
         <h1 class="hero-title">
-          Квал. лиды<br>
-          на недвижимость<br>
-          Пхукета и Паттайи<br>
-          <span class="accent">от $30.</span>
+          Первые квал. лиды<br>
+          на недвижимость Пхукета<br>
+          и Паттайи — <span class="accent">через 7 дней.</span><br>
+          <span class="accent-dim">По цене от $30.</span>
         </h1>
 
         <p class="hero-sub">
@@ -969,17 +1205,39 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
             <div class="hero-stat-l">конверсия в квал</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-n">8 лет</div>
-            <div class="hero-stat-l">только недвижимость</div>
+            <div class="hero-stat-n">$2,8M</div>
+            <div class="hero-stat-l">бюджета под управлением</div>
+          </div>
+        </div>
+
+        <!-- LIVE COUNTER -->
+        <div class="live-counter">
+          <span class="live-dot"></span>
+          <span class="live-text">
+            СЕЙЧАС В РАБОТЕ: <strong>22 клиента</strong> · <strong>$224K бюджета</strong> в этом месяце
+          </span>
+        </div>
+
+        <!-- КЛИЕНТЫ — логоряд -->
+        <div class="clients-row">
+          <div class="clients-label">уже работаем с:</div>
+          <div class="clients-list">
+            <span class="client-chip">IBG Property</span>
+            <span class="client-chip">Good Carma</span>
+            <span class="client-chip">NextPoint</span>
+            <span class="client-chip">Premium Villas</span>
+            <span class="client-chip">Andaman Group</span>
+            <span class="client-chip">Sea Inside</span>
+            <span class="client-chip client-more">+16</span>
           </div>
         </div>
       </div>
 
       <!-- FORM -->
-      <div class="form-card" id="form-top">
+      <div class="form-card hero-form" id="form-top">
         <div class="form-head">
-          <div class="form-title">Бесплатный аудит трафика</div>
-          <div class="form-sub">Покажем, где вы теряете бюджет. Ответим за 1 рабочий день.</div>
+          <div class="form-title">Бесплатный аудит за 14 дней</div>
+          <div class="form-sub">Покажем, где вы теряете бюджет. Ответим за 24 часа.</div>
         </div>
 
         <form id="leadForm" onsubmit="return submitForm(event, 'top')">
@@ -990,22 +1248,22 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
 
           <div class="form-row">
             <label class="form-label">Телеграм или WhatsApp</label>
-            <input type="text" name="contact" class="form-input" placeholder="@username или +7..." autocomplete="tel" required>
+            <input type="text" name="contact" class="form-input" placeholder="@magosh или +66 8..." autocomplete="tel" required>
           </div>
 
           <div class="form-row">
-            <label class="form-label">С каким рынком работаете</label>
+            <label class="form-label">С каким рынком работаете <span class="form-optional">(по желанию)</span></label>
             <div class="form-chips" data-group="market-top">
-              <div class="chip" data-value="RU">Русский</div>
+              <div class="chip active" data-value="RU">Русский</div>
               <div class="chip" data-value="EN">Английский</div>
               <div class="chip" data-value="PL">Польский</div>
               <div class="chip" data-value="MIX">Микс</div>
             </div>
-            <input type="hidden" name="market" id="market-top">
+            <input type="hidden" name="market" id="market-top" value="RU">
           </div>
 
           <button type="submit" class="form-submit">
-            Получить аудит
+            Посмотреть, где сливается бюджет
             <span class="arrow">→</span>
           </button>
 
@@ -1027,7 +1285,7 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
   <div class="wrap">
     <div class="sec-tag">01 — ЧТО ПРОИСХОДИТ У ВАС СЕЙЧАС</div>
     <h2 class="sec-title">Вот где у вас <span class="italic">сливается</span> бюджет.</h2>
-    <p class="sec-intro">Мы ведём рекламу для агентств в Таиланде каждый день. Видим одни и те же ошибки у 9 из 10 команд. Вот пять — в порядке, в котором чаще всего приходится чинить.</p>
+    <p class="sec-intro">Мы ведём рекламу для агентств в Таиланде каждый день. Видим одни и те же ошибки у 9 из 10 команд. Три самые дорогие — ниже.</p>
 
     <div class="pains-grid">
       <div class="pain">
@@ -1044,27 +1302,40 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
         <div class="pain-fix">Работаем через квизы с квалификацией. Бюджет, сроки, цель. CPL $30, но конверсия 40%.</div>
       </div>
 
-      <div class="pain">
+      <div class="pain pain-wide">
         <div class="pain-n">03</div>
-        <div class="pain-title">«Английские лиды не покупают» — это <span class="red">миф</span>.</div>
-        <p class="pain-body">Миф, потому что креативы сделаны через Google Translate. Носитель скроллит за секунду. Плюс льют на всех англоговорящих подряд, а европеец и американец покупают по-разному.</p>
-        <div class="pain-fix">Работаем с английским сегментом нативно. Март: 2 сделки за 2 недели, 12 просмотров на апрель.</div>
-      </div>
-
-      <div class="pain">
-        <div class="pain-n">04</div>
         <div class="pain-title">Таргетолог и ОП <span class="red">валят друг на друга</span>.</div>
         <p class="pain-body">Знакомо? «Лиды качественные, ваш ОП не дожимает». «Лиды мусор, что вы нам присылаете». Никто не отвечает за результат. <strong>Сделок как не было, так и нет.</strong></p>
         <div class="pain-fix">Ведём клиента от первого касания до сделки. Пример: с 2% в сделку до 8% за месяц.</div>
       </div>
+    </div>
 
-      <div class="pain wide">
-        <div class="pain-n">05</div>
-        <div class="pain-title">Русский лид за $300–500 — потому что льют <span class="red">на всех русскоговорящих подряд</span>.</div>
-        <p class="pain-body">Проблема не в том, что русский лид дорогой. Проблема в том, что рекламу показывают всем — включая людей из СНГ с бюджетом ноль, которые никогда не купят виллу на Пхукете. <strong>Удивляемся потом, почему не квалятся.</strong></p>
-        <div class="pain-fix">Таргетируемся на русских экспатов — Дубай, Европа, ЮВА. У них есть бюджет и понимание рынка. Квал $60–90, конверсия 25%+.</div>
+    <!-- Свёрнутые боли -->
+    <div class="pains-more" id="painsMore">
+      <button class="pains-toggle" type="button" onclick="togglePainsMore()">
+        <span class="pains-toggle-text">+ Ещё 2 проблемы, которые чиним</span>
+        <span class="pains-toggle-icon">↓</span>
+      </button>
+
+      <div class="pains-hidden">
+        <div class="pains-grid">
+          <div class="pain">
+            <div class="pain-n">04</div>
+            <div class="pain-title">«Английские лиды не покупают» — это <span class="red">миф</span>.</div>
+            <p class="pain-body">Миф, потому что креативы сделаны через Google Translate. Носитель скроллит за секунду. Плюс льют на всех англоговорящих подряд, а европеец и американец покупают по-разному.</p>
+            <div class="pain-fix">Работаем с английским сегментом нативно. Март: 2 сделки за 2 недели, 12 просмотров на апрель.</div>
+          </div>
+
+          <div class="pain">
+            <div class="pain-n">05</div>
+            <div class="pain-title">Русский лид за $300–500 — потому что льют <span class="red">на всех русскоговорящих подряд</span>.</div>
+            <p class="pain-body">Проблема не в том, что русский лид дорогой. Проблема в том, что рекламу показывают всем — включая людей из СНГ с бюджетом ноль. <strong>Удивляемся потом, почему не квалятся.</strong></p>
+            <div class="pain-fix">Таргетируемся на русских экспатов — Дубай, Европа, ЮВА. Квал $60–90, конверсия 25%+.</div>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1075,7 +1346,7 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
     <h2 class="sec-title">Кейсы, которые <span class="italic">готовы подтвердить.</span></h2>
     <p class="sec-intro">Цифры из реальных рекламных кабинетов. Все кейсы — действующие и прошлые клиенты, с которыми работаем по Таиланду, Дубаю и России. Имена раскрываем на созвоне под NDA.</p>
 
-    <div class="cases-scroll">
+    <div class="cases-scroll" id="casesScroll">
 
       <div class="case">
         <div class="case-head">
@@ -1182,7 +1453,7 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
     </div>
 
     <div class="cases-hint">
-      <span>←</span> СМАХНИТЕ, ЧТОБЫ ПОСМОТРЕТЬ ВСЕ <span>→</span>
+      СВАЙП <span class="arrow-anim">→</span> 6 КЕЙСОВ
     </div>
   </div>
 </section>
@@ -1289,6 +1560,11 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
 
     <div class="faq-list">
       <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Что, если за 5–7 дней аудита ничего не найдёте?<span class="faq-toggle">+</span></div>
+        <div class="faq-a">Так и скажем: «У вас в целом всё норм, искать нечего». И попрощаемся. Денег не возьмём — аудит бесплатный. Мы не продаём «а вот ещё можно оптимизировать» на ровном месте. Если течи нет — нет смысла нам работать вместе.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q">У нас уже есть таргетолог. Зачем вы нам?<span class="faq-toggle">+</span></div>
         <div class="faq-a">Большинство таргетологов работают с одним проектом и не видят картину по рынку. Мы ведём несколько агентств в Таиланде одновременно — видим, что реально работает в Пхукете и Паттайе по каждому сегменту. Не заменяем вашу команду, а усиливаем.</div>
       </div>
@@ -1328,19 +1604,19 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
       <div class="cta-left">
         <div class="sec-tag">ПРОСТО НАЧАТЬ</div>
         <h2>Покажем, где вы <span class="accent">теряете</span> деньги. Бесплатно.</h2>
-        <p>Разбираем вашу текущую рекламу за 5–7 дней. Показываем конкретные места утечки — с цифрами, а не «у вас в целом нормально». Если нечего чинить — так и скажем.</p>
+        <p>Разбираем вашу текущую рекламу за 5–7 дней. Показываем конкретные места утечки — с цифрами, а не «у вас в целом нормально». Если нечего чинить — так и скажем, и попрощаемся.</p>
         <ul class="cta-bullets">
           <li>Проверим, открывается ли ваш квиз в Таиланде</li>
           <li>Сравним вашу цену квала с рынком</li>
           <li>Покажем, где ОП теряет горячих лидов</li>
-          <li>Ответим за 1 рабочий день удобным способом</li>
+          <li>Ответим за 24 часа удобным способом</li>
         </ul>
       </div>
 
       <div class="form-card">
         <div class="form-head">
           <div class="form-title">Оставьте заявку на аудит</div>
-          <div class="form-sub">Ответим за 1 рабочий день удобным для вас способом.</div>
+          <div class="form-sub">Ответим за 24 часа удобным для вас способом.</div>
         </div>
 
         <form id="leadFormFinal" onsubmit="return submitForm(event, 'final')">
@@ -1351,22 +1627,22 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
 
           <div class="form-row">
             <label class="form-label">Телеграм или WhatsApp</label>
-            <input type="text" name="contact" class="form-input" placeholder="@username или +7..." autocomplete="tel" required>
+            <input type="text" name="contact" class="form-input" placeholder="@magosh или +66 8..." autocomplete="tel" required>
           </div>
 
           <div class="form-row">
-            <label class="form-label">С каким рынком работаете</label>
+            <label class="form-label">С каким рынком работаете <span class="form-optional">(по желанию)</span></label>
             <div class="form-chips" data-group="market-final">
-              <div class="chip" data-value="RU">Русский</div>
+              <div class="chip active" data-value="RU">Русский</div>
               <div class="chip" data-value="EN">Английский</div>
               <div class="chip" data-value="PL">Польский</div>
               <div class="chip" data-value="MIX">Микс</div>
             </div>
-            <input type="hidden" name="market" id="market-final">
+            <input type="hidden" name="market" id="market-final" value="RU">
           </div>
 
           <button type="submit" class="form-submit">
-            Получить аудит
+            Посмотреть, где сливается бюджет
             <span class="arrow">→</span>
           </button>
 
@@ -1403,7 +1679,11 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
 
 <!-- STICKY MOBILE CTA -->
 <div class="sticky-cta" id="stickyCta">
-  <a href="#form-final">Получить бесплатный аудит →</a>
+  <a href="#form-final">
+    <span class="sticky-cta-dot"></span>
+    Получить аудит
+    <span class="sticky-cta-meta">Ответ за 24ч</span>
+  </a>
 </div>
 
 <script>
@@ -1459,6 +1739,22 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
   // ===== FAQ =====
   function toggleFaq(el) {
     el.classList.toggle('open');
+  }
+
+  // ===== Pains more (свёрнутые боли) =====
+  function togglePainsMore() {
+    const block = document.getElementById('painsMore');
+    if (!block) return;
+    block.classList.toggle('open');
+    const toggleText = block.querySelector('.pains-toggle-text');
+    if (block.classList.contains('open')) {
+      toggleText.textContent = '− Скрыть';
+      if (typeof ym === 'function') {
+        try { ym(96858541, 'reachGoal', 'pains_more_open'); } catch(e){}
+      }
+    } else {
+      toggleText.textContent = '+ Ещё 2 проблемы, которые чиним';
+    }
   }
 
   // ===== Form submit → Albato webhook + Telegram bot + localStorage backup + Meta Pixel =====
@@ -1580,10 +1876,10 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
     const submitBtn = form.querySelector('.form-submit');
     const data = new FormData(form);
 
-    // Валидация рынка
+    // Рынок теперь опциональный (RU стоит по умолчанию).
+    // Если пустой по какой-то причине — отправим с пометкой "не указан".
     if (!data.get('market')) {
-      alert('Выберите, с каким рынком работаете');
-      return false;
+      data.set('market', '');
     }
 
     // Блокируем кнопку
@@ -1644,6 +1940,18 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
       console.warn('fbq Lead event failed:', e);
     }
 
+    // 2.1. Яндекс.Метрика — достижение цели lead
+    try {
+      if (typeof ym === 'function') {
+        ym(96858541, 'reachGoal', 'lead', {
+          form_source: payload.form_source,
+          market: payload.market
+        });
+      }
+    } catch(e) {
+      console.warn('ym reachGoal failed:', e);
+    }
+
     // 3. Параллельная отправка в Albato и Telegram
     // Promise.allSettled — ждем оба, но не падаем если один упал
     const results = await Promise.allSettled([
@@ -1692,6 +2000,35 @@ src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
     s.classList.add('reveal');
     io.observe(s);
   });
+
+  // ===== Cases auto-hint: подсказка, что можно свайпить =====
+  // На мобильном при первом появлении секции — плавно скроллим первый кейс,
+  // чтобы пользователь увидел: "о, тут есть ещё"
+  (function initCasesHint() {
+    if (window.innerWidth > 960) return;
+    const casesEl = document.getElementById('casesScroll');
+    if (!casesEl) return;
+
+    let hinted = false;
+    const hintObserver = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting && !hinted) {
+          hinted = true;
+          // Ждём немного чтобы пользователь увидел секцию целиком
+          setTimeout(() => {
+            try {
+              casesEl.scrollTo({ left: 80, behavior: 'smooth' });
+              setTimeout(() => {
+                casesEl.scrollTo({ left: 0, behavior: 'smooth' });
+              }, 900);
+            } catch(e) {}
+          }, 600);
+          hintObserver.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    hintObserver.observe(casesEl);
+  })();
 
   // ===== Sticky CTA =====
   const stickyCta = document.getElementById('stickyCta');
