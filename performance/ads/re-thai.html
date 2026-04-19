@@ -8,6 +8,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1399100830794020');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1399100830794020&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <style>
   :root {
     --bg: #0a0a0a;
@@ -997,7 +1015,7 @@
         <div class="form-success">
           <div class="form-success-icon">✓</div>
           <div class="form-success-t">Заявка принята</div>
-          <div class="form-success-s">Свяжемся в течение рабочего дня в телеграме.</div>
+          <div class="form-success-s">Свяжемся в течение рабочего дня удобным для вас способом.</div>
         </div>
       </div>
     </div>
@@ -1315,14 +1333,14 @@
           <li>Проверим, открывается ли ваш квиз в Таиланде</li>
           <li>Сравним вашу цену квала с рынком</li>
           <li>Покажем, где ОП теряет горячих лидов</li>
-          <li>Ответим за 1 рабочий день в телеграме</li>
+          <li>Ответим за 1 рабочий день удобным способом</li>
         </ul>
       </div>
 
       <div class="form-card">
         <div class="form-head">
           <div class="form-title">Оставьте заявку на аудит</div>
-          <div class="form-sub">Ответим в телеграме за 1 рабочий день.</div>
+          <div class="form-sub">Ответим за 1 рабочий день удобным для вас способом.</div>
         </div>
 
         <form id="leadFormFinal" onsubmit="return submitForm(event, 'final')">
@@ -1358,7 +1376,7 @@
         <div class="form-success">
           <div class="form-success-icon">✓</div>
           <div class="form-success-t">Заявка принята</div>
-          <div class="form-success-s">Свяжемся в течение рабочего дня в телеграме.</div>
+          <div class="form-success-s">Свяжемся в течение рабочего дня удобным для вас способом.</div>
         </div>
       </div>
     </div>
@@ -1443,7 +1461,117 @@
     el.classList.toggle('open');
   }
 
-  // ===== Form submit → Albato webhook =====
+  // ===== Form submit → Albato webhook + Telegram bot + localStorage backup + Meta Pixel =====
+
+  // Telegram bot — дублирующий канал доставки лидов
+  const TG_BOT_TOKEN = '8736522279:AAEt7FLqxE2AFheHE2ftOsqqmXxiAQT9Qpw';
+  const TG_CHAT_ID = '531480288';
+
+  // Форматируем лид в читаемое сообщение для Telegram
+  function formatLeadForTelegram(payload) {
+    const marketNames = { RU: 'Русский', EN: 'Английский', PL: 'Польский', MIX: 'Микс' };
+    const sourceName = payload.form_source === 'hero_form' ? 'Первый экран' : 'Финальный блок';
+
+    // Собираем UTM-блок только из заполненных полей
+    const utmLines = [];
+    if (payload.utm_source) utmLines.push(`source: ${payload.utm_source}`);
+    if (payload.utm_medium) utmLines.push(`medium: ${payload.utm_medium}`);
+    if (payload.utm_campaign) utmLines.push(`campaign: ${payload.utm_campaign}`);
+    if (payload.utm_content) utmLines.push(`content: ${payload.utm_content}`);
+    if (payload.utm_term) utmLines.push(`term: ${payload.utm_term}`);
+    if (payload.fbclid) utmLines.push(`fbclid: ${payload.fbclid}`);
+    if (payload.gclid) utmLines.push(`gclid: ${payload.gclid}`);
+    if (payload.yclid) utmLines.push(`yclid: ${payload.yclid}`);
+
+    const utmBlock = utmLines.length
+      ? `\n<b>UTM:</b>\n<code>${utmLines.join('\n')}</code>`
+      : '\n<b>UTM:</b> прямой заход';
+
+    const time = new Date(payload.timestamp).toLocaleString('ru-RU', {
+      timeZone: 'Asia/Bangkok',
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    });
+
+    return `🔥 <b>Новый лид — re-thai</b>
+
+<b>Имя:</b> ${escapeHtml(payload.name)}
+<b>Контакт:</b> ${escapeHtml(payload.contact)}
+<b>Рынок:</b> ${marketNames[payload.market] || payload.market}
+<b>Форма:</b> ${sourceName}${utmBlock}
+
+<b>Время (Bangkok):</b> ${time}`;
+  }
+
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  // Отправка лида в Telegram-бот (напрямую из браузера)
+  async function sendToTelegram(payload) {
+    const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`;
+    const body = {
+      chat_id: TG_CHAT_ID,
+      text: formatLeadForTelegram(payload),
+      parse_mode: 'HTML',
+      disable_web_page_preview: true
+    };
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    return response.ok;
+  }
+
+  // Бекап лидов в localStorage (на случай если оба канала упали)
+  // Посмотреть бекап: localStorage.getItem('wn_leads_backup')
+  // Посмотреть только неотправленные: wnGetFailedLeads()
+  // Очистить: localStorage.removeItem('wn_leads_backup')
+  function saveLeadBackup(payload, status) {
+    try {
+      const backup = JSON.parse(localStorage.getItem('wn_leads_backup') || '[]');
+      backup.push({ ...payload, _backup_status: status, _backup_id: Date.now() + '_' + Math.random().toString(36).slice(2, 8) });
+      // Ограничиваем бекап последними 200 лидами, чтобы не раздувать storage
+      const trimmed = backup.slice(-200);
+      localStorage.setItem('wn_leads_backup', JSON.stringify(trimmed));
+    } catch(e) {
+      console.warn('Backup save failed:', e);
+    }
+  }
+
+  // Обновляем статус бекапа (sent / failed) по ID
+  function updateBackupStatus(backupId, status) {
+    try {
+      const backup = JSON.parse(localStorage.getItem('wn_leads_backup') || '[]');
+      const idx = backup.findIndex(l => l._backup_id === backupId);
+      if (idx !== -1) {
+        backup[idx]._backup_status = status;
+        localStorage.setItem('wn_leads_backup', JSON.stringify(backup));
+      }
+    } catch(e) {}
+  }
+
+  // Утилиты для вытаскивания бекапа (вызывать из консоли при необходимости)
+  window.wnGetAllLeads = function() {
+    try { return JSON.parse(localStorage.getItem('wn_leads_backup') || '[]'); }
+    catch(e) { return []; }
+  };
+  window.wnGetFailedLeads = function() {
+    return window.wnGetAllLeads().filter(l => l._backup_status === 'failed');
+  };
+  window.wnExportLeadsCsv = function() {
+    const leads = window.wnGetAllLeads();
+    if (!leads.length) { console.log('No leads in backup'); return; }
+    const keys = Object.keys(leads[0]);
+    const csv = [keys.join(',')].concat(leads.map(l => keys.map(k => JSON.stringify(l[k] ?? '')).join(','))).join('\n');
+    console.log(csv);
+    return csv;
+  };
+
   async function submitForm(e, which) {
     e.preventDefault();
     const form = e.target;
@@ -1458,13 +1586,12 @@
       return false;
     }
 
-    // Блокируем кнопку на время запроса
-    const originalBtnHtml = submitBtn.innerHTML;
+    // Блокируем кнопку
     submitBtn.disabled = true;
     submitBtn.style.opacity = '0.6';
     submitBtn.innerHTML = 'Отправляем...';
 
-    // Собираем payload: данные формы + UTM + техническая информация
+    // Собираем payload
     const utm = getStoredUtm();
     const payload = {
       // Данные из формы
@@ -1472,7 +1599,7 @@
       contact: data.get('contact') || '',
       market: data.get('market') || '',
 
-      // Откуда отправили (первая форма или финальная)
+      // Откуда отправили
       form_source: which === 'top' ? 'hero_form' : 'final_form',
 
       // UTM и clickId
@@ -1494,23 +1621,54 @@
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || ''
     };
 
+    // 1. СНАЧАЛА — локальный бекап (на случай если все упадет)
+    const backupId = Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+    payload._backup_id = backupId;
     try {
-      const response = await fetch(ALBATO_WEBHOOK, {
+      const backup = JSON.parse(localStorage.getItem('wn_leads_backup') || '[]');
+      backup.push({ ...payload, _backup_status: 'pending' });
+      localStorage.setItem('wn_leads_backup', JSON.stringify(backup.slice(-200)));
+    } catch(e) {}
+
+    // 2. Meta Pixel — событие Lead (сразу, не ждем сервер)
+    try {
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+          content_name: payload.form_source,
+          content_category: 'real_estate_thailand',
+          value: 1,
+          currency: 'USD'
+        });
+      }
+    } catch(e) {
+      console.warn('fbq Lead event failed:', e);
+    }
+
+    // 3. Параллельная отправка в Albato и Telegram
+    // Promise.allSettled — ждем оба, но не падаем если один упал
+    const results = await Promise.allSettled([
+      fetch(ALBATO_WEBHOOK, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
-      });
+      }).then(r => ({ channel: 'albato', ok: r.ok, status: r.status })),
 
-      // Показываем success даже если webhook вернул ошибку, чтобы не терять лида
-      // (данные пишем в консоль на всякий случай для дебага)
-      if (!response.ok) {
-        console.warn('Webhook returned', response.status, 'but showing success to user');
-      }
-    } catch (err) {
-      console.error('Webhook error:', err, 'Payload was:', payload);
+      sendToTelegram(payload).then(ok => ({ channel: 'telegram', ok }))
+    ]);
+
+    // Логируем результаты
+    const outcomes = results.map(r => r.status === 'fulfilled' ? r.value : { channel: 'unknown', ok: false, error: r.reason });
+    console.log('Lead delivery:', outcomes);
+
+    // Статус для бекапа: sent если хотя бы один канал доставил, failed если оба упали
+    const anyDelivered = outcomes.some(o => o.ok);
+    updateBackupStatus(backupId, anyDelivered ? 'sent' : 'failed');
+
+    if (!anyDelivered) {
+      console.error('⚠ ALL CHANNELS FAILED. Lead saved to localStorage only. Payload:', payload);
     }
 
-    // Показываем success
+    // 4. Показываем success в любом случае (лид в бекапе точно есть)
     form.style.display = 'none';
     success.classList.add('show');
 
